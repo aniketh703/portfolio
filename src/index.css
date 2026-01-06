@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+  /* ------------------------- Scaling System by Osmo ------------------------- */
+  :root {
+    --size-unit: 16; 
+    --size-container-ideal: 1440; 
+    --size-container-min: 992px;
+    --size-container-max: 1920px;
+    --size-container: clamp(var(--size-container-min), 100vw, var(--size-container-max));
+    --size-font: calc(var(--size-container) / (var(--size-container-ideal) / var(--size-unit)));
+  }
+  @media screen and (max-width: 991px) { :root { --size-container-ideal: 834; --size-container-min: 768px; --size-container-max: 991px; } }
+  @media screen and (max-width: 767px) { :root { --size-container-ideal: 550; --size-container-min: 480px; --size-container-max: 767px; } }
+  @media screen and (max-width: 479px) { :root { --size-container-ideal: 390; --size-container-min: 320px; --size-container-max: 479px; } }
+  html { font-size: var(--size-font); }
+
+  /* --- Utilities --- */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .noise-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 50; opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  /* --- Custom Cursor Styles --- */
+  .cursor {
+    z-index: 300; background-color: #FF4500; border: 1px solid #FF4500; border-radius: 100em; width: 1em; height: 1em;
+    transition: background-color .375s cubic-bezier(.625, .05, 0, 1), height .375s cubic-bezier(.625, .05, 0, 1), width .375s cubic-bezier(.625, .05, 0, 1);
+    position: fixed; top: 0; left: 0; pointer-events: none; transform: translate(-50%, -50%);
+  }
+  body:has(a:hover) .cursor, body:has(button:hover) .cursor, body:has([data-cursor]:hover) .cursor {
+    width: 3em; height: 3em; background-color: rgba(255, 69, 0, 0.3);
+  }
+  @media (hover: none) and (pointer: coarse) { .cursor { display: none; } }
+
+  /* --- Side Nav Styles --- */
+  .sidenav__header { z-index: 100; position: fixed; top: 0; right: 0; padding: 2rem; mix-blend-mode: difference; color: #FAFAF9; }
+  .sidenav__button { 
+    z-index: 100; cursor: pointer; background: transparent; border: none; 
+    display: flex; align-items: center; gap: 0.625em; margin: -1em; padding: 1em; color: inherit;
+  }
+  .sidenav__button-text { display: flex; flex-direction: column; align-items: flex-end; height: 1.2em; overflow: hidden; }
+  .sidenav__button-label { 
+    font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;
+    line-height: 1.4; margin: 0; color: inherit;
+  }
+  .sidenav__button-icon { width: 1em; height: 1em; display: flex; align-items: center; justify-content: center; transition: transform 0.4s; }
+  
+  .sidenav__nav { z-index: 90; position: fixed; inset: 0; width: 100%; height: 100vh; display: none; }
+  .sidenav__overlay { z-index: 0; position: absolute; inset: 0; background-color: rgba(28, 25, 23, 0.4); cursor: pointer; opacity: 0; }
+  .sidenav__menu { position: absolute; top: 0; right: 0; width: 35em; height: 100%; max-width: 100%; display: flex; flex-direction: column; justify-content: space-between; padding: 8em 4em 4em 4em; overflow: hidden; }
+  .sidenav__menu-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+  .sidenav__menu-bg-panel { position: absolute; inset: 0; z-index: 0; }
+  .sidenav__menu-bg-panel.is--first { background-color: #FF4500; z-index: 1; }
+  .sidenav__menu-bg-panel.is--second { background-color: #1C1917; z-index: 2; }
+  .sidenav__menu-bg-panel.is--third { background-color: #FAFAF9; z-index: 3; border-left: 1px solid #e5e5e5; }
+  .sidenav__menu-inner { position: relative; z-index: 4; display: flex; flex-direction: column; height: 100%; justify-content: space-between; }
+  .sidenav__menu-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0; }
+  .sidenav__menu-list-item { position: relative; overflow: hidden; height: 5em; display: flex; align-items: center; }
+  .sidenav__menu-link { text-decoration: none; color: #1C1917; display: flex; align-items: baseline; gap: 1em; width: 100%; transform-origin: left center; }
+  .sidenav__menu-link:hover .sidenav__menu-link-heading { color: #FF4500; }
+  .sidenav__menu-link-heading { font-family: 'Times Now', serif; font-size: 3.5rem; font-weight: 500; line-height: 1; margin: 0; letter-spacing: -0.03em; transition: color 0.3s; }
+  .sidenav__menu-link-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #FF4500; }
+  .sidenav__menu-details { display: flex; flex-direction: column; gap: 1.5em; }
+  .sidenav__menu-socials { display: flex; gap: 2em; flex-wrap: wrap; }
+  .sidenav__social-link { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; color: #1C1917; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.3s; }
+  .sidenav__social-link:hover { border-color: #FF4500; color: #FF4500; }
+  @media screen and (max-width: 767px) { .sidenav__menu { width: 100%; padding: 6em 2em 2em 2em; } .sidenav__menu-link-heading { font-size: 3rem; } }
+
+  /* --- Grid Transition Styles --- */
+  .transition-grid { z-index: 200; display: grid; width: 100%; height: 100vh; position: fixed; top: 0; left: 0; pointer-events: none; }
+  .transition-block { width: 100%; height: 100%; background-color: #FF4500; opacity: 1; }
+
+  /* --- Animations --- */
+  @keyframes slideUpExit { 0% { transform: translateY(0); } 100% { transform: translateY(-100%); } }
+  @keyframes projectOpen { 0% { transform: translateY(100%); } 100% { transform: translateY(0); } }
+  @keyframes projectClose { 0% { transform: translateY(0); } 100% { transform: translateY(100%); } }
+  @keyframes projectSwitch { 0% { opacity: 0; transform: translateX(100px); filter: blur(8px); } 100% { opacity: 1; transform: translateX(0); filter: blur(0); } }
+  
+  .loader-exit { animation: slideUpExit 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
+  .project-open { animation: projectOpen 0.7s cubic-bezier(0.83, 0, 0.17, 1) forwards; }
+  .project-close { animation: projectClose 0.6s cubic-bezier(0.83, 0, 0.17, 1) forwards; }
+  .project-switch { animation: projectSwitch 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+  .animate-blink { animation: blink 1s infinite; @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } } }
