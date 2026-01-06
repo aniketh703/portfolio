@@ -1,21 +1,66 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-  /* ------------------------- Scaling System by Osmo ------------------------- */
-  :root {
-    --size-unit: 16; 
-    --size-container-ideal: 1440; 
-    --size-container-min: 992px;
-    --size-container-max: 1920px;
-    --size-container: clamp(var(--size-container-min), 100vw, var(--size-container-max));
-    --size-font: calc(var(--size-container) / (var(--size-container-ideal) / var(--size-unit)));
-  }
-  @media screen and (max-width: 991px) { :root { --size-container-ideal: 834; --size-container-min: 768px; --size-container-max: 991px; } }
-  @media screen and (max-width: 767px) { :root { --size-container-ideal: 550; --size-container-min: 480px; --size-container-max: 767px; } }
-  @media screen and (max-width: 479px) { :root { --size-container-ideal: 390; --size-container-min: 320px; --size-container-max: 479px; } }
-  html { font-size: var(--size-font); }
 
-  /* --- Utilities --- */
+/* ------------------------- Scaling System by Osmo [https://osmo.supply/] -------------------------  */
+
+/* Desktop */
+:root {
+  --size-unit: 16; /* body font-size in design - no px */
+  --size-container-ideal: 1440; /* screen-size in design - no px */
+  --size-container-min: 992px;
+  --size-container-max: 1920px;
+  --size-container: clamp(var(--size-container-min), 100vw, var(--size-container-max));
+  --size-font: calc(var(--size-container) / (var(--size-container-ideal) / var(--size-unit)));
+}
+
+/* Tablet */
+@media screen and (max-width: 991px) {
+  :root {
+    --size-container-ideal: 834; /* screen-size in design - no px */
+    --size-container-min: 768px;
+    --size-container-max: 991px;
+  }
+}
+
+/* Mobile Landscape */
+@media screen and (max-width: 767px) {
+  :root {
+    --size-container-ideal: 550; /* screen-size in design - no px */
+    --size-container-min: 480px;
+    --size-container-max: 767px;
+  }
+}
+
+/* Mobile Portrait */
+@media screen and (max-width: 479px) {
+  :root {
+    --size-container-ideal: 390; /* screen-size in design - no px */
+    --size-container-min: 320px;
+    --size-container-max: 479px;
+  }
+}
+
+body {
+  font-size: var(--size-font);
+}
+
+.container {
+  max-width: var(--size-container);
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.container.medium {
+  max-width: calc(var(--size-container) * 0.85);
+}
+
+.container.small {
+  max-width: calc(var(--size-container) * 0.7);
+}
+
+/* --- Utilities --- */
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   .noise-overlay {
@@ -61,7 +106,7 @@
   .sidenav__menu-list-item { position: relative; overflow: hidden; height: 5em; display: flex; align-items: center; }
   .sidenav__menu-link { text-decoration: none; color: #1C1917; display: flex; align-items: baseline; gap: 1em; width: 100%; transform-origin: left center; }
   .sidenav__menu-link:hover .sidenav__menu-link-heading { color: #FF4500; }
-  .sidenav__menu-link-heading { font-family: 'Times Now', serif; font-size: 3.5rem; font-weight: 500; line-height: 1; margin: 0; letter-spacing: -0.03em; transition: color 0.3s; }
+  .sidenav__menu-link-heading { font-family: "Playfair Display", serif; font-size: 3.5rem; font-weight: 500; line-height: 1; margin: 0; letter-spacing: -0.03em; transition: color 0.3s; }
   .sidenav__menu-link-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #FF4500; }
   .sidenav__menu-details { display: flex; flex-direction: column; gap: 1.5em; }
   .sidenav__menu-socials { display: flex; gap: 2em; flex-wrap: wrap; }

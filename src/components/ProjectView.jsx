@@ -117,7 +117,13 @@ const ProjectView = ({ project, onClose, onNext }) => {
               </div>
             </div>
           </div>
-          <div onClick={handleNext} className="border-t border-stone-900 bg-stone-100 hover:bg-stone-900 hover:text-white transition-colors duration-500 cursor-pointer group py-24 px-4 md:px-12">
+          <div 
+            onClick={handleNext} 
+            role="button"
+            tabIndex="0"
+            onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleNext(e)}
+            className="border-t border-stone-900 bg-stone-100 hover:bg-stone-900 hover:text-white transition-colors duration-500 cursor-pointer group py-24 px-4 md:px-12"
+          >
             <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
                 <span className="font-mono text-xs uppercase tracking-widest mb-4 opacity-50">Next Project</span>
                 <h2 className="font-serif text-6xl md:text-8xl italic mb-8 group-hover:scale-105 transition-transform duration-500">Explore Case</h2>

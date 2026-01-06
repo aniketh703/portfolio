@@ -52,7 +52,12 @@ const SideNavigation = ({ onNavigate }) => {
   return (
     <div ref={containerRef}>
       <header className="sidenav__header">
-        <button className="sidenav__button" onClick={() => setIsOpen(!isOpen)}>
+        <button 
+          className="sidenav__button" 
+          onClick={() => setIsOpen(!isOpen)}
+          aria-expanded={isOpen}
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+        >
           <div className="sidenav__button-text">
             <p className="sidenav__button-label" data-sidenav-label>Menu</p>
             <p className="sidenav__button-label" data-sidenav-label>Close</p>

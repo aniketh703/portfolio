@@ -62,12 +62,16 @@ export default function App() {
       <CustomCursor />
 
       {/* Side Navigation Menu (Replaces standard top links) */}
-      <div className="fixed top-0 right-0 p-6 z-50">
-         <SideNavigation onNavigate={triggerNavigation} />
-      </div>
+      <SideNavigation onNavigate={triggerNavigation} />
 
-      <nav className={`fixed top-0 left-0 w-full flex justify-between items-start p-6 md:p-8 z-40 pointer-events-none mix-blend-difference text-stone-50`}>
-        <div onClick={() => triggerNavigation('index')} className="flex flex-col items-start pointer-events-auto cursor-pointer group">
+      <nav className={`fixed top-0 left-0 w-full flex justify-between items-start p-6 md:p-8 z-[60] pointer-events-none mix-blend-difference text-stone-50`}>
+        <div 
+          onClick={() => triggerNavigation('index')} 
+          role="button"
+          tabIndex="0"
+          onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && triggerNavigation('index')}
+          className="flex flex-col items-start pointer-events-auto cursor-pointer group outline-none"
+        >
           <span className="font-mono text-xs tracking-widest uppercase mb-1 group-hover:text-brand-orange transition-colors duration-300">Portfolio</span>
           <span className="font-serif text-xl font-bold leading-none">AV.24</span>
         </div>
@@ -84,8 +88,12 @@ export default function App() {
             onNavigate={triggerNavigation} 
         />
       ) : currentView === 'archive' ? (
-        <div className="animate-in fade-in slide-in-from-bottom-12 duration-500 container">
-            <Archive projects={projects} onSelect={(p) => setSelectedProjectIndex(projects.findIndex(proj => proj.id === p.id))} />
+        <div className="animate-in fade-in slide-in-from-bottom-12 duration-500">
+            <Archive 
+              projects={projects} 
+              onSelect={(p) => setSelectedProjectIndex(projects.findIndex(proj => proj.id === p.id))}
+              onNavigate={triggerNavigation}
+            />
         </div>
       ) : (
         <div className="animate-in fade-in slide-in-from-bottom-12 duration-500">

@@ -1,4 +1,3 @@
-
 export const projects = [
   { 
     id: 1, 
@@ -8,7 +7,19 @@ export const projects = [
     span: "col-span-1 md:col-span-2 row-span-2", 
     description: "An exploration into AI-driven interfaces.", 
     details: ["React Native", "TensorFlow"], 
-    color: "#FF4500" 
+    color: "#FF4500",
+    modules: [
+        { type: "intro", content: "Redefining the interaction between human capability and artificial intelligence through adaptive interfaces." },
+        { type: "text", title: "The Challenge", content: "Design a system that adapts to user intent real-time, reducing cognitive load during complex data analysis tasks." },
+        { type: "grid", title: "UX Process", items: [
+            { label: "01. Research", text: "Conducted user interviews with 15 data scientists to identify pain points in current dashboard workflows." },
+            { label: "02. Ideation", text: "Sketched 50+ layout variations focusing on 'progressive disclosure' of AI insights." },
+            { label: "03. Wireframing", text: "Low-fidelity wireframes established the core hierarchy before moving to high-fidelity prototyping." }
+        ]},
+        { type: "quote", content: "The interface shouldn't just display data; it should anticipate the question." },
+        { type: "text", title: "Usability Testing", content: "Early testing revealed that users preferred a 'conversational' sidebar over static tooltips. This insight led to a 40% increase in task completion speed during the beta phase." },
+        { type: "text", title: "Final Prototype", content: "The final high-fidelity interactive prototype demonstrates the adaptive layout engine, responding dynamically to the complexity of the dataset being analyzed." }
+    ]
   },
   { 
     id: 2, 
