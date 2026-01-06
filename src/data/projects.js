@@ -46,7 +46,17 @@ export const projects = [
     span: "col-span-1 md:col-span-1 row-span-2", 
     description: "A brutalist news aggregator.", 
     details: ["Next.js", "Tailwind"], 
-    color: "#1a4ed1" 
+    color: "#1a4ed1",
+    modules: [
+        { type: "intro", content: "Challenging the standard grid. A brutalist approach to modern news consumption." },
+        { type: "text", title: "Concept", content: "In an era of sanitized interfaces, Typographic Revolt seeks to disrupt. By prioritizing raw text and stark contrast, the design forces the user to confront the content without distraction." },
+        { type: "grid", title: "Design Pillars", items: [
+            { label: "01. Type", text: "Maximalist typography usage." },
+            { label: "02. Layout", text: "Broken grids and overlapping elements." },
+            { label: "03. Motion", text: "Aggressive hover states and marquees." }
+        ]},
+        { type: "quote", content: "Make it loud. Make it read." }
+    ]
   },
   { 
     id: 4, 
@@ -56,7 +66,13 @@ export const projects = [
     span: "col-span-1 md:col-span-2 row-span-1", 
     description: "Visualizing sound waves.", 
     details: ["Processing", "p5.js"], 
-    color: "#000000" 
+    color: "#000000",
+    modules: [
+        { type: "intro", content: "Translating auditory experiences into visual phenomena." },
+        { type: "text", title: "The Experiment", content: "Using Fast Fourier Transform (FFT) algorithms to analyze audio frequencies in real-time, generating generative geometry that pulses with the beat." },
+        { type: "code", title: "FFT Analysis", code: "fft.analyze();\nfor (let i = 0; i < spectrum.length; i++) {\n  fill(i, 255, 255);\n  rect(i * w, height - spectrum[i], w, spectrum[i]);\n}" },
+        { type: "text", title: "Outcome", content: "A reactive visual system capable of branding individual tracks or entire albums." }
+    ]
   },
   { 
     id: 5, 
@@ -66,6 +82,15 @@ export const projects = [
     span: "col-span-1 md:col-span-1 row-span-1", 
     description: "Anti-design system.", 
     details: ["Figma", "React"], 
-    color: "#333333" 
+    color: "#333333",
+    modules: [
+        { type: "intro", content: "Stripping away the non-essential. A study in reduction." },
+        { type: "quote", content: "Design usually solves problems. This creates them." },
+        { type: "grid", title: "Components", items: [
+            { label: "01. Buttons", text: "No background. No border. Just text." },
+            { label: "02. Inputs", text: "Underlined only. Monospace font." },
+            { label: "03. Modal", text: "Full screen takeover. No exit transition." }
+        ]}
+    ]
   },
 ];

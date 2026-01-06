@@ -10,6 +10,7 @@ const Archive = ({ projects, onSelect, onNavigate }) => {
   const archiveList = projects.map((p, i) => ({ ...p, uniqueId: i }));
 
   useEffect(() => {
+    document.title = "Archive | Aniketh Vustepalle";
     const handleMove = (e) => { setCursorPos({ x: e.clientX, y: e.clientY }); };
     window.addEventListener('mousemove', handleMove);
     return () => window.removeEventListener('mousemove', handleMove);

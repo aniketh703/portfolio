@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ReactLenis } from 'lenis/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Maximize2 } from 'lucide-react';
+import { Maximize2, ArrowUp, Mail } from 'lucide-react';
 import { projects } from './data/projects';
 import LoadingScreen from './components/LoadingScreen';
 import SideNavigation from './components/SideNavigation';
@@ -18,7 +18,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
   const [selectedProjectIndex, setSelectedProjectIndex] = useState(null);
-  const [currentView, setCurrentView] = useState('index'); 
+  const [currentView, setCurrentView] = useState(() => {
+    const hash = typeof window !== 'undefined' ? window.location.hash.replace('#', '') : '';
+    return ['archive', 'brand'].includes(hash) ? hash : 'index';
+  }); 
   const [gridStatus, setGridStatus] = useState('enter'); // 'enter' (reveal) or 'exit' (cover)
   const [isLoading, setIsLoading] = useState(true);
   const lenisRef = useRef();
@@ -46,6 +49,15 @@ export default function App() {
       if (nextView) {
         setCurrentView(nextView);
         window.scrollTo(0, 0);
+
+        // Sync URL
+        const targetHash = nextView === 'index' ? '' : `#${nextView}`;
+        if (targetHash) {
+             window.history.pushState(null, '', targetHash);
+        } else {
+             window.history.pushState(null, '', window.location.pathname);
+        }
+
         setGridStatus('enter');
         document.body.dataset.nextView = '';
       }
@@ -59,11 +71,35 @@ export default function App() {
     setGridStatus('exit');
   };
 
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '') || 'index';
+      if (hash !== currentView && document.body.dataset.nextView !== hash) {
+         triggerNavigation(hash);
+      }
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, [currentView]);
+
   const handleNextProject = (e) => {
     e.stopPropagation();
     setSelectedProjectIndex((prev) => (prev + 1) % projects.length);
     const modal = document.querySelector('.overflow-y-auto');
     if(modal) modal.scrollTop = 0;
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const modal = document.querySelector('.overflow-y-auto');
+    if (modal) modal.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('info');
+    if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const selectedProject = selectedProjectIndex !== null ? projects[selectedProjectIndex % projects.length] : null;
@@ -128,6 +164,24 @@ export default function App() {
         />
       )}
       
+      {/* Floating Action Buttons */}
+      <div className="fixed bottom-24 right-8 hidden md:flex flex-col gap-4 z-50 mix-blend-difference pointer-events-none">
+          <button 
+              onClick={scrollToContact} 
+              className="p-3 bg-white text-black hover:bg-stone-200 transition-transform duration-300 hover:scale-110 rounded-sm pointer-events-auto"
+              aria-label="Contact Me"
+          >
+              <Mail size={24} strokeWidth={1.5} />
+          </button>
+          <button 
+              onClick={scrollToTop} 
+              className="p-3 bg-white text-black hover:bg-stone-200 transition-transform duration-300 hover:scale-110 rounded-sm pointer-events-auto"
+              aria-label="Back to Top"
+          >
+              <ArrowUp size={24} strokeWidth={1.5} />
+          </button>
+      </div>
+
       <div className="fixed bottom-8 right-8 hidden md:block mix-blend-difference z-50 pointer-events-none">
         <div className="animate-spin-slow">
             <Maximize2 className="text-white" size={32} strokeWidth={1} />

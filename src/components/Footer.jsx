@@ -8,10 +8,10 @@ const Footer = ({ onNavigate }) => {
           <div>
             <h2 className="font-serif text-6xl md:text-8xl mb-12 tracking-tighter">Let's build <br/> <span className="text-stone-500 italic">tomorrow.</span></h2>
             <div className="flex flex-col space-y-2 font-mono text-sm uppercase tracking-widest text-stone-400">
-                <a href="#" className="hover:text-white flex items-center gap-2 hover:pl-4 transition-all duration-200"><MoveRight size={12}/> Email</a>
-                <a href="#" className="hover:text-white flex items-center gap-2 hover:pl-4 transition-all duration-200"><MoveRight size={12}/> Twitter / X</a>
-                <a href="#" className="hover:text-white flex items-center gap-2 hover:pl-4 transition-all duration-200"><MoveRight size={12}/> LinkedIn</a>
-                <a href="#" className="hover:text-white flex items-center gap-2 hover:pl-4 transition-all duration-200"><MoveRight size={12}/> Instagram</a>
+                <a href="mailto:anikethvustepalle03@gmail.com" className="hover:text-white flex items-center gap-2 hover:pl-4 transition-all duration-200"><MoveRight size={12}/> Email</a>
+                <a href="https://github.com/aniketh703" target="_blank" rel="noopener noreferrer" className="hover:text-white flex items-center gap-2 hover:pl-4 transition-all duration-200"><MoveRight size={12}/> GitHub</a>
+                <a href="https://www.linkedin.com/in/aniketh-vustepalle/" target="_blank" rel="noopener noreferrer" className="hover:text-white flex items-center gap-2 hover:pl-4 transition-all duration-200"><MoveRight size={12}/> LinkedIn</a>
+                <span className="hover:text-white flex items-center gap-2 hover:pl-4 transition-all duration-200 cursor-not-allowed opacity-50"><MoveRight size={12}/> Contra [Soon]</span>
                 {onNavigate && (
                     <button onClick={() => onNavigate('brand')} className="hover:text-white flex items-center gap-2 hover:pl-4 transition-all duration-200 text-left">
                         <MoveRight size={12}/> Brand System

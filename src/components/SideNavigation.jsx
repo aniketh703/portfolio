@@ -89,10 +89,10 @@ const SideNavigation = ({ onNavigate }) => {
             <div className="sidenav__menu-details" data-sidenav-fade>
               <p className="sidenav__button-label" style={{ opacity: 0.5, color: '#1C1917' }}>Socials</p>
               <div className="sidenav__menu-socials">
-                <a href="#" className="sidenav__social-link" data-sidenav-fade>Email</a>
-                <a href="#" className="sidenav__social-link" data-sidenav-fade>Twitter</a>
-                <a href="#" className="sidenav__social-link" data-sidenav-fade>LinkedIn</a>
-                <a href="#" className="sidenav__social-link" data-sidenav-fade>Instagram</a>
+                <a href="mailto:anikethvustepalle03@gmail.com" className="sidenav__social-link" data-sidenav-fade>Email</a>
+                <a href="https://github.com/aniketh703" target="_blank" rel="noopener noreferrer" className="sidenav__social-link" data-sidenav-fade>GitHub</a>
+                <a href="https://www.linkedin.com/in/aniketh-vustepalle/" target="_blank" rel="noopener noreferrer" className="sidenav__social-link" data-sidenav-fade>LinkedIn</a>
+                <span className="sidenav__social-link opacity-50 cursor-not-allowed" data-sidenav-fade>Contra</span>
               </div>
             </div>
           </div>

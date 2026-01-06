@@ -21,6 +21,7 @@ const BrandShowcase = () => {
   const menuItems = ['overview', 'logo', 'color', 'typography', 'imagery', 'voice', 'stationery', 'digital', 'experience', 'achievements', 'honors', 'skills', 'utilities'];
 
   useEffect(() => {
+    document.title = "Brand System | Aniketh Vustepalle";
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -51,12 +52,12 @@ const BrandShowcase = () => {
         <div className="max-w-[90vw] container">
             <span className="font-mono text-xs text-orange-500 uppercase tracking-widest mb-4 block">Internal Documentation</span>
             <h1 className="text-6xl md:text-9xl font-serif leading-none tracking-tighter mb-8">BRAND <br/> SYSTEM</h1>
-            <p className="max-w-2xl font-mono text-sm leading-relaxed text-stone-400 uppercase tracking-wide">The visual and verbal identity for Aniketh Vustepalle.</p>
+            <p className="max-w-2xl font-mono text-sm leading-relaxed text-stone-500 uppercase tracking-wide">The visual and verbal identity for Aniketh Vustepalle.</p>
         </div>
       </header>
       <div className="flex flex-col md:flex-row container mb-20">
         <aside data-lenis-prevent className="w-full md:w-64 bg-stone-100 border-r border-stone-200 md:h-screen md:sticky md:top-0 p-6 overflow-y-auto z-40 no-scrollbar">
-            <span className="font-mono text-xs text-stone-400 uppercase tracking-widest mb-6 block">Contents</span>
+            <span className="font-mono text-xs text-stone-500 uppercase tracking-widest mb-6 block">Contents</span>
             <ul className="space-y-3 font-mono text-xs uppercase tracking-wide">
                 {menuItems.map((item) => (
                     <li key={item}>

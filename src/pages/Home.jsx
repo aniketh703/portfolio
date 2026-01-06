@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ArrowUpRight, Grid3X3 } from 'lucide-react';
 import GenerativeArt from '../components/GenerativeArt';
 import Footer from '../components/Footer';
 
 const Home = ({ projects, onProjectSelect, onNavigate }) => {
+  useEffect(() => {
+    document.title = "Aniketh Vustepalle | Creative Developer";
+  }, []);
+
   return (
     <>
       <header className="relative pt-40 pb-20 px-4 md:px-12 min-h-[80vh] flex flex-col justify-center animate-in fade-in duration-700">
         <div className="max-w-[90vw] border-t border-stone-300 pt-8 container">
-            <h1 className="text-[13vw] leading-[0.85] font-serif font-medium tracking-tighter">ANIKETH <br/> <span className="ml-[10vw] italic text-stone-400 hover:text-brand-orange transition-colors duration-300">VUSTEPALLE</span></h1>
+            <h1 className="text-[13vw] leading-[0.85] font-serif font-medium tracking-tighter">ANIKETH <br/> <span className="ml-[10vw] italic text-stone-500 hover:text-brand-orange transition-colors duration-300">VUSTEPALLE</span></h1>
         </div>
         <div className="mt-12 flex flex-col md:flex-row justify-between items-end md:items-start gap-8 max-w-6xl ml-auto container">
             <p className="font-mono text-sm max-w-md leading-relaxed text-justify uppercase tracking-tight">( Manifest ) — Designing distinct digital artifacts for the modern web. Focusing on the intersection of raw data and emotional typography. Based in India, working globally.</p>
