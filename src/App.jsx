@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { ReactLenis } from 'lenis/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Maximize2 } from 'lucide-react';
 import { projects } from './data/projects';
 import LoadingScreen from './components/LoadingScreen';
@@ -11,11 +14,26 @@ import Archive from './pages/Archive';
 import BrandShowcase from './pages/BrandShowcase';
 import './index.css';
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function App() {
   const [selectedProjectIndex, setSelectedProjectIndex] = useState(null);
   const [currentView, setCurrentView] = useState('index'); 
   const [gridStatus, setGridStatus] = useState('enter'); // 'enter' (reveal) or 'exit' (cover)
   const [isLoading, setIsLoading] = useState(true);
+  const lenisRef = useRef();
+
+  useEffect(() => {
+    function update(time) {
+      lenisRef.current?.lenis?.raf(time * 1000);
+    }
+  
+    gsap.ticker.add(update);
+  
+    return () => {
+      gsap.ticker.remove(update);
+    };
+  }, []);
 
   const handleNavigate = (view) => {
     if (view === currentView) return;
@@ -51,6 +69,7 @@ export default function App() {
   const selectedProject = selectedProjectIndex !== null ? projects[selectedProjectIndex % projects.length] : null;
 
   return (
+    <ReactLenis root ref={lenisRef} autoRaf={false}>
     <div className="bg-stone-50 min-h-screen text-stone-900 selection:bg-brand-orange selection:text-white cursor-crosshair font-sans no-scrollbar">
       {/* Noise Texture */}
       <div className="noise-overlay"></div>
@@ -115,5 +134,6 @@ export default function App() {
         </div>
       </div>
     </div>
+    </ReactLenis>
   );
 }

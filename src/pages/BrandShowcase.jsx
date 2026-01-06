@@ -13,7 +13,7 @@ const BrandShowcase = () => {
 
   const SectionHeader = ({ title, icon: Icon }) => (
     <div className="flex items-center gap-3 mb-8 border-b border-stone-300 pb-4 mt-24">
-      <Icon size={20} className="text-orange-500" />
+      <Icon size={20} className="text-brand-orange" />
       <h2 className="font-serif text-3xl md:text-4xl">{title}</h2>
     </div>
   );
@@ -55,7 +55,7 @@ const BrandShowcase = () => {
         </div>
       </header>
       <div className="flex flex-col md:flex-row container mb-20">
-        <aside className="w-full md:w-64 bg-stone-100 border-r border-stone-200 md:h-screen md:sticky md:top-0 p-6 overflow-y-auto z-40 no-scrollbar">
+        <aside data-lenis-prevent className="w-full md:w-64 bg-stone-100 border-r border-stone-200 md:h-screen md:sticky md:top-0 p-6 overflow-y-auto z-40 no-scrollbar">
             <span className="font-mono text-xs text-stone-400 uppercase tracking-widest mb-6 block">Contents</span>
             <ul className="space-y-3 font-mono text-xs uppercase tracking-wide">
                 {menuItems.map((item) => (
@@ -77,9 +77,9 @@ const BrandShowcase = () => {
                     <p className="text-stone-600 leading-relaxed mb-6">To dismantle the barrier between functional utility and artistic expression.</p>
                     <h4 className="text-2xl font-serif mb-4">Core Values</h4>
                     <ul className="space-y-2 font-mono text-sm text-stone-600">
-                        <li className="flex items-center gap-2"><Check size={14} className="text-orange-500"/> Intentional Friction</li>
-                        <li className="flex items-center gap-2"><Check size={14} className="text-orange-500"/> Raw Authenticity</li>
-                        <li className="flex items-center gap-2"><Check size={14} className="text-orange-500"/> Typography First</li>
+                        <li className="flex items-center gap-2"><Check size={14} className="text-brand-orange"/> Intentional Friction</li>
+                        <li className="flex items-center gap-2"><Check size={14} className="text-brand-orange"/> Raw Authenticity</li>
+                        <li className="flex items-center gap-2"><Check size={14} className="text-brand-orange"/> Typography First</li>
                     </ul>
                 </div>
                 <div className="bg-stone-200 p-8 flex items-center justify-center">
@@ -142,7 +142,7 @@ const BrandShowcase = () => {
                     </div>
                 </div>
                 <div className="group cursor-pointer" onClick={() => copyToClipboard('#FF4500')}>
-                    <div className="h-40 bg-orange-600 text-white flex items-end p-4 relative">
+                    <div className="h-40 bg-brand-orange text-white flex items-end p-4 relative">
                         <Copy size={16} className="absolute top-4 right-4 opacity-0 group-hover:opacity-50"/>
                         <div><p className="font-bold">Int. Orange</p><p className="font-mono text-xs text-white/70">#FF4500</p></div>
                     </div>
@@ -224,7 +224,7 @@ const BrandShowcase = () => {
                    <h4 className="font-mono text-xs uppercase tracking-widest text-stone-500 mb-6">Interactive Elements</h4>
                    <div className="space-y-6">
                         <div className="flex gap-4 items-center">
-                            <button className="px-8 py-3 bg-stone-900 text-white font-mono text-xs uppercase tracking-widest hover:bg-orange-600 transition-colors">Primary</button>
+                            <button className="px-8 py-3 bg-stone-900 text-white font-mono text-xs uppercase tracking-widest hover:bg-brand-orange transition-colors">Primary</button>
                             <span className="font-mono text-[10px] text-stone-400">Default Statement</span>
                         </div>
                         <div className="flex gap-4 items-center">
@@ -244,7 +244,7 @@ const BrandShowcase = () => {
                         </div>
                         <div className="flex items-center gap-3 p-3 border border-stone-200 bg-white">
                             <div className="w-4 h-4 border border-stone-300 bg-stone-100 flex items-center justify-center">
-                                <div className="w-2 h-2 bg-orange-500"></div>
+                                <div className="w-2 h-2 bg-brand-orange"></div>
                             </div>
                             <span className="font-mono text-xs text-stone-600 uppercase">Checkbox Active</span>
                         </div>
@@ -256,7 +256,7 @@ const BrandShowcase = () => {
             <SectionHeader title="Experience" icon={Briefcase} />
             <div className="space-y-12 border-l border-stone-300 ml-4 pl-8 md:pl-12">
                 <div className="relative">
-                    <span className="absolute -left-[3.25rem] md:-left-[3.65rem] top-2 w-4 h-4 bg-orange-500 rounded-full border-4 border-stone-50"></span>
+                    <span className="absolute -left-[3.25rem] md:-left-[3.65rem] top-2 w-4 h-4 bg-brand-orange rounded-full border-4 border-stone-50"></span>
                     <h4 className="font-serif text-3xl">Associate - UI/UX Designer</h4>
                     <p className="font-mono text-xs text-stone-500 uppercase tracking-widest mt-1 mb-4">PanTerra Networks / Nov 2025 — Present</p>
                     <p className="text-stone-600 leading-relaxed max-w-2xl">Designing and Developing responsive interfaces and improving user experience across digital platforms. Collaborating with cross-functional teams to deliver user-centered solutions aligned with business goals. Specialized in high-fidelity UI design using React, Figma and Adobe XD.</p>

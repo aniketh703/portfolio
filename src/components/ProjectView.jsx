@@ -59,7 +59,7 @@ const ProjectView = ({ project, onClose, onNext }) => {
   };
 
   return (
-    <div className={`fixed inset-0 z-[150] bg-stone-100 overflow-y-auto no-scrollbar ${isExiting ? 'project-close' : 'project-open'}`}>
+    <div data-lenis-prevent className={`fixed inset-0 z-[150] bg-stone-100 overflow-y-auto no-scrollbar ${isExiting ? 'project-close' : 'project-open'}`}>
       <div className="fixed top-6 right-6 z-[160] mix-blend-difference text-white pointer-events-auto">
         <button onClick={handleClose} className="flex items-center gap-2 hover:opacity-70 transition-opacity duration-300">
             <span className="font-mono text-xs uppercase tracking-widest hidden md:block">Close View</span>
