@@ -12,6 +12,7 @@ import ProjectView from './components/ProjectView';
 import Home from './pages/Home';
 import Archive from './pages/Archive';
 import BrandShowcase from './pages/BrandShowcase';
+import Pricing from './pages/Pricing';
 import './index.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -20,7 +21,7 @@ export default function App() {
   const [selectedProjectIndex, setSelectedProjectIndex] = useState(null);
   const [currentView, setCurrentView] = useState(() => {
     const hash = typeof window !== 'undefined' ? window.location.hash.replace('#', '') : '';
-    return ['archive', 'brand'].includes(hash) ? hash : 'index';
+    return ['archive', 'brand', 'pricing'].includes(hash) ? hash : 'index';
   }); 
   const [gridStatus, setGridStatus] = useState('enter'); // 'enter' (reveal) or 'exit' (cover)
   const [isLoading, setIsLoading] = useState(true);
@@ -39,8 +40,7 @@ export default function App() {
   }, []);
 
   const handleNavigate = (view) => {
-    if (view === currentView) return;
-    setGridStatus('exit');
+    triggerNavigation(view);
   };
 
   const onGridAnimationComplete = () => {
@@ -89,6 +89,20 @@ export default function App() {
     if(modal) modal.scrollTop = 0;
   };
 
+  const handlePrevProject = (e) => {
+    e.stopPropagation();
+    setSelectedProjectIndex((prev) => (prev - 1 + projects.length) % projects.length);
+    const modal = document.querySelector('.overflow-y-auto');
+    if(modal) modal.scrollTop = 0;
+  };
+
+  const handleProjectHome = () => {
+      setSelectedProjectIndex(null);
+      if (currentView !== 'index') {
+          handleNavigate('index');
+      }
+  };
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     const modal = document.querySelector('.overflow-y-auto');
@@ -117,14 +131,14 @@ export default function App() {
       <CustomCursor />
 
       {/* Side Navigation Menu (Replaces standard top links) */}
-      <SideNavigation onNavigate={triggerNavigation} />
+      <SideNavigation onNavigate={handleNavigate} />
 
       <nav className={`fixed top-0 left-0 w-full flex justify-between items-start p-6 md:p-8 z-[60] pointer-events-none mix-blend-difference text-stone-50`}>
         <div 
-          onClick={() => triggerNavigation('index')} 
+          onClick={() => handleNavigate('index')} 
           role="button"
           tabIndex="0"
-          onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && triggerNavigation('index')}
+          onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleNavigate('index')}
           className="flex flex-col items-start pointer-events-auto cursor-pointer group outline-none"
         >
           <span className="font-mono text-xs tracking-widest uppercase mb-1 group-hover:text-brand-orange transition-colors duration-300">Portfolio</span>
@@ -140,19 +154,23 @@ export default function App() {
         <Home 
             projects={projects} 
             onProjectSelect={setSelectedProjectIndex} 
-            onNavigate={triggerNavigation} 
+            onNavigate={handleNavigate} 
         />
       ) : currentView === 'archive' ? (
         <div className="animate-in fade-in slide-in-from-bottom-12 duration-500">
             <Archive 
               projects={projects} 
               onSelect={(p) => setSelectedProjectIndex(projects.findIndex(proj => proj.id === p.id))}
-              onNavigate={triggerNavigation}
+              onNavigate={handleNavigate}
             />
+        </div>
+      ) : currentView === 'pricing' ? (
+        <div className="animate-in fade-in slide-in-from-bottom-12 duration-500">
+            <Pricing onNavigate={handleNavigate} />
         </div>
       ) : (
         <div className="animate-in fade-in slide-in-from-bottom-12 duration-500">
-            <BrandShowcase />
+            <BrandShowcase onNavigate={handleNavigate} />
         </div>
       )}
 
@@ -160,7 +178,9 @@ export default function App() {
         <ProjectView 
             project={selectedProject} 
             onClose={() => setSelectedProjectIndex(null)} 
-            onNext={handleNextProject} 
+            onNext={handleNextProject}
+            onPrev={handlePrevProject}
+            onHome={handleProjectHome} 
         />
       )}
       

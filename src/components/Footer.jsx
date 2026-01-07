@@ -11,7 +11,11 @@ const Footer = ({ onNavigate }) => {
                 <a href="mailto:anikethvustepalle03@gmail.com" className="hover:text-white flex items-center gap-2 hover:pl-4 transition-all duration-200"><MoveRight size={12}/> Email</a>
                 <a href="https://github.com/aniketh703" target="_blank" rel="noopener noreferrer" className="hover:text-white flex items-center gap-2 hover:pl-4 transition-all duration-200"><MoveRight size={12}/> GitHub</a>
                 <a href="https://www.linkedin.com/in/aniketh-vustepalle/" target="_blank" rel="noopener noreferrer" className="hover:text-white flex items-center gap-2 hover:pl-4 transition-all duration-200"><MoveRight size={12}/> LinkedIn</a>
-                <span className="hover:text-white flex items-center gap-2 hover:pl-4 transition-all duration-200 cursor-not-allowed opacity-50"><MoveRight size={12}/> Contra [Soon]</span>
+                {onNavigate && (
+                    <button onClick={() => onNavigate('pricing')} className="hover:text-white flex items-center gap-2 hover:pl-4 transition-all duration-200 text-left">
+                        <MoveRight size={12}/> Services & Pricing
+                    </button>
+                )}
                 {onNavigate && (
                     <button onClick={() => onNavigate('brand')} className="hover:text-white flex items-center gap-2 hover:pl-4 transition-all duration-200 text-left">
                         <MoveRight size={12}/> Brand System

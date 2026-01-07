@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import { ArrowUpRight, Grid3X3 } from 'lucide-react';
 import GenerativeArt from '../components/GenerativeArt';
 import Footer from '../components/Footer';
+import Services from '../components/Services';
+import Process from '../components/Process';
+import Testimonials from '../components/Testimonials';
 
 const Home = ({ projects, onProjectSelect, onNavigate }) => {
   useEffect(() => {
@@ -67,6 +70,10 @@ const Home = ({ projects, onProjectSelect, onNavigate }) => {
           </div>
         </div>
       </main>
+
+      <Services onNavigate={onNavigate} />
+      <Process />
+      <Testimonials />
 
       <Footer onNavigate={onNavigate} />
     </>

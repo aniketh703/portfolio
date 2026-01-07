@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { X, ArrowRight, Quote } from 'lucide-react';
+import { X, ArrowRight, ArrowLeft, Home, Quote } from 'lucide-react';
 import GenerativeArt from './GenerativeArt';
 
-const ProjectView = ({ project, onClose, onNext }) => {
+const ProjectView = ({ project, onClose, onNext, onPrev, onHome }) => {
   const [isExiting, setIsExiting] = useState(false);
 
   if (!project) return null;
@@ -12,10 +12,24 @@ const ProjectView = ({ project, onClose, onNext }) => {
     setTimeout(onClose, 600); // Match animation duration
   };
 
+  const handleHomeBtn = (e) => {
+    e.stopPropagation();
+    setIsExiting(true);
+    setTimeout(() => {
+        if(onHome) onHome();
+        else onClose();
+    }, 600);
+  };
+
   const handleNext = (e) => {
       e.stopPropagation();
       // Optional: Add specific transition logic for next project here
       onNext(e);
+  };
+
+  const handlePrev = (e) => {
+      e.stopPropagation();
+      onPrev(e);
   };
 
   const renderModule = (module, index) => {
@@ -104,7 +118,7 @@ const ProjectView = ({ project, onClose, onNext }) => {
                         </div>
                         <div>
                             <h3 className="font-mono text-xs uppercase tracking-widest mb-6 text-stone-500 flex items-center gap-2"><span className="w-2 h-2 bg-stone-900 rounded-full"></span>The Solution</h3>
-                            <p className="text-lg leading-relaxed text-stone-700 font-light">{project.solution || "By simplifying the core interaction loop, we were able to create a system that feels both novel and intuitive."}</p>
+                            <p className="text-lg leading-relaxed text-stone-700 font-light">{project.solution || "By simplifying the core interaction loop, I was able to create a system that feels both novel and intuitive."}</p>
                         </div>
                     </div>
                 </>
@@ -117,17 +131,44 @@ const ProjectView = ({ project, onClose, onNext }) => {
               </div>
             </div>
           </div>
-          <div 
-            onClick={handleNext} 
-            role="button"
-            tabIndex="0"
-            onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleNext(e)}
-            className="border-t border-stone-900 bg-stone-100 hover:bg-stone-900 hover:text-white transition-colors duration-500 cursor-pointer group py-24 px-4 md:px-12"
-          >
-            <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
-                <span className="font-mono text-xs uppercase tracking-widest mb-4 opacity-50">Next Project</span>
-                <h2 className="font-serif text-6xl md:text-8xl italic mb-8 group-hover:scale-105 transition-transform duration-500">Explore Case</h2>
-                <ArrowRight className="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300" size={48} />
+          <div className="grid grid-cols-1 md:grid-cols-3 border-t border-stone-900">
+            <div 
+              onClick={handlePrev} 
+              role="button"
+              tabIndex="0"
+              className="group border-b md:border-b-0 md:border-r border-stone-900 bg-stone-100 hover:bg-stone-900 hover:text-white transition-colors duration-500 cursor-pointer py-16 px-8 flex flex-col items-center justify-center text-center outline-none focus:bg-stone-900 focus:text-white"
+            >
+              <span className="font-mono text-xs uppercase tracking-widest mb-2 opacity-50">Previous Project</span>
+              <div className="flex items-center gap-3">
+                <ArrowLeft className="w-6 h-6 transition-transform duration-300 group-hover:-translate-x-2" />
+                <span className="font-serif text-3xl italic">Prev</span>
+              </div>
+            </div>
+
+            <div 
+              onClick={handleHomeBtn} 
+              role="button"
+              tabIndex="0"
+              className="group border-b md:border-b-0 md:border-r border-stone-900 bg-stone-100 hover:bg-stone-900 hover:text-white transition-colors duration-500 cursor-pointer py-16 px-8 flex flex-col items-center justify-center text-center outline-none focus:bg-stone-900 focus:text-white"
+            >
+              <span className="font-mono text-xs uppercase tracking-widest mb-2 opacity-50">Index</span>
+              <div className="flex items-center gap-3">
+                <Home className="w-6 h-6 transition-transform duration-300 group-hover:scale-110" />
+                <span className="font-serif text-3xl italic">Home</span>
+              </div>
+            </div>
+
+            <div 
+              onClick={handleNext} 
+              role="button"
+              tabIndex="0"
+              className="group bg-stone-100 hover:bg-stone-900 hover:text-white transition-colors duration-500 cursor-pointer py-16 px-8 flex flex-col items-center justify-center text-center outline-none focus:bg-stone-900 focus:text-white"
+            >
+              <span className="font-mono text-xs uppercase tracking-widest mb-2 opacity-50">Next Project</span>
+              <div className="flex items-center gap-3">
+                <span className="font-serif text-3xl italic">Next</span>
+                <ArrowRight className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-2" />
+              </div>
             </div>
           </div>
         </div>

@@ -84,7 +84,7 @@ const BrandShowcase = () => {
                     </ul>
                 </div>
                 <div className="bg-stone-200 p-8 flex items-center justify-center">
-                    <p className="font-serif text-3xl italic text-center">"We design for the pause, not the scroll."</p>
+                    <p className="font-serif text-3xl italic text-center">"I design for the pause, not the scroll."</p>
                 </div>
             </div>
           </section>
@@ -169,7 +169,7 @@ const BrandShowcase = () => {
                 <div className="bg-white border border-stone-200 p-8">
                     <h4 className="font-serif text-2xl mb-6">Tone Guidelines</h4>
                     <p className="font-mono text-xs uppercase tracking-widest text-stone-400 mb-4">The Persona</p>
-                    <p className="text-lg leading-relaxed text-stone-700 mb-6">Our voice is <span className="font-bold text-stone-900">clinical yet poetic</span>. We speak with the precision of an engineer and the expression of an artist. We avoid corporate jargon in favor of direct, impactful statements.</p>
+                    <p className="text-lg leading-relaxed text-stone-700 mb-6">My voice is <span className="font-bold text-stone-900">clinical yet poetic</span>. I speak with the precision of an engineer and the expression of an artist. I avoid corporate jargon in favor of direct, impactful statements.</p>
                     <div className="space-y-3 font-mono text-sm">
                         <p className="flex items-center gap-3"><Check size={14} className="text-green-600"/> Confident, not arrogant.</p>
                         <p className="flex items-center gap-3"><Check size={14} className="text-green-600"/> Brief, not abrupt.</p>
@@ -183,7 +183,7 @@ const BrandShowcase = () => {
                      </div>
                      <div className="bg-stone-50 border border-stone-200 p-6 opacity-50">
                         <p className="font-mono text-xs text-red-600 uppercase mb-2">Not This</p>
-                        <p className="font-serif text-xl italic">"We make things look pretty."</p>
+                        <p className="font-serif text-xl italic">"I make things look pretty."</p>
                      </div>
                 </div>
             </div>
