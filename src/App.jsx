@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ReactLenis } from 'lenis/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -43,7 +43,7 @@ export default function App() {
     triggerNavigation(view);
   };
 
-  const onGridAnimationComplete = () => {
+  const onGridAnimationComplete = useCallback(() => {
     if (gridStatus === 'exit') {
       const nextView = document.body.dataset.nextView; 
       if (nextView) {
@@ -62,14 +62,14 @@ export default function App() {
         document.body.dataset.nextView = '';
       }
     }
-  };
+  }, [gridStatus]);
 
   // Helper to store next view for animation callback
-  const triggerNavigation = (view) => {
+  const triggerNavigation = useCallback((view) => {
     if (view === currentView) return;
     document.body.dataset.nextView = view;
     setGridStatus('exit');
-  };
+  }, [currentView]);
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -80,7 +80,7 @@ export default function App() {
     };
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
-  }, [currentView]);
+  }, [currentView, triggerNavigation]);
 
   const handleNextProject = (e) => {
     e.stopPropagation();

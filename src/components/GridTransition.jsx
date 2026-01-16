@@ -52,7 +52,7 @@ const GridTransition = ({ status, onAnimationComplete }) => {
       }
     }, containerRef);
     return () => ctx.revert();
-  }, [status, blocks]);
+  }, [status, blocks, onAnimationComplete]);
 
   return (
     <div ref={containerRef} className="transition-grid">
