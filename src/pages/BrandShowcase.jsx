@@ -1,24 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, ArrowRight, Layout, Palette, Type, Image as ImageIcon, MessageSquare, Grid3X3, Maximize2, MoveRight, Check, Ban, Copy, X, Briefcase, Award } from 'lucide-react';
+import { Layout, Palette, Type, Image as ImageIcon, MessageSquare, Grid3X3, Maximize2, MoveRight, Check, Ban, Copy, Briefcase, Award } from 'lucide-react';
 import GenerativeArt from '../components/GenerativeArt';
 import Footer from '../components/Footer';
 import Under25Winner from '../assets/images/projects/Under25_winner.png';
 
-const BrandShowcase = () => {
-  const [activeSection, setActiveSection] = useState('overview');
-
-  const copyToClipboard = (text) => { 
-    navigator.clipboard.writeText(text).catch(err => console.error('Unable to copy', err));
-  };
-
-  const SectionHeader = ({ title, icon: Icon }) => (
+const SectionHeader = ({ title, icon }) => {
+  const Icon = icon;
+  return (
     <div className="flex items-center gap-3 mb-8 border-b border-stone-300 pb-4 mt-24">
       <Icon size={20} className="text-brand-orange" />
       <h2 className="font-serif text-3xl md:text-4xl">{title}</h2>
     </div>
   );
+};
 
-  const menuItems = ['overview', 'logo', 'color', 'typography', 'imagery', 'voice', 'stationery', 'digital', 'experience', 'achievements', 'honors', 'skills', 'utilities'];
+const menuItems = ['overview', 'logo', 'color', 'typography', 'imagery', 'voice', 'stationery', 'digital', 'experience', 'achievements', 'honors', 'skills', 'utilities'];
+
+const BrandShowcase = () => {
+  const [activeSection, setActiveSection] = useState('overview');
+
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text).catch(err => console.error('Unable to copy', err));
+  };
 
   useEffect(() => {
     document.title = "Brand System | Aniketh Vustepalle";
