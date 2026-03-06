@@ -8,34 +8,34 @@ import Testimonials from '../components/Testimonials';
 
 const Home = ({ projects, onProjectSelect, onNavigate }) => {
   useEffect(() => {
-    document.title = "Aniketh Vustepalle | Creative Developer";
+    document.title = "Aniketh Vustepalle | UI/UX Designer & Frontend Developer";
   }, []);
 
   return (
     <>
       <header className="relative pt-40 pb-20 px-4 md:px-12 min-h-[80vh] flex flex-col justify-center animate-in fade-in duration-700">
-        <div className="max-w-[90vw] border-t border-stone-300 pt-8 container">
-            <h1 className="text-[13vw] leading-[0.85] font-serif font-medium tracking-tighter">ANIKETH <br/> <span className="ml-[10vw] italic text-stone-500 hover:text-brand-orange transition-colors duration-300">VUSTEPALLE</span></h1>
+        <div className="mx-auto w-full max-w-7xl border-t border-stone-300 pt-8">
+            <h1 style={{ fontSize: 'clamp(2.5rem, 13vw, 14rem)' }} className="leading-[0.85] font-serif font-medium tracking-tighter">ANIKETH <br/> <span style={{ marginLeft: 'clamp(1rem, 10vw, 6rem)' }} className="italic text-stone-500 hover:text-brand-orange transition-colors duration-300">VUSTEPALLE</span></h1>
         </div>
-        <div className="mt-12 flex flex-col md:flex-row justify-between items-end md:items-start gap-8 max-w-6xl ml-auto container">
-            <p className="font-mono text-sm max-w-md leading-relaxed text-justify uppercase tracking-tight">( Manifest ) — Designing distinct digital artifacts for the modern web. Focusing on the intersection of raw data and emotional typography. Based in India, working globally.</p>
+        <div className="mt-12 ml-auto flex w-full max-w-6xl flex-col justify-between gap-8 items-end md:flex-row md:items-start">
+            <p className="font-mono text-sm max-w-md leading-relaxed text-justify uppercase tracking-tight">( Manifest ) — I build intuitive digital experiences that align user needs with business outcomes. UI/UX Designer at PanTerra Networks with a background in full stack development (React, Python, Flask) and research in AI-driven systems. Based in Hyderabad, India.</p>
             <ArrowUpRight size={64} strokeWidth={1} className="animate-pulse" />
         </div>
         <div className="absolute top-20 right-0 -z-10 opacity-5 font-serif text-[40rem] leading-none select-none pointer-events-none">A</div>
       </header>
-      <main id="index" className="px-4 md:px-8 pb-32 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100 fill-mode-backwards container">
+      <main id="index" className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 md:gap-12 md:px-8">
         <div className="flex justify-between items-end mb-8 border-b border-stone-900 pb-2">
             <span className="font-mono text-xs uppercase tracking-widest">[ Selected Works ]</span>
             <Grid3X3 size={16} />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[minmax(300px,auto)]">
-          {projects.map((project, index) => (
+          {projects.filter(p => p.featured).map((project) => (
             <div 
               key={project.id} 
               role="button"
               tabIndex="0"
-              onClick={() => onProjectSelect(index)} 
-              onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onProjectSelect(index)}
+              onClick={() => onProjectSelect(projects.findIndex(p => p.id === project.id))} 
+              onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onProjectSelect(projects.findIndex(p => p.id === project.id))}
               className={`group relative bg-white border border-stone-200 cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-2xl hover:z-10 ${project.span}`}
             >
               <div className="absolute inset-0 flex flex-col justify-between p-6 z-20 mix-blend-difference text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">

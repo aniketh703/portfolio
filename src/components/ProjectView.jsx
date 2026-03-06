@@ -84,7 +84,7 @@ const ProjectView = ({ project, onClose, onNext, onPrev, onHome }) => {
         <header className="relative w-full h-[70vh] bg-stone-200 overflow-hidden">
           <GenerativeArt id={project.id} color={project.color} />
           <div className="absolute bottom-0 left-0 w-full p-4 md:p-12 pointer-events-none">
-              <h1 className="text-[10vw] md:text-[12vw] leading-[0.8] font-serif font-medium tracking-tighter text-stone-900 mix-blend-hard-light select-none">{project.title}</h1>
+              <h1 style={{ fontSize: 'clamp(2.5rem, 12vw, 16rem)' }} className="leading-[0.8] font-serif font-medium tracking-tighter text-stone-900 mix-blend-hard-light select-none">{project.title}</h1>
           </div>
         </header>
         <div className="bg-stone-100 relative z-10">
@@ -106,6 +106,32 @@ const ProjectView = ({ project, onClose, onNext, onPrev, onHome }) => {
                       ))}
                   </div>
               </div>
+              {project.liveUrl && (
+                <div>
+                    <span className="block font-mono text-xs text-stone-400 uppercase tracking-widest mb-2">Live</span>
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center w-full border border-stone-900 bg-stone-900 text-stone-50 px-4 py-3 text-xs font-mono uppercase tracking-widest hover:bg-stone-700 transition-colors duration-300"
+                    >
+                      {project.liveLabel || 'Open Live Project'}
+                    </a>
+                </div>
+              )}
+              {project.repoUrl && (
+                <div>
+                    <span className="block font-mono text-xs text-stone-400 uppercase tracking-widest mb-2">Repository</span>
+                    <a
+                      href={project.repoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center w-full border border-stone-900 bg-white text-stone-900 px-4 py-3 text-xs font-mono uppercase tracking-widest hover:bg-stone-100 transition-colors duration-300"
+                    >
+                      {project.repoLabel || 'View Repository'}
+                    </a>
+                </div>
+              )}
             </div>
             <div className="md:col-span-8 md:col-start-5 border-t border-stone-900 pt-6">
               {project.modules ? (<div>{project.modules.map((m, i) => renderModule(m, i))}</div>) : (
@@ -134,6 +160,7 @@ const ProjectView = ({ project, onClose, onNext, onPrev, onHome }) => {
           <div className="grid grid-cols-1 md:grid-cols-3 border-t border-stone-900">
             <div 
               onClick={handlePrev} 
+              onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), handlePrev(e))}
               role="button"
               tabIndex="0"
               className="group border-b md:border-b-0 md:border-r border-stone-900 bg-stone-100 hover:bg-stone-900 hover:text-white transition-colors duration-500 cursor-pointer py-16 px-8 flex flex-col items-center justify-center text-center outline-none focus:bg-stone-900 focus:text-white"
@@ -147,6 +174,7 @@ const ProjectView = ({ project, onClose, onNext, onPrev, onHome }) => {
 
             <div 
               onClick={handleHomeBtn} 
+              onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), handleHomeBtn(e))}
               role="button"
               tabIndex="0"
               className="group border-b md:border-b-0 md:border-r border-stone-900 bg-stone-100 hover:bg-stone-900 hover:text-white transition-colors duration-500 cursor-pointer py-16 px-8 flex flex-col items-center justify-center text-center outline-none focus:bg-stone-900 focus:text-white"
@@ -160,6 +188,7 @@ const ProjectView = ({ project, onClose, onNext, onPrev, onHome }) => {
 
             <div 
               onClick={handleNext} 
+              onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), handleNext(e))}
               role="button"
               tabIndex="0"
               className="group bg-stone-100 hover:bg-stone-900 hover:text-white transition-colors duration-500 cursor-pointer py-16 px-8 flex flex-col items-center justify-center text-center outline-none focus:bg-stone-900 focus:text-white"

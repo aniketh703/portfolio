@@ -3,8 +3,8 @@ import { MoveRight } from 'lucide-react';
 
 const Footer = ({ onNavigate }) => {
   return (
-    <section id="info" className="px-4 md:px-12 py-24 bg-stone-900 text-stone-100 relative overflow-hidden">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 relative z-10 container">
+    <section id="info" className="py-24 bg-stone-900 text-stone-100 relative overflow-hidden">
+      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-16 px-4 md:grid-cols-2 md:px-8 relative z-10">
           <div>
             <h2 className="font-serif text-6xl md:text-8xl mb-12 tracking-tighter">Let's build <br/> <span className="text-stone-500 italic">tomorrow.</span></h2>
             <div className="flex flex-col space-y-2 font-mono text-sm uppercase tracking-widest text-stone-400">
@@ -24,7 +24,7 @@ const Footer = ({ onNavigate }) => {
             </div>
           </div>
           <div className="flex flex-col justify-end">
-            <p className="text-xl md:text-2xl font-light leading-relaxed max-w-xl text-stone-300">I am a UI Engineer and Creative Developer obsessed with the space between rigid grids and fluid interaction.</p>
+            <p className="text-xl md:text-2xl font-light leading-relaxed max-w-xl text-stone-300">I build intuitive digital experiences that align user needs with business outcomes. UI/UX Designer at PanTerra Networks with a background in full stack development and research in AI-driven systems.</p>
             <div className="mt-12 pt-12 border-t border-stone-800 flex justify-between font-mono text-xs text-stone-500">
                 <p>© <span data-current-year>{new Date().getFullYear()}</span> Aniketh Vustepalle</p>
                 <span>Designed & Coded in React</span>

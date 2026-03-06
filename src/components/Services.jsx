@@ -4,38 +4,68 @@ import { Globe, PenTool, Smartphone, Code } from 'lucide-react';
 const Services = ({ onNavigate }) => {
   const services = [
     {
-      icon: <Globe className="w-8 h-8 mb-4" />,
-      title: "Web Development",
-      description: "Building scalable, performant, and accessible web applications using modern technologies."
-    },
-    {
       icon: <PenTool className="w-8 h-8 mb-4" />,
       title: "UI/UX Design",
-      description: "Crafting intuitive and engaging user experiences with a focus on simplicity and functionality."
-    },
-    {
-      icon: <Smartphone className="w-8 h-8 mb-4" />,
-      title: "Responsive Design",
-      description: "Ensuring your website looks and functions perfectly across all devices and screen sizes."
+      description: "Crafting intuitive user experiences using Figma, Adobe XD, and modern design systems. Specialized in wireframing, prototyping, and high-fidelity UI design.",
+      span: "md:col-span-4 md:row-span-2",
+      details: {
+        tools: "Figma • Adobe XD • FigJam",
+        outcomes: [
+          "Improved product usability while keeping front-end code clean and maintainable (Q-DITS internship feedback)",
+          "Reduced model deployment time through CI/CD-ready interface and workflow decisions",
+          "Shipped responsive, accessible interfaces across web apps with better handoff between design and development"
+        ],
+        deliverables: "Personas, wireframes, design system tokens, clickable prototypes"
+      }
     },
     {
       icon: <Code className="w-8 h-8 mb-4" />,
-      title: "Technical Strategy",
-      description: "Providing architectural guidance and technical solutions to meet business goals."
+      title: "Frontend Development",
+      description: "Building responsive interfaces with React, JavaScript (ES6+), Tailwind CSS, and integrating Lottie animations for enhanced user interactions.",
+      span: "md:col-span-2 md:row-span-1"
+    },
+    {
+      icon: <Globe className="w-8 h-8 mb-4" />,
+      title: "Full Stack Development",
+      description: "Developing scalable web applications using React, Python, Flask, and Django with cloud deployment on AWS and Docker.",
+      span: "md:col-span-2 md:row-span-1"
+    },
+    {
+      icon: <Smartphone className="w-8 h-8 mb-4" />,
+      title: "Design Systems",
+      description: "Creating comprehensive design systems and ensuring seamless handoff between design and development teams.",
+      span: "md:col-span-6 md:row-span-1"
     }
   ];
 
   return (
-    <section className="py-20 px-4 md:px-12 container mx-auto">
+    <section className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-20 md:gap-12 md:px-8">
       <h2 className="font-serif text-4xl italic mb-12 border-b border-stone-300 pb-4">Services</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-6 md:auto-rows-[minmax(180px,auto)] gap-6 md:gap-8">
         {services.map((service, index) => (
-          <div key={index} className="p-6 border border-stone-200 hover:bg-stone-50 transition-colors duration-300 group">
+          <div
+            key={index}
+            className={`p-6 border border-stone-200 hover:bg-stone-50 transition-colors duration-300 group flex flex-col ${service.span}`}
+          >
             <div className="text-stone-800 group-hover:text-brand-orange transition-colors duration-300">
                 {service.icon}
             </div>
             <h3 className="font-serif text-2xl mb-2">{service.title}</h3>
             <p className="font-mono text-sm text-stone-600 leading-relaxed">{service.description}</p>
+
+            {service.title === "UI/UX Design" && service.details && (
+              <div className="mt-5 border-t border-stone-200 pt-4 space-y-3">
+                <p className="font-mono text-xs uppercase tracking-wide text-stone-500">{service.details.tools}</p>
+                <ul className="space-y-2">
+                  {service.details.outcomes.map((item) => (
+                    <li key={item} className="font-mono text-sm text-stone-700 leading-relaxed">• {item}</li>
+                  ))}
+                </ul>
+                <p className="font-mono text-xs text-stone-500 leading-relaxed">
+                  <span className="uppercase tracking-wide">Typical deliverables:</span> {service.details.deliverables}
+                </p>
+              </div>
+            )}
           </div>
         ))}
       </div>

@@ -123,9 +123,21 @@ body {
   @keyframes projectOpen { 0% { transform: translateY(100%); } 100% { transform: translateY(0); } }
   @keyframes projectClose { 0% { transform: translateY(0); } 100% { transform: translateY(100%); } }
   @keyframes projectSwitch { 0% { opacity: 0; transform: translateX(100px); filter: blur(8px); } 100% { opacity: 1; transform: translateX(0); filter: blur(0); } }
+  @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+  @keyframes slideInFromBottom { 0% { opacity: 0; transform: translateY(48px); } 100% { opacity: 1; transform: translateY(0); } }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
   
   .loader-exit { animation: slideUpExit 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
   .project-open { animation: projectOpen 0.7s cubic-bezier(0.83, 0, 0.17, 1) forwards; }
   .project-close { animation: projectClose 0.6s cubic-bezier(0.83, 0, 0.17, 1) forwards; }
   .project-switch { animation: projectSwitch 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
-  .animate-blink { animation: blink 1s infinite; @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } } }
+  .animate-in { animation: fadeIn 0.7s ease-out forwards; }
+  .fade-in { animation: fadeIn 0.7s ease-out forwards; }
+  .slide-in-from-bottom-12 { animation: slideInFromBottom 0.5s ease-out forwards; }
+  .animate-blink { animation: blink 1s infinite; }
+  .animate-spin-slow { animation: spin 8s linear infinite; }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }

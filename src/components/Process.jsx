@@ -26,7 +26,7 @@ const Process = () => {
     ];
 
     return (
-        <section className="py-20 px-4 md:px-12 container mx-auto bg-stone-900 text-stone-50 my-12">
+        <section className="mx-auto my-12 flex w-full max-w-7xl flex-col gap-6 bg-stone-900 px-4 py-20 text-stone-50 md:gap-12 md:px-8">
              <div className="flex justify-between items-end mb-12 border-b border-stone-700 pb-4">
                 <h2 className="font-serif text-4xl italic">Process</h2>
                 <span className="font-mono text-xs uppercase tracking-widest text-stone-400">How I work</span>

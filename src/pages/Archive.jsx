@@ -6,8 +6,9 @@ import Footer from '../components/Footer';
 const Archive = ({ projects, onSelect, onNavigate }) => {
   const [hoveredId, setHoveredId] = useState(null);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-  // Removed duplication for clarity. Now strictly showing the dataset.
-  const archiveList = projects.map((p, i) => ({ ...p, uniqueId: i }));
+  const archiveList = [...projects]
+    .sort((a, b) => Number(b.year) - Number(a.year) || a.title.localeCompare(b.title))
+    .map((p, i) => ({ ...p, uniqueId: `${p.id}-${i}` }));
 
   useEffect(() => {
     document.title = "Archive | Aniketh Vustepalle";
@@ -18,16 +19,18 @@ const Archive = ({ projects, onSelect, onNavigate }) => {
 
   return (
     <>
-      <section className="min-h-screen bg-stone-50 pt-32 pb-20 px-4 md:px-12 relative container">
+      <section className="min-h-screen bg-stone-50 pt-32 pb-20 relative mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 md:gap-12 md:px-8">
         <div className="flex justify-between items-end mb-12 border-b-4 border-stone-900 pb-4">
             <h1 className="text-6xl md:text-8xl font-serif leading-none tracking-tighter">ARCHIVE</h1>
             <div className="text-right hidden md:block">
                 <p className="font-mono text-xs uppercase tracking-widest text-stone-500">Full Index</p>
-                <p className="font-mono text-xs uppercase tracking-widest">2020 — 2024</p>
+                <p className="font-mono text-xs uppercase tracking-widest">2023 — 2026</p>
             </div>
         </div>
         <div className="fixed w-64 h-64 pointer-events-none z-50 transition-opacity duration-200 hidden md:block overflow-hidden border border-stone-900 bg-white" style={{ left: cursorPos.x + 20, top: cursorPos.y - 100, opacity: hoveredId !== null ? 1 : 0 }}>
-            {hoveredId !== null && (<GenerativeArt id={projects[hoveredId % projects.length].id} color={projects[hoveredId % projects.length].color} />)}
+            {hoveredId !== null && archiveList[hoveredId] && (
+              <GenerativeArt id={archiveList[hoveredId].id} color={archiveList[hoveredId].color} />
+            )}
         </div>
         <div className="w-full">
           <div className="grid grid-cols-12 gap-4 font-mono text-xs uppercase tracking-widest text-stone-400 mb-4 px-4">

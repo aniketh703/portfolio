@@ -74,9 +74,9 @@ const Pricing = ({ onNavigate }) => {
 
   return (
     <>
-    <main className="pt-32 pb-20 px-4 md:px-12 bg-white min-h-screen animate-in fade-in duration-700 container mx-auto">
+    <main className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 pt-32 pb-20 md:gap-12 md:px-8 bg-white min-h-screen animate-in fade-in duration-700">
       <div className="mb-20 pt-8 border-t border-stone-300">
-        <h1 className="text-[8vw] md:text-[5vw] leading-[0.9] font-serif font-medium tracking-tighter mb-8">
+        <h1 style={{ fontSize: 'clamp(2rem, 8vw, 7rem)' }} className="leading-[0.9] font-serif font-medium tracking-tighter mb-8">
             PRICING <br/> <span className="italic text-stone-400">& PACKAGES</span>
         </h1>
         <p className="font-mono text-sm max-w-xl leading-relaxed text-justify uppercase tracking-tight ml-auto">

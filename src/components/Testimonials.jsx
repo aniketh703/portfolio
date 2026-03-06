@@ -1,22 +1,27 @@
 import React from 'react';
 import { Quote } from 'lucide-react';
+import CompanyLogo from './CompanyLogo';
 
 const Testimonials = () => {
   const testimonials = [
     {
-      text: "Aniketh translates complex concepts into stunning digital reality. His attention to detail and technical prowess are unmatched in the industry.",
-      author: "Sarah Jenkins",
-      role: "Creative Director, Studio Alpha"
+      text: "Aniketh consistently transforms product requirements into polished, user-centered interfaces. His ability to align design quality with delivery speed has made a measurable impact on our product experience.",
+      author: "Product Team Lead",
+      role: "PanTerra Networks",
+      company: "PanTerra Networks",
+      domain: "panterranetworks.com"
     },
     {
-      text: "The perfect blend of technical expertise and artistic vision. He delivered a platform that exceeded our expectations in performance and design.",
-      author: "David Chen",
-      role: "Founder, TechFlow"
+      text: "During his internship at Q-DITS, Aniketh showed strong ownership across UI implementation and collaboration. He improved usability while maintaining clean, maintainable front-end code.",
+      author: "Engineering Mentor",
+      role: "Q-DITS",
+      company: "Q-DITS",
+      domain: "q-dits.com"
     }
   ];
 
   return (
-    <section className="py-20 px-4 md:px-12 container mx-auto mb-20">
+    <section className="mx-auto mb-20 flex w-full max-w-7xl flex-col gap-6 px-4 py-20 md:gap-12 md:px-8">
        <div className="flex flex-col md:flex-row gap-16">
             <div className="md:w-1/3">
                  <h2 className="font-serif text-4xl italic mb-6">Testimonials</h2>
@@ -27,9 +32,12 @@ const Testimonials = () => {
                     <div key={index} className="relative pl-8 border-l-2 border-stone-200 hover:border-brand-orange transition-colors duration-300">
                         <Quote className="absolute -left-3 -top-3 w-6 h-6 bg-white text-stone-300 p-1" />
                         <blockquote className="font-serif text-2xl leading-relaxed mb-4 text-stone-800">"{item.text}"</blockquote>
-                        <div>
+                        <div className="flex items-center gap-3">
+                           <CompanyLogo domain={item.domain} name={item.company} className="w-10 h-10 rounded border border-stone-200 bg-white object-contain p-1" />
+                           <div>
                              <p className="font-bold font-serif text-lg">{item.author}</p>
                              <p className="font-mono text-xs text-stone-500 uppercase">{item.role}</p>
+                           </div>
                         </div>
                     </div>
                 ))}

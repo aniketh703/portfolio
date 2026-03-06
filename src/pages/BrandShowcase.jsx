@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Layout, Palette, Type, Image as ImageIcon, MessageSquare, Grid3X3, Maximize2, MoveRight, Check, Ban, Copy, Briefcase, Award } from 'lucide-react';
+import { Layout, Palette, Type, Image as ImageIcon, MessageSquare, Grid3X3, Maximize2, MoveRight, Check, Ban, Copy, Briefcase, Award, GraduationCap, BookOpen } from 'lucide-react';
 import GenerativeArt from '../components/GenerativeArt';
 import Footer from '../components/Footer';
+import CompanyLogo from '../components/CompanyLogo';
 import Under25Winner from '../assets/images/projects/Under25_winner.png';
 
 const SectionHeader = ({ title, icon }) => {
@@ -14,9 +15,9 @@ const SectionHeader = ({ title, icon }) => {
   );
 };
 
-const menuItems = ['overview', 'logo', 'color', 'typography', 'imagery', 'voice', 'stationery', 'digital', 'experience', 'achievements', 'honors', 'skills', 'utilities'];
+const menuItems = ['overview', 'logo', 'color', 'typography', 'imagery', 'voice', 'stationery', 'digital', 'experience', 'education', 'achievements', 'publications', 'honors', 'skills', 'utilities'];
 
-const BrandShowcase = () => {
+const BrandShowcase = ({ onNavigate }) => {
   const [activeSection, setActiveSection] = useState('overview');
 
   const copyToClipboard = (text) => {
@@ -52,13 +53,13 @@ const BrandShowcase = () => {
   return (
     <div className="bg-stone-50 min-h-screen text-stone-900">
       <header className="pt-40 pb-20 px-4 md:px-12 bg-stone-900 text-stone-50">
-        <div className="max-w-[90vw] container">
+        <div className="mx-auto w-full max-w-7xl px-4 md:px-8">
             <span className="font-mono text-xs text-orange-500 uppercase tracking-widest mb-4 block">Internal Documentation</span>
             <h1 className="text-6xl md:text-9xl font-serif leading-none tracking-tighter mb-8">BRAND <br/> SYSTEM</h1>
             <p className="max-w-2xl font-mono text-sm leading-relaxed text-stone-500 uppercase tracking-wide">The visual and verbal identity for Aniketh Vustepalle.</p>
         </div>
       </header>
-      <div className="flex flex-col md:flex-row container mb-20">
+    <div className="mx-auto mb-20 flex w-full max-w-7xl flex-col gap-6 px-4 md:flex-row md:gap-12 md:px-8">
         <aside data-lenis-prevent className="w-full md:w-64 bg-stone-100 border-r border-stone-200 md:h-screen md:sticky md:top-0 p-6 overflow-y-auto z-40 no-scrollbar">
             <span className="font-mono text-xs text-stone-500 uppercase tracking-widest mb-6 block">Contents</span>
             <ul className="space-y-3 font-mono text-xs uppercase tracking-wide">
@@ -72,7 +73,7 @@ const BrandShowcase = () => {
                 ))}
             </ul>
         </aside>
-        <main className="flex-1 px-4 md:px-16 max-w-6xl">
+        <main className="flex-1 max-w-6xl">
           <section id="overview" className="pt-20">
             <h3 className="font-mono text-xs uppercase tracking-widest text-stone-400 mb-4">01 — Overview</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -261,33 +262,72 @@ const BrandShowcase = () => {
             <div className="space-y-12 border-l border-stone-300 ml-4 pl-8 md:pl-12">
                 <div className="relative">
                     <span className="absolute -left-[3.25rem] md:-left-[3.65rem] top-2 w-4 h-4 bg-brand-orange rounded-full border-4 border-stone-50"></span>
-                    <h4 className="font-serif text-3xl">Associate - UI/UX Designer</h4>
+                    <div className="flex items-center gap-3 mb-1">
+                        <CompanyLogo domain="panterranetworks.com" name="PanTerra Networks" className="w-8 h-8 rounded border border-stone-200 bg-white object-contain p-1" />
+                        <h4 className="font-serif text-3xl">Associate - UI/UX Designer</h4>
+                    </div>
                     <p className="font-mono text-xs text-stone-500 uppercase tracking-widest mt-1 mb-4">PanTerra Networks / Nov 2025 — Present</p>
                     <p className="text-stone-600 leading-relaxed max-w-2xl">Designing and Developing responsive interfaces and improving user experience across digital platforms. Collaborating with cross-functional teams to deliver user-centered solutions aligned with business goals. Specialized in high-fidelity UI design using React, Figma and Adobe XD.</p>
                 </div>
                 <div className="relative">
                     <span className="absolute -left-[3.25rem] md:-left-[3.65rem] top-2 w-4 h-4 bg-stone-900 rounded-full border-4 border-stone-50"></span>
-                    <h4 className="font-serif text-3xl">UX Designer Trainee</h4>
+                    <div className="flex items-center gap-3 mb-1">
+                        <CompanyLogo domain="panterranetworks.com" name="PanTerra Networks" className="w-8 h-8 rounded border border-stone-200 bg-white object-contain p-1" />
+                        <h4 className="font-serif text-3xl">UX Designer Trainee</h4>
+                    </div>
                     <p className="font-mono text-xs text-stone-500 uppercase tracking-widest mt-1 mb-4">PanTerra Networks / May 2025 — Nov 2025</p>
                     <p className="text-stone-600 leading-relaxed max-w-2xl">Focused on usability testing, design systems, and front-end handoff. Gained practical experience in bridging design concepts with technical implementation requirements.</p>
                 </div>
                 <div className="relative">
                     <span className="absolute -left-[3.25rem] md:-left-[3.65rem] top-2 w-4 h-4 bg-stone-400 rounded-full border-4 border-stone-50"></span>
-                    <h4 className="font-serif text-3xl">Data & Tools Intern</h4>
+                    <div className="flex items-center gap-3 mb-1">
+                        <CompanyLogo domain="q-dits.com" name="Q-DITS" className="w-8 h-8 rounded border border-stone-200 bg-white object-contain p-1" />
+                        <h4 className="font-serif text-3xl">Data & Tools Intern</h4>
+                    </div>
                     <p className="font-mono text-xs text-stone-500 uppercase tracking-widest mt-1 mb-4">Q-DITS / Sep 2024 — Dec 2024</p>
                     <p className="text-stone-600 leading-relaxed max-w-2xl">Redesigned the company website and collaborated with SEO teams to boost traffic. Developed GUIs for stock market data syncing, assisted with UI for S3 bucket projects, and automated PDF generation tools using Python.</p>
                 </div>
                 <div className="relative">
                     <span className="absolute -left-[3.25rem] md:-left-[3.65rem] top-2 w-4 h-4 bg-stone-300 rounded-full border-4 border-stone-50"></span>
-                    <h4 className="font-serif text-3xl">UI/UX Designer Intern</h4>
+                    <div className="flex items-center gap-3 mb-1">
+                        <CompanyLogo domain="internpixel.com" name="InternPixel" className="w-8 h-8 rounded border border-stone-200 bg-white object-contain p-1" />
+                        <h4 className="font-serif text-3xl">UI/UX Designer Intern</h4>
+                    </div>
                     <p className="font-mono text-xs text-stone-500 uppercase tracking-widest mt-1 mb-4">InternPixel / Feb 2024 — Mar 2024</p>
                     <p className="text-stone-600 leading-relaxed max-w-2xl">Collaborated with design and development teams to create visually appealing interfaces for web applications. Utilized Figma extensively for prototyping, ensuring alignment with user experience principles.</p>
                 </div>
                 <div className="relative">
                     <span className="absolute -left-[3.25rem] md:-left-[3.65rem] top-2 w-4 h-4 bg-stone-200 rounded-full border-4 border-stone-50"></span>
-                    <h4 className="font-serif text-3xl">Web Developer Intern</h4>
+                    <div className="flex items-center gap-3 mb-1">
+                        <CompanyLogo domain="bharatintern.live" name="Bharat Intern" className="w-8 h-8 rounded border border-stone-200 bg-white object-contain p-1" />
+                        <h4 className="font-serif text-3xl">Web Developer Intern</h4>
+                    </div>
                     <p className="font-mono text-xs text-stone-500 uppercase tracking-widest mt-1 mb-4">Bharat Intern / Sep 2023 — Oct 2023</p>
                     <p className="text-stone-600 leading-relaxed max-w-2xl">Developed and maintained responsive web applications using HTML, CSS, and JavaScript. Successfully delivered 3 projects, participating in code reviews to enhance technical quality.</p>
+                </div>
+            </div>
+          </section>
+          <section id="education">
+            <SectionHeader title="Education" icon={GraduationCap} />
+            <div className="border border-stone-200 p-8 md:p-12 bg-white">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                    <div>
+                        <h3 className="font-serif text-3xl md:text-4xl mb-2">Bachelor of Engineering</h3>
+                        <h4 className="font-serif text-xl text-stone-600 mb-2">Computer Science</h4>
+                        <p className="font-mono text-xs text-stone-500 uppercase tracking-widest">Sri Chandrasekharendra Saraswathi Vishwa Mahavidyalaya</p>
+                    </div>
+                    <div className="mt-4 md:mt-0">
+                        <span className="font-mono text-xs text-stone-500 border border-stone-300 px-4 py-2 bg-stone-50">Dec 2020 — Jul 2024</span>
+                    </div>
+                </div>
+                <div className="pt-6 border-t border-stone-200">
+                    <p className="text-stone-600 leading-relaxed mb-4">Comprehensive program covering software engineering, data structures, algorithms, web development, cloud computing, and AI/ML fundamentals. Applied theoretical knowledge through multiple internships and real-world projects.</p>
+                    <div className="flex flex-wrap gap-2 mt-4">
+                        <span className="text-xs font-mono bg-stone-100 px-3 py-1 text-stone-600">Computer Science</span>
+                        <span className="text-xs font-mono bg-stone-100 px-3 py-1 text-stone-600">Software Engineering</span>
+                        <span className="text-xs font-mono bg-stone-100 px-3 py-1 text-stone-600">Web Development</span>
+                        <span className="text-xs font-mono bg-stone-100 px-3 py-1 text-stone-600">AI/ML</span>
+                    </div>
                 </div>
             </div>
           </section>
@@ -396,6 +436,37 @@ const BrandShowcase = () => {
             </div>
           </section>
 
+          <section id="publications">
+            <SectionHeader title="Publications & Research" icon={BookOpen} />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="border border-stone-200 p-8 bg-white group hover:border-orange-200 transition-colors">
+                    <div className="mb-4">
+                        <h4 className="font-serif text-2xl mb-2">Telemedicine for India: A Health Care Revolution</h4>
+                        <span className="font-mono text-xs text-stone-500 uppercase tracking-widest">Research Publication</span>
+                    </div>
+                    <p className="text-stone-600 text-sm leading-relaxed mb-4">Explored the transformative potential of telemedicine in addressing healthcare accessibility challenges across India. Analyzed digital health platforms, remote diagnostics, and patient engagement strategies.</p>
+                    <div className="flex flex-wrap gap-2">
+                        <span className="text-[10px] font-mono bg-stone-100 px-2 py-1 text-stone-600">Healthcare Tech</span>
+                        <span className="text-[10px] font-mono bg-stone-100 px-2 py-1 text-stone-600">Digital Health</span>
+                        <span className="text-[10px] font-mono bg-stone-100 px-2 py-1 text-stone-600">UX Research</span>
+                    </div>
+                </div>
+
+                <div className="border border-stone-200 p-8 bg-white group hover:border-orange-200 transition-colors">
+                    <div className="mb-4">
+                        <h4 className="font-serif text-2xl mb-2">The Future of AI: Transforming Tomorrow</h4>
+                        <span className="font-mono text-xs text-stone-500 uppercase tracking-widest">Research Publication</span>
+                    </div>
+                    <p className="text-stone-600 text-sm leading-relaxed mb-4">Investigated emerging AI technologies and their societal impact. Examined AI-driven interfaces, machine learning applications, and ethical considerations in automated decision-making systems.</p>
+                    <div className="flex flex-wrap gap-2">
+                        <span className="text-[10px] font-mono bg-stone-100 px-2 py-1 text-stone-600">Artificial Intelligence</span>
+                        <span className="text-[10px] font-mono bg-stone-100 px-2 py-1 text-stone-600">ML Systems</span>
+                        <span className="text-[10px] font-mono bg-stone-100 px-2 py-1 text-stone-600">Tech Ethics</span>
+                    </div>
+                </div>
+            </div>
+          </section>
+
           <section id="honors">
             <SectionHeader title="Honors & Awards" icon={Award} />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -497,7 +568,7 @@ const BrandShowcase = () => {
           </section>
         </main>
       </div>
-      <Footer />
+      <Footer onNavigate={onNavigate} />
     </div>
   );
 };
