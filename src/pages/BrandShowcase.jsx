@@ -140,7 +140,7 @@ const BrandShowcase = ({ onNavigate }) => {
                 <div className="group cursor-pointer" onClick={() => copyToClipboard('#FAFAF9')}>
                     <div className="h-40 bg-stone-50 border border-stone-200 flex items-end p-4 relative">
                         <Copy size={16} className="absolute top-4 right-4 opacity-0 group-hover:opacity-50"/>
-                        <div><p className="font-bold">Off-White</p><p className="font-mono text-xs text-stone-400">#FAFAF9</p></div>
+                        <div><p className="font-bold">off-White</p><p className="font-mono text-xs text-stone-400">#FAFAF9</p></div>
                     </div>
                 </div>
                 <div className="group cursor-pointer" onClick={() => copyToClipboard('#1C1917')}>
