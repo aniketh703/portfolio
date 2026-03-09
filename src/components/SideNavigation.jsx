@@ -53,7 +53,7 @@ const SideNavigation = ({ onNavigate }) => {
     <div ref={containerRef}>
       <header className="sidenav__header">
         <button 
-          className="sidenav__button" 
+          className="sidenav__button touch-target" 
           onClick={() => setIsOpen(!isOpen)}
           aria-expanded={isOpen}
           aria-label={isOpen ? "Close menu" : "Open menu"}
@@ -79,7 +79,7 @@ const SideNavigation = ({ onNavigate }) => {
             <ul className="sidenav__menu-list">
               {[{ id: 'index', label: 'Index', num: '01' }, { id: 'pricing', label: 'Services', num: '02' }, { id: 'archive', label: 'Archive', num: '03' }, { id: 'brand', label: 'System', num: '04' }].map((item) => (
                 <li key={item.id} className="sidenav__menu-list-item">
-                  <a href="#" className="sidenav__menu-link" data-sidenav-link onClick={(e) => { e.preventDefault(); handleLinkClick(item.id); }}>
+                  <a href="#" className="sidenav__menu-link touch-target" data-sidenav-link onClick={(e) => { e.preventDefault(); handleLinkClick(item.id); }}>
                     <p className="sidenav__menu-link-heading">{item.label}</p>
                     <p className="sidenav__menu-link-eyebrow">{item.num}</p>
                   </a>

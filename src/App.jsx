@@ -120,9 +120,9 @@ export default function App() {
 
   return (
     <ReactLenis root ref={lenisRef} autoRaf={false}>
-    <div className="bg-stone-50 min-h-screen text-stone-900 selection:bg-brand-orange selection:text-white cursor-crosshair font-sans no-scrollbar">
+    <div className="bg-stone-50 min-h-screen text-stone-900 selection:bg-brand-orange selection:text-white cursor-auto md:cursor-crosshair font-sans no-scrollbar">
       {/* Noise Texture */}
-      <div className="noise-overlay"></div>
+      <div className="noise-overlay hidden sm:block"></div>
       
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
 
@@ -133,7 +133,7 @@ export default function App() {
       {/* Side Navigation Menu (Replaces standard top links) */}
       <SideNavigation onNavigate={handleNavigate} />
 
-      <nav className={`fixed top-0 left-0 w-full flex justify-between items-start p-6 md:p-8 z-[60] pointer-events-none mix-blend-difference text-stone-50`}>
+      <nav className={`fixed top-0 left-0 w-full flex justify-between items-start p-4 md:p-8 z-[60] pointer-events-none mix-blend-difference text-stone-50`}>
         <div 
           onClick={() => handleNavigate('index')} 
           role="button"
@@ -141,10 +141,10 @@ export default function App() {
           onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleNavigate('index')}
           className="flex flex-col items-start pointer-events-auto cursor-pointer group outline-none"
         >
-          <span className="font-mono text-xs tracking-widest uppercase mb-1 group-hover:text-brand-orange transition-colors duration-300">Portfolio</span>
-          <span className="font-serif text-xl font-bold leading-none">AV.24</span>
+          <span className="font-mono text-[10px] md:text-xs tracking-widest uppercase mb-1 group-hover:text-brand-orange transition-colors duration-300">Portfolio</span>
+          <span className="font-serif text-lg md:text-xl font-bold leading-none">AV.24</span>
         </div>
-        <div className="flex flex-col items-end text-right pointer-events-auto pr-28 md:pr-32">
+        <div className="hidden sm:flex flex-col items-end text-right pointer-events-auto pr-24 md:pr-32">
           <span className="font-mono text-xs mb-1">{new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
           <span className="font-mono text-xs opacity-70">HYD, IN</span>
         </div>

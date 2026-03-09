@@ -43,6 +43,13 @@
 
 body {
   font-size: var(--size-font);
+  overflow-x: hidden;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
 }
 
 .container {
@@ -112,7 +119,12 @@ body {
   .sidenav__menu-socials { display: flex; gap: 2em; flex-wrap: wrap; }
   .sidenav__social-link { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; color: #1C1917; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.3s; }
   .sidenav__social-link:hover { border-color: #FF4500; color: #FF4500; }
-  @media screen and (max-width: 767px) { .sidenav__menu { width: 100%; padding: 6em 2em 2em 2em; } .sidenav__menu-link-heading { font-size: 3rem; } }
+  @media screen and (max-width: 767px) {
+    .sidenav__header { padding: 1rem; }
+    .sidenav__menu { width: 100%; padding: 5.25em 1.5em 1.5em 1.5em; }
+    .sidenav__menu-link-heading { font-size: 2.2rem; }
+    .sidenav__menu-list-item { height: 4.2em; }
+  }
 
   /* --- Grid Transition Styles --- */
   .transition-grid { z-index: 200; display: grid; width: 100%; height: 100vh; position: fixed; top: 0; left: 0; pointer-events: none; }
@@ -220,6 +232,19 @@ body {
     padding-bottom: 5rem;
   }
 
+  @media screen and (max-width: 767px) {
+    .page-container {
+      padding-top: 6rem;
+      padding-bottom: 3rem;
+    }
+  }
+
+  /* Touch target utility for mobile interactions */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
   /* --- Unified Card Styles --- */
   .card-base {
     border: 1px solid rgb(231, 229, 228);
@@ -244,5 +269,16 @@ body {
 
   .text-medium {
     opacity: var(--opacity-medium);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 

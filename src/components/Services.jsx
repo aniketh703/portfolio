@@ -39,16 +39,16 @@ const Services = ({ onNavigate }) => {
   ];
 
   return (
-    <section className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-20 md:gap-12 md:px-8">
+    <section className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-16 md:py-20 md:gap-12 md:px-8">
       <div>
         <span className="font-sans text-xs font-semibold uppercase tracking-widest text-stone-500 opacity-60 block mb-2">Expertise</span>
-        <h2 className="font-serif text-4xl md:text-5xl mb-12 border-b border-stone-300 pb-6 tracking-tight">Services</h2>
+        <h2 className="font-serif text-3xl md:text-5xl mb-10 md:mb-12 border-b border-stone-300 pb-6 tracking-tight">Services</h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-6 md:auto-rows-[minmax(180px,auto)] gap-6 md:gap-8">
         {services.map((service, index) => (
           <div
             key={index}
-            className={`p-6 border border-stone-200 hover:bg-stone-50/50 backdrop-blur-sm transition-all duration-300 group flex flex-col rounded-lg hover:shadow-lg hover:border-stone-300 ${service.span}`}
+            className={`p-5 md:p-6 border border-stone-200 hover:bg-stone-50/50 backdrop-blur-sm transition-all duration-300 group flex flex-col rounded-lg hover:shadow-lg hover:border-stone-300 ${service.span}`}
           >
             <div className="text-stone-800 group-hover:text-brand-orange transition-colors duration-300">
                 {service.icon}
@@ -61,7 +61,7 @@ const Services = ({ onNavigate }) => {
                 <p className="font-sans text-xs font-semibold uppercase tracking-wide text-stone-500 opacity-60">{service.details.tools}</p>
                 <ul className="space-y-2">
                   {service.details.outcomes.map((item) => (
-                    <li key={item} className="font-sans text-sm text-stone-700 leading-relaxed opacity-70">• {item}</li>
+                    <li key={item} className="font-sans text-sm text-stone-700 leading-relaxed opacity-70">- {item}</li>
                   ))}
                 </ul>
                 <p className="font-sans text-xs text-stone-500 leading-relaxed opacity-60">
@@ -74,7 +74,7 @@ const Services = ({ onNavigate }) => {
       </div>
       <div className="mt-12 text-center">
           <p className="text-stone-500 font-sans text-sm mb-4 opacity-60">Looking for detailed packages?</p>
-          <button onClick={() => onNavigate('pricing')} className="inline-block border-b-2 border-stone-900 pb-1 font-serif italic text-xl hover:text-brand-orange hover:border-brand-orange transition-all duration-300">
+            <button onClick={() => onNavigate('pricing')} className="inline-block border-b-2 border-stone-900 pb-1 font-serif italic text-lg md:text-xl hover:text-brand-orange hover:border-brand-orange transition-all duration-300 touch-target">
               View Pricing & Packages
           </button>
       </div>

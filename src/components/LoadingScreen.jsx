@@ -28,17 +28,17 @@ const LoadingScreen = ({ onComplete }) => {
   }, [progress, onComplete]);
 
   return (
-    <div className={`fixed inset-0 z-[250] bg-stone-900 text-stone-50 flex flex-col justify-between p-6 md:p-12 cursor-wait ${isExiting ? 'loader-exit' : ''}`}>
-      <div className="flex justify-between items-start font-mono text-xs uppercase tracking-widest">
+    <div className={`fixed inset-0 z-[250] bg-stone-900 text-stone-50 flex flex-col justify-between p-4 md:p-12 cursor-wait ${isExiting ? 'loader-exit' : ''}`}>
+      <div className="flex justify-between items-start font-mono text-[10px] md:text-xs uppercase tracking-widest gap-4">
         <span>Aniketh Vustepalle</span>
         <span>Portfolio 2024</span>
       </div>
       <div className="flex flex-col items-center w-full">
-        <div className="font-serif text-[20vw] md:text-[25vw] leading-none font-medium tracking-tighter tabular-nums">
+        <div className="font-serif text-[26vw] sm:text-[20vw] md:text-[25vw] leading-none font-medium tracking-tighter tabular-nums">
           {progress}%
         </div>
       </div>
-      <div className="flex flex-col md:flex-row justify-between items-end font-mono text-xs uppercase tracking-widest w-full gap-4">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end font-mono text-[10px] md:text-xs uppercase tracking-widest w-full gap-4">
         <div className="flex flex-col gap-1 text-stone-400">
           <span className={progress > 20 ? 'text-white' : ''}>[ SYS ] Checking Dependencies... {progress < 20 ? '...' : 'OK'}</span>
         </div>
