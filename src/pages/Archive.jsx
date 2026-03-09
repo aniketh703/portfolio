@@ -12,28 +12,69 @@ const Archive = ({ projects, onSelect, onNavigate }) => {
 
   useEffect(() => {
     document.title = "Archive | Aniketh Vustepalle";
-    const handleMove = (e) => { setCursorPos({ x: e.clientX, y: e.clientY }); };
+    const handleMove = (e) => { 
+      setCursorPos({ x: e.clientX, y: e.clientY }); 
+    };
     window.addEventListener('mousemove', handleMove);
     return () => window.removeEventListener('mousemove', handleMove);
   }, []);
 
+  // Constrain preview box position to stay within viewport
+  const getPreviewPosition = () => {
+    const previewWidth = 256; // w-64 = 16rem = 256px
+    const previewHeight = 256; // h-64 = 16rem = 256px
+    const offsetX = 20;
+    const offsetY = 20;
+    const padding = 15;
+    let left = cursorPos.x + offsetX;
+    let top = cursorPos.y + offsetY;
+
+    // Constrain left position
+    if (left + previewWidth + padding > window.innerWidth) {
+      left = cursorPos.x - previewWidth - offsetX;
+    }
+
+    // Constrain top position
+    if (top + previewHeight + padding > window.innerHeight) {
+      top = cursorPos.y - previewHeight - offsetY;
+    }
+
+    // Ensure minimum positions
+    if (left < padding) left = padding;
+    if (top < padding) top = padding;
+
+    return { left, top };
+  };
+
+  const previewPos = getPreviewPosition();
+
   return (
     <>
-      <section className="min-h-screen bg-stone-50 pt-32 pb-20 relative mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 md:gap-12 md:px-8">
-        <div className="flex justify-between items-end mb-12 border-b-4 border-stone-900 pb-4">
-            <h1 className="text-6xl md:text-8xl font-serif leading-none tracking-tighter">ARCHIVE</h1>
+      <section className="min-h-screen bg-stone-50 page-container relative mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 md:gap-12 md:px-8 overflow-hidden">
+        <div className="flex justify-between items-end mb-12 border-b border-stone-300 pb-6">
+            <div>
+                <span className="font-sans text-xs font-semibold uppercase tracking-widest text-stone-500 opacity-60 block mb-2">Collection</span>
+                <h1 className="text-5xl md:text-7xl font-serif leading-none tracking-tighter">Archive</h1>
+            </div>
             <div className="text-right hidden md:block">
-                <p className="font-mono text-xs uppercase tracking-widest text-stone-500">Full Index</p>
-                <p className="font-mono text-xs uppercase tracking-widest">2023 — 2026</p>
+                <p className="font-sans text-xs uppercase tracking-widest text-stone-500 opacity-60">Full Index</p>
+                <p className="font-sans text-xs uppercase tracking-widest text-stone-600 opacity-70">2023 — 2026</p>
             </div>
         </div>
-        <div className="fixed w-64 h-64 pointer-events-none z-50 transition-opacity duration-200 hidden md:block overflow-hidden border border-stone-900 bg-white" style={{ left: cursorPos.x + 20, top: cursorPos.y - 100, opacity: hoveredId !== null ? 1 : 0 }}>
+        <div 
+          className="fixed w-64 h-64 pointer-events-none z-50 transition-opacity duration-300 hidden md:block overflow-hidden border border-stone-300 bg-white subtle-shadow rounded-lg" 
+          style={{ 
+            left: `${previewPos.left}px`, 
+            top: `${previewPos.top}px`, 
+            opacity: hoveredId !== null ? 1 : 0 
+          }}
+        >
             {hoveredId !== null && archiveList[hoveredId] && (
               <GenerativeArt id={archiveList[hoveredId].id} color={archiveList[hoveredId].color} />
             )}
         </div>
         <div className="w-full">
-          <div className="grid grid-cols-12 gap-4 font-mono text-xs uppercase tracking-widest text-stone-400 mb-4 px-4">
+          <div className="grid grid-cols-12 gap-4 font-sans text-xs font-semibold uppercase tracking-widest text-stone-500 mb-4 px-4 opacity-60">
               <div className="col-span-1">ID</div>
               <div className="col-span-6 md:col-span-5">Project Name</div>
               <div className="hidden md:block col-span-3">Discipline</div>
@@ -49,9 +90,9 @@ const Archive = ({ projects, onSelect, onNavigate }) => {
               onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onSelect(project)}
               onMouseEnter={() => setHoveredId(index)} 
               onMouseLeave={() => setHoveredId(null)} 
-              className="group grid grid-cols-12 gap-4 items-center py-6 border-t border-stone-300 hover:bg-stone-900 hover:text-stone-50 transition-colors duration-200 cursor-pointer px-4 outline-none focus:bg-stone-900 focus:text-stone-50"
+              className="group grid grid-cols-12 gap-4 items-center py-6 border-t border-stone-300 hover:bg-stone-900 hover:text-stone-50 transition-all duration-300 cursor-pointer px-4 outline-none focus:bg-stone-900 focus:text-stone-50"
             >
-              <div className="col-span-1 font-mono text-xs opacity-50 group-hover:opacity-100">{String(index + 1).padStart(2, '0')}</div>
+              <div className="col-span-1 font-mono text-xs opacity-60 group-hover:opacity-100">{String(index + 1).padStart(2, '0')}</div>
               <div className="col-span-6 md:col-span-5 font-serif text-xl md:text-3xl font-medium leading-none truncate">{project.title}</div>
               <div className="hidden md:block col-span-3 font-mono text-xs uppercase tracking-widest opacity-70">{project.category}</div>
               <div className="col-span-3 md:col-span-2 text-right font-mono text-xs opacity-70">{project.year}</div>

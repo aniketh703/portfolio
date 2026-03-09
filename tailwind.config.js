@@ -14,6 +14,23 @@ export default {
       fontFamily: {
         serif: ['"Playfair Display"', 'serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
+        sans: ['"Inter"', 'sans-serif'],
+      },
+      borderRadius: {
+        'sm': '0.375rem',
+        'DEFAULT': '0.5rem',
+        'md': '0.5rem',
+        'lg': '0.75rem',
+        'xl': '1rem',
+        '2xl': '1.5rem',
+      },
+      transitionDuration: {
+        '300': '300ms',
+      },
+      opacity: {
+        '60': '0.6',
+        '70': '0.7',
+        '85': '0.85',
       },
       zIndex: {
         '60': '60',

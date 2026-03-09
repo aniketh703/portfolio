@@ -74,29 +74,33 @@ const Pricing = ({ onNavigate }) => {
 
   return (
     <>
-    <main className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 pt-32 pb-20 md:gap-12 md:px-8 bg-white min-h-screen animate-in fade-in duration-700">
-      <div className="mb-20 pt-8 border-t border-stone-300">
+    <main className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 page-container md:gap-12 md:px-8 bg-white min-h-screen animate-in fade-in duration-700">
+      <div className="mb-20 pt-12 border-t border-stone-300">
+        <span className="font-sans text-xs font-semibold uppercase tracking-widest text-stone-500 opacity-60 block mb-4">Services</span>
         <h1 style={{ fontSize: 'clamp(2rem, 8vw, 7rem)' }} className="leading-[0.9] font-serif font-medium tracking-tighter mb-8">
-            PRICING <br/> <span className="italic text-stone-400">& PACKAGES</span>
+            PRICING <br/> <span className="font-light italic text-stone-400">& PACKAGES</span>
         </h1>
-        <p className="font-mono text-sm max-w-xl leading-relaxed text-justify uppercase tracking-tight ml-auto">
-            ( Offerings ) — Transparent pricing for transparent work. Whether you need a full website, just the design, or just the code, I have a package that fits your needs.
+        <p className="font-sans text-base max-w-xl leading-relaxed text-stone-600 opacity-85">
+            Transparent pricing for transparent work. Whether you need a full website, just the design, or just the code, I have a package that fits your needs.
         </p>
       </div>
 
       {/* Website Packages */}
       <section className="mb-32">
-        <div className="flex items-center gap-4 mb-12">
-             <Rocket size={32} />
-             <h2 className="font-serif text-4xl italic">Website Packages</h2>
+        <div className="flex items-start gap-4 mb-12 border-b border-stone-300 pb-6">
+             <Rocket size={24} className="mt-1 opacity-70" />
+             <div>
+                <span className="font-sans text-xs font-semibold uppercase tracking-widest text-stone-500 opacity-60 block">Complete Solutions</span>
+                <h2 className="font-serif text-4xl md:text-5xl mt-2 tracking-tight">Website Packages</h2>
+             </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {websitePackages.map((pkg, i) => (
-                <div key={i} className={`relative p-8 border ${pkg.recommended ? 'border-brand-orange bg-stone-50' : 'border-stone-200 bg-white'} hover:shadow-xl transition-shadow duration-300 flex flex-col`}>
-                    {pkg.recommended && <span className="absolute top-0 right-0 bg-brand-orange text-white text-xs font-mono px-3 py-1 uppercase tracking-widest">Recommended</span>}
-                    <h3 className="font-serif text-2xl mb-2">{pkg.name}</h3>
-                    <p className="font-mono text-sm text-stone-500 mb-6 h-10">{pkg.description}</p>
-                    <div className="text-4xl font-serif font-bold mb-8">{pkg.price}<span className="text-base font-normal text-stone-400 ml-2">/ one-time</span></div>
+                <div key={i} className={`relative p-8 border rounded-lg transition-all duration-300 flex flex-col ${pkg.recommended ? 'border-brand-orange bg-orange-50/30 shadow-md' : 'border-stone-200 bg-stone-50/30 hover:shadow-lg hover:border-stone-300'}`}>
+                    {pkg.recommended && <span className="absolute top-4 right-4 bg-brand-orange text-white text-xs font-sans font-semibold px-3 py-1 uppercase tracking-widest rounded-full">Recommended</span>}
+                    <h3 className="font-serif text-xl font-medium mb-2">{pkg.name}</h3>
+                    <p className="font-sans text-sm text-stone-600 mb-6 opacity-70 h-10">{pkg.description}</p>
+                    <div className="text-4xl font-serif font-bold mb-8">{pkg.price}<span className="text-base font-normal text-stone-500 ml-2 opacity-70">/ one-time</span></div>
                     <ul className="space-y-4 mb-8 flex-grow">
                         {pkg.features.map((feature, idx) => (
                             <li key={idx} className="flex items-start gap-3 text-sm font-mono text-stone-600">
@@ -121,7 +125,7 @@ const Pricing = ({ onNavigate }) => {
             </div>
             <div className="space-y-6">
                 {designOnly.map((pkg, i) => (
-                    <div key={i} className="p-6 border border-stone-200 hover:border-brand-orange transition-colors duration-300">
+                    <div key={i} className="p-6 border border-stone-200 rounded-lg hover:border-brand-orange transition-all duration-300">
                         <div className="flex justify-between items-baseline mb-4">
                             <h3 className="font-serif text-xl">{pkg.name}</h3>
                             <span className="font-bold text-lg">{pkg.price}</span>
@@ -145,7 +149,7 @@ const Pricing = ({ onNavigate }) => {
             </div>
             <div className="space-y-6">
                 {devOnly.map((pkg, i) => (
-                    <div key={i} className="p-6 border border-stone-200 hover:border-brand-orange transition-colors duration-300">
+                    <div key={i} className="p-6 border border-stone-200 rounded-lg hover:border-brand-orange transition-all duration-300">
                          <div className="flex justify-between items-baseline mb-4">
                             <h3 className="font-serif text-xl">{pkg.name}</h3>
                             <span className="font-bold text-lg">{pkg.price}</span>
@@ -169,7 +173,7 @@ const Pricing = ({ onNavigate }) => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {addons.map((pkg, i) => (
-                 <div key={i} className="p-6 bg-stone-100 border border-stone-200">
+                 <div key={i} className="p-6 bg-stone-100 border border-stone-200 rounded-lg hover:shadow-md transition-all duration-300">
                     <h3 className="font-serif text-xl mb-2">{pkg.name}</h3>
                     <div className="text-2xl font-bold font-serif mb-6 text-stone-700">{pkg.price}</div>
                      <ul className="space-y-3">

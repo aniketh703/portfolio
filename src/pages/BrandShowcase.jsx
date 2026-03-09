@@ -8,9 +8,12 @@ import Under25Winner from '../assets/images/projects/Under25_winner.png';
 const SectionHeader = ({ title, icon }) => {
   const Icon = icon;
   return (
-    <div className="flex items-center gap-3 mb-8 border-b border-stone-300 pb-4 mt-24">
-      <Icon size={20} className="text-brand-orange" />
-      <h2 className="font-serif text-3xl md:text-4xl">{title}</h2>
+    <div className="mt-24 mb-8 border-b border-stone-300 pb-6">
+      <span className="font-sans text-xs font-semibold text-stone-500 uppercase tracking-widest block opacity-60 mb-2">Section</span>
+      <div className="flex items-center gap-3">
+        <Icon size={20} className="text-brand-orange opacity-70" />
+        <h2 className="font-serif text-4xl md:text-5xl tracking-tight">{title}</h2>
+      </div>
     </div>
   );
 };
@@ -52,20 +55,20 @@ const BrandShowcase = ({ onNavigate }) => {
 
   return (
     <div className="bg-stone-50 min-h-screen text-stone-900">
-      <header className="pt-40 pb-20 px-4 md:px-12 bg-stone-900 text-stone-50">
+      <header className="page-container bg-stone-900 text-stone-50">
         <div className="mx-auto w-full max-w-7xl px-4 md:px-8">
-            <span className="font-mono text-xs text-orange-500 uppercase tracking-widest mb-4 block">Internal Documentation</span>
-            <h1 className="text-6xl md:text-9xl font-serif leading-none tracking-tighter mb-8">BRAND <br/> SYSTEM</h1>
-            <p className="max-w-2xl font-mono text-sm leading-relaxed text-stone-500 uppercase tracking-wide">The visual and verbal identity for Aniketh Vustepalle.</p>
+            <span className="font-sans text-xs text-brand-orange uppercase tracking-widest mb-4 block font-semibold opacity-85">Internal Documentation</span>
+            <h1 className="text-5xl md:text-8xl font-serif leading-none tracking-tighter mb-8">BRAND <br/> SYSTEM</h1>
+            <p className="max-w-2xl font-sans text-base leading-relaxed text-stone-300 opacity-70">The visual and verbal identity for Aniketh Vustepalle.</p>
         </div>
       </header>
     <div className="mx-auto mb-20 flex w-full max-w-7xl flex-col gap-6 px-4 md:flex-row md:gap-12 md:px-8">
-        <aside data-lenis-prevent className="w-full md:w-64 bg-stone-100 border-r border-stone-200 md:h-screen md:sticky md:top-0 p-6 overflow-y-auto z-40 no-scrollbar">
-            <span className="font-mono text-xs text-stone-500 uppercase tracking-widest mb-6 block">Contents</span>
-            <ul className="space-y-3 font-mono text-xs uppercase tracking-wide">
+        <aside data-lenis-prevent className="w-full md:w-64 bg-stone-100 border-r border-stone-200 md:h-screen md:sticky md:top-0 p-6 overflow-y-auto z-40 no-scrollbar rounded-r-lg">
+            <span className="font-sans text-xs font-semibold text-stone-500 uppercase tracking-widest mb-6 block opacity-60">Contents</span>
+            <ul className="space-y-3 font-sans text-xs uppercase tracking-wide">
                 {menuItems.map((item) => (
                     <li key={item}>
-                        <button onClick={() => scrollTo(item)} className={`flex items-center gap-2 hover:text-orange-500 transition-colors duration-200 ${activeSection === item ? 'text-orange-500 font-bold' : 'text-stone-600'}`}>
+                        <button onClick={() => scrollTo(item)} className={`flex items-center gap-2 hover:text-brand-orange transition-all duration-300 ${activeSection === item ? 'text-brand-orange font-semibold' : 'text-stone-600 opacity-70'}`}>
                             {activeSection === item && <MoveRight size={10} />}
                             {item}
                         </button>
@@ -75,20 +78,20 @@ const BrandShowcase = ({ onNavigate }) => {
         </aside>
         <main className="flex-1 max-w-6xl">
           <section id="overview" className="pt-20">
-            <h3 className="font-mono text-xs uppercase tracking-widest text-stone-400 mb-4">01 — Overview</h3>
+            <h3 className="font-sans text-xs font-semibold uppercase tracking-widest text-stone-500 mb-8 opacity-60">01 — Overview</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div>
                     <h4 className="text-2xl font-serif mb-4">Mission & Vision</h4>
-                    <p className="text-stone-600 leading-relaxed mb-6">To dismantle the barrier between functional utility and artistic expression.</p>
+                    <p className="text-stone-600 leading-relaxed mb-6 opacity-85">To dismantle the barrier between functional utility and artistic expression.</p>
                     <h4 className="text-2xl font-serif mb-4">Core Values</h4>
-                    <ul className="space-y-2 font-mono text-sm text-stone-600">
+                    <ul className="space-y-2 font-sans text-sm text-stone-600 opacity-85">
                         <li className="flex items-center gap-2"><Check size={14} className="text-brand-orange"/> Intentional Friction</li>
                         <li className="flex items-center gap-2"><Check size={14} className="text-brand-orange"/> Raw Authenticity</li>
                         <li className="flex items-center gap-2"><Check size={14} className="text-brand-orange"/> Typography First</li>
                     </ul>
                 </div>
-                <div className="bg-stone-200 p-8 flex items-center justify-center">
-                    <p className="font-serif text-3xl italic text-center">"I design for the pause, not the scroll."</p>
+                <div className="bg-stone-100 border border-stone-200 p-8 flex items-center justify-center rounded-lg hover:shadow-md transition-all duration-300">
+                    <p className="font-serif text-3xl italic text-center text-stone-800">"I design for the pause, not the scroll."</p>
                 </div>
             </div>
           </section>

@@ -26,10 +26,13 @@ const Process = () => {
     ];
 
     return (
-        <section className="mx-auto my-12 flex w-full max-w-7xl flex-col gap-6 bg-stone-900 px-4 py-20 text-stone-50 md:gap-12 md:px-8">
-             <div className="flex justify-between items-end mb-12 border-b border-stone-700 pb-4">
-                <h2 className="font-serif text-4xl italic">Process</h2>
-                <span className="font-mono text-xs uppercase tracking-widest text-stone-400">How I work</span>
+        <section className="mx-auto my-12 flex w-full max-w-7xl flex-col gap-6 bg-stone-900 px-4 py-20 text-stone-50 rounded-xl md:gap-12 md:px-8">
+             <div className="flex justify-between items-end mb-12 border-b border-stone-700 pb-6">
+                <div>
+                    <span className="font-sans text-xs font-semibold uppercase tracking-widest text-stone-400 opacity-70 block mb-2">Methodology</span>
+                    <h2 className="font-serif text-4xl md:text-5xl tracking-tight">Process</h2>
+                </div>
+                <span className="font-sans text-xs uppercase tracking-widest text-stone-500 opacity-60">How I work</span>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                 {steps.map((step, index) => (
@@ -39,7 +42,7 @@ const Process = () => {
                             {React.cloneElement(step.icon, { className: "w-full h-full" })}
                         </div>
                         <h3 className="font-serif text-2xl mb-2 relative z-10">{step.title}</h3>
-                        <p className="font-mono text-sm text-stone-400 leading-relaxed relative z-10">{step.description}</p>
+                        <p className="font-sans text-sm text-stone-400 leading-relaxed relative z-10 opacity-85">{step.description}</p>
                     </div>
                 ))}
             </div>

@@ -13,20 +13,30 @@ const Home = ({ projects, onProjectSelect, onNavigate }) => {
 
   return (
     <>
-      <header className="relative pt-40 pb-20 px-4 md:px-12 min-h-[80vh] flex flex-col justify-center animate-in fade-in duration-700">
-        <div className="mx-auto w-full max-w-7xl border-t border-stone-300 pt-8">
-            <h1 style={{ fontSize: 'clamp(2.5rem, 13vw, 14rem)' }} className="leading-[0.85] font-serif font-medium tracking-tighter">ANIKETH <br/> <span style={{ marginLeft: 'clamp(1rem, 10vw, 6rem)' }} className="italic text-stone-500 hover:text-brand-orange transition-colors duration-300">VUSTEPALLE</span></h1>
+      <header className="relative pt-32 pb-20 px-4 md:px-12 min-h-[80vh] flex flex-col justify-center animate-in fade-in duration-700">
+        <div className="mx-auto w-full max-w-7xl border-t border-stone-300 pt-12">
+            <h1 style={{ fontSize: 'clamp(2.5rem, 13vw, 14rem)' }} className="leading-[0.85] font-serif font-medium tracking-tighter text-stone-900">ANIKETH <br/> <span style={{ marginLeft: 'clamp(1rem, 10vw, 6rem)' }} className="italic font-normal text-stone-400 hover:text-brand-orange transition-colors duration-300">VUSTEPALLE</span></h1>
         </div>
         <div className="mt-12 ml-auto flex w-full max-w-6xl flex-col justify-between gap-8 items-end md:flex-row md:items-start">
-            <p className="font-mono text-sm max-w-md leading-relaxed text-justify uppercase tracking-tight">( Manifest ) — I build intuitive digital experiences that align user needs with business outcomes. UI/UX Designer at PanTerra Networks with a background in full stack development (React, Python, Flask) and research in AI-driven systems. Based in Hyderabad, India.</p>
-            <ArrowUpRight size={64} strokeWidth={1} className="animate-pulse" />
+            <div className="max-w-md">
+                <p className="font-sans text-xs font-semibold uppercase tracking-widest text-stone-500 mb-3 opacity-60">Designer & Developer</p>
+                <p className="font-sans text-base leading-relaxed text-stone-700 mb-4 opacity-85">I build intuitive digital experiences that align user needs with business outcomes. UI/UX Designer at PanTerra Networks with expertise in React, Python, and AI-driven systems.</p>
+                <p className="font-sans text-xs uppercase tracking-widest text-stone-500 opacity-60">Based in Hyderabad, India</p>
+            </div>
+            <div className="flex flex-col items-center gap-6">
+                <ArrowUpRight size={64} strokeWidth={1} className="animate-pulse opacity-70" />
+                <div className="w-px h-12 bg-gradient-to-b from-stone-300 to-transparent"></div>
+            </div>
         </div>
         <div className="absolute top-20 right-0 -z-10 opacity-5 font-serif text-[40rem] leading-none select-none pointer-events-none">A</div>
       </header>
       <main id="index" className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 md:gap-12 md:px-8">
-        <div className="flex justify-between items-end mb-8 border-b border-stone-900 pb-2">
-            <span className="font-mono text-xs uppercase tracking-widest">[ Selected Works ]</span>
-            <Grid3X3 size={16} />
+        <div className="flex justify-between items-end mb-12 border-b border-stone-300 pb-6">
+            <div>
+                <span className="font-sans text-xs font-semibold uppercase tracking-widest text-stone-500 block opacity-60 mb-2">Collection</span>
+                <h2 className="font-serif text-4xl md:text-5xl tracking-tight">Selected Works</h2>
+            </div>
+            <Grid3X3 size={16} className="opacity-60" strokeWidth={1.5} />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[minmax(300px,auto)]">
           {projects.filter(p => p.featured).map((project) => (
@@ -36,7 +46,7 @@ const Home = ({ projects, onProjectSelect, onNavigate }) => {
               tabIndex="0"
               onClick={() => onProjectSelect(projects.findIndex(p => p.id === project.id))} 
               onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onProjectSelect(projects.findIndex(p => p.id === project.id))}
-              className={`group relative bg-white border border-stone-200 cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-2xl hover:z-10 ${project.span}`}
+              className={`group relative bg-white border border-stone-200 rounded-lg cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-2xl hover:z-10 ${project.span}`}
             >
               <div className="absolute inset-0 flex flex-col justify-between p-6 z-20 mix-blend-difference text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="flex justify-between items-start">
