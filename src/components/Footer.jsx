@@ -9,6 +9,7 @@ const Footer = ({ onNavigate }) => {
         <h2 className="font-serif text-4xl md:text-7xl mb-8 md:mb-12 tracking-tighter leading-tight">Let's build <br/> <span className="text-stone-400 font-light italic">tomorrow.</span></h2>
             <div className="flex flex-col space-y-2 font-sans text-sm uppercase tracking-widest text-stone-400">
           <a href="mailto:anikethvustepalle03@gmail.com" className="hover:text-brand-orange flex items-center gap-2 hover:pl-4 transition-all duration-300 opacity-70 hover:opacity-100 py-1 touch-target"><MoveRight size={12}/> Email</a>
+          <a href="https://wa.me/919311761114" target="_blank" rel="noopener noreferrer" className="hover:text-brand-orange flex items-center gap-2 hover:pl-4 transition-all duration-300 opacity-70 hover:opacity-100 py-1 touch-target"><MoveRight size={12}/> WhatsApp</a>
           <a href="https://github.com/aniketh703" target="_blank" rel="noopener noreferrer" className="hover:text-brand-orange flex items-center gap-2 hover:pl-4 transition-all duration-300 opacity-70 hover:opacity-100 py-1 touch-target"><MoveRight size={12}/> GitHub</a>
           <a href="https://www.linkedin.com/in/aniketh-vustepalle/" target="_blank" rel="noopener noreferrer" className="hover:text-brand-orange flex items-center gap-2 hover:pl-4 transition-all duration-300 opacity-70 hover:opacity-100 py-1 touch-target"><MoveRight size={12}/> LinkedIn</a>
                 {onNavigate && (
