@@ -138,6 +138,7 @@ body,
   @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
   @keyframes slideInFromBottom { 0% { opacity: 0; transform: translateY(48px); } 100% { opacity: 1; transform: translateY(0); } }
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+  @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
   
   .loader-exit { animation: slideUpExit 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
   .project-open { animation: projectOpen 0.7s cubic-bezier(0.83, 0, 0.17, 1) forwards; }
