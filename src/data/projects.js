@@ -1,19 +1,33 @@
-export const projects = [
+const rawProjects = [
   { 
     id: 1, 
     title: "GITA APP", 
     category: "Mobile Application", 
     year: "2026", 
     span: "col-span-1 md:col-span-2 row-span-2", 
-    description: "Bhagavad Gita mobile application with comprehensive data normalization pipeline.", 
+    description: "Bhagavad Gita companion focused on ambient familiarity and offline accessibility.", 
     details: ["TypeScript", "React Native", "Data Engineering", "Schema Design"], 
     color: "#FF6B35",
+    coverImage: "/og-image.jpg",
     repoUrl: "https://github.com/aniketh703/gita-app",
     repoLabel: "View Repository",
     featured: true,
+    realProblem: "Most Gita apps are reading apps. But people open them during commutes, before sleep, or in moments of stress where reading long passages fails; the real need was ambient familiarity, not study mode.",
+    constraints: ["Solo development", "No complete design file at kickoff", "Limited time for MVP"],
+    deadEnd: "I initially centered the product around a dense, feature-heavy reading surface and deep data tooling.",
+    pivot: "Usage context mattered more than data sophistication, so the product shifted to quick access, calmer flows, and offline-first interactions.",
+    whatIDLearn: "I would validate real-life usage contexts with users earlier, before expanding the technical scope.",
+    process: [
+      { label: "Discover", note: "What users actually do with the text" },
+      { label: "Define", note: "Ambient use is not a reading app" },
+      { label: "Explore", note: "Three interaction models tested" },
+      { label: "Dead end", note: "Audio-first failed on low bandwidth" },
+      { label: "Ship", note: "Offline-first verse companion" },
+    ],
     modules: [
-        { type: "intro", content: "A modern mobile experience for the Bhagavad Gita built on a robust data engineering foundation. TypeScript-first architecture with comprehensive schema validation and automated data processing pipelines." },
-        { type: "text", title: "The Challenge", content: "Building a reliable mobile app required solving complex data normalization challenges first. The Bhagavad Gita contains 18 chapters and 700 verses with multiple translations, commentaries, and transliterations—requiring a sophisticated data architecture to ensure consistency and accuracy." },
+        { type: "problem", content: "People reach for spiritual apps in fragmented moments, not in ideal reading sessions. The real job was to make guidance feel available in low-attention, low-bandwidth contexts without turning the experience into clutter." },
+        { type: "text", title: "Context", content: "The content layer still mattered: 18 chapters, 700 verses, multiple translations, and transliteration variants. But the product strategy changed from information depth first to calm access first." },
+        { type: "deadend", attempt: "I optimized early around heavy reading and advanced data controls in the first flow.", why: "That direction increased cognitive load exactly when users needed comfort and speed. A technically rich interface was not a context-fit interface." },
         { type: "grid", title: "Data Engineering Pipeline", items: [
             { label: "01. Schema Design", text: "Canonical schema definition with comprehensive validation rules ensuring data integrity across all verses and chapters." },
             { label: "02. Normalization", text: "Automated data normalization scripts converting CSV sources into validated JSON structures with edge case handling." },
@@ -27,7 +41,7 @@ export const projects = [
             { label: "Documentation", text: "Comprehensive guides including CANONICAL_SCHEMA.md, VALIDATION_COMPLETE.md, NORMALIZER_COMPLETE_GUIDE.md, and QUICKSTART.md." },
             { label: "Automation", text: "Cross-platform scripts (generate-chapters.sh/bat, NORMALIZER_QUICKSTART.sh) for reproducible data processing workflows." }
         ]},
-        { type: "text", title: "Mobile Application", content: "React Native mobile app delivering the processed content with offline-first capabilities. The UI focuses on readability, chapter navigation, verse search, and multi-language support. Clean separation between data layer and presentation ensures easy updates and maintenance." }
+        { type: "reflection", content: "I would prototype usage situations first (commute, fatigue, low signal) and let those constraints drive architecture decisions from day one." }
     ]
   },
   { 
@@ -39,9 +53,10 @@ export const projects = [
     description: "Career guidance platform similar to Google Career Dreamer.", 
     details: ["TypeScript", "React", "T-Hub"], 
     color: "#4A90E2",
+    coverImage: null,
     repoUrl: "https://github.com/aniketh703/Lakshya-Project",
     repoLabel: "View Repository",
-    featured: true,
+    featured: false,
     modules: [
         { type: "intro", content: "Empowering job seekers with AI-driven career guidance and pathways. Built for T-Hub to democratize career exploration." },
         { type: "text", title: "The Project", content: "Lakshya is a comprehensive career guidance platform designed to help job seekers discover career paths, skill requirements, and actionable roadmaps. Inspired by Google Career Dreamer, it provides personalized recommendations." },
@@ -149,11 +164,18 @@ export const projects = [
     description: "Modern portfolio website for Chartered Accountancy firm built with React and TypeScript.", 
     details: ["React", "TypeScript", "Vite", "ESLint"], 
     color: "#2C3E50",
+    coverImage: "/og-image.jpg",
     repoUrl: "https://github.com/aniketh703/vnav-associates-website",
     repoLabel: "View Repository",
     featured: true,
+    realProblem: "Potential clients did not need more accounting jargon. They needed immediate trust signals and a clear way to decide if the firm could solve their situation.",
+    constraints: ["Small team feedback loop", "Tight launch timeline", "Conservative domain expectations"],
+    deadEnd: "My first direction mimicked flashy agency portfolios with dense transitions and visual effects.",
+    pivot: "Professional services websites convert on clarity and credibility, so the design shifted to structure, plain-language services, and faster paths to contact.",
+    whatIDLearn: "I would run stakeholder and client interviews earlier to validate trust cues before visual exploration.",
     modules: [
-        { type: "intro", content: "Professional web presence for VNAV Associates, a chartered accountancy firm. Built with modern React + TypeScript architecture, delivering a fast, type-safe, and maintainable solution." },
+        { type: "problem", content: "The challenge was not making a modern-looking site. It was helping unfamiliar visitors decide quickly: can this firm be trusted with sensitive financial decisions?" },
+        { type: "deadend", attempt: "I explored a motion-heavy, portfolio-like interface to make the brand feel premium.", why: "It looked contemporary but reduced legibility and weakened confidence for users expecting precision and stability." },
         { type: "text", title: "Client Requirements", content: "The firm needed a professional website that establishes credibility, showcases services, and makes it easy for potential clients to get in touch. The design prioritizes clarity, trust, and seamless user experience across all devices." },
         { type: "grid", title: "Technical Architecture", items: [
             { label: "01. React + TypeScript", text: "Type-safe component architecture ensuring code reliability and developer productivity with full IntelliSense support." },
@@ -163,7 +185,7 @@ export const projects = [
         ]},
         { type: "text", title: "Development Workflow", content: "Leveraging Vite's blazing-fast build tooling with React's component model. TypeScript provides compile-time safety, catching errors before deployment. The project structure follows best practices with separate tsconfig files for application and Node.js tooling." },
         { type: "text", title: "Design Philosophy", content: "Conservative color palette and professional typography conveying trust and financial expertise. Fully responsive design ensuring perfect display across all devices. Clear service descriptions and intuitive navigation tailored for diverse client audiences." },
-        { type: "text", title: "Outcome", content: "Delivered a production-ready, type-safe React application with comprehensive code quality tooling. The modern tech stack ensures long-term maintainability while the professional design successfully represents the firm's brand and expertise." }
+                { type: "reflection", content: "For service businesses, I now optimize first for trust conversion moments, then layer visual polish." }
     ]
   },
   { 
@@ -175,11 +197,18 @@ export const projects = [
     description: "End-to-end MLOps pipeline for diabetes prediction with experiment tracking and deployment.", 
     details: ["Python", "MLflow", "DVC", "FastAPI", "Docker", "Prefect"], 
     color: "#00ACC1",
+    coverImage: "/og-image.jpg",
     repoUrl: "https://github.com/aniketh703/Mtech-diabetes-mlops-project",
     repoLabel: "View Repository",
     featured: true,
+    realProblem: "Clinical teams do not benefit from a model unless they can trust where predictions came from and when they should re-run them. The user need was operational reliability, not leaderboard accuracy.",
+    constraints: ["Academic timeline", "Limited compute budget", "Need for reproducible experiments"],
+    deadEnd: "I first focused on squeezing model metrics before building an operational backbone.",
+    pivot: "A strong score without lineage was fragile, so I prioritized experiment traceability, data versioning, and deployment reproducibility.",
+    whatIDLearn: "I would define production success criteria earlier, before hyperparameter tuning begins.",
     modules: [
-        { type: "intro", content: "A production-grade MLOps pipeline implementing the complete ML lifecycle from data versioning to model deployment and monitoring." },
+        { type: "problem", content: "The system had to be trusted by people making healthcare-adjacent decisions. That meant every prediction needed traceable data lineage, reproducible training context, and dependable deployment behavior." },
+        { type: "deadend", attempt: "I initially treated the project like a pure modeling task and chased metric improvements first.", why: "The approach produced progress in notebooks, but it did not reduce operational risk. Without reproducibility and monitoring, accuracy alone was not product value." },
         { type: "text", title: "The Challenge", content: "Building a comprehensive diabetes prediction system using the Pima Indians Diabetes Database. The goal was to create not just a model, but a complete MLOps ecosystem with experiment tracking, data versioning, automated workflows, and production-ready API deployment." },
         { type: "grid", title: "MLOps Architecture", items: [
             { label: "01. Data Pipeline", text: "DVC for data versioning, automated preprocessing, feature engineering, and train-test splitting with validation checks." },
@@ -195,7 +224,7 @@ export const projects = [
             { label: "Testing", text: "Comprehensive pytest suite covering data loading, model training, predictions, and API endpoints with coverage reporting." },
             { label: "Monitoring", text: "Model performance tracking, API request/response logging, and data drift detection for production reliability." }
         ]},
-        { type: "text", title: "Impact & Results", content: "Achieved reproducible ML experiments with complete lineage tracking. Reduced model deployment time through automated CI/CD pipelines. Enabled real-time predictions via scalable API supporting thousands of concurrent requests. Established monitoring frameworks for production model health and data quality." }
+                { type: "reflection", content: "I now design ML projects around operational trust from day one, then optimize model quality within that system." }
     ]
   },
   { 
@@ -355,3 +384,18 @@ export const projects = [
         ]
     },
 ];
+
+const projectThinkingDefaults = {
+    realProblem: "A user-facing problem framing will be added as this case study evolves.",
+    constraints: ["Time constraints", "Limited artifacts", "Iterative scope changes"],
+    deadEnd: "An initial implementation path was explored before the final direction was chosen.",
+    pivot: "Feedback from implementation changed the strategy to a more usable direction.",
+    whatIDLearn: "I would validate assumptions earlier in the process.",
+    coverImage: null,
+    featured: false,
+};
+
+export const projects = rawProjects.map((project) => ({
+    ...projectThinkingDefaults,
+    ...project,
+}));
