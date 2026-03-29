@@ -34,6 +34,42 @@ const ProjectView = ({ project, onClose, onNext, onPrev, onHome }) => {
 
   const renderModule = (module, index) => {
     switch(module.type) {
+      case 'problem':
+        return (
+          <div key={index} className="mb-12 border-l-4 border-brand-orange pl-6">
+            <span className="font-mono text-xs uppercase tracking-widest text-stone-400 block mb-3">
+              The real problem
+            </span>
+            <p className="text-2xl md:text-3xl font-serif leading-snug text-stone-900">
+              {module.content}
+            </p>
+          </div>
+        );
+      case 'deadend':
+        return (
+          <div key={index} className="mb-12 bg-stone-100 border border-stone-200 p-6 md:p-8">
+            <span className="font-mono text-xs uppercase tracking-widest text-stone-400 block mb-3">
+              What did not work
+            </span>
+            <p className="font-serif text-xl leading-relaxed mb-4 line-through opacity-40">
+              {module.attempt}
+            </p>
+            <p className="font-sans text-base leading-relaxed text-stone-700">
+              {module.why}
+            </p>
+          </div>
+        );
+      case 'reflection':
+        return (
+          <div key={index} className="mb-12 pt-8 border-t border-dashed border-stone-300">
+            <span className="font-mono text-xs uppercase tracking-widest text-stone-400 block mb-3">
+              If I did it again
+            </span>
+            <p className="font-sans text-lg leading-relaxed text-stone-600 italic">
+              {module.content}
+            </p>
+          </div>
+        );
       case 'intro': 
         return (<p key={index} className="text-xl md:text-5xl font-serif leading-tight mb-10 md:mb-16 text-stone-900 md:indent-24">{module.content}</p>);
       case 'text': 
@@ -82,7 +118,15 @@ const ProjectView = ({ project, onClose, onNext, onPrev, onHome }) => {
       </div>
       <div key={project.id} className="project-switch">
         <header className="relative w-full h-[52vh] md:h-[70vh] bg-stone-200 overflow-hidden">
-          <GenerativeArt id={project.id} color={project.color} />
+          {project.coverImage ? (
+            <img
+              src={project.coverImage}
+              alt={`${project.title} cover`}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <GenerativeArt id={project.id} color={project.color} />
+          )}
           <div className="absolute bottom-0 left-0 w-full p-4 md:p-12 pointer-events-none">
               <h1 style={{ fontSize: 'clamp(2.5rem, 12vw, 16rem)' }} className="leading-[0.8] font-serif font-medium tracking-tighter text-stone-900 mix-blend-hard-light select-none">{project.title}</h1>
           </div>
