@@ -5,7 +5,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Maximize2, ArrowUp, Mail } from 'lucide-react';
 import { projects } from './data/projects';
 import LoadingScreen from './components/LoadingScreen';
-import SideNavigation from './components/SideNavigation';
 import GridTransition from './components/GridTransition';
 import CustomCursor from './components/CustomCursor';
 import ProjectView from './components/ProjectView';
@@ -27,7 +26,6 @@ export default function App() {
   const [gridStatus, setGridStatus] = useState('enter'); // 'enter' (reveal) or 'exit' (cover)
   const [nextView, setNextView] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [navDark, setNavDark] = useState(false);
   const lenisRef = useRef();
 
   useEffect(() => {
@@ -107,12 +105,6 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, [currentView, nextView, triggerNavigation]);
 
-  useEffect(() => {
-    const handleScroll = () => setNavDark(window.scrollY > 80);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   const handleNextProject = (e) => {
     e.stopPropagation();
     setSelectedProjectIndex((prev) => (prev + 1) % projects.length);
@@ -161,23 +153,36 @@ export default function App() {
       <GridTransition status={gridStatus} onAnimationComplete={onGridAnimationComplete} />
       <CustomCursor />
 
-      {/* Side Navigation Menu (Replaces standard top links) */}
-      <SideNavigation onNavigate={handleNavigate} />
-
-      <nav className={`fixed top-0 left-0 w-full flex justify-between items-start p-4 md:p-8 z-[60] pointer-events-none transition-colors duration-300 ${navDark ? 'mix-blend-difference text-stone-50' : 'text-stone-900'}`}>
+      <nav className="fixed top-0 left-0 w-full p-4 md:px-8 md:py-5 z-[90] bg-stone-50/90 backdrop-blur border-b border-stone-200">
+        <div className="mx-auto w-full max-w-7xl flex flex-wrap items-center justify-between gap-3">
         <div 
           onClick={() => handleNavigate('index')} 
           role="button"
           tabIndex="0"
           onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleNavigate('index')}
-          className="flex flex-col items-start pointer-events-auto cursor-pointer group outline-none rounded-md px-3 py-2 surface-panel"
+            className="flex flex-col items-start cursor-pointer group outline-none"
         >
           <span className="font-mono text-[10px] md:text-xs tracking-widest uppercase mb-1 group-hover:text-brand-orange transition-colors duration-300">Portfolio</span>
           <span className="font-serif text-lg md:text-xl font-bold leading-none">AV.24</span>
         </div>
-        <div className="hidden sm:flex flex-col items-end text-right pointer-events-auto pr-24 md:pr-32 rounded-md px-3 py-2 surface-panel">
-          <span className="font-mono text-xs mb-1">{new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
-          <span className="font-mono text-xs opacity-70">HYD, IN</span>
+          <div className="flex items-center gap-1 sm:gap-2 text-[11px] md:text-xs font-mono uppercase tracking-wider overflow-x-auto no-scrollbar">
+            {[
+              { id: 'index', label: 'Home' },
+              { id: 'archive', label: 'Archive' },
+              { id: 'brand', label: 'Brand' },
+              { id: 'resume', label: 'Resume' },
+              { id: 'pricing', label: 'Services' },
+            ].map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => handleNavigate(item.id)}
+                className={`px-3 py-2 rounded-sm border transition-colors duration-200 touch-target ${currentView === item.id ? 'bg-stone-900 text-stone-50 border-stone-900' : 'bg-white text-stone-700 border-stone-300 hover:border-stone-900 hover:text-stone-900'}`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
         </div>
       </nav>
 
