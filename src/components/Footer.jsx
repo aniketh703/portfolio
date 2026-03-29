@@ -22,6 +22,11 @@ const Footer = ({ onNavigate }) => {
                         <MoveRight size={12}/> Brand System
                     </button>
                 )}
+                {onNavigate && (
+              <button onClick={() => onNavigate('resume')} className="hover:text-brand-orange flex items-center gap-2 hover:pl-4 transition-all duration-300 text-left opacity-70 hover:opacity-100 py-1 touch-target">
+                    <MoveRight size={12}/> Resume
+                  </button>
+                )}
             </div>
           </div>
           <div className="flex flex-col justify-end">

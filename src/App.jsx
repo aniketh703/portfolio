@@ -12,6 +12,7 @@ import ProjectView from './components/ProjectView';
 import Home from './pages/Home';
 import Archive from './pages/Archive';
 import BrandShowcase from './pages/BrandShowcase';
+import Resume from './pages/Resume';
 import Pricing from './pages/Pricing';
 import './index.css';
 
@@ -21,10 +22,11 @@ export default function App() {
   const [selectedProjectIndex, setSelectedProjectIndex] = useState(null);
   const [currentView, setCurrentView] = useState(() => {
     const hash = typeof window !== 'undefined' ? window.location.hash.replace('#', '') : '';
-    return ['archive', 'brand', 'pricing'].includes(hash) ? hash : 'index';
+    return ['archive', 'brand', 'pricing', 'resume'].includes(hash) ? hash : 'index';
   }); 
   const [gridStatus, setGridStatus] = useState('enter'); // 'enter' (reveal) or 'exit' (cover)
   const [isLoading, setIsLoading] = useState(true);
+  const [navDark, setNavDark] = useState(false);
   const lenisRef = useRef();
 
   useEffect(() => {
@@ -82,6 +84,12 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, [currentView, triggerNavigation]);
 
+  useEffect(() => {
+    const handleScroll = () => setNavDark(window.scrollY > 80);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const handleNextProject = (e) => {
     e.stopPropagation();
     setSelectedProjectIndex((prev) => (prev + 1) % projects.length);
@@ -120,7 +128,7 @@ export default function App() {
 
   return (
     <ReactLenis root ref={lenisRef} autoRaf={false}>
-    <div className="bg-stone-50 min-h-screen text-stone-900 selection:bg-brand-orange selection:text-white cursor-auto md:cursor-crosshair font-sans no-scrollbar">
+    <div className="bg-stone-50 min-h-screen text-stone-900 selection:bg-brand-orange selection:text-white cursor-auto font-sans no-scrollbar">
       {/* Noise Texture */}
       <div className="noise-overlay hidden sm:block"></div>
       
@@ -133,7 +141,7 @@ export default function App() {
       {/* Side Navigation Menu (Replaces standard top links) */}
       <SideNavigation onNavigate={handleNavigate} />
 
-      <nav className={`fixed top-0 left-0 w-full flex justify-between items-start p-4 md:p-8 z-[60] pointer-events-none mix-blend-difference text-stone-50`}>
+      <nav className={`fixed top-0 left-0 w-full flex justify-between items-start p-4 md:p-8 z-[60] pointer-events-none transition-colors duration-300 ${navDark ? 'mix-blend-difference text-stone-50' : 'text-stone-900'}`}>
         <div 
           onClick={() => handleNavigate('index')} 
           role="button"
@@ -167,6 +175,10 @@ export default function App() {
       ) : currentView === 'pricing' ? (
         <div className="animate-in fade-in slide-in-from-bottom-12 duration-500">
             <Pricing onNavigate={handleNavigate} />
+        </div>
+      ) : currentView === 'resume' ? (
+        <div className="animate-in fade-in slide-in-from-bottom-12 duration-500">
+            <Resume onNavigate={handleNavigate} />
         </div>
       ) : (
         <div className="animate-in fade-in slide-in-from-bottom-12 duration-500">
