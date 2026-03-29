@@ -50,6 +50,14 @@ const SideNavigation = ({ onNavigate }) => {
     }
   }, [isOpen]);
 
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') setIsOpen(false);
+    };
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, []);
+
   const handleLinkClick = (view) => {
     if (view) onNavigate(view);
     setIsOpen(false);
@@ -85,10 +93,10 @@ const SideNavigation = ({ onNavigate }) => {
             <ul className="sidenav__menu-list">
               {[{ id: 'index', label: 'Index', num: '01' }, { id: 'archive', label: 'Archive', num: '02' }, { id: 'brand', label: 'Brand', num: '03' }].map((item) => (
                 <li key={item.id} className="sidenav__menu-list-item">
-                  <a href="#" className="sidenav__menu-link touch-target" data-sidenav-link onClick={(e) => { e.preventDefault(); handleLinkClick(item.id); }}>
+                  <button type="button" className="sidenav__menu-link touch-target" data-sidenav-link onClick={() => handleLinkClick(item.id)}>
                     <p className="sidenav__menu-link-heading">{item.label}</p>
                     <p className="sidenav__menu-link-eyebrow">{item.num}</p>
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>

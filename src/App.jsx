@@ -25,6 +25,7 @@ export default function App() {
     return ['archive', 'brand', 'pricing', 'resume'].includes(hash) ? hash : 'index';
   }); 
   const [gridStatus, setGridStatus] = useState('enter'); // 'enter' (reveal) or 'exit' (cover)
+  const [nextView, setNextView] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [navDark, setNavDark] = useState(false);
   const lenisRef = useRef();
@@ -41,48 +42,55 @@ export default function App() {
     };
   }, []);
 
+  const completeNavigation = useCallback((targetView) => {
+    if (!targetView) return;
+    setCurrentView(targetView);
+    window.scrollTo(0, 0);
+    const targetHash = targetView === 'index' ? '' : `#${targetView}`;
+    if (targetHash) {
+      window.history.pushState(null, '', targetHash);
+    } else {
+      window.history.pushState(null, '', window.location.pathname);
+    }
+    setGridStatus('enter');
+    setNextView(null);
+  }, []);
+
   const handleNavigate = (view) => {
     triggerNavigation(view);
   };
 
   const onGridAnimationComplete = useCallback(() => {
-    if (gridStatus === 'exit') {
-      const nextView = document.body.dataset.nextView; 
-      if (nextView) {
-        setCurrentView(nextView);
-        window.scrollTo(0, 0);
-
-        // Sync URL
-        const targetHash = nextView === 'index' ? '' : `#${nextView}`;
-        if (targetHash) {
-             window.history.pushState(null, '', targetHash);
-        } else {
-             window.history.pushState(null, '', window.location.pathname);
-        }
-
-        setGridStatus('enter');
-        document.body.dataset.nextView = '';
-      }
+    if (gridStatus === 'exit' && nextView) {
+      completeNavigation(nextView);
     }
-  }, [gridStatus]);
+  }, [gridStatus, nextView, completeNavigation]);
 
   // Helper to store next view for animation callback
   const triggerNavigation = useCallback((view) => {
     if (view === currentView) return;
-    document.body.dataset.nextView = view;
+    setNextView(view);
     setGridStatus('exit');
   }, [currentView]);
 
   useEffect(() => {
+    if (gridStatus !== 'exit' || !nextView) return;
+    const fallbackTimer = window.setTimeout(() => {
+      completeNavigation(nextView);
+    }, 900);
+    return () => window.clearTimeout(fallbackTimer);
+  }, [gridStatus, nextView, completeNavigation]);
+
+  useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '') || 'index';
-      if (hash !== currentView && document.body.dataset.nextView !== hash) {
+      if (hash !== currentView && nextView !== hash) {
          triggerNavigation(hash);
       }
     };
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
-  }, [currentView, triggerNavigation]);
+  }, [currentView, nextView, triggerNavigation]);
 
   useEffect(() => {
     const handleScroll = () => setNavDark(window.scrollY > 80);
