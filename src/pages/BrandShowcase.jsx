@@ -20,9 +20,13 @@ const menuItems = ['overview', 'logo', 'color', 'typography', 'imagery', 'voice'
 
 const BrandShowcase = ({ onNavigate }) => {
   const [activeSection, setActiveSection] = useState('overview');
+  const [copiedColor, setCopiedColor] = useState('');
 
   const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text).catch(() => {});
+    navigator.clipboard.writeText(text).then(() => {
+      setCopiedColor(text);
+      window.setTimeout(() => setCopiedColor(''), 1200);
+    }).catch(() => {});
   };
 
   useEffect(() => {
@@ -33,7 +37,7 @@ const BrandShowcase = ({ onNavigate }) => {
           setActiveSection(entry.target.id);
         }
       });
-    }, { rootMargin: '-20% 0px -50% 0px' });
+    }, { rootMargin: '-28% 0px -52% 0px' });
 
     menuItems.forEach((id) => {
       const element = document.getElementById(id);
@@ -62,7 +66,7 @@ const BrandShowcase = ({ onNavigate }) => {
           {onNavigate && (
             <button
               onClick={() => onNavigate('resume')}
-              className="font-mono text-xs uppercase tracking-widest border border-stone-500 px-4 py-2 hover:border-brand-orange hover:text-brand-orange transition-colors duration-300"
+              className="ui-button !border-stone-500 !text-stone-200 hover:!border-brand-orange hover:!text-brand-orange"
             >
               View full resume -&gt;
             </button>
@@ -70,12 +74,12 @@ const BrandShowcase = ({ onNavigate }) => {
         </div>
       </header>
       <div className="mx-auto mb-20 flex w-full max-w-7xl flex-col gap-6 px-4 md:flex-row md:gap-12 md:px-8">
-        <aside data-lenis-prevent className="w-full md:w-64 bg-stone-100 md:border-r border-stone-200 md:h-screen md:sticky md:top-0 p-4 md:p-6 overflow-y-auto z-40 no-scrollbar rounded-lg md:rounded-r-lg surface-panel">
+        <aside data-lenis-prevent className="w-full md:w-64 bg-stone-100 md:border-r border-stone-200 md:max-h-[calc(100vh-7rem)] md:sticky md:top-24 p-4 md:p-6 overflow-y-auto z-40 no-scrollbar rounded-lg md:rounded-r-lg surface-panel">
           <span className="font-sans text-xs font-semibold text-stone-500 uppercase tracking-widest mb-6 block opacity-60">Contents</span>
           <ul className="grid grid-cols-2 gap-2 md:grid-cols-1 md:space-y-3 font-sans text-xs uppercase tracking-wide">
             {menuItems.map((item) => (
               <li key={item}>
-                <button onClick={() => scrollTo(item)} className={`flex items-center gap-2 hover:text-brand-orange transition-all duration-300 py-2 touch-target ${activeSection === item ? 'text-brand-orange font-semibold' : 'text-stone-600 opacity-70'}`}>
+                <button onClick={() => scrollTo(item)} className={`flex w-full items-center gap-2 hover:text-brand-orange transition-all duration-300 py-2 px-2 rounded-sm touch-target ${activeSection === item ? 'text-brand-orange font-semibold bg-orange-50 border border-orange-100' : 'text-stone-600 opacity-70'}`}>
                   {activeSection === item && <MoveRight size={10} />}
                   {item}
                 </button>
@@ -84,7 +88,7 @@ const BrandShowcase = ({ onNavigate }) => {
           </ul>
         </aside>
         <main className="flex-1 max-w-6xl">
-          <section id="overview" className="pt-10 md:pt-20">
+          <section id="overview" className="pt-10 md:pt-20 scroll-mt-28">
             <h3 className="font-sans text-xs font-semibold uppercase tracking-widest text-stone-500 mb-8 opacity-60">01 - Overview</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div>
@@ -97,13 +101,15 @@ const BrandShowcase = ({ onNavigate }) => {
                   <li className="flex items-center gap-2"><Check size={14} className="text-brand-orange" /> Typography First</li>
                 </ul>
               </div>
-              <div className="bg-stone-100 border border-stone-200 p-8 flex items-center justify-center rounded-lg hover:shadow-md transition-all duration-300 surface-panel">
+              <div className="bg-stone-100 border border-stone-200 p-8 flex flex-col items-start justify-between rounded-lg hover:shadow-md transition-all duration-300 surface-panel min-h-[250px]">
+                <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-stone-500">Positioning line</span>
                 <p className="font-serif text-2xl md:text-3xl italic text-center text-stone-800">"I design for the pause, not the scroll."</p>
+                <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-stone-400">Brand voice anchor</span>
               </div>
             </div>
           </section>
 
-          <section id="logo">
+          <section id="logo" className="scroll-mt-28">
             <SectionHeader title="Logo System" icon={Layout} />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
               <div className="bg-stone-900 text-white p-8 md:p-12 flex items-center justify-center aspect-square">
@@ -143,49 +149,70 @@ const BrandShowcase = ({ onNavigate }) => {
             </div>
           </section>
 
-          <section id="color">
+          <section id="color" className="scroll-mt-28">
             <SectionHeader title="Color Palette" icon={Palette} />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="group cursor-pointer" onClick={() => copyToClipboard('#FAFAF9')}>
-                <div className="h-40 bg-stone-50 border border-stone-200 flex items-end p-4 relative">
+                <div className="h-44 bg-stone-50 border border-stone-200 flex items-end p-4 relative rounded-sm">
                   <Copy size={16} className="absolute top-4 right-4 opacity-0 group-hover:opacity-50" />
-                  <div><p className="font-bold">Off-White</p><p className="font-mono text-xs text-stone-400">#FAFAF9</p></div>
+                  <div>
+                    <p className="font-bold">Off-White</p>
+                    <p className="font-mono text-xs text-stone-400">#FAFAF9</p>
+                    {copiedColor === '#FAFAF9' && <p className="font-mono text-[10px] text-green-600 mt-1 uppercase tracking-wider">Copied</p>}
+                  </div>
                 </div>
               </div>
               <div className="group cursor-pointer" onClick={() => copyToClipboard('#1C1917')}>
-                <div className="h-40 bg-stone-900 text-white flex items-end p-4 relative">
+                <div className="h-44 bg-stone-900 text-white flex items-end p-4 relative rounded-sm">
                   <Copy size={16} className="absolute top-4 right-4 opacity-0 group-hover:opacity-50" />
-                  <div><p className="font-bold">Charcoal</p><p className="font-mono text-xs text-stone-400">#1C1917</p></div>
+                  <div>
+                    <p className="font-bold">Charcoal</p>
+                    <p className="font-mono text-xs text-stone-400">#1C1917</p>
+                    {copiedColor === '#1C1917' && <p className="font-mono text-[10px] text-green-400 mt-1 uppercase tracking-wider">Copied</p>}
+                  </div>
                 </div>
               </div>
               <div className="group cursor-pointer" onClick={() => copyToClipboard('#FF4500')}>
-                <div className="h-40 bg-brand-orange text-white flex items-end p-4 relative">
+                <div className="h-44 bg-brand-orange text-white flex items-end p-4 relative rounded-sm">
                   <Copy size={16} className="absolute top-4 right-4 opacity-0 group-hover:opacity-50" />
-                  <div><p className="font-bold">Int. Orange</p><p className="font-mono text-xs text-white/70">#FF4500</p></div>
+                  <div>
+                    <p className="font-bold">Int. Orange</p>
+                    <p className="font-mono text-xs text-white/70">#FF4500</p>
+                    {copiedColor === '#FF4500' && <p className="font-mono text-[10px] text-white/90 mt-1 uppercase tracking-wider">Copied</p>}
+                  </div>
                 </div>
               </div>
             </div>
           </section>
 
-          <section id="typography">
+          <section id="typography" className="scroll-mt-28">
             <SectionHeader title="Typography" icon={Type} />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <div><span className="font-mono text-xs text-stone-400 mb-2 block">Primary Serif</span><h3 className="text-4xl md:text-6xl font-serif mb-4">Playfair Display</h3></div>
-              <div><span className="font-mono text-xs text-stone-400 mb-2 block">Secondary Mono</span><h3 className="text-3xl md:text-4xl font-mono mb-4">JetBrains Mono</h3></div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+              <div className="p-6 border border-stone-200 bg-white rounded-sm">
+                <span className="font-mono text-xs text-stone-400 mb-2 block">Primary Serif</span>
+                <h3 className="text-4xl md:text-6xl font-serif mb-4">Playfair Display</h3>
+                <p className="text-stone-600 text-sm">Use for major headlines, story moments, and expressive emphasis.</p>
+              </div>
+              <div className="p-6 border border-stone-200 bg-white rounded-sm">
+                <span className="font-mono text-xs text-stone-400 mb-2 block">Secondary Mono</span>
+                <h3 className="text-3xl md:text-4xl font-mono mb-4">JetBrains Mono</h3>
+                <p className="text-stone-600 text-sm">Use for labels, metadata, and system-like informational text.</p>
+              </div>
             </div>
           </section>
 
-          <section id="imagery">
+          <section id="imagery" className="scroll-mt-28">
             <SectionHeader title="Imagery" icon={ImageIcon} />
-            <div className="h-64 bg-stone-200 relative flex items-center justify-center overflow-hidden group">
+            <div className="h-64 bg-stone-200 relative flex items-center justify-center overflow-hidden group rounded-sm border border-stone-200">
               <GenerativeArt id={5} color="#000" />
+              <div className="absolute bottom-4 left-4 bg-white/85 backdrop-blur px-3 py-1 font-mono text-[11px] uppercase tracking-[0.14em] text-stone-700">Contrast-led texture direction</div>
             </div>
           </section>
 
-          <section id="voice">
+          <section id="voice" className="scroll-mt-28">
             <SectionHeader title="Voice" icon={MessageSquare} />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white border border-stone-200 p-8">
+              <div className="bg-white border border-stone-200 p-8 rounded-sm">
                 <h4 className="font-serif text-2xl mb-6">Tone Guidelines</h4>
                 <p className="font-mono text-xs uppercase tracking-widest text-stone-400 mb-4">The Persona</p>
                 <p className="text-lg leading-relaxed text-stone-700 mb-6">My voice is <span className="font-bold text-stone-900">clinical yet poetic</span>. I speak with the precision of an engineer and the expression of an artist.</p>
@@ -196,11 +223,11 @@ const BrandShowcase = ({ onNavigate }) => {
                 </div>
               </div>
               <div className="space-y-4">
-                <div className="bg-stone-50 border border-stone-200 p-6">
+                <div className="bg-stone-50 border border-stone-200 p-6 rounded-sm">
                   <p className="font-mono text-xs text-green-600 uppercase mb-2">Do This</p>
                   <p className="font-serif text-xl italic">"Form follows data."</p>
                 </div>
-                <div className="bg-stone-50 border border-stone-200 p-6 opacity-50">
+                <div className="bg-stone-50 border border-stone-200 p-6 opacity-50 rounded-sm">
                   <p className="font-mono text-xs text-red-600 uppercase mb-2">Not This</p>
                   <p className="font-serif text-xl italic">"I make things look pretty."</p>
                 </div>
@@ -208,7 +235,7 @@ const BrandShowcase = ({ onNavigate }) => {
             </div>
           </section>
 
-          <section id="stationery">
+          <section id="stationery" className="scroll-mt-28">
             <SectionHeader title="Stationery" icon={Grid3X3} />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="bg-stone-100 border border-stone-200 p-6 md:p-8 relative shadow-xl md:transform md:rotate-1 transition-transform md:hover:rotate-0">
@@ -239,18 +266,18 @@ const BrandShowcase = ({ onNavigate }) => {
             </div>
           </section>
 
-          <section id="digital">
+          <section id="digital" className="scroll-mt-28">
             <SectionHeader title="Digital System" icon={Maximize2} />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div>
                 <h4 className="font-mono text-xs uppercase tracking-widest text-stone-500 mb-6">Interactive Elements</h4>
                 <div className="space-y-6">
                   <div className="flex gap-4 items-center">
-                    <button className="px-8 py-3 bg-stone-900 text-white font-mono text-xs uppercase tracking-widest hover:bg-brand-orange transition-colors">Primary</button>
+                    <button className="ui-button invert">Primary</button>
                     <span className="font-mono text-[10px] text-stone-400">Default Statement</span>
                   </div>
                   <div className="flex gap-4 items-center">
-                    <button className="px-8 py-3 bg-transparent border border-stone-900 text-stone-900 font-mono text-xs uppercase tracking-widest hover:bg-stone-100 transition-colors">Secondary</button>
+                    <button className="ui-button">Secondary</button>
                     <span className="font-mono text-[10px] text-stone-400">Ghost / Outline</span>
                   </div>
                 </div>
