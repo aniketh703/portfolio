@@ -77,7 +77,7 @@ const SideNavigation = ({ onNavigate }) => {
           </div>
           <div className="sidenav__menu-inner">
             <ul className="sidenav__menu-list">
-              {[{ id: 'index', label: 'Index', num: '01' }, { id: 'pricing', label: 'Services', num: '02' }, { id: 'archive', label: 'Archive', num: '03' }, { id: 'brand', label: 'System', num: '04' }].map((item) => (
+              {[{ id: 'index', label: 'Index', num: '01' }, { id: 'archive', label: 'Archive', num: '02' }, { id: 'brand', label: 'Brand', num: '03' }].map((item) => (
                 <li key={item.id} className="sidenav__menu-list-item">
                   <a href="#" className="sidenav__menu-link touch-target" data-sidenav-link onClick={(e) => { e.preventDefault(); handleLinkClick(item.id); }}>
                     <p className="sidenav__menu-link-heading">{item.label}</p>

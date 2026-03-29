@@ -14,21 +14,20 @@ const Home = ({ projects, onProjectSelect, onNavigate }) => {
   return (
     <>
         <header className="relative pt-24 pb-16 px-4 md:px-12 min-h-[70vh] md:min-h-[80vh] flex flex-col justify-center animate-in fade-in duration-700">
-        <div className="mx-auto w-full max-w-7xl border-t border-stone-300 pt-8 md:pt-12">
-            <h1 style={{ fontSize: 'clamp(2.5rem, 13vw, 14rem)' }} className="leading-[0.85] font-serif font-medium tracking-tighter text-stone-900">ANIKETH <br/> <span style={{ marginLeft: 'clamp(1rem, 10vw, 6rem)' }} className="italic font-normal text-stone-400 hover:text-brand-orange transition-colors duration-300">VUSTEPALLE</span></h1>
-        </div>
-        <div className="mt-10 ml-auto flex w-full max-w-6xl flex-col justify-between gap-8 items-start md:flex-row md:items-start">
-            <div className="max-w-md">
-                <p className="font-sans text-xs font-semibold uppercase tracking-widest text-stone-500 mb-3 opacity-60">Designer & Developer</p>
-                <p className="font-sans text-base leading-relaxed text-stone-700 mb-4 opacity-85">I build intuitive digital experiences that align user needs with business outcomes. UI/UX Designer at PanTerra Networks with expertise in React, Python, and AI-driven systems.</p>
-                <p className="font-sans text-xs uppercase tracking-widest text-stone-500 opacity-60">Based in Hyderabad, India</p>
-            </div>
-          <div className="hidden md:flex flex-col items-center gap-6">
-                <ArrowUpRight size={64} strokeWidth={1} className="animate-pulse opacity-70" />
-                <div className="w-px h-12 bg-gradient-to-b from-stone-300 to-transparent"></div>
-            </div>
-        </div>
-        <div className="absolute top-20 right-0 -z-10 opacity-5 font-serif text-[40rem] leading-none select-none pointer-events-none hidden lg:block">A</div>
+          <div className="mx-auto w-full max-w-7xl border-t border-stone-300 pt-8 md:pt-12">
+            <p className="font-mono text-xs uppercase tracking-widest text-stone-500 mb-6 opacity-60">
+              Product Design & Frontend Engineering
+            </p>
+            <h1
+              style={{ fontSize: 'clamp(1.8rem, 5vw, 4.5rem)' }}
+              className="font-serif font-medium tracking-tight text-stone-900 max-w-4xl leading-tight mb-8"
+            >
+              Most products break at the exact moment people need them most. I design and build for that moment.
+            </h1>
+            <p className="font-mono text-xs uppercase tracking-widest text-stone-400">
+              Aniketh Vustepalle - Hyderabad, India
+            </p>
+          </div>
       </header>
       <main id="index" className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 md:gap-12 md:px-8">
         <div className="flex justify-between items-end mb-8 md:mb-12 border-b border-stone-300 pb-6">
@@ -54,6 +53,11 @@ const Home = ({ projects, onProjectSelect, onNavigate }) => {
                     <ArrowUpRight className="transform md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-300" />
                 </div>
                 <div>
+                    {project.realProblem && (
+                      <p className="font-sans text-xs leading-relaxed mb-3 opacity-70 max-w-xs">
+                        {`${project.realProblem.slice(0, 80)}...`}
+                      </p>
+                    )}
                     <h3 className="font-serif text-2xl md:text-4xl italic mb-2 md:translate-y-8 md:group-hover:translate-y-0 transition-transform duration-300 delay-75">{project.title}</h3>
                     <p className="font-mono text-xs uppercase tracking-widest">{project.year}</p>
                 </div>
