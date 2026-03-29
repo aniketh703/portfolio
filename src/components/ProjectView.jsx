@@ -127,8 +127,9 @@ const ProjectView = ({ project, onClose, onNext, onPrev, onHome }) => {
           ) : (
             <GenerativeArt id={project.id} color={project.color} />
           )}
+          <div className="absolute inset-0 ink-gradient" />
           <div className="absolute bottom-0 left-0 w-full p-4 md:p-12 pointer-events-none">
-              <h1 style={{ fontSize: 'clamp(2.5rem, 12vw, 16rem)' }} className="leading-[0.8] font-serif font-medium tracking-tighter text-stone-900 mix-blend-hard-light select-none">{project.title}</h1>
+              <h1 style={{ fontSize: 'clamp(2.5rem, 12vw, 16rem)' }} className="leading-[0.8] font-serif font-medium tracking-tighter text-stone-50 select-none drop-shadow-[0_8px_18px_rgba(0,0,0,0.35)]">{project.title}</h1>
           </div>
         </header>
         {project.process && (
@@ -152,7 +153,7 @@ const ProjectView = ({ project, onClose, onNext, onPrev, onHome }) => {
         )}
         <div className="bg-stone-100 relative z-10">
           <div className="max-w-[95vw] mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 pt-10 md:pt-16 pb-20 md:pb-32 px-4">
-            <div className="md:col-span-3 space-y-8 md:space-y-12 border-t border-stone-900 pt-6">
+            <div className="md:col-span-3 space-y-8 md:space-y-12 border-t border-stone-900 pt-6 md:sticky md:top-20 h-fit">
               <div>
                   <span className="block font-mono text-xs text-stone-400 uppercase tracking-widest mb-2">Discipline</span>
                   <span className="font-serif text-xl">{project.category}</span>

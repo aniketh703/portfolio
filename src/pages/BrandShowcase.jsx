@@ -53,8 +53,9 @@ const BrandShowcase = ({ onNavigate }) => {
 
   return (
     <div className="bg-stone-50 min-h-screen text-stone-900">
-      <header className="page-container bg-stone-900 text-stone-50">
-        <div className="mx-auto w-full max-w-7xl px-4 md:px-8">
+      <header className="page-container bg-stone-900 text-stone-50 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-70" style={{ background: 'radial-gradient(circle at 18% 16%, rgba(255,69,0,0.2), rgba(255,69,0,0) 35%), radial-gradient(circle at 82% 84%, rgba(250,250,249,0.16), rgba(250,250,249,0) 40%)' }} />
+        <div className="mx-auto w-full max-w-7xl px-4 md:px-8 relative z-10">
           <span className="font-sans text-xs text-brand-orange uppercase tracking-widest mb-4 block font-semibold opacity-85">Internal Documentation</span>
           <h1 className="text-4xl sm:text-5xl md:text-8xl font-serif leading-none tracking-tighter mb-6 md:mb-8">BRAND <br /> SYSTEM</h1>
           <p className="max-w-2xl font-sans text-base leading-relaxed text-stone-300 opacity-70 mb-6">The visual and verbal identity for Aniketh Vustepalle.</p>
@@ -69,7 +70,7 @@ const BrandShowcase = ({ onNavigate }) => {
         </div>
       </header>
       <div className="mx-auto mb-20 flex w-full max-w-7xl flex-col gap-6 px-4 md:flex-row md:gap-12 md:px-8">
-        <aside data-lenis-prevent className="w-full md:w-64 bg-stone-100 md:border-r border-stone-200 md:h-screen md:sticky md:top-0 p-4 md:p-6 overflow-y-auto z-40 no-scrollbar rounded-lg md:rounded-r-lg">
+        <aside data-lenis-prevent className="w-full md:w-64 bg-stone-100 md:border-r border-stone-200 md:h-screen md:sticky md:top-0 p-4 md:p-6 overflow-y-auto z-40 no-scrollbar rounded-lg md:rounded-r-lg surface-panel">
           <span className="font-sans text-xs font-semibold text-stone-500 uppercase tracking-widest mb-6 block opacity-60">Contents</span>
           <ul className="grid grid-cols-2 gap-2 md:grid-cols-1 md:space-y-3 font-sans text-xs uppercase tracking-wide">
             {menuItems.map((item) => (
@@ -96,7 +97,7 @@ const BrandShowcase = ({ onNavigate }) => {
                   <li className="flex items-center gap-2"><Check size={14} className="text-brand-orange" /> Typography First</li>
                 </ul>
               </div>
-              <div className="bg-stone-100 border border-stone-200 p-8 flex items-center justify-center rounded-lg hover:shadow-md transition-all duration-300">
+              <div className="bg-stone-100 border border-stone-200 p-8 flex items-center justify-center rounded-lg hover:shadow-md transition-all duration-300 surface-panel">
                 <p className="font-serif text-2xl md:text-3xl italic text-center text-stone-800">"I design for the pause, not the scroll."</p>
               </div>
             </div>

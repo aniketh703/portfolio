@@ -18,7 +18,7 @@ const Resume = ({ onNavigate }) => {
 
   return (
     <>
-      <section className="page-container bg-stone-50 text-stone-900">
+      <section className="page-container bg-stone-50 text-stone-900 hero-grid-bg">
         <div className="mx-auto w-full max-w-5xl px-4 md:px-8">
           <div className="border-t border-stone-300 pt-8 md:pt-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <div>
@@ -29,7 +29,7 @@ const Resume = ({ onNavigate }) => {
               href="/portfolio/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-stone-900 bg-stone-900 text-stone-50 px-5 py-3 font-mono text-xs uppercase tracking-widest hover:bg-stone-700 transition-colors"
+              className="ui-button invert touch-target"
             >
               <Download size={14} />
               Download PDF
@@ -59,7 +59,7 @@ const Resume = ({ onNavigate }) => {
 
           <section>
             <SectionHeader title="Education" icon={GraduationCap} />
-            <div className="border border-stone-200 bg-white p-6 md:p-8">
+            <div className="border border-stone-200 bg-white p-6 md:p-8 surface-panel">
               <h3 className="font-serif text-2xl">Bachelor of Engineering, Computer Science</h3>
               <p className="font-mono text-xs uppercase tracking-widest text-stone-500 mt-2">Sri Chandrasekharendra Saraswathi Vishwa Mahavidyalaya / Dec 2020 - Jul 2024</p>
               <p className="text-stone-700 mt-4 leading-relaxed">Coursework and projects across software engineering, web development, cloud fundamentals, and AI/ML systems.</p>
@@ -69,11 +69,11 @@ const Resume = ({ onNavigate }) => {
           <section>
             <SectionHeader title="Certifications" icon={Award} />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="border border-stone-200 p-5 bg-white">
+              <div className="border border-stone-200 p-5 bg-white surface-panel">
                 <h3 className="font-serif text-xl">Google UX Design Professional Certificate</h3>
                 <p className="font-mono text-xs uppercase tracking-widest text-stone-500 mt-2">Google / Dec 2025</p>
               </div>
-              <div className="border border-stone-200 p-5 bg-white">
+              <div className="border border-stone-200 p-5 bg-white surface-panel">
                 <h3 className="font-serif text-xl">GitHub Foundations</h3>
                 <p className="font-mono text-xs uppercase tracking-widest text-stone-500 mt-2">GitHub / Feb 2025</p>
               </div>

@@ -70,7 +70,15 @@ const Archive = ({ projects, onSelect, onNavigate }) => {
           }}
         >
             {hoveredId !== null && archiveList[hoveredId] && (
-              <GenerativeArt id={archiveList[hoveredId].id} color={archiveList[hoveredId].color} />
+              archiveList[hoveredId].coverImage ? (
+                <img
+                  src={archiveList[hoveredId].coverImage}
+                  alt={`${archiveList[hoveredId].title} preview`}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <GenerativeArt id={archiveList[hoveredId].id} color={archiveList[hoveredId].color} />
+              )
             )}
         </div>
         <div className="w-full">
@@ -90,7 +98,7 @@ const Archive = ({ projects, onSelect, onNavigate }) => {
               onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onSelect(project)}
               onMouseEnter={() => setHoveredId(index)} 
               onMouseLeave={() => setHoveredId(null)} 
-              className="group grid grid-cols-10 md:grid-cols-12 gap-3 md:gap-4 items-center py-5 md:py-6 border-t border-stone-300 hover:bg-stone-900 hover:text-stone-50 transition-all duration-300 cursor-pointer px-3 md:px-4 outline-none focus:bg-stone-900 focus:text-stone-50"
+              className={`group grid grid-cols-10 md:grid-cols-12 gap-3 md:gap-4 items-center py-5 md:py-6 border-t border-stone-300 hover:bg-stone-900 hover:text-stone-50 transition-all duration-300 cursor-pointer px-3 md:px-4 outline-none focus:bg-stone-900 focus:text-stone-50 ${index % 2 === 0 ? 'bg-transparent' : 'bg-stone-50/60'}`}
             >
               <div className="hidden md:block md:col-span-1 font-mono text-xs opacity-60 group-hover:opacity-100">{String(index + 1).padStart(2, '0')}</div>
               <div className="col-span-6 md:col-span-5 font-serif text-lg md:text-3xl font-medium leading-tight truncate">{project.title}</div>

@@ -259,6 +259,71 @@ body,
     border-color: rgb(214, 211, 209);
   }
 
+  .surface-panel {
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.94), rgba(250, 250, 249, 0.9));
+    border: 1px solid rgba(214, 211, 209, 0.9);
+    box-shadow: 0 12px 30px rgba(28, 25, 23, 0.08);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+
+  .section-shell {
+    position: relative;
+  }
+
+  .section-shell::before {
+    content: '';
+    position: absolute;
+    inset: -1.5rem -1rem auto;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 69, 0, 0), rgba(255, 69, 0, 0.45), rgba(255, 69, 0, 0));
+    pointer-events: none;
+  }
+
+  .hero-grid-bg {
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 69, 0, 0.14), rgba(255, 69, 0, 0) 35%),
+      radial-gradient(circle at 90% 80%, rgba(28, 25, 23, 0.1), rgba(28, 25, 23, 0) 40%),
+      linear-gradient(rgba(28, 25, 23, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28, 25, 23, 0.05) 1px, transparent 1px);
+    background-size: auto, auto, 36px 36px, 36px 36px;
+    background-position: center;
+  }
+
+  .ink-gradient {
+    background: linear-gradient(180deg, rgba(28, 25, 23, 0) 8%, rgba(28, 25, 23, 0.86) 100%);
+  }
+
+  .ui-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.1rem;
+    border: 1px solid rgb(28, 25, 23);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    transition: var(--transition-base);
+  }
+
+  .ui-button:hover {
+    background-color: rgb(28, 25, 23);
+    color: rgb(250, 250, 249);
+  }
+
+  .ui-button.invert {
+    background-color: rgb(28, 25, 23);
+    color: rgb(250, 250, 249);
+  }
+
+  .ui-button.invert:hover {
+    background-color: rgb(255, 69, 0);
+    border-color: rgb(255, 69, 0);
+    color: rgb(250, 250, 249);
+  }
+
   /* --- Unified Text Opacity --- */
   .text-muted {
     opacity: var(--opacity-muted);

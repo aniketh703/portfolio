@@ -147,12 +147,12 @@ export default function App() {
           role="button"
           tabIndex="0"
           onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleNavigate('index')}
-          className="flex flex-col items-start pointer-events-auto cursor-pointer group outline-none"
+          className="flex flex-col items-start pointer-events-auto cursor-pointer group outline-none rounded-md px-3 py-2 surface-panel"
         >
           <span className="font-mono text-[10px] md:text-xs tracking-widest uppercase mb-1 group-hover:text-brand-orange transition-colors duration-300">Portfolio</span>
           <span className="font-serif text-lg md:text-xl font-bold leading-none">AV.24</span>
         </div>
-        <div className="hidden sm:flex flex-col items-end text-right pointer-events-auto pr-24 md:pr-32">
+        <div className="hidden sm:flex flex-col items-end text-right pointer-events-auto pr-24 md:pr-32 rounded-md px-3 py-2 surface-panel">
           <span className="font-mono text-xs mb-1">{new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
           <span className="font-mono text-xs opacity-70">HYD, IN</span>
         </div>
@@ -197,17 +197,17 @@ export default function App() {
       )}
       
       {/* Floating Action Buttons */}
-      <div className="fixed bottom-24 right-8 hidden md:flex flex-col gap-4 z-50 mix-blend-difference pointer-events-none">
+        <div className="fixed bottom-24 right-8 hidden md:flex flex-col gap-4 z-50 pointer-events-none">
           <button 
               onClick={scrollToContact} 
-              className="p-3 bg-white text-black hover:bg-stone-200 transition-transform duration-300 hover:scale-110 rounded-sm pointer-events-auto"
+            className="p-3 surface-panel text-stone-900 hover:bg-stone-100 transition-transform duration-300 hover:scale-110 rounded-sm pointer-events-auto"
               aria-label="Contact Me"
           >
               <Mail size={24} strokeWidth={1.5} />
           </button>
           <button 
               onClick={scrollToTop} 
-              className="p-3 bg-white text-black hover:bg-stone-200 transition-transform duration-300 hover:scale-110 rounded-sm pointer-events-auto"
+            className="p-3 surface-panel text-stone-900 hover:bg-stone-100 transition-transform duration-300 hover:scale-110 rounded-sm pointer-events-auto"
               aria-label="Back to Top"
           >
               <ArrowUp size={24} strokeWidth={1.5} />

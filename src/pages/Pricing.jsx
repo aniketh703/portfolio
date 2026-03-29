@@ -74,7 +74,7 @@ const Pricing = ({ onNavigate }) => {
 
   return (
     <>
-    <main className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 page-container md:gap-12 md:px-8 bg-white min-h-screen animate-in fade-in duration-700">
+    <main className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 page-container md:gap-12 md:px-8 bg-white min-h-screen animate-in fade-in duration-700 hero-grid-bg">
       <div className="mb-14 md:mb-20 pt-8 md:pt-12 border-t border-stone-300">
         <span className="font-sans text-xs font-semibold uppercase tracking-widest text-stone-500 opacity-60 block mb-4">Services</span>
         <h1 style={{ fontSize: 'clamp(2rem, 8vw, 7rem)' }} className="leading-[0.9] font-serif font-medium tracking-tighter mb-8">
@@ -96,7 +96,7 @@ const Pricing = ({ onNavigate }) => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {websitePackages.map((pkg, i) => (
-                <div key={i} className={`relative p-6 md:p-8 border rounded-lg transition-all duration-300 flex flex-col ${pkg.recommended ? 'border-brand-orange bg-orange-50/30 shadow-md' : 'border-stone-200 bg-stone-50/30 hover:shadow-lg hover:border-stone-300'}`}>
+                <div key={i} className={`relative p-6 md:p-8 border rounded-lg transition-all duration-300 flex flex-col ${pkg.recommended ? 'border-brand-orange bg-orange-50/30 shadow-md' : 'border-stone-200 bg-stone-50/30 hover:shadow-lg hover:border-stone-300'} surface-panel`}>
                   {pkg.recommended && <span className="absolute top-3 right-3 md:top-4 md:right-4 bg-brand-orange text-white text-[10px] md:text-xs font-sans font-semibold px-2.5 md:px-3 py-1 uppercase tracking-widest rounded-full">Recommended</span>}
                     <h3 className="font-serif text-xl font-medium mb-2">{pkg.name}</h3>
                   <p className="font-sans text-sm text-stone-600 mb-6 opacity-70 min-h-10">{pkg.description}</p>
@@ -109,7 +109,7 @@ const Pricing = ({ onNavigate }) => {
                             </li>
                         ))}
                     </ul>
-                    <a href={`mailto:anikethvustepalle03@gmail.com?subject=Inquiry about ${pkg.name} Website Package`} className="mt-auto w-full py-3.5 md:py-4 border border-stone-900 text-stone-900 font-mono text-xs uppercase tracking-widest text-center hover:bg-stone-900 hover:text-white transition-colors duration-300 touch-target">Select Package</a>
+                    <a href={`mailto:anikethvustepalle03@gmail.com?subject=Inquiry about ${pkg.name} Website Package`} className="mt-auto w-full ui-button touch-target">Select Package</a>
                 </div>
             ))}
         </div>
@@ -125,7 +125,7 @@ const Pricing = ({ onNavigate }) => {
             </div>
             <div className="space-y-6">
                 {designOnly.map((pkg, i) => (
-                    <div key={i} className="p-5 md:p-6 border border-stone-200 rounded-lg hover:border-brand-orange transition-all duration-300">
+                    <div key={i} className="p-5 md:p-6 border border-stone-200 rounded-lg hover:border-brand-orange transition-all duration-300 surface-panel">
                       <div className="flex justify-between items-baseline gap-4 mb-4">
                             <h3 className="font-serif text-xl">{pkg.name}</h3>
                             <span className="font-bold text-lg">{pkg.price}</span>
@@ -149,7 +149,7 @@ const Pricing = ({ onNavigate }) => {
             </div>
             <div className="space-y-6">
                 {devOnly.map((pkg, i) => (
-                    <div key={i} className="p-5 md:p-6 border border-stone-200 rounded-lg hover:border-brand-orange transition-all duration-300">
+                    <div key={i} className="p-5 md:p-6 border border-stone-200 rounded-lg hover:border-brand-orange transition-all duration-300 surface-panel">
                       <div className="flex justify-between items-baseline gap-4 mb-4">
                             <h3 className="font-serif text-xl">{pkg.name}</h3>
                             <span className="font-bold text-lg">{pkg.price}</span>
@@ -173,7 +173,7 @@ const Pricing = ({ onNavigate }) => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {addons.map((pkg, i) => (
-                 <div key={i} className="p-6 bg-stone-100 border border-stone-200 rounded-lg hover:shadow-md transition-all duration-300">
+                 <div key={i} className="p-6 bg-stone-100 border border-stone-200 rounded-lg hover:shadow-md transition-all duration-300 surface-panel">
                     <h3 className="font-serif text-xl mb-2">{pkg.name}</h3>
                     <div className="text-2xl font-bold font-serif mb-6 text-stone-700">{pkg.price}</div>
                      <ul className="space-y-3">
@@ -219,10 +219,10 @@ const Pricing = ({ onNavigate }) => {
                    <p className="font-mono text-sm uppercase tracking-widest text-stone-400">Let's build your dream website today</p>
               </div>
             <div className="flex w-full md:w-auto flex-col sm:flex-row gap-4 md:gap-6">
-              <a href="mailto:anikethvustepalle03@gmail.com" className="flex items-center justify-center gap-3 px-5 md:px-6 py-3 bg-white text-stone-900 hover:bg-brand-orange hover:text-white transition-colors duration-300 font-mono text-[10px] md:text-xs uppercase tracking-widest touch-target">
+              <a href="mailto:anikethvustepalle03@gmail.com" className="ui-button invert touch-target">
                        <Smartphone size={16} /> +91 9311761114
                    </a>
-            <a href="mailto:anikethvustepalle03@gmail.com" className="flex items-center justify-center gap-3 px-5 md:px-6 py-3 border border-white text-white hover:bg-white hover:text-stone-900 transition-colors duration-300 font-mono text-[10px] md:text-xs uppercase tracking-widest touch-target">
+              <a href="mailto:anikethvustepalle03@gmail.com" className="ui-button touch-target !border-white !text-white hover:!bg-white hover:!text-stone-900">
                        Email Me
                    </a>
               </div>
