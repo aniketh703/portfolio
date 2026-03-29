@@ -36,22 +36,22 @@ const ProjectView = ({ project, onClose, onNext, onPrev, onHome }) => {
     switch(module.type) {
       case 'problem':
         return (
-          <div key={index} className="mb-12 border-l-4 border-brand-orange pl-6">
+          <div key={index} className="mb-10 md:mb-12 border-l-4 border-brand-orange pl-5 md:pl-6">
             <span className="font-mono text-xs uppercase tracking-widest text-stone-400 block mb-3">
               The real problem
             </span>
-            <p className="text-2xl md:text-3xl font-serif leading-snug text-stone-900">
+            <p className="text-[clamp(1.6rem,2.8vw,2.1rem)] font-serif leading-[1.2] text-stone-900">
               {module.content}
             </p>
           </div>
         );
       case 'deadend':
         return (
-          <div key={index} className="mb-12 bg-stone-100 border border-stone-200 p-6 md:p-8">
+          <div key={index} className="mb-10 md:mb-12 bg-stone-100 border border-stone-200 p-6 md:p-8">
             <span className="font-mono text-xs uppercase tracking-widest text-stone-400 block mb-3">
               What did not work
             </span>
-            <p className="font-serif text-xl leading-relaxed mb-4 line-through opacity-40">
+            <p className="font-serif text-[clamp(1.05rem,2vw,1.35rem)] leading-[1.45] mb-4 line-through opacity-40">
               {module.attempt}
             </p>
             <p className="font-sans text-base leading-relaxed text-stone-700">
@@ -61,11 +61,11 @@ const ProjectView = ({ project, onClose, onNext, onPrev, onHome }) => {
         );
       case 'reflection':
         return (
-          <div key={index} className="mb-12 pt-8 border-t border-dashed border-stone-300">
+          <div key={index} className="mb-10 md:mb-12 pt-7 md:pt-8 border-t border-dashed border-stone-300">
             <span className="font-mono text-xs uppercase tracking-widest text-stone-400 block mb-3">
               If I did it again
             </span>
-            <p className="font-sans text-lg leading-relaxed text-stone-600 italic">
+            <p className="font-sans text-[clamp(1rem,1.6vw,1.15rem)] leading-[1.6] text-stone-600 italic">
               {module.content}
             </p>
           </div>

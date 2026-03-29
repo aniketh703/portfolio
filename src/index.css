@@ -140,13 +140,13 @@ body,
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
   @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
   
-  .loader-exit { animation: slideUpExit 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
-  .project-open { animation: projectOpen 0.7s cubic-bezier(0.83, 0, 0.17, 1) forwards; }
-  .project-close { animation: projectClose 0.6s cubic-bezier(0.83, 0, 0.17, 1) forwards; }
-  .project-switch { animation: projectSwitch 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
-  .animate-in { animation: fadeIn 0.7s ease-out forwards; }
-  .fade-in { animation: fadeIn 0.7s ease-out forwards; }
-  .slide-in-from-bottom-12 { animation: slideInFromBottom 0.5s ease-out forwards; }
+  .loader-exit { animation: slideUpExit 0.72s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
+  .project-open { animation: projectOpen 0.64s cubic-bezier(0.83, 0, 0.17, 1) forwards; }
+  .project-close { animation: projectClose 0.52s cubic-bezier(0.83, 0, 0.17, 1) forwards; }
+  .project-switch { animation: projectSwitch 0.42s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+  .animate-in { animation: fadeIn 0.5s ease-out forwards; }
+  .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+  .slide-in-from-bottom-12 { animation: slideInFromBottom 0.42s ease-out forwards; }
   .animate-blink { animation: blink 1s infinite; }
   .animate-spin-slow { animation: spin 8s linear infinite; }
 
@@ -218,25 +218,50 @@ body,
     --opacity-muted: 0.6;
     --opacity-subtle: 0.7;
     --opacity-medium: 0.85;
-    --spacing-section: 5rem;
-    --spacing-section-sm: 3rem;
+    --spacing-section: clamp(3.5rem, 6vw, 5.5rem);
+    --spacing-section-sm: clamp(2rem, 3.2vw, 3rem);
+    --type-display-xl: clamp(2.6rem, 7.8vw, 7.8rem);
+    --type-display-lg: clamp(2.1rem, 5.2vw, 5.2rem);
+    --type-heading-lg: clamp(1.7rem, 3.5vw, 3.1rem);
+    --type-body-lg: clamp(1rem, 1.12vw, 1.2rem);
+    --dur-fast: 0.24s;
+    --dur-base: 0.34s;
+    --dur-slow: 0.48s;
+    --ease-standard: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --ease-emphasis: cubic-bezier(0.22, 1, 0.36, 1);
     --transition-base: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --border-radius-sm: 0.375rem;
     --border-radius-md: 0.5rem;
     --border-radius-lg: 0.75rem;
   }
 
+  @media screen and (max-width: 991px) {
+    :root {
+      --spacing-section: clamp(3rem, 5.4vw, 4.25rem);
+      --spacing-section-sm: clamp(1.75rem, 2.8vw, 2.5rem);
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    :root {
+      --spacing-section: clamp(2.4rem, 7.2vw, 3rem);
+      --spacing-section-sm: clamp(1.25rem, 4.4vw, 1.75rem);
+      --dur-base: 0.28s;
+      --dur-slow: 0.4s;
+    }
+  }
+
   /* --- Unified Page Spacing --- */
   .page-container {
     min-height: 100vh;
-    padding-top: 8rem;
-    padding-bottom: 5rem;
+    padding-top: clamp(6.5rem, 8vw, 8rem);
+    padding-bottom: var(--spacing-section);
   }
 
   @media screen and (max-width: 767px) {
     .page-container {
-      padding-top: 6rem;
-      padding-bottom: 3rem;
+      padding-top: clamp(5.4rem, 10vw, 6rem);
+      padding-bottom: var(--spacing-section);
     }
   }
 

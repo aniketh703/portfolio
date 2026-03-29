@@ -15,16 +15,16 @@ const Home = ({ projects, onProjectSelect, onNavigate }) => {
     <>
         <header className="relative pt-24 pb-16 px-4 md:px-12 min-h-[70vh] md:min-h-[80vh] flex flex-col justify-center animate-in fade-in duration-700 hero-grid-bg overflow-hidden">
             <div className="mx-auto w-full max-w-7xl border-t border-stone-300 pt-8 md:pt-12 section-shell">
-            <p className="font-mono text-xs uppercase tracking-widest text-stone-500 mb-6 opacity-60">
+              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone-500 mb-6 opacity-60">
               Product Design & Frontend Engineering
             </p>
             <h1
-              style={{ fontSize: 'clamp(1.8rem, 5vw, 4.5rem)' }}
-              className="font-serif font-medium tracking-tight text-stone-900 max-w-4xl leading-tight mb-8"
+                style={{ fontSize: 'var(--type-display-lg)' }}
+                className="font-serif font-medium tracking-[-0.02em] text-stone-900 max-w-4xl leading-[1.03] mb-7 md:mb-8"
             >
               Most products break at the exact moment people need them most. I design and build for that moment.
             </h1>
-            <p className="font-mono text-xs uppercase tracking-widest text-stone-400">
+              <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-stone-400">
               Aniketh Vustepalle - Hyderabad, India
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
@@ -37,11 +37,11 @@ const Home = ({ projects, onProjectSelect, onNavigate }) => {
             </div>
           </div>
       </header>
-      <main id="index" className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 md:gap-12 md:px-8">
-        <div className="flex justify-between items-end mb-8 md:mb-12 border-b border-stone-300 pb-6">
+      <main id="index" className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 md:gap-12 md:px-8">
+        <div className="flex justify-between items-end mb-8 md:mb-10 border-b border-stone-300 pb-6 md:pb-7">
             <div>
-                <span className="font-sans text-xs font-semibold uppercase tracking-widest text-stone-500 block opacity-60 mb-2">Collection</span>
-                <h2 className="font-serif text-4xl md:text-5xl tracking-tight">Selected Works</h2>
+                <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-stone-500 block opacity-60 mb-2">Collection</span>
+                <h2 style={{ fontSize: 'var(--type-heading-lg)' }} className="font-serif tracking-tight">Selected Works</h2>
             </div>
             <Grid3X3 size={16} className="opacity-60 hidden md:block" strokeWidth={1.5} />
         </div>

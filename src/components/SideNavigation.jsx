@@ -12,6 +12,12 @@ const SideNavigation = ({ onNavigate }) => {
     
     // Use standard ease instead of CustomEase to ensure compatibility
     const ease = "power3.inOut";
+    const timing = {
+      quick: 0.32,
+      base: 0.48,
+      staggerIn: 0.1,
+      staggerOut: 0.08,
+    };
     
     const navWrap = containerRef.current.querySelector("[data-sidenav-wrap]");
     const overlay = navWrap.querySelector("[data-sidenav-overlay]");
@@ -27,20 +33,20 @@ const SideNavigation = ({ onNavigate }) => {
     if (isOpen) {
         gsap.set(navWrap, { display: "block" });
         tlRef.current = gsap.timeline();
-        tlRef.current.to(menuButtonTexts, { yPercent: -100, duration: 0.4, ease: ease })
-            .to(menuButtonIcon, { rotation: 315, duration: 0.4, ease: ease }, "<")
-            .to(overlay, { autoAlpha: 1, duration: 0.4 }, "<")
-            .fromTo(bgPanels, { xPercent: 100 }, { xPercent: 0, stagger: 0.12, duration: 0.75, ease: ease }, "<")
-            .fromTo(menuInner, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.1 }, "-=0.5")
-            .fromTo(menuLinks, { yPercent: 140, rotation: 10 }, { yPercent: 0, rotation: 0, stagger: 0.05, duration: 0.6, ease: ease }, "-=0.4")
-            .fromTo(fadeTargets, { autoAlpha: 0, yPercent: 50 }, { autoAlpha: 1, yPercent: 0, stagger: 0.04, duration: 0.4 }, "-=0.4");
+        tlRef.current.to(menuButtonTexts, { yPercent: -100, duration: timing.quick, ease: ease })
+          .to(menuButtonIcon, { rotation: 315, duration: timing.quick, ease: ease }, "<")
+          .to(overlay, { autoAlpha: 1, duration: timing.quick }, "<")
+          .fromTo(bgPanels, { xPercent: 100 }, { xPercent: 0, stagger: timing.staggerIn, duration: 0.62, ease: ease }, "<")
+          .fromTo(menuInner, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.08 }, "-=0.42")
+          .fromTo(menuLinks, { yPercent: 140, rotation: 10 }, { yPercent: 0, rotation: 0, stagger: 0.04, duration: timing.base, ease: ease }, "-=0.34")
+          .fromTo(fadeTargets, { autoAlpha: 0, yPercent: 50 }, { autoAlpha: 1, yPercent: 0, stagger: 0.03, duration: timing.quick }, "-=0.34");
     } else {
         tlRef.current = gsap.timeline({ onComplete: () => { gsap.set(navWrap, { display: "none" }); } });
-        tlRef.current.to(overlay, { autoAlpha: 0, duration: 0.4 })
-            .to(menuButtonTexts, { yPercent: 0, duration: 0.4, ease: ease }, "<")
-            .to(menuButtonIcon, { rotation: 0, duration: 0.4, ease: ease }, "<")
-            .to(menuInner, { autoAlpha: 0, duration: 0.3 }, "<")
-            .to(bgPanels, { xPercent: 100, stagger: { from: "end", amount: 0.1 }, duration: 0.6, ease: ease }, "<");
+        tlRef.current.to(overlay, { autoAlpha: 0, duration: timing.quick })
+          .to(menuButtonTexts, { yPercent: 0, duration: timing.quick, ease: ease }, "<")
+          .to(menuButtonIcon, { rotation: 0, duration: timing.quick, ease: ease }, "<")
+          .to(menuInner, { autoAlpha: 0, duration: 0.22 }, "<")
+          .to(bgPanels, { xPercent: 100, stagger: { from: "end", amount: timing.staggerOut }, duration: 0.52, ease: ease }, "<");
     }
   }, [isOpen]);
 
