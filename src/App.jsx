@@ -68,10 +68,25 @@ export default function App() {
 
   // Helper to store next view for animation callback
   const triggerNavigation = useCallback((view) => {
-    if (view === currentView) return;
-    setNextView(view);
+    const targetView = view || 'index';
+
+    // Always close any open project overlay before route-level navigation.
+    if (selectedProjectIndex !== null) {
+      setSelectedProjectIndex(null);
+    }
+
+    if (targetView === currentView) {
+      setNextView(null);
+      setGridStatus('enter');
+      if (targetView === 'index') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      return;
+    }
+
+    setNextView(targetView);
     setGridStatus('exit');
-  }, [currentView]);
+  }, [currentView, selectedProjectIndex]);
 
   useEffect(() => {
     if (gridStatus !== 'exit' || !nextView) return;
