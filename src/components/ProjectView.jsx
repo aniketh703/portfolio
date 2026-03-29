@@ -131,6 +131,25 @@ const ProjectView = ({ project, onClose, onNext, onPrev, onHome }) => {
               <h1 style={{ fontSize: 'clamp(2.5rem, 12vw, 16rem)' }} className="leading-[0.8] font-serif font-medium tracking-tighter text-stone-900 mix-blend-hard-light select-none">{project.title}</h1>
           </div>
         </header>
+        {project.process && (
+          <div className="overflow-x-auto no-scrollbar bg-stone-900 text-stone-50">
+            <div className="flex items-stretch min-w-max px-4 md:px-12 py-6 gap-0">
+              {project.process.map((stage, i) => (
+                <div key={i} className="flex items-center">
+                  <div className="flex flex-col items-center px-6 py-2 min-w-[120px]">
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-stone-400 mb-2">
+                      {stage.label}
+                    </span>
+                    <span className="font-serif text-sm text-center">{stage.note}</span>
+                  </div>
+                  {i < project.process.length - 1 && (
+                    <div className="w-8 h-px bg-stone-700 flex-shrink-0" />
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
         <div className="bg-stone-100 relative z-10">
           <div className="max-w-[95vw] mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 pt-10 md:pt-16 pb-20 md:pb-32 px-4">
             <div className="md:col-span-3 space-y-8 md:space-y-12 border-t border-stone-900 pt-6">
