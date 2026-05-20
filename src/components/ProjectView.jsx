@@ -51,7 +51,7 @@ const ProjectView = ({ project, scrollRef, onClose, onNext, onPrev, onHome }) =>
             <span className="font-mono text-xs uppercase tracking-widest text-stone-400 block mb-3">
               What did not work
             </span>
-            <p className="font-serif text-[clamp(1.05rem,2vw,1.35rem)] leading-[1.45] mb-4 line-through opacity-40">
+            <p className="font-serif text-[clamp(1.05rem,2vw,1.35rem)] leading-[1.45] mb-4 line-through opacity-40 text-stone-900">
               {module.attempt}
             </p>
             <p className="font-sans text-base leading-relaxed text-stone-700">
