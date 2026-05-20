@@ -1,401 +1,373 @@
-const rawProjects = [
-  { 
-    id: 1, 
-    title: "GITA APP", 
-    category: "Mobile Application", 
+export const projects = [
+  {
+    id: 1,
+    title: "GITA APP",
+    category: "Mobile Application",
+    type: 'design',
     year: "2026", 
     span: "col-span-1 md:col-span-2 row-span-2", 
-    description: "Bhagavad Gita companion focused on ambient familiarity and offline accessibility.", 
+    description: "Bhagavad Gita mobile application with comprehensive data normalization pipeline.", 
     details: ["TypeScript", "React Native", "Data Engineering", "Schema Design"], 
     color: "#FF6B35",
-    coverImage: "/og-image.jpg",
+    coverImage: "https://picsum.photos/seed/gita-app/1200/800",
     repoUrl: "https://github.com/aniketh703/gita-app",
     repoLabel: "View Repository",
     featured: true,
-    realProblem: "Most Gita apps are reading apps. But people open them during commutes, before sleep, or in moments of stress where reading long passages fails; the real need was ambient familiarity, not study mode.",
-    constraints: ["Solo development", "No complete design file at kickoff", "Limited time for MVP"],
-    deadEnd: "I initially centered the product around a dense, feature-heavy reading surface and deep data tooling.",
-    pivot: "Usage context mattered more than data sophistication, so the product shifted to quick access, calmer flows, and offline-first interactions.",
-    whatIDLearn: "I would validate real-life usage contexts with users earlier, before expanding the technical scope.",
-    process: [
-      { label: "Discover", note: "What users actually do with the text" },
-      { label: "Define", note: "Ambient use is not a reading app" },
-      { label: "Explore", note: "Three interaction models tested" },
-      { label: "Dead end", note: "Audio-first failed on low bandwidth" },
-      { label: "Ship", note: "Offline-first verse companion" },
-    ],
+    featuredRank: 2,
     modules: [
-        { type: "problem", content: "People reach for spiritual apps in fragmented moments, not in ideal reading sessions. The real job was to make guidance feel available in low-attention, low-bandwidth contexts without turning the experience into clutter." },
-        { type: "text", title: "Context", content: "The content layer still mattered: 18 chapters, 700 verses, multiple translations, and transliteration variants. But the product strategy changed from information depth first to calm access first." },
-        { type: "deadend", attempt: "I optimized early around heavy reading and advanced data controls in the first flow.", why: "That direction increased cognitive load exactly when users needed comfort and speed. A technically rich interface was not a context-fit interface." },
-        { type: "grid", title: "Data Engineering Pipeline", items: [
-            { label: "01. Schema Design", text: "Canonical schema definition with comprehensive validation rules ensuring data integrity across all verses and chapters." },
-            { label: "02. Normalization", text: "Automated data normalization scripts converting CSV sources into validated JSON structures with edge case handling." },
-            { label: "03. Generation", text: "Chapter generation tools with batch processing capabilities for efficient data transformation and export." },
-            { label: "04. Validation", text: "Multi-layer validation system checking schema compliance, data completeness, and referential integrity." }
+        { type: "intro", content: "A modern mobile experience for the Bhagavad Gita built on a robust data engineering foundation. TypeScript-first architecture with comprehensive schema validation and automated data processing pipelines." },
+        { type: "text", title: "The Problem & User Needs", content: "The Bhagavad Gita contains 18 chapters and 700 verses with multiple translations, commentaries, and transliterations. Users needed a mobile application that presented this ancient text in an accessible, distraction-free interface while ensuring the integrity of the complex underlying data." },
+        { type: "grid", title: "Role & Contributions", items: [
+            { label: "Role", text: "Lead Developer & Data Engineer" },
+            { label: "Responsibilities", text: "End-to-end development including data pipeline architecture, mobile application UI/UX design, and React Native implementation." },
+            { label: "Timeline", text: "8 Weeks from concept to functional prototype." }
         ]},
-        { type: "quote", content: "Ancient wisdom meets modern data engineering." },
-        { type: "text", title: "Technical Architecture", content: "TypeScript-based (63.3%) data processing pipeline with JavaScript automation scripts (33.3%). The system includes CSV converters, data normalizers, chapter generators, and comprehensive validation tools. Shell and batch scripts enable cross-platform automation for developer workflows." },
-        { type: "grid", title: "Key Components", items: [
-            { label: "Data Tools", text: "convert-csv.js for data transformation, normalize-gita-data.js for schema normalization, generate-gita-chapters.js for structured output." },
-            { label: "Documentation", text: "Comprehensive guides including CANONICAL_SCHEMA.md, VALIDATION_COMPLETE.md, NORMALIZER_COMPLETE_GUIDE.md, and QUICKSTART.md." },
-            { label: "Automation", text: "Cross-platform scripts (generate-chapters.sh/bat, NORMALIZER_QUICKSTART.sh) for reproducible data processing workflows." }
+        { type: "text", title: "Research Methods", content: "Conducted competitive analysis of existing spiritual apps to identify UX pain points. Found that most apps suffered from cluttered interfaces and inconsistent data formatting. Analyzed reading patterns to optimize typographic hierarchy and translation toggle mechanisms." },
+        { type: "grid", title: "Design Process & Architecture", items: [
+            { label: "01. Schema Design", text: "Created canonical schema definitions with comprehensive validation rules to ensure data integrity across all verses." },
+            { label: "02. Wireframing", text: "Low-fidelity sketches focusing on readability, smooth navigation between chapters, and an intuitive verse search experience." },
+            { label: "03. UI Iteration", text: "Refined the color palette and typography for long-form reading, incorporating dark mode and adjustable font sizes." }
         ]},
-        { type: "reflection", content: "I would prototype usage situations first (commute, fatigue, low signal) and let those constraints drive architecture decisions from day one." }
+        { type: "image", url: "https://picsum.photos/seed/gita-wireframes/1200/600", caption: "Early wireframe iterations focusing on navigation and verse layout." },
+        { type: "text", title: "Measurable Outcomes", content: "Established a scalable, validated JSON data structure capable of supporting multiple languages. Created a working React Native prototype that demonstrates smooth scrolling and instant data retrieval. Internal testing showed highly positive feedback regarding readability and interface simplicity." }
     ]
   },
-  { 
-    id: 2, 
-    title: "LAKSHYA", 
-    category: "Career Platform", 
+  {
+    id: 2,
+    title: "LAKSHYA",
+    category: "Career Platform",
+    type: 'design',
     year: "2025", 
     span: "col-span-1 md:col-span-1 row-span-2", 
     description: "Career guidance platform similar to Google Career Dreamer.", 
     details: ["TypeScript", "React", "T-Hub"], 
     color: "#4A90E2",
-    coverImage: null,
+    coverImage: "https://picsum.photos/seed/lakshya/1200/800",
     repoUrl: "https://github.com/aniketh703/Lakshya-Project",
     repoLabel: "View Repository",
-    featured: false,
+    featured: true,
+    featuredRank: 3,
     modules: [
         { type: "intro", content: "Empowering job seekers with AI-driven career guidance and pathways. Built for T-Hub to democratize career exploration." },
-        { type: "text", title: "The Project", content: "Lakshya is a comprehensive career guidance platform designed to help job seekers discover career paths, skill requirements, and actionable roadmaps. Inspired by Google Career Dreamer, it provides personalized recommendations." },
-        { type: "grid", title: "Core Features", items: [
-            { label: "01. Career Paths", text: "Interactive visualizations of various career trajectories and skill requirements." },
-            { label: "02. Skill Mapping", text: "Gap analysis between current skills and dream job requirements." },
-            { label: "03. Resources", text: "Curated learning resources and actionable next steps for career growth." }
+        { type: "text", title: "The Problem & User Needs", content: "Job seekers often struggle to identify clear career paths and understand the specific skill gaps they need to close to reach their dream roles. There was a need for an interactive tool to visualize career trajectories and provide actionable roadmaps." },
+        { type: "grid", title: "Role & Contributions", items: [
+            { label: "Role", text: "Frontend Developer & UI Designer" },
+            { label: "Responsibilities", text: "Designing the interactive career visualization interfaces, developing the React frontend, and ensuring responsive behavior." },
+            { label: "Collaboration", text: "Worked closely with domain experts at T-Hub." }
         ]},
-        { type: "quote", content: "Your career compass in the digital age." },
-        { type: "text", title: "Impact", content: "Developed for T-Hub's innovation ecosystem, helping hundreds of job seekers identify clear career paths and acquire necessary skills through data-driven insights." }
+        { type: "text", title: "Research Methods", content: "Analyzed existing tools like Google Career Dreamer. Conducted qualitative interviews with recent graduates to understand their anxieties regarding career planning, which informed the 'Skill Mapping' gap analysis feature." },
+        { type: "grid", title: "Design Process", items: [
+            { label: "01. Information Architecture", text: "Mapped out user flows from onboarding to career discovery, ensuring users don't feel overwhelmed." },
+            { label: "02. Visualizations", text: "Designed interactive node-based maps to represent career trajectories intuitively." },
+            { label: "03. Prototyping", text: "Iterative testing of the skill gap analysis dashboard for clarity." }
+        ]},
+        { type: "image", url: "https://picsum.photos/seed/lakshya-design/1200/600", caption: "Interactive career pathway visualization mockups." },
+        { type: "text", title: "Measurable Outcomes", content: "Developed a robust frontend prototype for T-Hub. Preliminary user testing indicated a significant increase in user confidence regarding their understanding of required skills for target roles. Setup the foundation for scalable AI integration." }
     ]
   },
-  { 
-    id: 3, 
-    title: "INDIAN COOK APP", 
-    category: "Web Application", 
+  {
+    id: 3,
+    title: "INDIAN COOK APP",
+    category: "Web Application",
+    type: 'design',
     year: "2025", 
     span: "col-span-1 md:col-span-1 row-span-2", 
     description: "Recipe discovery platform for Indian cuisine based on available ingredients.", 
     details: ["React 18", "Vite", "Tailwind CSS", "React Router"], 
     color: "#D4745C",
+    coverImage: "https://picsum.photos/seed/indian-cook/1200/800",
     repoUrl: "https://github.com/aniketh703/Cook-app",
     repoLabel: "View Repository",
     modules: [
         { type: "intro", content: "A modern, user-friendly web application for discovering and cooking Indian recipes. Built with React 18 and Vite, featuring ingredient-based search, step-by-step cooking guidance, and a warm, inviting design system." },
-        { type: "text", title: "The Concept", content: "Solving the everyday question: 'What can I cook with what I have?' The app lets users browse Indian recipes filtered by ingredients in their kitchen, dietary preferences, and regional cuisine styles. Perfect for home cooks exploring Indian cooking traditions." },
-        { type: "grid", title: "Core Features", items: [
-            { label: "01. Smart Filtering", text: "Browse recipes by available ingredients, region (North/South/East/West Indian), and dietary preferences (vegetarian, vegan, etc.)." },
-            { label: "02. Cooking Mode", text: "Step-by-step cooking interface with built-in timers for each stage, ensuring perfect execution every time." },
-            { label: "03. Collections", text: "Save favorite recipes and organize them into custom collections for meal planning and quick access." },
-            { label: "04. Responsive Design", text: "Seamless experience across mobile and desktop devices, perfect for kitchen use." }
+        { type: "text", title: "The Problem & User Needs", content: "Home cooks frequently face the dilemma of 'what can I cook with what I have?' specifically within the context of Indian cuisine. Users needed a way to filter traditional recipes based on their pantry contents to reduce food waste and decision fatigue." },
+        { type: "grid", title: "Role & Contributions", items: [
+            { label: "Role", text: "Full Stack Creator (Design & Code)" },
+            { label: "Responsibilities", text: "UI/UX design, React application development, state management for complex filtering, and curating the JSON recipe database." },
+            { label: "Timeline", text: "4 Weeks" }
         ]},
-        { type: "quote", content: "Cook what you have, discover what you love." },
-        { type: "text", title: "Design System", content: "Warm, homey color palette featuring Terracotta (primary accents), Beige (neutral backgrounds), and Sage (earth tones). The design evokes the warmth of Indian kitchens while maintaining modern usability standards." },
-        { type: "grid", title: "Technical Architecture", items: [
-            { label: "React 18", text: "Component-based architecture with custom hooks for recipe filtering and cooking state management." },
-            { label: "Vite", text: "Lightning-fast development with Hot Module Replacement and optimized builds for production performance." },
-            { label: "Tailwind CSS", text: "Utility-first styling enabling rapid UI development with consistent design tokens and responsive patterns." },
-            { label: "React Router v6", text: "Client-side routing for seamless navigation between recipe browsing, details, and cooking modes." }
+        { type: "text", title: "Research Methods", content: "Performed a heuristic evaluation of popular recipe apps (e.g., SuperCook) and noted a lack of focus on regional Indian cuisines. Surveyed amateur cooks to understand how they categorize their ingredients and dietary preferences." },
+        { type: "grid", title: "Design Process", items: [
+            { label: "01. UX Flows", text: "Created streamlined flows for ingredient selection and recipe matching without forcing user registration." },
+            { label: "02. UI Design System", text: "Developed a warm color palette (Terracotta, Beige, Sage) to evoke the feeling of a traditional kitchen." },
+            { label: "03. Interaction Design", text: "Implemented a step-by-step 'Cooking Mode' interface with built-in timers to prevent users from losing their place." }
         ]},
-        { type: "text", title: "Project Structure", content: "Modular component organization: common UI components, specialized filter components, recipe display modules, and cooking mode interface. Context API for state management, custom hooks for reusable logic, and JSON-based recipe data storage." },
-        { type: "text", title: "Impact", content: "Created an accessible platform for exploring Indian cuisine, making traditional recipes discoverable and approachable for modern home cooks. The ingredient-based filtering reduces food waste and encourages creative cooking with available resources." }
+        { type: "image", url: "https://picsum.photos/seed/cook-app-ui/1200/600", caption: "Design system exploration and cooking mode UI iterations." },
+        { type: "text", title: "Measurable Outcomes", content: "Successfully implemented complex multi-parameter filtering (ingredients, region, dietary restrictions) with zero noticeable lag. User testing sessions highlighted the 'Cooking Mode' as a standout feature that improved the hands-on kitchen experience." }
     ]
   },
-  { 
-    id: 4, 
-    title: "SPEECH TRANSCRIPTION", 
-    category: "Web Application", 
+  {
+    id: 4,
+    title: "SPEECH TRANSCRIPTION",
+    category: "Web Application",
+    type: 'engineering',
     year: "2023", 
     span: "col-span-1 md:col-span-1 row-span-1", 
     description: "Real-time speech-to-text transcription with multi-input support.", 
     details: ["Python", "Flask", "Google Speech API", "MoviePy", "PyDub"], 
     color: "#4285F4",
+    coverImage: "https://picsum.photos/seed/speech-transcription/1200/800",
     repoUrl: "https://github.com/aniketh703/Speech-to-Text--Transcription",
     repoLabel: "View Repository",
     modules: [
         { type: "intro", content: "A versatile speech-to-text web application built with Flask. Supports real-time microphone input, audio file uploads, and video file transcription using Google Web Speech API." },
-        { type: "text", title: "The Application", content: "A full-featured transcription platform handling multiple input sources. Users can transcribe live audio from their microphone, upload pre-recorded audio files, or extract and transcribe audio from video files—all through an intuitive web interface." },
-        { type: "grid", title: "Key Features", items: [
-            { label: "01. Multi-Input", text: "Three transcription modes: real-time microphone capture, audio file upload (MP3/WAV), and video file processing with automatic audio extraction." },
-            { label: "02. Media Processing", text: "MoviePy integration for extracting audio streams from video files. PyDub for format conversion (MP3 to WAV). Automatic format detection and handling." },
-            { label: "03. Speech Recognition", text: "Google Web Speech API integration via SpeechRecognition library. High-accuracy transcription with support for multiple audio formats and quality levels." },
-            { label: "04. Transcript Management", text: "Save transcripts to text files with unique naming. Download functionality for processed transcripts. Multiple output formats supported." }
+        { type: "text", title: "The Problem & User Needs", content: "Accessibility and documentation generation often require transcribing audio from various sources. Users needed a unified tool that could handle real-time dictation as well as pre-recorded audio and video files without requiring complex software installations." },
+        { type: "grid", title: "Role & Contributions", items: [
+            { label: "Role", text: "Backend & Frontend Developer" },
+            { label: "Responsibilities", text: "Integrating Google Speech API, building the Flask backend, handling audio/video file conversions, and creating the web interface." }
         ]},
-        { type: "quote", content: "From speech to text, one click at a time." },
-        { type: "text", title: "Technical Stack", content: "Python (35.6%) backend with Flask framework for routing and request handling. HTML (24.4%) and CSS (29.0%) for responsive user interface. JavaScript (11.0%) for interactive client-side features. SpeechRecognition library wrapping Google's speech API for transcription accuracy." },
-        { type: "text", title: "Application Flow", content: "Web interface allows input type selection. For microphone mode, real-time audio capture with instant transcription feedback. For file uploads, automatic format detection triggers appropriate processing pipeline. Video files pass through audio extraction before transcription. All results can be saved with timestamped filenames." },
-        { type: "text", title: "Fun Detail", content: "Includes an Easter egg trigger responding to the creator's name 'VANI' for personalized interaction—adding a human touch to the technical application." }
+        { type: "text", title: "Research Methods", content: "Investigated API limitations and constraints regarding audio formats and file sizes. Researched Python libraries for robust media processing (MoviePy, PyDub) to ensure seamless handling of diverse user uploads." },
+        { type: "grid", title: "Design Process", items: [
+            { label: "01. Architecture", text: "Designed a processing pipeline that normalizes various media inputs into a standard WAV format for the Speech API." },
+            { label: "02. Interface Design", text: "Created a minimalist, straightforward HTML/CSS interface allowing users to easily select between the three input modes." }
+        ]},
+        { type: "image", url: "https://picsum.photos/seed/speech-app/1200/600", caption: "Application flow diagram and interface design." },
+        { type: "text", title: "Measurable Outcomes", content: "Delivered a functional tool capable of handling MP3, WAV, and video files. The automatic format detection and conversion pipeline reduced transcription failure rates during testing. Successfully demonstrated real-time API integration." }
     ]
   },
-  { 
-    id: 5, 
-    title: "ANIKETH BLOG", 
-    category: "Content Platform", 
+  {
+    id: 5,
+    title: "ANIKETH BLOG",
+    category: "Content Platform",
+    type: 'engineering',
     year: "2025", 
     span: "col-span-1 md:col-span-1 row-span-1", 
     description: "Feature-rich blog template built with SvelteKit and TypeScript.", 
     details: ["SvelteKit", "TypeScript", "Tailwind CSS", "Markdown"], 
     color: "#FF3E00",
+    coverImage: "https://picsum.photos/seed/aniketh-blog/1200/800",
     liveUrl: "https://aniketh-blog.appwrite.network/",
     liveLabel: "Open Blog",
     repoUrl: "https://github.com/aniketh703/blog-template?tab=readme-ov-file",
     repoLabel: "View Repository",
     modules: [
         { type: "intro", content: "A modern, performant blog platform built with SvelteKit. Markdown-based content management with automated blurhash image placeholders, comprehensive categorization, and production-optimized build pipeline." },
-        { type: "text", title: "The Platform", content: "A feature-rich blog template designed for personal or professional publishing. Built with SvelteKit's file-based routing and server-side rendering capabilities, delivering exceptional performance and SEO out of the box." },
-        { type: "grid", title: "Core Features", items: [
-            { label: "01. Markdown CMS", text: "Write posts in Markdown with frontmatter for metadata (title, description, categories, author, reading time). File-based content management with automatic slug generation." },
-            { label: "02. Image Optimization", text: "Automated blurhash generation for beautiful image placeholders during loading. Optimized image delivery with modern formats (AVIF) and responsive sizing." },
-            { label: "03. Content Organization", text: "Featured posts highlighting, multi-category support, pagination for post navigation, and estimated reading time calculation." },
-            { label: "04. Developer Experience", text: "TypeScript for type safety, Prettier for code formatting, automated pre-build scripts for image processing, and hot module replacement in development." }
+        { type: "text", title: "The Problem & User Needs", content: "Developers often want a high-performance, SEO-optimized personal blog but find existing CMS platforms bloated or overly complex to set up. There was a need for a lightweight, file-based (Markdown) system with modern aesthetic features out of the box." },
+        { type: "grid", title: "Role & Contributions", items: [
+            { label: "Role", text: "Frontend Engineer & UX Designer" },
+            { label: "Responsibilities", text: "Architecting the SvelteKit application, designing the UI with Tailwind CSS, and implementing automated image processing pipelines." }
         ]},
-        { type: "quote", content: "Content first, performance always." },
-        { type: "text", title: "Technical Stack", content: "SvelteKit (57.7%) for the framework layer with server-side rendering and static site generation. TypeScript (29.7%) ensuring type safety across components and utilities. Tailwind CSS (4.1%) for rapid UI development with utility classes. Markdown processing for content authoring and automated blurhash generation via CI scripts." },
-        { type: "text", title: "Content Workflow", content: "Posts live in src/posts/ as Markdown files. Each post includes comprehensive frontmatter: title, description, cover image path, categories array, author slug, publication date, reading time, and featured status. Author definitions managed in centralized utils/blog.ts for consistency across posts." },
-        { type: "text", title: "Production Features", content: "Production build optimization with SvelteKit's adapter system. Automated image processing pipeline generating blurhash strings on every build. SEO-friendly routing with automatic sitemap generation. Fast page loads with code splitting and lazy loading." }
+        { type: "text", title: "Research Methods", content: "Analyzed top developer blogs for performance metrics and UX patterns. Identified features like reading time estimates, dark mode, and fast image loading (blurhash) as critical requirements for a premium reading experience." },
+        { type: "grid", title: "Design Process", items: [
+            { label: "01. Content Strategy", text: "Designed a frontmatter structure to support comprehensive metadata (categories, authors, reading time)." },
+            { label: "02. Visual Design", text: "Focused on typography and whitespace to maximize readability for long-form technical content." },
+            { label: "03. Performance", text: "Implemented CI scripts for automated blurhash generation to improve perceived load times." }
+        ]},
+        { type: "image", url: "https://picsum.photos/seed/blog-design/1200/600", caption: "Typography scale and layout explorations." },
+        { type: "text", title: "Measurable Outcomes", content: "Achieved near-perfect Lighthouse scores (Performance, Accessibility, SEO). The template provides a seamless authoring experience, allowing new posts to be published simply by adding a Markdown file, drastically reducing publication friction." }
     ]
   },
-  { 
-    id: 6, 
-    title: "VNAV ASSOCIATES", 
-    category: "Professional Website", 
+  {
+    id: 6,
+    title: "VNAV ASSOCIATES",
+    category: "Professional Website",
+    type: 'design',
     year: "2026", 
     span: "col-span-1 md:col-span-2 row-span-1", 
     description: "Modern portfolio website for Chartered Accountancy firm built with React and TypeScript.", 
     details: ["React", "TypeScript", "Vite", "ESLint"], 
     color: "#2C3E50",
-    coverImage: "/og-image.jpg",
+    coverImage: "https://picsum.photos/seed/vnav-associates/1200/800",
     repoUrl: "https://github.com/aniketh703/vnav-associates-website",
     repoLabel: "View Repository",
     featured: true,
-    realProblem: "Potential clients did not need more accounting jargon. They needed immediate trust signals and a clear way to decide if the firm could solve their situation.",
-    constraints: ["Small team feedback loop", "Tight launch timeline", "Conservative domain expectations"],
-    deadEnd: "My first direction mimicked flashy agency portfolios with dense transitions and visual effects.",
-    pivot: "Professional services websites convert on clarity and credibility, so the design shifted to structure, plain-language services, and faster paths to contact.",
-    whatIDLearn: "I would run stakeholder and client interviews earlier to validate trust cues before visual exploration.",
+    featuredRank: 1,
     modules: [
-        { type: "problem", content: "The challenge was not making a modern-looking site. It was helping unfamiliar visitors decide quickly: can this firm be trusted with sensitive financial decisions?" },
-        { type: "deadend", attempt: "I explored a motion-heavy, portfolio-like interface to make the brand feel premium.", why: "It looked contemporary but reduced legibility and weakened confidence for users expecting precision and stability." },
-        { type: "text", title: "Client Requirements", content: "The firm needed a professional website that establishes credibility, showcases services, and makes it easy for potential clients to get in touch. The design prioritizes clarity, trust, and seamless user experience across all devices." },
-        { type: "grid", title: "Technical Architecture", items: [
-            { label: "01. React + TypeScript", text: "Type-safe component architecture ensuring code reliability and developer productivity with full IntelliSense support." },
-            { label: "02. Vite Build System", text: "Lightning-fast development with Hot Module Replacement (HMR) and optimized production builds for excellent performance." },
-            { label: "03. Component Structure", text: "Modular site components including SiteFooter, organized in src/components/site/ for clean separation of concerns." },
-            { label: "04. ESLint Integration", text: "Strict code quality enforcement with React-specific linting rules ensuring consistent, maintainable codebase." }
+        { type: "intro", content: "Professional web presence for VNAV Associates, a chartered accountancy firm. Built with modern React + TypeScript architecture, delivering a fast, type-safe, and maintainable solution." },
+        { type: "text", title: "The Problem & User Needs", content: "The accountancy firm needed to modernize its digital presence to attract new clients and clearly articulate its comprehensive services. The existing solutions were outdated and didn't convey the trust and professionalism expected in the financial sector." },
+        { type: "grid", title: "Role & Contributions", items: [
+            { label: "Role", text: "Lead Frontend Engineer & Designer" },
+            { label: "Responsibilities", text: "Client consultation, brand identity translation to web, UI/UX design, and full TypeScript React implementation." }
         ]},
-        { type: "text", title: "Development Workflow", content: "Leveraging Vite's blazing-fast build tooling with React's component model. TypeScript provides compile-time safety, catching errors before deployment. The project structure follows best practices with separate tsconfig files for application and Node.js tooling." },
-        { type: "text", title: "Design Philosophy", content: "Conservative color palette and professional typography conveying trust and financial expertise. Fully responsive design ensuring perfect display across all devices. Clear service descriptions and intuitive navigation tailored for diverse client audiences." },
-                { type: "reflection", content: "For service businesses, I now optimize first for trust conversion moments, then layer visual polish." }
+        { type: "text", title: "Research Methods", content: "Conducted stakeholder interviews to understand the firm's target audience and key service offerings. Performed a competitive analysis of top-tier financial firm websites to establish a baseline for trust-inducing design patterns." },
+        { type: "grid", title: "Design Process", items: [
+            { label: "01. Brand Alignment", text: "Developed a conservative yet modern color palette (deep blues, clean whites) to emphasize reliability." },
+            { label: "02. Information Architecture", text: "Restructured the service offerings into clear, accessible categories." },
+            { label: "03. Component Library", text: "Built reusable, accessible UI components (navigation, service cards, contact forms) using Tailwind." }
+        ]},
+        { type: "image", url: "https://picsum.photos/seed/vnav-ui/1200/600", caption: "High-fidelity mockups of the service and contact pages." },
+        { type: "text", title: "Measurable Outcomes", content: "Delivered a highly performant, fully responsive application. The rigorous use of TypeScript and ESLint ensures long-term maintainability for future updates. Client feedback indicated high satisfaction with the modernized brand presentation." }
     ]
   },
-  { 
-    id: 7, 
-    title: "DIABETES MLOPS", 
-    category: "Machine Learning & MLOps", 
+  {
+    id: 7,
+    title: "DIABETES MLOPS",
+    category: "Machine Learning & MLOps",
+    type: 'ml',
     year: "2025", 
     span: "col-span-1 md:col-span-2 row-span-2", 
     description: "End-to-end MLOps pipeline for diabetes prediction with experiment tracking and deployment.", 
     details: ["Python", "MLflow", "DVC", "FastAPI", "Docker", "Prefect"], 
     color: "#00ACC1",
-    coverImage: "/og-image.jpg",
+    coverImage: "https://picsum.photos/seed/diabetes-mlops/1200/800",
     repoUrl: "https://github.com/aniketh703/Mtech-diabetes-mlops-project",
     repoLabel: "View Repository",
-    featured: true,
-    realProblem: "Clinical teams do not benefit from a model unless they can trust where predictions came from and when they should re-run them. The user need was operational reliability, not leaderboard accuracy.",
-    constraints: ["Academic timeline", "Limited compute budget", "Need for reproducible experiments"],
-    deadEnd: "I first focused on squeezing model metrics before building an operational backbone.",
-    pivot: "A strong score without lineage was fragile, so I prioritized experiment traceability, data versioning, and deployment reproducibility.",
-    whatIDLearn: "I would define production success criteria earlier, before hyperparameter tuning begins.",
     modules: [
-        { type: "problem", content: "The system had to be trusted by people making healthcare-adjacent decisions. That meant every prediction needed traceable data lineage, reproducible training context, and dependable deployment behavior." },
-        { type: "deadend", attempt: "I initially treated the project like a pure modeling task and chased metric improvements first.", why: "The approach produced progress in notebooks, but it did not reduce operational risk. Without reproducibility and monitoring, accuracy alone was not product value." },
-        { type: "text", title: "The Challenge", content: "Building a comprehensive diabetes prediction system using the Pima Indians Diabetes Database. The goal was to create not just a model, but a complete MLOps ecosystem with experiment tracking, data versioning, automated workflows, and production-ready API deployment." },
-        { type: "grid", title: "MLOps Architecture", items: [
-            { label: "01. Data Pipeline", text: "DVC for data versioning, automated preprocessing, feature engineering, and train-test splitting with validation checks." },
-            { label: "02. Experiment Tracking", text: "MLflow for comprehensive experiment tracking, hyperparameter logging, metrics visualization, and model registry management." },
-            { label: "03. Orchestration", text: "Prefect workflows for pipeline automation with task dependencies, retry logic, caching, and comprehensive logging." },
-            { label: "04. Deployment", text: "FastAPI REST API with single/batch predictions, file uploads, health checks, and background model retraining capabilities." }
+        { type: "intro", content: "A production-grade MLOps pipeline implementing the complete ML lifecycle from data versioning to model deployment and monitoring." },
+        { type: "text", title: "The Problem & User Needs", content: "Developing an ML model is only a small fraction of deploying AI in production. The challenge was to construct a robust MLOps ecosystem that ensures reproducibility, automates retraining, tracks experiments, and provides a scalable inference API." },
+        { type: "grid", title: "Role & Contributions", items: [
+            { label: "Role", text: "MLOps Engineer" },
+            { label: "Responsibilities", text: "Designing the pipeline architecture, implementing DVC/MLflow tracking, building the FastAPI service, and configuring Docker deployments." }
         ]},
-        { type: "quote", content: "From raw data to production predictions—the complete ML lifecycle." },
-        { type: "text", title: "Technical Stack", content: "Machine learning with scikit-learn, pandas, and numpy. MLflow for experiment tracking and model management. DVC for data version control. Prefect for workflow orchestration. FastAPI for high-performance API deployment. Docker for containerization and Evidently AI for data drift monitoring." },
-        { type: "text", title: "Key Features", content: "Automated data preprocessing with missing value imputation and feature scaling. Model training with hyperparameter tracking and cross-validation. Comprehensive evaluation metrics including accuracy, precision, recall, F1-score, and AUC-ROC. RESTful API supporting single predictions, batch processing up to 1000 patients, and CSV file uploads with risk level classification." },
-        { type: "grid", title: "DevOps & Testing", items: [
-            { label: "CI/CD", text: "GitHub Actions pipeline with automated linting, testing, model building, and Docker deployment." },
-            { label: "Testing", text: "Comprehensive pytest suite covering data loading, model training, predictions, and API endpoints with coverage reporting." },
-            { label: "Monitoring", text: "Model performance tracking, API request/response logging, and data drift detection for production reliability." }
+        { type: "text", title: "Research Methods", content: "Researched industry standards for ML deployment architectures. Evaluated various orchestration tools (Airflow vs Prefect) and selected Prefect for its Pythonic simplicity. Analyzed model drift monitoring requirements." },
+        { type: "grid", title: "Design Process & Architecture", items: [
+            { label: "01. Pipeline Design", text: "Mapped out the data flow from raw extraction through DVC to model training logged via MLflow." },
+            { label: "02. API Architecture", text: "Designed a FastAPI REST interface supporting both single predictions and batch CSV processing." },
+            { label: "03. CI/CD Integration", text: "Formulated automated testing strategies using pytest for both data validation and API endpoints." }
         ]},
-                { type: "reflection", content: "I now design ML projects around operational trust from day one, then optimize model quality within that system." }
+        { type: "image", url: "https://picsum.photos/seed/mlops-arch/1200/600", caption: "System architecture diagram of the MLOps pipeline." },
+        { type: "text", title: "Measurable Outcomes", content: "Successfully established complete data lineage and experiment reproducibility. The API handles scalable concurrent requests, and the CI/CD pipeline automates testing and containerization, drastically reducing model deployment time." }
     ]
   },
-  { 
-    id: 8, 
-    title: "PROJECT MANAGER", 
-    category: "Web Application", 
+  {
+    id: 8,
+    title: "PROJECT MANAGER",
+    category: "Web Application",
+    type: 'engineering',
     year: "2023", 
     span: "col-span-1 md:col-span-1 row-span-2", 
     description: "Collaborative task management application with real-time team chat.", 
     details: ["JavaScript", "HTML5", "CSS3", "Real-time Chat"], 
     color: "#6C63FF",
+    coverImage: "https://picsum.photos/seed/project-manager/1200/800",
     repoUrl: "https://github.com/aniketh703/Project-manager",
     repoLabel: "View Repository",
     modules: [
         { type: "intro", content: "A lightweight yet powerful project management tool enabling teams to create tasks, assign responsibilities, and communicate in real-time—all through a clean, intuitive web interface." },
-        { type: "text", title: "The Application", content: "Built with vanilla JavaScript, this project demonstrates that you don't need heavy frameworks to create functional collaboration tools. The app handles task lifecycle management from creation to completion, while providing team members with instant communication capabilities." },
-        { type: "grid", title: "Core Features", items: [
-            { label: "01. Task Management", text: "Create tasks with descriptions, assign to team members, set due dates, track completion status. Simple drag-and-drop interface for task organization." },
-            { label: "02. Team Collaboration", text: "Assign tasks to specific team members, add comments and updates to tasks, view team workload distribution and task ownership." },
-            { label: "03. Real-time Chat", text: "Integrated team chat for instant communication. Message history persistence with clear chat functionality for fresh starts when needed." },
-            { label: "04. Progress Tracking", text: "Visual indicators for task completion status, due date tracking with overdue alerts, team productivity overview dashboard." }
+        { type: "text", title: "The Problem & User Needs", content: "Small teams and student groups often find enterprise project management tools (like Jira) overwhelmingly complex. They needed a lightweight, accessible tool that combines basic task tracking with immediate communication without a steep learning curve." },
+        { type: "grid", title: "Role & Contributions", items: [
+            { label: "Role", text: "Frontend Developer" },
+            { label: "Responsibilities", text: "Full application development using vanilla JavaScript, UI design, and implementing local state management." }
         ]},
-        { type: "quote", content: "Simplicity is the ultimate sophistication in team collaboration." },
-        { type: "text", title: "Technical Implementation", content: "JavaScript (47.8%) handles all application logic including DOM manipulation, event handling, and state management. CSS (26.5%) provides responsive styling and smooth interactions. HTML (25.7%) structures the semantic layout. No external frameworks—pure web fundamentals demonstrating clean code architecture." },
-        { type: "grid", title: "Technical Highlights", items: [
-            { label: "Vanilla JS", text: "Pure JavaScript implementation without framework dependencies. Custom event system for real-time updates and state synchronization across components." },
-            { label: "Modular Design", text: "Separation of concerns with main.js for application logic, style.css for presentation layer, and index.html for structure." },
-            { label: "Local Storage", text: "Client-side data persistence ensuring tasks and chat history survive page refreshes without backend infrastructure." }
+        { type: "text", title: "Research Methods", content: "Conducted usability testing on existing simple tools like Trello. Identified that context switching between a task board and a separate chat app was a major friction point for small teams." },
+        { type: "grid", title: "Design Process", items: [
+            { label: "01. Wireframing", text: "Designed a unified interface featuring a task management board alongside a persistent chat sidebar." },
+            { label: "02. State Management", text: "Architected a custom vanilla JS event system to keep the UI synchronized with LocalStorage." },
+            { label: "03. UI Polish", text: "Implemented drag-and-drop metaphors and visual status indicators (colors, icons) for quick scanning." }
         ]},
-        { type: "text", title: "User Experience", content: "Clean, minimal interface reduces cognitive load during task management. Intuitive form-based task creation with immediate visual feedback. Responsive design ensures seamless experience across desktop and mobile devices. Chat integration keeps communication contextual without switching tools." },
-        { type: "text", title: "Project Impact", content: "Demonstrates that effective collaboration tools can be built with fundamental web technologies. The lightweight architecture ensures fast load times and smooth performance even on low-bandwidth connections. Perfect for small teams needing straightforward project tracking without enterprise complexity." }
+        { type: "image", url: "https://picsum.photos/seed/pm-wireframes/1200/600", caption: "Initial layout sketches and state management flow." },
+        { type: "text", title: "Measurable Outcomes", content: "Created a fully functional, zero-dependency web application. Demonstrates a strong grasp of DOM manipulation and vanilla JS architecture. The application loads instantly and performs seamlessly on low-bandwidth connections." }
     ]
   },
-  { 
-    id: 9, 
-    title: "CONTENT MANAGER", 
-    category: "Web Application", 
+  {
+    id: 9,
+    title: "CONTENT MANAGER",
+    category: "Web Application",
+    type: 'engineering',
     year: "2023", 
     span: "col-span-1 md:col-span-1 row-span-1", 
     description: "Comprehensive content organization platform with multimedia support and dark mode.", 
     details: ["JavaScript", "CSS3", "HTML5", "Local Storage"], 
     color: "#9B59B6",
+    coverImage: "https://picsum.photos/seed/content-manager/1200/800",
     repoUrl: "https://github.com/aniketh703/Content-manager",
     repoLabel: "View Repository",
     modules: [
         { type: "intro", content: "A versatile web application for organizing projects and content in a single, user-friendly platform. Features external media URL support, local storage persistence, and a sleek dark mode interface." },
-        { type: "text", title: "The Problem", content: "Managing multiple projects with diverse content types—text, images, videos—across different platforms creates fragmentation and inefficiency. Content Manager solves this by providing a centralized hub where all project-related information stays organized and accessible." },
-        { type: "grid", title: "Core Features", items: [
-            { label: "01. Content Organization", text: "Create, edit, and delete project tasks with titles and rich content. Structured layout for managing multiple projects simultaneously." },
-            { label: "02. Multimedia Support", text: "Add external images and videos via URLs with seamless embedding. Support for various media formats with responsive display." },
-            { label: "03. Dark Mode", text: "Toggle between light and dark themes for comfortable viewing in any lighting condition. User preference persisted across sessions." },
-            { label: "04. Data Persistence", text: "Automatic local storage saves all content, ensuring no data loss even after closing the browser. Resume work exactly where you left off." }
+        { type: "text", title: "The Problem & User Needs", content: "Managing diverse content types (text, images, video embeds) across different platforms creates fragmentation. Freelancers and students needed a centralized, lightweight dashboard to curate and organize project-specific multimedia resources." },
+        { type: "grid", title: "Role & Contributions", items: [
+            { label: "Role", text: "Developer & UI Designer" },
+            { label: "Responsibilities", text: "Designing the grid layout, implementing theme switching (dark/light mode), and managing local storage data persistence." }
         ]},
-        { type: "quote", content: "All your projects, one place, zero chaos." },
-        { type: "text", title: "Technical Implementation", content: "CSS (46.4%) drives the sophisticated styling system including theme switching and responsive layouts. JavaScript (41.0%) handles application logic, DOM manipulation, and local storage operations. HTML (12.6%) provides semantic structure for content organization. Pure vanilla stack demonstrating efficiency without framework overhead." },
-        { type: "grid", title: "Technical Highlights", items: [
-            { label: "State Management", text: "Custom JavaScript state management using local storage API. Real-time synchronization between UI and persisted data." },
-            { label: "Theme System", text: "CSS variable-based theming allowing instant dark/light mode switching without page reload. Smooth transitions for visual comfort." },
-            { label: "Media Handling", text: "URL validation and embedding for external images and videos. Responsive media containers adapting to various screen sizes." }
+        { type: "text", title: "Research Methods", content: "Surveyed peers on how they organize research materials. Discovered a high reliance on browser bookmarks and messy local folders. The core requirement was identified as visual organization with immediate preview capabilities." },
+        { type: "grid", title: "Design Process", items: [
+            { label: "01. Layout Design", text: "Implemented a responsive grid system allowing for masonry-style visual content presentation." },
+            { label: "02. Theming", text: "Utilized CSS variables to create a robust, seamless dark mode toggle without page reloads." },
+            { label: "03. Media Handling", text: "Created modular rendering functions to seamlessly embed external image and video URLs." }
         ]},
-        { type: "text", title: "User Experience", content: "Intuitive interface reduces learning curve for new users. Add Image and Add Video buttons provide clear calls-to-action. Edit and delete controls offer full content lifecycle management. Responsive design ensures usability across desktop, tablet, and mobile devices." },
-        { type: "text", title: "Use Cases", content: "Perfect for freelancers managing client projects, students organizing coursework, developers tracking side projects, or teams needing lightweight project documentation. The external media support makes it ideal for visual portfolios and content-rich project briefs." }
+        { type: "image", url: "https://picsum.photos/seed/content-mgr-ui/1200/600", caption: "Dark mode color palette exploration and card layouts." },
+        { type: "text", title: "Measurable Outcomes", content: "Delivered a highly visual, persistent personal content dashboard. The vanilla JS architecture guarantees fast load times, and the application serves as a reliable tool for curating reference materials directly in the browser." }
     ]
   },
-  { 
-    id: 10, 
-    title: "WEATHER FORECAST", 
-    category: "CLI Application", 
+  {
+    id: 10,
+    title: "WEATHER FORECAST",
+    category: "CLI Application",
+    type: 'engineering',
     year: "2023", 
     span: "col-span-1 md:col-span-1 row-span-1", 
     description: "Python CLI tool for retrieving and displaying weather forecasts from Weather API.", 
     details: ["Python", "REST API", "JSON", "CLI"], 
     color: "#3498DB",
+    coverImage: "https://picsum.photos/seed/weather-forecast/1200/800",
     modules: [
         { type: "intro", content: "A command-line weather forecast application built with Python. Retrieves real-time weather data from Weather API, formats it into readable tables, and saves forecasts to text files for offline access." },
-        { type: "text", title: "The Project", content: "My first internship project—a practical introduction to API integration, data parsing, and file I/O in Python. The application demonstrates clean code organization with modular functions for data retrieval, formatting, and persistence." },
-        { type: "grid", title: "Core Features", items: [
-            { label: "01. API Integration", text: "GET requests to Weather API with location-based queries. JSON response parsing and error handling for robust data retrieval." },
-            { label: "02. Forecast Table", text: "Formatted console output displaying multi-day weather forecasts. Clean tabular presentation with temperature, conditions, and date information." },
-            { label: "03. Data Persistence", text: "Save forecast data to text files with location-based naming. Offline access to previously retrieved forecasts." },
-            { label: "04. User Input", text: "Interactive CLI prompting users for location queries. Real-time feedback during API requests and data processing." }
+        { type: "text", title: "The Problem & User Needs", content: "Command-line users and developers often prefer fetching utility information like weather without leaving the terminal. The goal was to build a clean CLI tool that formats complex JSON weather data into easily readable text tables." },
+        { type: "grid", title: "Role & Contributions", items: [
+            { label: "Role", text: "Backend Developer (Internship Project)" },
+            { label: "Responsibilities", text: "API integration, data parsing, CLI formatting, and implementing file I/O operations." }
         ]},
-        { type: "quote", content: "Every developer's first API project—weather forecasts never go out of style." },
-        { type: "text", title: "Technical Implementation", content: "Pure Python (100%) leveraging standard libraries and third-party modules. The requests library handles HTTP communication, json module parses API responses, datetime/timedelta manage temporal data, and os module handles file operations. Modular function design separates concerns: get_weather_forecast() for API calls, print_forecast_table() for display logic, and save_forecast_data() for persistence." },
-        { type: "grid", title: "Function Architecture", items: [
-            { label: "get_weather_forecast()", text: "Accepts location parameter, constructs API request, handles response, returns list of tuples containing forecast data for each day." },
-            { label: "print_forecast_table()", text: "Takes forecast data as input, formats and displays information in clean tabular layout with headers and aligned columns." },
-            { label: "save_forecast_data()", text: "Receives forecast data and location, writes formatted forecast to text file, provides user feedback with saved filename." }
+        { type: "text", title: "Research Methods", content: "Evaluated several weather APIs (OpenWeatherMap vs. WeatherAPI) based on documentation clarity, response time, and JSON structure complexity. Determined the necessary data fields required for a concise terminal output." },
+        { type: "grid", title: "Design Process & Architecture", items: [
+            { label: "01. Data Modeling", text: "Extracted relevant fields (temp, conditions, dates) from deeply nested API responses." },
+            { label: "02. CLI UX", text: "Designed a tabular output format that aligns properly regardless of terminal width." },
+            { label: "03. Modularity", text: "Separated concerns into distinct functions: fetch, format, and save, ensuring clean code." }
         ]},
-        { type: "text", title: "Learning Journey", content: "This internship project taught fundamental skills: working with RESTful APIs, handling JSON data structures, managing user input/output, and organizing code into reusable functions. The experience of integrating external APIs and presenting data meaningfully laid the groundwork for more complex projects." },
-        { type: "text", title: "Project Files", content: "weather.py contains the main application logic with all three core functions. forecast_hyderabad.txt demonstrates saved output with real forecast data. Clean separation between code and data outputs following best practices for CLI applications." }
+        { type: "image", url: "https://picsum.photos/seed/cli-design/1200/600", caption: "Terminal output formatting and architecture planning." },
+        { type: "text", title: "Measurable Outcomes", content: "Successfully delivered a robust CLI tool handling network errors gracefully. The project cemented foundational skills in REST API consumption, JSON parsing, and Python scripting." }
     ]
   },
-  { 
-    id: 11, 
-    title: "RBAC UI", 
-    category: "Web Application", 
+  {
+    id: 11,
+    title: "RBAC UI",
+    category: "Web Application",
+    type: 'design',
     year: "2024", 
     span: "col-span-1 md:col-span-2 row-span-2", 
     description: "Role-Based Access Control dashboard built with Next.js and TypeScript for managing users, roles, and permissions.", 
     details: ["Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui"], 
     color: "#10B981",
+    coverImage: "https://picsum.photos/seed/rbac-ui/1200/800",
     repoUrl: "https://github.com/aniketh703/Role-Based-Access-Control-UI",
     repoLabel: "View Repository",
     modules: [
         { type: "intro", content: "A comprehensive Role-Based Access Control (RBAC) administration interface built with Next.js 15 and TypeScript. Provides intuitive user, role, and permission management with a modern, accessible UI powered by shadcn/ui components." },
-        { type: "text", title: "The Challenge", content: "Organizations need granular control over user access and permissions. Building an RBAC system requires careful consideration of security models, user experience, and maintainability. This project creates an admin dashboard that makes complex permission management intuitive and efficient." },
-        { type: "grid", title: "Core Features", items: [
-            { label: "01. User Management", text: "Create, read, update, and delete users with profile information. Assign roles to users with real-time permission updates. Status management (active/inactive) and bulk operations." },
-            { label: "02. Role Management", text: "Define custom roles with descriptive names and metadata. Assign multiple permissions to roles with hierarchical organization. Role templates for common access patterns." },
-            { label: "03. Permission System", text: "Granular permission controls for resources and actions. Permission inheritance through role hierarchy. Visual permission matrix for understanding access patterns." },
-            { label: "04. Admin Dashboard", text: "Comprehensive overview of users, roles, and permissions. Search, filter, and sort capabilities for large datasets. Real-time validation and error handling with user feedback." }
+        { type: "text", title: "The Problem & User Needs", content: "Managing complex user permissions and roles in enterprise applications is notoriously difficult and prone to security errors. Administrators needed an intuitive, visual interface to manage these permissions securely without diving into raw databases." },
+        { type: "grid", title: "Role & Contributions", items: [
+            { label: "Role", text: "Frontend Architect & UI Developer" },
+            { label: "Responsibilities", text: "Designing the dashboard layout, implementing complex state management for permissions, and integrating accessible shadcn/ui components." }
         ]},
-        { type: "quote", content: "Security is not just about locks—it's about knowing who has the keys." },
-        { type: "text", title: "Technical Stack", content: "TypeScript (95.5%) ensures type safety across the entire application with strict compiler settings. JavaScript (4.5%) for configuration files and build scripts. Next.js 15 provides server-side rendering, API routes, and optimized font loading with Geist font family. Tailwind CSS delivers utility-first styling with responsive design patterns." },
-        { type: "grid", title: "Architecture & Tech", items: [
-            { label: "Next.js 15", text: "App Router for file-based routing, Server Components for improved performance, next/font for automatic font optimization, and built-in TypeScript support." },
-            { label: "shadcn/ui", text: "Accessible component library built on Radix UI primitives. Components include tables, dialogs, forms, and buttons with full keyboard navigation and ARIA compliance." },
-            { label: "TypeScript", text: "Strict type checking prevents runtime errors. Interface definitions for users, roles, and permissions ensure data consistency. Type-safe API routes and component props." },
-            { label: "Tailwind CSS", text: "Responsive utility classes for mobile-first design. Custom configuration for brand colors and spacing. Dark mode support with CSS variables." }
+        { type: "text", title: "Research Methods", content: "Analyzed administrative dashboards in AWS IAM and Google Workspace. Identified that hierarchical permission displays and bulk assignment tools were critical for reducing cognitive load on administrators." },
+        { type: "grid", title: "Design Process", items: [
+            { label: "01. UX Workflows", text: "Created user flows for common administrative tasks (e.g., onboarding a new employee, revoking access)." },
+            { label: "02. UI Components", text: "Utilized shadcn/ui to build accessible data tables, complex nested forms, and confirmation dialogs." },
+            { label: "03. Data Handling", text: "Implemented strict TypeScript interfaces to map roles and permissions, ensuring UI state matches the backend contract." }
         ]},
-        { type: "text", title: "Project Structure", content: "app/ directory contains pages using Next.js App Router with page.tsx as entry points. components/ houses reusable UI components following atomic design principles. lib/ includes utility functions and shared logic. Configuration files (next.config.ts, tailwind.config.ts, tsconfig.json) define build and compiler settings." },
-        { type: "text", title: "Development Features", content: "ESLint configuration ensures code quality and consistency. Hot Module Replacement (HMR) for instant feedback during development. TypeScript strict mode catches potential issues at compile time. PostCSS processes Tailwind directives for optimized CSS output." },
-        { type: "text", title: "Real-World Application", content: "This RBAC UI demonstrates enterprise-grade access control patterns applicable to SaaS platforms, content management systems, and internal admin tools. The modular architecture allows easy extension for custom business logic while maintaining security best practices." }
+        { type: "image", url: "https://picsum.photos/seed/rbac-dash/1200/600", caption: "Dashboard layout iterations and permission matrix design." },
+        { type: "text", title: "Measurable Outcomes", content: "Created a highly modular, enterprise-ready administrative interface. The strict typing and accessible component library provide a scalable foundation that can be easily integrated with backend authentication services." }
     ]
   },
-    { 
-        id: 12, 
-        title: "AESTHETIC SYNTHESIS", 
-        category: "Interactive Web Experience", 
+    {
+        id: 12,
+        title: "AESTHETIC SYNTHESIS",
+        category: "Interactive Web Experience",
+        type: 'creative',
         year: "2026", 
         span: "col-span-1 md:col-span-2 row-span-2", 
         description: "Interactive field guide to 2026 visual trends and future-facing design directions.", 
         details: ["HTML5", "Visual Design", "Trend Curation", "GitHub Pages"], 
         color: "#7C3AED",
+        coverImage: "https://picsum.photos/seed/aesthetic-synthesis/1200/800",
         liveUrl: "https://aniketh703.github.io/one/",
         liveLabel: "Open Live Guide",
         repoUrl: "https://github.com/aniketh703/one",
         repoLabel: "View Repository",
         modules: [
                 { type: "intro", content: "A digital field guide translating future design trend research into an immersive web experience. Built to make aesthetic movements accessible, explorable, and experiential for designers and curious creators." },
-                { type: "text", title: "Credits & Roles", content: "Research and concept foundation by Ioana Adriana Teleanu via UX Goodies / Bootcamp. Web development and visual execution by Aniketh Vustepalle. This project intentionally keeps credit transparent and front-facing." },
-                { type: "grid", title: "Featured Aesthetic Directions", items: [
-                        { label: "01. Technical Mono", text: "Code Brutalism interfaces, monospaced systems, terminal-inspired visual language, and utilitarian digital textures." },
-                        { label: "02. Surveillance Dystopia", text: "High-contrast, system-alert motifs and control-room UI metaphors expressing tension between utility and unease." },
-                        { label: "03. Tech-Organic", text: "Bio-computing inspired visuals blending synthetic structures with natural forms, gradients, and living system aesthetics." },
-                        { label: "04. Nostalgic Futurisms", text: "Frutiger Aero, Heisei retro, Lo-Fi pixel, Kidcore, Y3K hyperfuturism, Dreamcore, and adjacent hybrid internet aesthetics." }
+                { type: "text", title: "The Problem & User Needs", content: "Design trends and aesthetic research are typically presented in static, uninspiring slide decks. There was an opportunity to build an interactive web experience that actually embodies the future design trends it discusses." },
+                { type: "grid", title: "Role & Contributions", items: [
+                        { label: "Role", text: "Web Developer & Creative Coder" },
+                        { label: "Responsibilities", text: "Translating static research into an interactive, performant web experience. Handling typography, layout, and deployment." },
+                        { label: "Collaboration", text: "Visual execution based on research foundation by Ioana Adriana Teleanu." }
                 ]},
-                { type: "quote", content: "Research-led aesthetics, translated into interaction." },
-                { type: "text", title: "Implementation", content: "Single-page HTML experience optimized for fast loading and straightforward deployment on GitHub Pages. Crafted interactions and typography hierarchy turn static trend analysis into a guided digital narrative." },
-                { type: "grid", title: "Project Links", items: [
-                        { label: "Live Guide", text: "https://aniketh703.github.io/one/" },
-                        { label: "Repository", text: "https://github.com/aniketh703/one" },
-                        { label: "Context", text: "Launched as a 2026 field guide announcement highlighting transparent collaboration and credit where due." }
+                { type: "text", title: "Research Methods", content: "Curated research on upcoming visual movements like Code Brutalism, Tech-Organic, and Nostalgic Futurisms. Analyzed how interaction design can reflect these specific aesthetic philosophies." },
+                { type: "grid", title: "Design Process", items: [
+                        { label: "01. Visual Translation", text: "Designed interface metaphors matching the trends (e.g., terminal aesthetics for 'Technical Mono')." },
+                        { label: "02. Interaction Design", text: "Implemented scroll-based triggers and hover states that feel tactile and futuristic." },
+                        { label: "03. Performance", text: "Optimized a single-page HTML architecture for immediate loading on GitHub Pages." }
                 ]},
-                { type: "text", title: "Why It Matters", content: "The project demonstrates how design research can be transformed into a public educational artifact—not just summarized in slides but experienced interactively on the web." }
+                { type: "image", url: "https://picsum.photos/seed/aesthetic-ui/1200/600", caption: "Typography and visual motif explorations." },
+                { type: "text", title: "Measurable Outcomes", content: "Successfully deployed a highly engaging interactive artifact. Demonstrates the ability to bridge the gap between abstract design research and concrete web development, creating an immersive educational tool." }
         ]
-    },
+    }
 ];
-
-const projectThinkingDefaults = {
-    realProblem: "A user-facing problem framing will be added as this case study evolves.",
-    constraints: ["Time constraints", "Limited artifacts", "Iterative scope changes"],
-    deadEnd: "An initial implementation path was explored before the final direction was chosen.",
-    pivot: "Feedback from implementation changed the strategy to a more usable direction.",
-    whatIDLearn: "I would validate assumptions earlier in the process.",
-    coverImage: null,
-    featured: false,
-};
-
-export const projects = rawProjects.map((project) => ({
-    ...projectThinkingDefaults,
-    ...project,
-}));
