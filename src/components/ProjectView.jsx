@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { X, ArrowRight, ArrowLeft, Home, Quote } from 'lucide-react';
 import GenerativeArt from './GenerativeArt';
 
-const ProjectView = ({ project, onClose, onNext, onPrev, onHome }) => {
+const ProjectView = ({ project, scrollRef, onClose, onNext, onPrev, onHome }) => {
   const [isExiting, setIsExiting] = useState(false);
 
   if (!project) return null;
@@ -73,7 +73,7 @@ const ProjectView = ({ project, onClose, onNext, onPrev, onHome }) => {
       case 'intro': 
         return (<p key={index} className="text-xl md:text-5xl font-serif leading-tight mb-10 md:mb-16 text-stone-900 md:indent-24">{module.content}</p>);
       case 'text': 
-        return (<div key={index} className="mb-10 md:mb-16 max-w-3xl">{module.title && <h3 className="font-serif text-2xl md:text-3xl mb-4 md:mb-6">{module.title}</h3>}<p className="text-base md:text-lg leading-relaxed text-stone-700 font-light">{module.content}</p></div>);
+        return (<div key={index} className="mb-10 md:mb-16 max-w-3xl">{module.title && <h3 className="font-serif text-2xl md:text-3xl mb-4 md:mb-6 text-stone-900">{module.title}</h3>}<p className="text-base md:text-lg leading-relaxed text-stone-700 font-light">{module.content}</p></div>);
       case 'quote': 
         return (<div key={index} className="py-10 md:py-16 border-y border-stone-200 my-10 md:my-16"><Quote className="text-orange-500 mb-4 md:mb-6 opacity-50" size={36} /><p className="text-2xl md:text-6xl font-serif italic leading-tight text-stone-900">"{module.content}"</p></div>);
       case 'grid': 
@@ -84,7 +84,7 @@ const ProjectView = ({ project, onClose, onNext, onPrev, onHome }) => {
                 {module.items.map((item, i) => (
                     <div key={i} className="bg-white p-6 border border-stone-200 shadow-sm">
                         <span className="font-mono text-xs text-orange-500 block mb-3">{item.label}</span>
-                        <p className="font-serif text-lg leading-relaxed">{item.text}</p>
+                        <p className="font-serif text-lg leading-relaxed text-stone-800">{item.text}</p>
                     </div>
                 ))}
             </div>
@@ -109,7 +109,7 @@ const ProjectView = ({ project, onClose, onNext, onPrev, onHome }) => {
   };
 
   return (
-    <div data-lenis-prevent className={`fixed inset-0 z-[150] bg-stone-100 overflow-y-auto no-scrollbar ${isExiting ? 'project-close' : 'project-open'}`}>
+    <div ref={scrollRef} data-lenis-prevent style={{ colorScheme: 'light' }} className={`fixed inset-0 z-[150] bg-stone-100 text-stone-900 overflow-y-auto no-scrollbar ${isExiting ? 'project-close' : 'project-open'}`}>
       <div className="fixed top-4 right-4 md:top-6 md:right-6 z-[160] mix-blend-difference text-white pointer-events-auto">
         <button onClick={handleClose} className="flex items-center gap-2 hover:opacity-70 transition-opacity duration-300 touch-target">
             <span className="font-mono text-xs uppercase tracking-widest hidden md:block">Close View</span>
@@ -166,7 +166,7 @@ const ProjectView = ({ project, onClose, onNext, onPrev, onHome }) => {
                   <span className="block font-mono text-xs text-stone-400 uppercase tracking-widest mb-2">Stack</span>
                   <div className="flex flex-wrap gap-2">
                       {project.details.map(tech => (
-                          <span key={tech} className="border border-stone-300 px-2 py-1 text-xs font-mono rounded-full bg-white">{tech}</span>
+                          <span key={tech} className="border border-stone-300 px-2 py-1 text-xs font-mono rounded-full bg-white text-stone-900">{tech}</span>
                       ))}
                   </div>
               </div>
@@ -216,7 +216,7 @@ const ProjectView = ({ project, onClose, onNext, onPrev, onHome }) => {
                 <div className="mt-16 md:mt-24 space-y-8">
                   <div className="w-full h-[260px] md:h-[400px] bg-stone-200 overflow-hidden relative group">
                       <GenerativeArt id={project.id + 10} color={project.color} />
-                      <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur px-3 py-1 text-xs font-mono uppercase tracking-widest">Fig 1.1 — Final Render</div>
+                      <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur px-3 py-1 text-xs font-mono uppercase tracking-widest text-stone-900">Fig 1.1 — Final Render</div>
                   </div>
               </div>
             </div>
@@ -227,7 +227,7 @@ const ProjectView = ({ project, onClose, onNext, onPrev, onHome }) => {
               onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), handlePrev(e))}
               role="button"
               tabIndex="0"
-              className="group border-b md:border-b-0 md:border-r border-stone-900 bg-stone-100 hover:bg-stone-900 hover:text-white transition-colors duration-500 cursor-pointer py-10 md:py-16 px-6 md:px-8 flex flex-col items-center justify-center text-center outline-none focus:bg-stone-900 focus:text-white"
+              className="group border-b md:border-b-0 md:border-r border-stone-900 bg-stone-100 text-stone-900 hover:bg-stone-900 hover:text-white transition-colors duration-500 cursor-pointer py-10 md:py-16 px-6 md:px-8 flex flex-col items-center justify-center text-center outline-none focus:bg-stone-900 focus:text-white"
             >
               <span className="font-mono text-xs uppercase tracking-widest mb-2 opacity-50">Previous Project</span>
               <div className="flex items-center gap-3">
@@ -241,7 +241,7 @@ const ProjectView = ({ project, onClose, onNext, onPrev, onHome }) => {
               onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), handleHomeBtn(e))}
               role="button"
               tabIndex="0"
-              className="group border-b md:border-b-0 md:border-r border-stone-900 bg-stone-100 hover:bg-stone-900 hover:text-white transition-colors duration-500 cursor-pointer py-10 md:py-16 px-6 md:px-8 flex flex-col items-center justify-center text-center outline-none focus:bg-stone-900 focus:text-white"
+              className="group border-b md:border-b-0 md:border-r border-stone-900 bg-stone-100 text-stone-900 hover:bg-stone-900 hover:text-white transition-colors duration-500 cursor-pointer py-10 md:py-16 px-6 md:px-8 flex flex-col items-center justify-center text-center outline-none focus:bg-stone-900 focus:text-white"
             >
               <span className="font-mono text-xs uppercase tracking-widest mb-2 opacity-50">Index</span>
               <div className="flex items-center gap-3">
@@ -255,7 +255,7 @@ const ProjectView = ({ project, onClose, onNext, onPrev, onHome }) => {
               onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), handleNext(e))}
               role="button"
               tabIndex="0"
-              className="group bg-stone-100 hover:bg-stone-900 hover:text-white transition-colors duration-500 cursor-pointer py-10 md:py-16 px-6 md:px-8 flex flex-col items-center justify-center text-center outline-none focus:bg-stone-900 focus:text-white"
+              className="group bg-stone-100 text-stone-900 hover:bg-stone-900 hover:text-white transition-colors duration-500 cursor-pointer py-10 md:py-16 px-6 md:px-8 flex flex-col items-center justify-center text-center outline-none focus:bg-stone-900 focus:text-white"
             >
               <span className="font-mono text-xs uppercase tracking-widest mb-2 opacity-50">Next Project</span>
               <div className="flex items-center gap-3">
