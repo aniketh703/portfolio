@@ -3,42 +3,67 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
+    <!-- Dark mode: apply class before React renders to prevent flash -->
+    <script>
+      (function(){
+        var t=localStorage.getItem('theme');
+        var d=window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if(t==='dark'||(t===null&&d)){document.documentElement.classList.add('dark');}
+      })();
+    </script>
+
     <!-- Primary Meta Tags -->
-    <title>Aniketh Vustepalle | UI/UX Designer & Creative Developer</title>
-    <meta name="title" content="Aniketh Vustepalle | UI/UX Designer & Creative Developer" />
+    <title>Aniketh Vustepalle | UI/UX Designer &amp; Creative Developer</title>
+    <meta name="title" content="Aniketh Vustepalle | UI/UX Designer &amp; Creative Developer" />
     <meta name="description" content="UI Engineer and Creative Developer designing intuitive digital experiences. Specialized in React, TypeScript, Python, and AI-driven systems. Based in Hyderabad, India." />
     <meta name="keywords" content="UI Designer, UX Designer, Frontend Developer, React Developer, TypeScript, Python, Creative Developer, Web Designer, Portfolio, Aniketh Vustepalle" />
     <meta name="author" content="Aniketh Vustepalle" />
     <meta name="robots" content="index, follow" />
     <meta name="language" content="English" />
-    <meta name="theme-color" content="#1c1917" />
-    
+    <meta name="theme-color" content="#F5F5F5" />
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://aniketh703.github.io/portfolio/" />
-    
-    <!-- Open Graph / Facebook -->
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://aniketh703.github.io/portfolio/" />
-    <meta property="og:title" content="Aniketh Vustepalle | UI/UX Designer & Creative Developer" />
-    <meta property="og:description" content="UI Engineer and Creative Developer designing intuitive digital experiences. Specialized in React, TypeScript, Python, and AI-driven systems." />
+    <meta property="og:title" content="Aniketh Vustepalle | UI/UX Designer &amp; Creative Developer" />
+    <meta property="og:description" content="UI Engineer and Creative Developer designing intuitive digital experiences." />
     <meta property="og:image" content="https://aniketh703.github.io/portfolio/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content="Aniketh Vustepalle Portfolio" />
     <meta property="og:locale" content="en_US" />
-    
+
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-    
+
+    <!-- GitHub Pages SPA: decode redirect from 404.html -->
+    <script>
+      (function(l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search.slice(1).split('&').map(function(s) {
+            return s.replace(/~and~/g, '&');
+          });
+          window.history.replaceState(null, null,
+            l.pathname.slice(0, -1) + decoded[0] +
+            (decoded[1] ? '?' + decoded[1] : '') +
+            l.hash
+          );
+        }
+      }(window.location));
+    </script>
+
+    <!-- Pageclip (contact form) -->
+    <link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen">
+
+    <!-- Fonts are self-hosted via @fontsource (imported in main.jsx) -->
+
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
     {
@@ -46,31 +71,24 @@
       "@type": "Person",
       "name": "Aniketh Vustepalle",
       "url": "https://aniketh703.github.io/portfolio/",
-      "image": "https://aniketh703.github.io/portfolio/og-image.jpg",
-      "jobTitle": "UI/UX Designer & Creative Developer",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "PanTerra Networks"
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Hyderabad",
-        "addressCountry": "IN"
-      },
-      "description": "UI Engineer and Creative Developer designing intuitive digital experiences. Specialized in React, TypeScript, Python, and AI-driven systems.",
+      "jobTitle": "UI/UX Designer and Creative Developer",
+      "worksFor": { "@type": "Organization", "name": "PanTerra Networks" },
+      "address": { "@type": "PostalAddress", "addressLocality": "Hyderabad", "addressCountry": "IN" },
+      "description": "UI Engineer and Creative Developer designing intuitive digital experiences.",
       "alumniOf": "Sri Chandrasekharendra Saraswathi Viswa Mahavidyalaya",
       "telephone": "+91-9311761114",
-      "knowsAbout": ["UI Design", "UX Design", "Frontend Development", "React", "TypeScript", "Python", "Machine Learning", "Web Development"],
+      "knowsAbout": ["UI Design", "UX Design", "React", "TypeScript", "Python"],
       "sameAs": [
         "https://github.com/aniketh703",
-        "https://linkedin.com/in/aniketh-vustepalle/",
-        "https://wa.me/919311761114"
+        "https://linkedin.com/in/aniketh-vustepalle/"
       ]
     }
     </script>
   </head>
   <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
   </body>
 </html>
