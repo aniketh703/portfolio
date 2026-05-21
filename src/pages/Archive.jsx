@@ -1,118 +1,199 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { ArrowUpRight } from 'lucide-react';
 import GenerativeArt from '../components/GenerativeArt';
 import Footer from '../components/Footer';
 
-const Archive = ({ projects, onSelect, onNavigate }) => {
-  const [hoveredId, setHoveredId] = useState(null);
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-  const archiveList = [...projects]
-    .sort((a, b) => Number(b.year) - Number(a.year) || a.title.localeCompare(b.title))
-    .map((p, i) => ({ ...p, uniqueId: `${p.id}-${i}` }));
+const ProjectThumb = ({ project }) => {
+  const [imgFailed, setImgFailed] = useState(false);
+  if (project.coverImage && !imgFailed) {
+    return (
+      <img
+        src={project.coverImage}
+        alt={project.title}
+        onError={() => setImgFailed(true)}
+        className="w-full h-full object-cover"
+      />
+    );
+  }
+  return <GenerativeArt id={project.id} color={project.color} />;
+};
 
-  useEffect(() => {
-    document.title = "Archive | Aniketh Vustepalle";
-    const handleMove = (e) => { 
-      setCursorPos({ x: e.clientX, y: e.clientY }); 
-    };
-    window.addEventListener('mousemove', handleMove);
-    return () => window.removeEventListener('mousemove', handleMove);
-  }, []);
+const skills = ['AI Product Design', 'Design Systems', 'React.js', 'Figma', 'Prompt Engineering', 'Python', 'UX Research', 'Prototyping', 'CI/CD', 'SQL', 'HTML/CSS', 'JavaScript'];
+const tools  = ['Figma', 'VS Code', 'Git', 'GitHub', 'AWS', 'Google Cloud', 'Adobe XD'];
 
-  // Constrain preview box position to stay within viewport
-  const getPreviewPosition = () => {
-    const previewWidth = 256; // w-64 = 16rem = 256px
-    const previewHeight = 256; // h-64 = 16rem = 256px
-    const offsetX = 20;
-    const offsetY = 20;
-    const padding = 15;
-    let left = cursorPos.x + offsetX;
-    let top = cursorPos.y + offsetY;
+const Projects = ({ projects, onSelect, onNavigate }) => {
+  const TYPE_FILTERS = [
+    { key: 'all',         label: 'All'         },
+    { key: 'design',      label: 'Design'      },
+    { key: 'engineering', label: 'Engineering' },
+    { key: 'ml',          label: 'ML & Data'   },
+    { key: 'creative',    label: 'Creative'    },
+  ];
 
-    // Constrain left position
-    if (left + previewWidth + padding > window.innerWidth) {
-      left = cursorPos.x - previewWidth - offsetX;
-    }
-
-    // Constrain top position
-    if (top + previewHeight + padding > window.innerHeight) {
-      top = cursorPos.y - previewHeight - offsetY;
-    }
-
-    // Ensure minimum positions
-    if (left < padding) left = padding;
-    if (top < padding) top = padding;
-
-    return { left, top };
-  };
-
-  const previewPos = getPreviewPosition();
+  const [filter, setFilter] = useState('all');
+  const filtered = filter === 'all' ? projects : projects.filter(p => p.type === filter);
 
   return (
     <>
-      <section className="min-h-screen bg-stone-50 page-container relative mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 md:gap-12 md:px-8 overflow-hidden">
-        <div className="flex justify-between items-end mb-8 md:mb-12 border-b border-stone-300 pb-6 gap-4">
-            <div>
-                <span className="font-sans text-xs font-semibold uppercase tracking-widest text-stone-500 opacity-60 block mb-2">Collection</span>
-            <h1 className="text-4xl md:text-7xl font-serif leading-none tracking-tighter">Archive</h1>
-            </div>
-            <div className="text-right hidden md:block">
-                <p className="font-sans text-xs uppercase tracking-widest text-stone-500 opacity-60">Full Index</p>
-                <p className="font-sans text-xs uppercase tracking-widest text-stone-600 opacity-70">2023 — 2026</p>
-            </div>
-        </div>
-        <div 
-          className="fixed w-64 h-64 pointer-events-none z-50 transition-opacity duration-300 hidden md:block overflow-hidden border border-stone-300 bg-white subtle-shadow rounded-lg" 
-          style={{ 
-            left: `${previewPos.left}px`, 
-            top: `${previewPos.top}px`, 
-            opacity: hoveredId !== null ? 1 : 0 
-          }}
-        >
-            {hoveredId !== null && archiveList[hoveredId] && (
-              archiveList[hoveredId].coverImage ? (
-                <img
-                  src={archiveList[hoveredId].coverImage}
-                  alt={`${archiveList[hoveredId].title} preview`}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <GenerativeArt id={archiveList[hoveredId].id} color={archiveList[hoveredId].color} />
-              )
-            )}
-        </div>
-        <div className="w-full">
-            <div className="grid grid-cols-10 md:grid-cols-12 gap-3 md:gap-4 font-sans text-[10px] md:text-xs font-semibold uppercase tracking-widest text-stone-500 mb-4 px-3 md:px-4 opacity-60">
-              <div className="hidden md:block md:col-span-1">ID</div>
-              <div className="col-span-6 md:col-span-5">Project Name</div>
-              <div className="hidden md:block col-span-3">Discipline</div>
-              <div className="col-span-3 md:col-span-2 text-right">Year</div>
-              <div className="col-span-1 md:col-span-1 text-right">Link</div>
-          </div>
-          {archiveList.map((project, index) => (
-            <div 
-              key={project.uniqueId} 
-              role="button"
-              tabIndex="0"
-              onClick={() => onSelect(project)} 
-              onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onSelect(project)}
-              onMouseEnter={() => setHoveredId(index)} 
-              onMouseLeave={() => setHoveredId(null)} 
-              className={`group grid grid-cols-10 md:grid-cols-12 gap-3 md:gap-4 items-center py-5 md:py-6 border-t border-stone-300 hover:bg-stone-900 hover:text-stone-50 transition-all duration-300 cursor-pointer px-3 md:px-4 outline-none focus:bg-stone-900 focus:text-stone-50 ${index % 2 === 0 ? 'bg-transparent' : 'bg-stone-50/60'}`}
+      <Helmet>
+        <title>Work | Aniketh Vustepalle</title>
+        <meta name="description" content="UI/UX and engineering projects by Aniketh Vustepalle — from enterprise SaaS dashboards to MLOps pipelines and mobile apps." />
+        <meta property="og:title" content="Work | Aniketh Vustepalle" />
+        <meta property="og:description" content="UI/UX and engineering projects — SaaS dashboards, mobile apps, MLOps, and more." />
+        <meta property="og:url" content="https://aniketh703.github.io/portfolio/work" />
+        <meta property="og:image" content="https://aniketh703.github.io/portfolio/og-image.jpg" />
+      </Helmet>
+      <section className="bg-stone-50 dark:bg-[#111] min-h-screen">
+        <div className="max-w-5xl mx-auto px-6 md:px-10">
+
+          {/* Header */}
+          <div className="pt-32 pb-10">
+            <h1
+              className="font-sans font-bold leading-none tracking-tight text-brand-dark dark:text-[#eee]"
+              style={{ fontSize: 'clamp(3rem, 8vw, 5.5rem)' }}
             >
-              <div className="hidden md:block md:col-span-1 font-mono text-xs opacity-60 group-hover:opacity-100">{String(index + 1).padStart(2, '0')}</div>
-              <div className="col-span-6 md:col-span-5 font-serif text-lg md:text-3xl font-medium leading-tight truncate">{project.title}</div>
-              <div className="hidden md:block col-span-3 font-mono text-xs uppercase tracking-widest opacity-70">{project.category}</div>
-              <div className="col-span-3 md:col-span-2 text-right font-mono text-xs opacity-70">{project.year}</div>
-              <div className="col-span-1 md:col-span-1 flex justify-end"><ArrowUpRight size={16} className="opacity-90 md:opacity-0 md:group-hover:opacity-100 transition-opacity" /></div>
+              Projects
+            </h1>
+          </div>
+
+          {/* Filter pills */}
+          <div className="flex gap-2 flex-wrap pb-10">
+            {TYPE_FILTERS.map(({ key, label }) => {
+              const count = key === 'all' ? projects.length : projects.filter(p => p.type === key).length;
+              return (
+                <button
+                  key={key}
+                  onClick={() => setFilter(key)}
+                  className={`font-sans text-xs font-medium px-4 py-1.5 rounded-full border transition-all duration-300 ease-out hover:scale-[1.03] active:scale-[0.97] tracking-tight ${
+                    filter === key
+                      ? 'bg-brand-dark text-white border-brand-dark shadow-sm dark:bg-[#eee] dark:text-[#111] dark:border-[#eee]'
+                      : 'bg-transparent text-stone-500 border-stone-200 hover:border-stone-300 hover:text-stone-800 dark:text-[#aaa] dark:border-[#2a2a2a] dark:hover:border-[#444] dark:hover:text-[#888]'
+                  }`}
+                >
+                  {label} <span className="opacity-50 ml-0.5">({count})</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Grid — matches Framer layout: dark card + text below */}
+          <div className="pb-24 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-10">
+            {filtered.map((project) => (
+              <div
+                key={project.id}
+                role="button"
+                tabIndex="0"
+                aria-label={`View ${project.title} project`}
+                onClick={() => onSelect(project)}
+                onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onSelect(project)}
+                className="group cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-brand-dark/30 dark:focus-visible:ring-[#eee]/30"
+              >
+                {/* Dark image container — matches Framer's #1a1a1a card */}
+                <div className="relative bg-stone-100 dark:bg-[#1a1a1a] rounded-[5px] overflow-hidden border border-stone-200 dark:border-transparent">
+                  {/* Inner thumbnail with slight inset rounding */}
+                  <div className="m-2 rounded-lg overflow-hidden">
+                    <div className="w-full aspect-[4/3] overflow-hidden">
+                      <ProjectThumb project={project} />
+                    </div>
+                  </div>
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 dark:group-hover:bg-black/25 transition-colors duration-300 rounded-[5px]" />
+                  {/* Hover arrow */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-300 shadow-lg">
+                    <ArrowUpRight aria-hidden="true" size={16} className="text-brand-dark dark:text-[#111]" />
+                  </div>
+                  {/* Featured badge */}
+                  {project.featured && (
+                    <div className="absolute top-4 left-4 font-sans text-[10px] font-medium uppercase tracking-[0.12em] bg-brand-lime text-brand-dark px-2 py-1 rounded-full">
+                      Featured
+                    </div>
+                  )}
+                </div>
+
+                {/* Details below card — matches Framer's Details section */}
+                <div className="mt-3 px-0.5">
+                  <p className="font-sans text-[15px] font-medium tracking-[-0.01em] leading-[165%] text-brand-dark group-hover:text-brand dark:text-[#ccc] dark:group-hover:text-[#eee] transition-colors duration-200">
+                    {project.title}
+                  </p>
+                  <p className="font-sans text-sm text-stone-500 dark:text-[#aaa] leading-relaxed tracking-tight">
+                    {project.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {filtered.length === 0 && (
+            <div className="py-24 text-center">
+              <p className="font-sans text-sm text-stone-500 dark:text-[#aaa]">No projects in this category yet.</p>
             </div>
-          ))}
-          <div className="border-t border-stone-900"></div>
+          )}
         </div>
       </section>
+
+      {/* Bio + Skills section — dark, matches projects_page.png */}
+      <section className="bg-white dark:bg-[#0d0d0d] border-t border-stone-200 dark:border-[#1a1a1a] py-20 md:py-28">
+        <div className="max-w-5xl mx-auto px-6 md:px-10">
+
+          {/* Large watermark stat */}
+          <p
+            className="font-sans font-black tracking-tight text-stone-200 dark:text-[#1c1c1c] leading-none mb-12 select-none"
+            style={{ fontSize: 'clamp(5rem, 18vw, 14rem)' }}
+            aria-hidden="true"
+          >
+            1+ years
+          </p>
+
+          {/* Bio */}
+          <div className="max-w-2xl mb-12">
+            <p className="font-sans text-[15px] text-stone-500 dark:text-[#aaa] leading-relaxed tracking-tight mb-4">
+              I&apos;ve been designing and building digital products, starting with a
+              foundation in computer science and evolving toward AI-driven product design.
+            </p>
+            <p className="font-sans text-[15px] text-stone-500 dark:text-[#aaa] leading-relaxed tracking-tight">
+              I shifted my focus to product and UI design driven by the challenge of solving real user
+              problems through thoughtful, functional interfaces and intelligent systems.
+            </p>
+          </div>
+
+          {/* Skills */}
+          <div className="mb-8">
+            <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-stone-400 dark:text-[#888] mb-4">Skills</p>
+            <div className="flex flex-wrap gap-2">
+              {skills.map(s => (
+                <span key={s} className="font-sans text-[12px] text-stone-600 border border-stone-200 px-3 py-1.5 rounded-full hover:border-stone-300 hover:text-stone-800 dark:text-[#aaa] dark:border-[#222] dark:hover:border-[#3a3a3a] dark:hover:text-[#777] transition-colors duration-200">
+                  {s}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Tools */}
+          <div className="mb-12">
+            <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-stone-400 dark:text-[#888] mb-4">Tools</p>
+            <div className="flex flex-wrap gap-2">
+              {tools.map(t => (
+                <span key={t} className="font-sans text-[12px] text-stone-600 border border-stone-200 px-3 py-1.5 rounded-full hover:border-stone-300 hover:text-stone-800 dark:text-[#aaa] dark:border-[#222] dark:hover:border-[#3a3a3a] dark:hover:text-[#777] transition-colors duration-200">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Resume link */}
+          <button
+            onClick={() => onNavigate && onNavigate('about')}
+            className="group inline-flex items-center gap-2 font-sans text-sm font-medium text-stone-600 border border-stone-200 px-6 py-3 rounded-[5px] hover:border-stone-300 hover:text-stone-800 dark:text-[#aaa] dark:border-[#2a2a2a] dark:hover:border-[#444] dark:hover:text-[#888] transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98] shadow-sm hover:shadow-md"
+          >
+            Full resume <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </button>
+        </div>
+      </section>
+
       <Footer onNavigate={onNavigate} />
     </>
   );
 };
 
-export default Archive;
+export default Projects;
