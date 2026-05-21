@@ -72,8 +72,8 @@ const ProjectView = ({ project, scrollRef, onClose, onNext, onPrev, onHome }) =>
         );
       case 'intro': 
         return (<p key={index} className="text-xl md:text-5xl font-serif leading-tight mb-10 md:mb-16 text-stone-900 md:indent-24">{module.content}</p>);
-      case 'text': 
-        return (<div key={index} className="mb-10 md:mb-16 max-w-3xl">{module.title && <h3 className="font-serif text-2xl md:text-3xl mb-4 md:mb-6 text-stone-900">{module.title}</h3>}<p className="text-base md:text-lg leading-relaxed text-stone-700 font-light">{module.content}</p></div>);
+      case 'text':
+        return (<div key={index} className="mb-10 md:mb-16 max-w-3xl">{module.title && <h3 className="font-serif text-2xl md:text-3xl mb-4 md:mb-6 text-stone-900">{module.title}</h3>}<p className="font-sans text-base md:text-lg leading-relaxed text-stone-700 font-light">{module.content}</p></div>);
       case 'quote': 
         return (<div key={index} className="py-10 md:py-16 border-y border-stone-200 my-10 md:my-16"><Quote className="text-orange-500 mb-4 md:mb-6 opacity-50" size={36} /><p className="text-2xl md:text-6xl font-serif italic leading-tight text-stone-900">"{module.content}"</p></div>);
       case 'grid': 
@@ -88,6 +88,44 @@ const ProjectView = ({ project, scrollRef, onClose, onNext, onPrev, onHome }) =>
                     </div>
                 ))}
             </div>
+          </div>
+        );
+      case 'metrics':
+        return (
+          <div key={index} className="mb-10 md:mb-16 border border-stone-200 rounded-sm overflow-hidden">
+            <div className="grid grid-cols-3 divide-x divide-stone-200">
+              {module.items.map((item, i) => (
+                <div key={i} className="px-6 py-8 text-center bg-white">
+                  <div className="font-serif text-[clamp(2rem,5vw,3.5rem)] leading-none text-stone-900 mb-1">
+                    {item.value}
+                    {item.unit && (
+                      <span className="font-mono text-base text-stone-400 ml-1">{item.unit}</span>
+                    )}
+                  </div>
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-stone-400 mt-3">
+                    {item.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      case 'image':
+        return (
+          <div key={index} className="mb-10 md:mb-16">
+            <div className="w-full overflow-hidden rounded-sm border border-stone-200 bg-stone-100">
+              <img
+                src={module.url}
+                alt={module.caption || 'Project visual'}
+                className="w-full h-auto object-cover"
+                loading="lazy"
+              />
+            </div>
+            {module.caption && (
+              <p className="mt-3 font-mono text-[10px] uppercase tracking-widest text-stone-400">
+                {module.caption}
+              </p>
+            )}
           </div>
         );
       case 'code': 
@@ -109,7 +147,7 @@ const ProjectView = ({ project, scrollRef, onClose, onNext, onPrev, onHome }) =>
   };
 
   return (
-    <div ref={scrollRef} data-lenis-prevent style={{ colorScheme: 'light' }} className={`fixed inset-0 z-[150] bg-stone-100 text-stone-900 overflow-y-auto no-scrollbar ${isExiting ? 'project-close' : 'project-open'}`}>
+    <div ref={scrollRef} data-lenis-prevent style={{ colorScheme: 'light' }} className={`fixed inset-0 z-[150] bg-stone-50 text-stone-900 overflow-y-auto no-scrollbar ${isExiting ? 'project-close' : 'project-open'}`}>
       <div className="fixed top-4 right-4 md:top-6 md:right-6 z-[160] mix-blend-difference text-white pointer-events-auto">
         <button onClick={handleClose} className="flex items-center gap-2 hover:opacity-70 transition-opacity duration-300 touch-target">
             <span className="font-mono text-xs uppercase tracking-widest hidden md:block">Close View</span>
@@ -204,11 +242,11 @@ const ProjectView = ({ project, scrollRef, onClose, onNext, onPrev, onHome }) =>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
                         <div>
                             <h3 className="font-mono text-xs uppercase tracking-widest mb-6 text-stone-500 flex items-center gap-2"><span className="w-2 h-2 bg-orange-500 rounded-full"></span>The Challenge</h3>
-                            <p className="text-base md:text-lg leading-relaxed text-stone-700 font-light">{project.challenge || "Defining the problem space required a deep dive into user behavior and systemic inefficiencies."}</p>
+                            <p className="font-sans text-base md:text-lg leading-relaxed text-stone-700 font-light">{project.challenge || "Defining the problem space required a deep dive into user behavior and systemic inefficiencies."}</p>
                         </div>
                         <div>
                             <h3 className="font-mono text-xs uppercase tracking-widest mb-6 text-stone-500 flex items-center gap-2"><span className="w-2 h-2 bg-stone-900 rounded-full"></span>The Solution</h3>
-                            <p className="text-base md:text-lg leading-relaxed text-stone-700 font-light">{project.solution || "By simplifying the core interaction loop, I was able to create a system that feels both novel and intuitive."}</p>
+                            <p className="font-sans text-base md:text-lg leading-relaxed text-stone-700 font-light">{project.solution || "By simplifying the core interaction loop, I was able to create a system that feels both novel and intuitive."}</p>
                         </div>
                     </div>
                 </>

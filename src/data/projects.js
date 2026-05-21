@@ -28,6 +28,11 @@ export const projects = [
             { label: "02. Wireframing", text: "Low-fidelity sketches focusing on readability, smooth navigation between chapters, and an intuitive verse search experience." },
             { label: "03. UI Iteration", text: "Refined the color palette and typography for long-form reading, incorporating dark mode and adjustable font sizes." }
         ]},
+        { type: 'metrics', items: [
+            { value: '700+', unit: '',    label: 'Verses indexed' },
+            { value: '8',    unit: 'wks', label: 'Build time' },
+            { value: '3',    unit: 'x',   label: 'Faster than alternatives' },
+        ]},
         { type: "image", url: "https://picsum.photos/seed/gita-wireframes/1200/600", caption: "Early wireframe iterations focusing on navigation and verse layout." },
         { type: "text", title: "Measurable Outcomes", content: "Established a scalable, validated JSON data structure capable of supporting multiple languages. Created a working React Native prototype that demonstrates smooth scrolling and instant data retrieval. Internal testing showed highly positive feedback regarding readability and interface simplicity." }
     ]
