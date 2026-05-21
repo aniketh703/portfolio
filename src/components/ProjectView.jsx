@@ -147,7 +147,7 @@ const ProjectView = ({ project, scrollRef, onClose, onNext, onPrev, onHome }) =>
   };
 
   return (
-    <div ref={scrollRef} data-lenis-prevent style={{ colorScheme: 'light' }} className={`fixed inset-0 z-[150] bg-stone-50 text-stone-900 overflow-y-auto no-scrollbar ${isExiting ? 'project-close' : 'project-open'}`}>
+    <div ref={scrollRef} data-lenis-prevent style={{ colorScheme: 'light' }} className={`fixed inset-0 z-[150] bg-stone-50 font-sans text-stone-900 overflow-y-auto no-scrollbar ${isExiting ? 'project-close' : 'project-open'}`}>
       <div className="fixed top-4 right-4 md:top-6 md:right-6 z-[160] mix-blend-difference text-white pointer-events-auto">
         <button onClick={handleClose} className="flex items-center gap-2 hover:opacity-70 transition-opacity duration-300 touch-target">
             <span className="font-mono text-xs uppercase tracking-widest hidden md:block">Close View</span>
