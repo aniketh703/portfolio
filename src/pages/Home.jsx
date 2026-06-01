@@ -155,7 +155,7 @@ const Home = ({ projects = [], onSelect, onNavigate }) => {
             </div>
             <div className="hero-photo max-w-[170px] w-full overflow-hidden rounded-xl border border-stone-200 dark:border-[#222] shadow-sm rotate-1 hover:rotate-0 transition-transform duration-500">
               <img
-                src={`${base}projects/logos/mp1.png`}
+                src={`${base}projects/logos/drg2.png`}
                 alt="Logo Design — GB Aesthetics Miami"
                 className="w-full aspect-[4/3] object-cover"
               />
