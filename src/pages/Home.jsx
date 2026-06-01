@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { ArrowUpRight, ArrowRight, Layers, User, Mail } from 'lucide-react';
 import gsap from 'gsap';
@@ -65,6 +65,28 @@ const featuredProjects = [
   { id: 4, title: 'DESIGN SYSTEM', category: 'Component Library', year: '2024', color: '#059669', details: [] },
 ];
 
+const RecentWorkMedia = ({ project }) => {
+  const [imgFailed, setImgFailed] = useState(false);
+
+  if (project.coverImage && !imgFailed) {
+    return (
+      <img
+        src={project.coverImage}
+        alt={project.title}
+        onError={() => setImgFailed(true)}
+        className="w-full h-full object-cover"
+        loading="lazy"
+      />
+    );
+  }
+
+  return (
+    <div role="img" aria-label={`${project.title} — decorative thumbnail`} className="w-full h-full">
+      <GenerativeArt id={project.id} color={project.color} />
+    </div>
+  );
+};
+
 const Home = ({ projects = [], onSelect, onNavigate }) => {
   const heroRef = useRef(null);
 
@@ -100,21 +122,30 @@ const Home = ({ projects = [], onSelect, onNavigate }) => {
   return (
     <>
       <Helmet>
-        <title>Aniketh Vustepalle | UI/UX Designer &amp; Creative Developer</title>
-        <meta name="description" content="UI Engineer and Creative Developer designing intuitive digital experiences. Specialized in React, TypeScript, Python, and AI-driven systems." />
-        <meta property="og:title" content="Aniketh Vustepalle | UI/UX Designer & Creative Developer" />
-        <meta property="og:description" content="UI Engineer and Creative Developer designing intuitive digital experiences." />
+        <title>Aniketh Vustepalle | AI Product Designer &amp; Creative Developer</title>
+        <meta name="description" content="AI Product Designer and Creative Developer with 1+ years designing enterprise SaaS interfaces and AI-driven systems. Specialized in React, TypeScript, Python, and Figma. Based in Hyderabad, India." />
+        <meta property="og:title" content="Aniketh Vustepalle | AI Product Designer & Creative Developer" />
+        <meta property="og:description" content="AI Product Designer and Creative Developer — 1+ years designing enterprise SaaS interfaces and AI-driven systems. Based in Hyderabad, India." />
         <meta property="og:url" content="https://aniketh703.github.io/portfolio/" />
         <meta property="og:image" content="https://aniketh703.github.io/portfolio/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Aniketh Vustepalle | AI Product Designer & Creative Developer" />
+        <meta name="twitter:description" content="AI Product Designer and Creative Developer — 1+ years designing enterprise SaaS interfaces and AI-driven systems. Based in Hyderabad, India." />
+        <meta name="twitter:image" content="https://aniketh703.github.io/portfolio/og-image.jpg" />
+        <link rel="canonical" href="https://aniketh703.github.io/portfolio/" />
       </Helmet>
     <div ref={heroRef} className="bg-stone-50 dark:bg-[#111]">
 
       {/* HERO */}
       <section className="max-w-3xl mx-auto px-6 md:px-10 pt-28 pb-16 md:pb-20 text-center">
-        <div className="mb-8 flex justify-center">
+        <div className="mb-8 flex justify-center gap-3 flex-wrap">
           <span className="inline-flex items-center gap-2 font-sans text-[11px] font-medium uppercase tracking-[0.15em] text-[#666] dark:text-[#aaa]">
             <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
             Available for projects
+          </span>
+          <span className="font-sans text-[11px] font-medium uppercase tracking-[0.15em] text-[#666] dark:text-[#aaa]">·</span>
+          <span className="font-sans text-[11px] font-medium uppercase tracking-[0.15em] text-[#666] dark:text-[#aaa]">
+            Hyderabad, India
           </span>
         </div>
 
@@ -126,9 +157,9 @@ const Home = ({ projects = [], onSelect, onNavigate }) => {
         </h1>
 
         <p className="hero-sub font-sans text-[15px] text-[#666] dark:text-[#888] max-w-lg leading-relaxed tracking-tight mb-10 mx-auto">
-          {"I design intelligent interfaces — and I build them. I'm an AI Product Designer & Developer blending "}
-          <em className="not-italic text-brand-dark dark:text-[#ccc]">design systems with real engineering</em>
-          {"."}
+          {"I design intelligent interfaces — and I build them. AI Product Designer & Developer based in "}
+          <em className="not-italic text-brand-dark dark:text-[#ccc]">Hyderabad, India</em>
+          {", blending design systems with real engineering."}
         </p>
 
         {/* Inline stats */}
@@ -372,7 +403,7 @@ const Home = ({ projects = [], onSelect, onNavigate }) => {
                 className="group bg-white dark:bg-[#141414] border border-stone-200 dark:border-[#222] rounded-xl overflow-hidden cursor-pointer outline-none focus:ring-2 focus:ring-brand/40 transition-all duration-300 hover:border-stone-300 dark:hover:border-[#333]"
               >
                 <div className="relative overflow-hidden bg-stone-100 dark:bg-[#1c1c1c] aspect-[4/3]">
-                  <GenerativeArt id={project.id} color={project.color} />
+                  <RecentWorkMedia project={project} />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300" />
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/90 dark:bg-[#eee]/90 flex items-center justify-center opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-300 shadow-lg">
                     <ArrowUpRight aria-hidden="true" size={18} className="text-brand-dark" />

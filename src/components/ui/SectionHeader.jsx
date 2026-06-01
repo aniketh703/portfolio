@@ -12,18 +12,18 @@ const SectionHeader = ({
     <div className={`flex ${align === 'center' ? 'justify-center text-center' : 'justify-between items-end'} mb-12 border-b border-stone-300 pb-6 ${className}`}>
       <div className={align === 'center' ? 'mx-auto' : ''}>
         {eyebrow && (
-          <span className="font-sans text-xs font-semibold uppercase tracking-widest text-stone-500 opacity-60 block mb-2">
+          <span className="font-sans text-xs font-semibold uppercase tracking-widest text-[#999] block mb-2">
             {eyebrow}
           </span>
         )}
         <div className="flex items-center gap-3">
-          {Icon && <Icon size={20} className="text-brand-orange opacity-70" />}
-          <h2 className="font-serif text-4xl md:text-5xl tracking-tight">
+          {Icon && <Icon size={20} className="text-brand" />}
+          <h2 className="font-sans font-bold text-4xl md:text-5xl tracking-tight">
             {title}
           </h2>
         </div>
         {subtitle && (
-          <p className="font-sans text-sm text-stone-600 mt-3 opacity-70 max-w-2xl">
+          <p className="font-sans text-sm text-[#666] mt-3 max-w-2xl">
             {subtitle}
           </p>
         )}

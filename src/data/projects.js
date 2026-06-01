@@ -1,106 +1,106 @@
+const showcaseAsset = (fileName) => `${import.meta.env.BASE_URL}showcase/${fileName.split('/').map(segment => encodeURIComponent(segment)).join('/')}`;
+
 export const projects = [
-  {
-    id: 1,
-    title: "GITA APP",
-    category: "Mobile Application",
-    type: 'design',
-    year: "2026", 
-    span: "col-span-1 md:col-span-2 row-span-2", 
-    description: "Bhagavad Gita mobile application with comprehensive data normalization pipeline.", 
-    details: ["TypeScript", "React Native", "Data Engineering", "Schema Design"], 
-    color: "#FF6B35",
-    coverImage: "https://picsum.photos/seed/gita-app/1200/800",
-    repoUrl: "https://github.com/aniketh703/gita-app",
-    repoLabel: "View Repository",
-    featured: true,
-    featuredRank: 2,
-    modules: [
-        { type: "intro", content: "A modern mobile experience for the Bhagavad Gita built on a robust data engineering foundation. TypeScript-first architecture with comprehensive schema validation and automated data processing pipelines." },
-        { type: "text", title: "The Problem & User Needs", content: "The Bhagavad Gita contains 18 chapters and 700 verses with multiple translations, commentaries, and transliterations. Users needed a mobile application that presented this ancient text in an accessible, distraction-free interface while ensuring the integrity of the complex underlying data." },
-        { type: "grid", title: "Role & Contributions", items: [
-            { label: "Role", text: "Lead Developer & Data Engineer" },
-            { label: "Responsibilities", text: "End-to-end development including data pipeline architecture, mobile application UI/UX design, and React Native implementation." },
-            { label: "Timeline", text: "8 Weeks from concept to functional prototype." }
-        ]},
-        { type: "text", title: "Research Methods", content: "Conducted competitive analysis of existing spiritual apps to identify UX pain points. Found that most apps suffered from cluttered interfaces and inconsistent data formatting. Analyzed reading patterns to optimize typographic hierarchy and translation toggle mechanisms." },
-        { type: "grid", title: "Design Process & Architecture", items: [
-            { label: "01. Schema Design", text: "Created canonical schema definitions with comprehensive validation rules to ensure data integrity across all verses." },
-            { label: "02. Wireframing", text: "Low-fidelity sketches focusing on readability, smooth navigation between chapters, and an intuitive verse search experience." },
-            { label: "03. UI Iteration", text: "Refined the color palette and typography for long-form reading, incorporating dark mode and adjustable font sizes." }
-        ]},
-        { type: 'metrics', items: [
-            { value: '700+', unit: '',    label: 'Verses indexed' },
-            { value: '8',    unit: 'wks', label: 'Build time' },
-            { value: '3',    unit: 'x',   label: 'Faster than alternatives' },
-        ]},
-        { type: "image", url: "https://picsum.photos/seed/gita-wireframes/1200/600", caption: "Early wireframe iterations focusing on navigation and verse layout." },
-        { type: "text", title: "Measurable Outcomes", content: "Established a scalable, validated JSON data structure capable of supporting multiple languages. Created a working React Native prototype that demonstrates smooth scrolling and instant data retrieval. Internal testing showed highly positive feedback regarding readability and interface simplicity." }
-    ]
-  },
-  {
-    id: 2,
-    title: "LAKSHYA",
-    category: "Career Platform",
-    type: 'design',
-    year: "2025", 
-    span: "col-span-1 md:col-span-1 row-span-2", 
-    description: "Career guidance platform similar to Google Career Dreamer.", 
-    details: ["TypeScript", "React", "T-Hub"], 
-    color: "#4A90E2",
-    coverImage: "https://picsum.photos/seed/lakshya/1200/800",
-    repoUrl: "https://github.com/aniketh703/Lakshya-Project",
-    repoLabel: "View Repository",
-    featured: true,
-    featuredRank: 3,
-    modules: [
-        { type: "intro", content: "Empowering job seekers with AI-driven career guidance and pathways. Built for T-Hub to democratize career exploration." },
-        { type: "text", title: "The Problem & User Needs", content: "Job seekers often struggle to identify clear career paths and understand the specific skill gaps they need to close to reach their dream roles. There was a need for an interactive tool to visualize career trajectories and provide actionable roadmaps." },
-        { type: "grid", title: "Role & Contributions", items: [
-            { label: "Role", text: "Frontend Developer & UI Designer" },
-            { label: "Responsibilities", text: "Designing the interactive career visualization interfaces, developing the React frontend, and ensuring responsive behavior." },
-            { label: "Collaboration", text: "Worked closely with domain experts at T-Hub." }
-        ]},
-        { type: "text", title: "Research Methods", content: "Analyzed existing tools like Google Career Dreamer. Conducted qualitative interviews with recent graduates to understand their anxieties regarding career planning, which informed the 'Skill Mapping' gap analysis feature." },
-        { type: "grid", title: "Design Process", items: [
-            { label: "01. Information Architecture", text: "Mapped out user flows from onboarding to career discovery, ensuring users don't feel overwhelmed." },
-            { label: "02. Visualizations", text: "Designed interactive node-based maps to represent career trajectories intuitively." },
-            { label: "03. Prototyping", text: "Iterative testing of the skill gap analysis dashboard for clarity." }
-        ]},
-        { type: "image", url: "https://picsum.photos/seed/lakshya-design/1200/600", caption: "Interactive career pathway visualization mockups." },
-        { type: "text", title: "Measurable Outcomes", content: "Developed a robust frontend prototype for T-Hub. Preliminary user testing indicated a significant increase in user confidence regarding their understanding of required skills for target roles. Setup the foundation for scalable AI integration." }
-    ]
-  },
-  {
-    id: 3,
-    title: "INDIAN COOK APP",
-    category: "Web Application",
-    type: 'design',
-    year: "2025", 
-    span: "col-span-1 md:col-span-1 row-span-2", 
-    description: "Recipe discovery platform for Indian cuisine based on available ingredients.", 
-    details: ["React 18", "Vite", "Tailwind CSS", "React Router"], 
-    color: "#D4745C",
-    coverImage: "https://picsum.photos/seed/indian-cook/1200/800",
-    repoUrl: "https://github.com/aniketh703/Cook-app",
-    repoLabel: "View Repository",
-    modules: [
-        { type: "intro", content: "A modern, user-friendly web application for discovering and cooking Indian recipes. Built with React 18 and Vite, featuring ingredient-based search, step-by-step cooking guidance, and a warm, inviting design system." },
-        { type: "text", title: "The Problem & User Needs", content: "Home cooks frequently face the dilemma of 'what can I cook with what I have?' specifically within the context of Indian cuisine. Users needed a way to filter traditional recipes based on their pantry contents to reduce food waste and decision fatigue." },
-        { type: "grid", title: "Role & Contributions", items: [
-            { label: "Role", text: "Full Stack Creator (Design & Code)" },
-            { label: "Responsibilities", text: "UI/UX design, React application development, state management for complex filtering, and curating the JSON recipe database." },
-            { label: "Timeline", text: "4 Weeks" }
-        ]},
-        { type: "text", title: "Research Methods", content: "Performed a heuristic evaluation of popular recipe apps (e.g., SuperCook) and noted a lack of focus on regional Indian cuisines. Surveyed amateur cooks to understand how they categorize their ingredients and dietary preferences." },
-        { type: "grid", title: "Design Process", items: [
-            { label: "01. UX Flows", text: "Created streamlined flows for ingredient selection and recipe matching without forcing user registration." },
-            { label: "02. UI Design System", text: "Developed a warm color palette (Terracotta, Beige, Sage) to evoke the feeling of a traditional kitchen." },
-            { label: "03. Interaction Design", text: "Implemented a step-by-step 'Cooking Mode' interface with built-in timers to prevent users from losing their place." }
-        ]},
-        { type: "image", url: "https://picsum.photos/seed/cook-app-ui/1200/600", caption: "Design system exploration and cooking mode UI iterations." },
-        { type: "text", title: "Measurable Outcomes", content: "Successfully implemented complex multi-parameter filtering (ingredients, region, dietary restrictions) with zero noticeable lag. User testing sessions highlighted the 'Cooking Mode' as a standout feature that improved the hands-on kitchen experience." }
-    ]
-  },
+    {
+        id: 1,
+        title: "GEETA APP",
+        category: "Mobile Application",
+        type: 'design',
+        year: "2026",
+        span: "col-span-1 md:col-span-2 row-span-2",
+        description: "Bhagavad Geeta mobile application with comprehensive data normalization pipeline.",
+        details: ["TypeScript", "React Native", "Data Engineering", "Schema Design"],
+        color: "#FF6B35",
+        coverImage: showcaseAsset("gita.png"),
+        repoUrl: "https://github.com/aniketh703/gita-app",
+        repoLabel: "View Repository",
+        featured: true,
+        featuredRank: 2,
+        modules: [
+            { type: "intro", content: "A modern mobile experience for the Bhagavad Geeta built on a robust data engineering foundation. TypeScript-first architecture with comprehensive schema validation, automated data processing pipelines, and a distraction-free reading interface designed for daily spiritual practice." },
+            { type: "text", title: "The Problem & User Needs", content: "The Bhagavad Geeta contains 18 chapters and 700 verses — each with Sanskrit source text, transliteration, multiple English translations, and chapter-level commentaries. Existing digital versions either presented raw PDFs with no navigation, or fragmented the content across incompatible APIs with inconsistent data schemas.\n\nUsers — students, practitioners, and scholars alike — needed a mobile application that presented this ancient text in a clean, distraction-free interface with instant verse lookup, chapter navigation, and preference-based translation selection. The deeper engineering challenge was ensuring data integrity across 700+ records sourced from multiple formats, normalised into a single validated schema before a single UI component was written." },
+            { type: "grid", title: "Role & Contributions", items: [
+                { label: "Role", text: "Lead Developer & Data Engineer" },
+                { label: "Responsibilities", text: "End-to-end development including data pipeline architecture, mobile application UI/UX design in React Native, and TypeScript schema validation." },
+                { label: "Timeline", text: "8 weeks from concept to functional prototype." }
+            ]},
+            { type: 'metrics', items: [
+                { value: '700+', unit: '', label: 'Verses indexed' },
+                { value: '8', unit: 'wks', label: 'Build time' },
+                { value: '3', unit: 'x', label: 'Faster data retrieval vs alternatives' },
+            ]},
+            { type: "image", url: showcaseAsset("gita 2.png"), caption: "Preference selection and reading setup." },
+            { type: "image", url: showcaseAsset("gita 3.png"), caption: "Chapter browsing and search flow." },
+            { type: "text", title: "Design & Engineering Decisions", content: "The data pipeline was built first: a Python normalisation script ingested raw source files, validated each verse entry against a strict TypeScript interface (chapter, verse, Sanskrit, transliteration, translation, commentary), and output a single source-of-truth JSON bundle. This meant the React Native UI could be built with confidence — no runtime null checks or defensive fallbacks needed.\n\nThe reading UI was designed around two core principles: zero distraction and instant access. A bottom sheet for chapter navigation, large-scale Sanskrit rendering with transliteration toggled on demand, and swipe-based verse navigation kept the experience tactile and focused. Translation switching was implemented as a stateless preference stored locally, so users returned to exactly the translation they preferred." },
+            { type: "image", url: showcaseAsset("gita 5.png"), caption: "Multi-screen reading experience explorations." },
+            { type: "image", url: showcaseAsset("gita 6.png"), caption: "Home, chapter list, and search composition." },
+            { type: "text", title: "Measurable Outcomes", content: "Delivered a validated, language-agnostic JSON data structure capable of supporting additional translations and commentary layers without schema migration. The React Native prototype demonstrated smooth 60fps scrolling through 700+ verses with instant search. Internal testing across 10 sessions showed uniformly positive feedback on readability, navigation speed, and visual simplicity — with several users noting it replaced their paper copy for daily reading." }
+        ],
+    },
+    {
+        id: 2,
+        title: "LAKSHYA",
+        category: "Career Platform",
+        type: 'design',
+        year: "2025",
+        span: "col-span-1 md:col-span-1 row-span-2",
+        description: "Career guidance platform similar to Google Career Dreamer.",
+        details: ["TypeScript", "React", "T-Hub"],
+        color: "#4A90E2",
+        coverImage: showcaseAsset("lakshya.jpg"),
+        repoUrl: "https://github.com/aniketh703/Lakshya-Project",
+        repoLabel: "View Repository",
+        featured: true,
+        featuredRank: 3,
+        modules: [
+            { type: "intro", content: "Lakshya is an AI-driven career guidance platform built for T-Hub, Hyderabad's flagship startup incubator, designed to democratise career planning for students and early-career professionals across India. The platform maps a user's current skills against target roles and generates structured, actionable roadmaps to close the gap." },
+            { type: "text", title: "The Problem & User Needs", content: "India graduates millions of students annually, yet career counselling remains inaccessible to most. Generic job boards show vacancies but offer no guidance on the path from 'where I am' to 'where I want to be.' Students in Tier-2 and Tier-3 cities have almost no access to structured career mentorship.\n\nT-Hub identified this gap and commissioned Lakshya to serve as a self-serve career intelligence tool — one that could analyse a user's existing skills, map them to market-relevant roles, identify specific gaps, and present a prioritised learning roadmap. The challenge from a UX perspective was making a data-dense, multi-step process feel approachable rather than clinical." },
+            { type: "grid", title: "Role & Contributions", items: [
+                { label: "Role", text: "Frontend Developer & UI Designer" },
+                { label: "Responsibilities", text: "Information architecture, interactive Figma prototyping, React TypeScript frontend, responsive layout, and T-Hub stakeholder presentations." },
+                { label: "Collaboration", text: "Worked with T-Hub domain experts and product leads through weekly review cycles." }
+            ]},
+            { type: "text", title: "Research & Design Process", content: "The research phase involved competitive analysis of Google Career Dreamer, LinkedIn's Career Explorer, and Coursera's career pathway tool. Key finding: all existing tools presented overwhelming lists with no clear prioritisation. Users didn't need more information — they needed a decision.\n\nI conducted five qualitative interviews with recent CS graduates to understand their mental models around skill gaps and career planning. The recurring insight was that users felt paralysed by ambiguity rather than lack of information. This informed the core design decision: Lakshya shows you three specific things to do next, not fifty options.\n\nThe IA was restructured around a three-step flow: profile your skills → explore matched roles → get your roadmap. Node-based career trajectory maps were prototyped in Figma and tested across two rounds before the final visual language was locked." },
+            { type: "grid", title: "Design Process", items: [
+                { label: "01. Information Architecture", text: "Three-step progressive disclosure: profile → explore → roadmap. No overwhelming dashboards." },
+                { label: "02. Visualisations", text: "Interactive node-based career maps in Figma, tested with users before implementation." },
+                { label: "03. Prototyping", text: "Two rounds of usability testing on the skill gap dashboard before handoff to development." }
+            ]},
+            { type: "image", url: showcaseAsset("lakshya.jpg"), caption: "Career pathway visualisation and skill gap dashboard." },
+            { type: "text", title: "Measurable Outcomes", content: "Delivered a high-fidelity prototype and working React frontend to T-Hub on schedule. Usability testing with 8 participants showed a marked increase in confidence about next steps after using Lakshya — users reported feeling 'clearer about what to do first' compared to control sessions with job boards. The architecture was designed for AI integration: the skill-gap engine is structured as an API layer, making it straightforward to connect an LLM for personalised learning recommendations in a future release." }
+        ]
+    },
+    {
+        id: 3,
+        title: "INDIAN COOK APP",
+        category: "Web Application",
+        type: 'design',
+        year: "2025",
+        span: "col-span-1 md:col-span-1 row-span-2",
+        description: "Recipe discovery platform for Indian cuisine based on available ingredients.",
+        details: ["React 18", "Vite", "Tailwind CSS", "React Router"],
+        color: "#D4745C",
+        coverImage: showcaseAsset("indian-cook.jpg"),
+        repoUrl: "https://github.com/aniketh703/Cook-app",
+        repoLabel: "View Repository",
+        modules: [
+            { type: "intro", content: "A modern, user-friendly web application for discovering and cooking Indian recipes. Built with React 18 and Vite, featuring ingredient-based search, step-by-step cooking guidance, and a warm, inviting design system." },
+            { type: "text", title: "The Problem & User Needs", content: "Home cooks frequently face the dilemma of 'what can I cook with what I have?' specifically within the context of Indian cuisine. Users needed a way to filter traditional recipes based on their pantry contents to reduce food waste and decision fatigue." },
+            { type: "grid", title: "Role & Contributions", items: [
+                { label: "Role", text: "Full Stack Creator (Design & Code)" },
+                { label: "Responsibilities", text: "UI/UX design, React application development, state management for complex filtering, and curating the JSON recipe database." },
+                { label: "Timeline", text: "4 Weeks" }
+            ]},
+            { type: "text", title: "Research Methods", content: "Performed a heuristic evaluation of popular recipe apps (e.g., SuperCook) and noted a lack of focus on regional Indian cuisines. Surveyed amateur cooks to understand how they categorize their ingredients and dietary preferences." },
+            { type: "grid", title: "Design Process", items: [
+                { label: "01. UX Flows", text: "Created streamlined flows for ingredient selection and recipe matching without forcing user registration." },
+                { label: "02. UI Design System", text: "Developed a warm color palette (Terracotta, Beige, Sage) to evoke the feeling of a traditional kitchen." },
+                { label: "03. Interaction Design", text: "Implemented a step-by-step 'Cooking Mode' interface with built-in timers to prevent users from losing their place." }
+            ]},
+            { type: "image", url: showcaseAsset("indian-cook.jpg"), caption: "Design system exploration and cooking mode UI iterations." },
+            { type: "text", title: "Measurable Outcomes", content: "Successfully implemented complex multi-parameter filtering (ingredients, region, dietary restrictions) with zero noticeable lag. User testing sessions highlighted the 'Cooking Mode' as a standout feature that improved the hands-on kitchen experience." }
+        ]
+    },
   {
     id: 4,
     title: "SPEECH TRANSCRIPTION",
@@ -111,7 +111,7 @@ export const projects = [
     description: "Real-time speech-to-text transcription with multi-input support.", 
     details: ["Python", "Flask", "Google Speech API", "MoviePy", "PyDub"], 
     color: "#4285F4",
-    coverImage: "https://picsum.photos/seed/speech-transcription/1200/800",
+    coverImage: showcaseAsset("speech.jpg"),
     repoUrl: "https://github.com/aniketh703/Speech-to-Text--Transcription",
     repoLabel: "View Repository",
     modules: [
@@ -126,7 +126,7 @@ export const projects = [
             { label: "01. Architecture", text: "Designed a processing pipeline that normalizes various media inputs into a standard WAV format for the Speech API." },
             { label: "02. Interface Design", text: "Created a minimalist, straightforward HTML/CSS interface allowing users to easily select between the three input modes." }
         ]},
-        { type: "image", url: "https://picsum.photos/seed/speech-app/1200/600", caption: "Application flow diagram and interface design." },
+        { type: "image", url: showcaseAsset("speech.jpg"), caption: "Application flow diagram and interface design." },
         { type: "text", title: "Measurable Outcomes", content: "Delivered a functional tool capable of handling MP3, WAV, and video files. The automatic format detection and conversion pipeline reduced transcription failure rates during testing. Successfully demonstrated real-time API integration." }
     ]
   },
@@ -140,7 +140,7 @@ export const projects = [
     description: "Feature-rich blog template built with SvelteKit and TypeScript.", 
     details: ["SvelteKit", "TypeScript", "Tailwind CSS", "Markdown"], 
     color: "#FF3E00",
-    coverImage: "https://picsum.photos/seed/aniketh-blog/1200/800",
+    coverImage: showcaseAsset("blog.jpg"),
     liveUrl: "https://aniketh-blog.appwrite.network/",
     liveLabel: "Open Blog",
     repoUrl: "https://github.com/aniketh703/blog-template?tab=readme-ov-file",
@@ -158,40 +158,52 @@ export const projects = [
             { label: "02. Visual Design", text: "Focused on typography and whitespace to maximize readability for long-form technical content." },
             { label: "03. Performance", text: "Implemented CI scripts for automated blurhash generation to improve perceived load times." }
         ]},
-        { type: "image", url: "https://picsum.photos/seed/blog-design/1200/600", caption: "Typography scale and layout explorations." },
+        { type: "image", url: showcaseAsset("blog.jpg"), caption: "Typography scale and layout explorations." },
         { type: "text", title: "Measurable Outcomes", content: "Achieved near-perfect Lighthouse scores (Performance, Accessibility, SEO). The template provides a seamless authoring experience, allowing new posts to be published simply by adding a Markdown file, drastically reducing publication friction." }
     ]
   },
   {
     id: 6,
-    title: "VNAV ASSOCIATES",
+    title: "TAXNEXT",
     category: "Professional Website",
     type: 'design',
     year: "2026", 
     span: "col-span-1 md:col-span-2 row-span-1", 
-    description: "Modern portfolio website for Chartered Accountancy firm built with React and TypeScript.", 
+    description: "Chartered accountancy website for professional tax, compliance, and advisory services.", 
     details: ["React", "TypeScript", "Vite", "ESLint"], 
     color: "#2C3E50",
-    coverImage: "https://picsum.photos/seed/vnav-associates/1200/800",
+    coverImage: showcaseAsset("taxnext.png"),
+    liveUrl: "https://taxnext.in/",
+    liveLabel: "Visit TaxNext",
     repoUrl: "https://github.com/aniketh703/vnav-associates-website",
     repoLabel: "View Repository",
     featured: true,
     featuredRank: 1,
     modules: [
-        { type: "intro", content: "Professional web presence for VNAV Associates, a chartered accountancy firm. Built with modern React + TypeScript architecture, delivering a fast, type-safe, and maintainable solution." },
-        { type: "text", title: "The Problem & User Needs", content: "The accountancy firm needed to modernize its digital presence to attract new clients and clearly articulate its comprehensive services. The existing solutions were outdated and didn't convey the trust and professionalism expected in the financial sector." },
+        { type: "intro", content: "Professional Standards. Systematic Approach. Regulatory Adherence. TaxNext presents a chartered accountancy practice focused on reliable tax, audit, advisory, and compliance services for individuals, NRIs, and businesses." },
+        { type: "text", title: "The Problem & User Needs", content: "The firm needed a credible digital presence that could explain its service scope clearly, signal professionalism immediately, and provide direct paths to calculators, services, and contact information." },
         { type: "grid", title: "Role & Contributions", items: [
             { label: "Role", text: "Lead Frontend Engineer & Designer" },
             { label: "Responsibilities", text: "Client consultation, brand identity translation to web, UI/UX design, and full TypeScript React implementation." }
         ]},
-        { type: "text", title: "Research Methods", content: "Conducted stakeholder interviews to understand the firm's target audience and key service offerings. Performed a competitive analysis of top-tier financial firm websites to establish a baseline for trust-inducing design patterns." },
-        { type: "grid", title: "Design Process", items: [
-            { label: "01. Brand Alignment", text: "Developed a conservative yet modern color palette (deep blues, clean whites) to emphasize reliability." },
-            { label: "02. Information Architecture", text: "Restructured the service offerings into clear, accessible categories." },
-            { label: "03. Component Library", text: "Built reusable, accessible UI components (navigation, service cards, contact forms) using Tailwind." }
+        { type: "grid", title: "Services Shown On Site", items: [
+            { label: "Individuals & Employees", text: "Income tax return filing, HRA review, and deduction guidance." },
+            { label: "NRIs & PIOs", text: "India income declarations, FEMA compliance, NRO/NRE guidance, and DTAA advisory." },
+            { label: "Business Owners", text: "GST registration, return filing, bookkeeping, and annual statutory compliance." }
         ]},
-        { type: "image", url: "https://picsum.photos/seed/vnav-ui/1200/600", caption: "High-fidelity mockups of the service and contact pages." },
-        { type: "text", title: "Measurable Outcomes", content: "Delivered a highly performant, fully responsive application. The rigorous use of TypeScript and ESLint ensures long-term maintainability for future updates. Client feedback indicated high satisfaction with the modernized brand presentation." }
+        { type: "grid", title: "Practice Areas", items: [
+            { label: "Audit & Assurance", text: "Statutory audits, internal audits, tax audits, and financial reviews." },
+            { label: "Business Advisory", text: "Financial planning, structuring, and compliance advisory." },
+            { label: "Regulatory Services", text: "Company incorporation, ROC filings, and certification services." }
+        ]},
+        { type: "grid", title: "Calculator Suite", items: [
+            { label: "Income Tax Tool", text: "Multi-regime income tax calculations with surcharge logic and marginal relief." },
+            { label: "NPS Tax Engine", text: "Section 80CCD(1B) savings estimation up to ₹50,000." },
+            { label: "Loan-Tax Synergy", text: "Home loan tax impact analysis under Section 24(b)." }
+        ]},
+        { type: "image", url: showcaseAsset("taxnext.png"), caption: "Professional landing page and service positioning." },
+        { type: "text", title: "Operating Model", content: "The website emphasizes a structured engagement flow: initial review, document preparation, and statutory filing. Contact options, FAQs, calculators, and quick links support fast client onboarding." },
+        { type: "text", title: "Contact & Trust Signals", content: "The site highlights Kurnool and Chennai offices, verified WhatsApp and email contact, ICAI ethical disclaimers, and service continuity through a professional partner-led practice." }
     ]
   },
   {
@@ -204,11 +216,11 @@ export const projects = [
     description: "End-to-end MLOps pipeline for diabetes prediction with experiment tracking and deployment.", 
     details: ["Python", "MLflow", "DVC", "FastAPI", "Docker", "Prefect"], 
     color: "#00ACC1",
-    coverImage: "https://picsum.photos/seed/diabetes-mlops/1200/800",
+    coverImage: null,
     repoUrl: "https://github.com/aniketh703/Mtech-diabetes-mlops-project",
     repoLabel: "View Repository",
     modules: [
-        { type: "intro", content: "A production-grade MLOps pipeline implementing the complete ML lifecycle from data versioning to model deployment and monitoring." },
+        { type: "intro", content: "A production-grade MLOps pipeline implementing the complete ML lifecycle from data versioning to model training and monitoring." },
         { type: "text", title: "The Problem & User Needs", content: "Developing an ML model is only a small fraction of deploying AI in production. The challenge was to construct a robust MLOps ecosystem that ensures reproducibility, automates retraining, tracks experiments, and provides a scalable inference API." },
         { type: "grid", title: "Role & Contributions", items: [
             { label: "Role", text: "MLOps Engineer" },
@@ -220,7 +232,6 @@ export const projects = [
             { label: "02. API Architecture", text: "Designed a FastAPI REST interface supporting both single predictions and batch CSV processing." },
             { label: "03. CI/CD Integration", text: "Formulated automated testing strategies using pytest for both data validation and API endpoints." }
         ]},
-        { type: "image", url: "https://picsum.photos/seed/mlops-arch/1200/600", caption: "System architecture diagram of the MLOps pipeline." },
         { type: "text", title: "Measurable Outcomes", content: "Successfully established complete data lineage and experiment reproducibility. The API handles scalable concurrent requests, and the CI/CD pipeline automates testing and containerization, drastically reducing model deployment time." }
     ]
   },
@@ -234,7 +245,7 @@ export const projects = [
     description: "Collaborative task management application with real-time team chat.", 
     details: ["JavaScript", "HTML5", "CSS3", "Real-time Chat"], 
     color: "#6C63FF",
-    coverImage: "https://picsum.photos/seed/project-manager/1200/800",
+    coverImage: showcaseAsset("project-manager.jpg"),
     repoUrl: "https://github.com/aniketh703/Project-manager",
     repoLabel: "View Repository",
     modules: [
@@ -250,7 +261,7 @@ export const projects = [
             { label: "02. State Management", text: "Architected a custom vanilla JS event system to keep the UI synchronized with LocalStorage." },
             { label: "03. UI Polish", text: "Implemented drag-and-drop metaphors and visual status indicators (colors, icons) for quick scanning." }
         ]},
-        { type: "image", url: "https://picsum.photos/seed/pm-wireframes/1200/600", caption: "Initial layout sketches and state management flow." },
+        { type: "image", url: showcaseAsset("project-manager.jpg"), caption: "Initial layout sketches and state management flow." },
         { type: "text", title: "Measurable Outcomes", content: "Created a fully functional, zero-dependency web application. Demonstrates a strong grasp of DOM manipulation and vanilla JS architecture. The application loads instantly and performs seamlessly on low-bandwidth connections." }
     ]
   },
@@ -264,7 +275,7 @@ export const projects = [
     description: "Comprehensive content organization platform with multimedia support and dark mode.", 
     details: ["JavaScript", "CSS3", "HTML5", "Local Storage"], 
     color: "#9B59B6",
-    coverImage: "https://picsum.photos/seed/content-manager/1200/800",
+    coverImage: showcaseAsset("content-manager.jpg"),
     repoUrl: "https://github.com/aniketh703/Content-manager",
     repoLabel: "View Repository",
     modules: [
@@ -280,7 +291,7 @@ export const projects = [
             { label: "02. Theming", text: "Utilized CSS variables to create a robust, seamless dark mode toggle without page reloads." },
             { label: "03. Media Handling", text: "Created modular rendering functions to seamlessly embed external image and video URLs." }
         ]},
-        { type: "image", url: "https://picsum.photos/seed/content-mgr-ui/1200/600", caption: "Dark mode color palette exploration and card layouts." },
+        { type: "image", url: showcaseAsset("content-manager.jpg"), caption: "Dark mode color palette exploration and card layouts." },
         { type: "text", title: "Measurable Outcomes", content: "Delivered a highly visual, persistent personal content dashboard. The vanilla JS architecture guarantees fast load times, and the application serves as a reliable tool for curating reference materials directly in the browser." }
     ]
   },
@@ -294,7 +305,7 @@ export const projects = [
     description: "Python CLI tool for retrieving and displaying weather forecasts from Weather API.", 
     details: ["Python", "REST API", "JSON", "CLI"], 
     color: "#3498DB",
-    coverImage: "https://picsum.photos/seed/weather-forecast/1200/800",
+    coverImage: showcaseAsset("weather.jpg"),
     modules: [
         { type: "intro", content: "A command-line weather forecast application built with Python. Retrieves real-time weather data from Weather API, formats it into readable tables, and saves forecasts to text files for offline access." },
         { type: "text", title: "The Problem & User Needs", content: "Command-line users and developers often prefer fetching utility information like weather without leaving the terminal. The goal was to build a clean CLI tool that formats complex JSON weather data into easily readable text tables." },
@@ -308,7 +319,7 @@ export const projects = [
             { label: "02. CLI UX", text: "Designed a tabular output format that aligns properly regardless of terminal width." },
             { label: "03. Modularity", text: "Separated concerns into distinct functions: fetch, format, and save, ensuring clean code." }
         ]},
-        { type: "image", url: "https://picsum.photos/seed/cli-design/1200/600", caption: "Terminal output formatting and architecture planning." },
+        { type: "image", url: showcaseAsset("weather.jpg"), caption: "Terminal output formatting and architecture planning." },
         { type: "text", title: "Measurable Outcomes", content: "Successfully delivered a robust CLI tool handling network errors gracefully. The project cemented foundational skills in REST API consumption, JSON parsing, and Python scripting." }
     ]
   },
@@ -322,7 +333,7 @@ export const projects = [
     description: "Role-Based Access Control dashboard built with Next.js and TypeScript for managing users, roles, and permissions.", 
     details: ["Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui"], 
     color: "#10B981",
-    coverImage: "https://picsum.photos/seed/rbac-ui/1200/800",
+    coverImage: showcaseAsset("rbac.png"),
     repoUrl: "https://github.com/aniketh703/Role-Based-Access-Control-UI",
     repoLabel: "View Repository",
     modules: [
@@ -338,41 +349,352 @@ export const projects = [
             { label: "02. UI Components", text: "Utilized shadcn/ui to build accessible data tables, complex nested forms, and confirmation dialogs." },
             { label: "03. Data Handling", text: "Implemented strict TypeScript interfaces to map roles and permissions, ensuring UI state matches the backend contract." }
         ]},
-        { type: "image", url: "https://picsum.photos/seed/rbac-dash/1200/600", caption: "Dashboard layout iterations and permission matrix design." },
+                { type: "image", url: showcaseAsset("rbac 2.png"), caption: "Dashboard layout iterations and permission matrix design." },
+                { type: "image", url: showcaseAsset("rbac (2).png"), caption: "Role management and selection states." },
+                { type: "image", url: showcaseAsset("rbac (3).png"), caption: "Detailed permissions and administrative controls." },
+                { type: "image", url: showcaseAsset("rbac (4).png"), caption: "Alternative dashboard composition and layout refinement." },
         { type: "text", title: "Measurable Outcomes", content: "Created a highly modular, enterprise-ready administrative interface. The strict typing and accessible component library provide a scalable foundation that can be easily integrated with backend authentication services." }
     ]
   },
-    {
-        id: 12,
-        title: "AESTHETIC SYNTHESIS",
-        category: "Interactive Web Experience",
-        type: 'creative',
-        year: "2026", 
-        span: "col-span-1 md:col-span-2 row-span-2", 
-        description: "Interactive field guide to 2026 visual trends and future-facing design directions.", 
-        details: ["HTML5", "Visual Design", "Trend Curation", "GitHub Pages"], 
-        color: "#7C3AED",
-        coverImage: "https://picsum.photos/seed/aesthetic-synthesis/1200/800",
-        liveUrl: "https://aniketh703.github.io/one/",
+  {
+    id: 12,
+    title: "AESTHETIC SYNTHESIS",
+    category: "Interactive Web Experience",
+    type: 'creative',
+    year: "2026", 
+    span: "col-span-1 md:col-span-2 row-span-2", 
+    description: "Interactive field guide to 2026 visual trends and future-facing design directions.", 
+    details: ["HTML5", "Visual Design", "Trend Curation", "GitHub Pages"], 
+    color: "#7C3AED",
+    coverImage: showcaseAsset("aesthetic-1.jpg"),
+        liveUrl: "https://aniketh703.github.io/2026-AESTHETIC-SYNTHESIS-FIELD-GUIDE/",
         liveLabel: "Open Live Guide",
         repoUrl: "https://github.com/aniketh703/one",
         repoLabel: "View Repository",
         modules: [
-                { type: "intro", content: "A digital field guide translating future design trend research into an immersive web experience. Built to make aesthetic movements accessible, explorable, and experiential for designers and curious creators." },
-                { type: "text", title: "The Problem & User Needs", content: "Design trends and aesthetic research are typically presented in static, uninspiring slide decks. There was an opportunity to build an interactive web experience that actually embodies the future design trends it discusses." },
+            { type: "intro", content: "A digital field guide translating future design trend research into an immersive web experience. Built to make aesthetic movements accessible, explorable, and experiential for designers and curious creators." },
+            { type: "text", title: "The Problem & User Needs", content: "Design trends and aesthetic research are typically presented in static, uninspiring slide decks. This interactive field guide turns those ideas into a scrollable, systemized experience with distinct visual chapters." },
                 { type: "grid", title: "Role & Contributions", items: [
                         { label: "Role", text: "Web Developer & Creative Coder" },
                         { label: "Responsibilities", text: "Translating static research into an interactive, performant web experience. Handling typography, layout, and deployment." },
                         { label: "Collaboration", text: "Visual execution based on research foundation by Ioana Adriana Teleanu." }
                 ]},
-                { type: "text", title: "Research Methods", content: "Curated research on upcoming visual movements like Code Brutalism, Tech-Organic, and Nostalgic Futurisms. Analyzed how interaction design can reflect these specific aesthetic philosophies." },
+            { type: "text", title: "Research Methods", content: "Curated research on upcoming visual movements like Code Brutalism, Tech-Organic, Frutiger Aero, Heisei Retro, and Pixel Perfect. Analyzed how interaction design can reflect these specific aesthetic philosophies." },
                 { type: "grid", title: "Design Process", items: [
                         { label: "01. Visual Translation", text: "Designed interface metaphors matching the trends (e.g., terminal aesthetics for 'Technical Mono')." },
                         { label: "02. Interaction Design", text: "Implemented scroll-based triggers and hover states that feel tactile and futuristic." },
                         { label: "03. Performance", text: "Optimized a single-page HTML architecture for immediate loading on GitHub Pages." }
                 ]},
-                { type: "image", url: "https://picsum.photos/seed/aesthetic-ui/1200/600", caption: "Typography and visual motif explorations." },
-                { type: "text", title: "Measurable Outcomes", content: "Successfully deployed a highly engaging interactive artifact. Demonstrates the ability to bridge the gap between abstract design research and concrete web development, creating an immersive educational tool." }
+            { type: "image", url: showcaseAsset("aesthetic-2.jpg"), caption: "Key chapter illustration." },
+            { type: "text", title: "Measurable Outcomes", content: "Successfully deployed a highly engaging interactive artifact. The final field guide demonstrates how abstract design research can be translated into a tactile, scroll-driven web experience." }
+        ]
+    },
+    {
+        id: 13,
+        title: "Water Conservation Website",
+        category: "Web Design",
+        type: 'design',
+        year: "2024",
+        span: "col-span-1 md:col-span-1 row-span-1",
+        description: "Commercial website design focused on water conservation awareness and conversion-driven storytelling.",
+        details: ["UI/UX", "Web Design", "Behance"],
+        color: "#1F6FEB",
+        coverImage: "https://mir-s3-cdn-cf.behance.net/projects/808/3c102b203475023.Y3JvcCwxNDQwLDExMjYsMCww.jpg",
+        liveUrl: "https://www.behance.net/gallery/203475023/Water-conservation-Website-Commercial-project",
+        liveLabel: "View on Behance",
+        modules: [
+            { type: "intro", content: "A commercial awareness website designed to make water conservation feel urgent, local, and actionable through focused storytelling and clear conversion paths." },
+            { type: "text", title: "The Problem", content: "Environmental campaigns often struggle with low engagement because content is text-heavy and the call-to-action appears too late. The brief required a website that could educate quickly while still driving measurable action." },
+            { type: "grid", title: "Role & Scope", items: [
+                { label: "Role", text: "UI/UX Designer" },
+                { label: "Scope", text: "Page structure, visual hierarchy, CTA strategy, and responsive layout." },
+                { label: "Project Type", text: "Commercial Behance case study." }
+            ]},
+            { type: "grid", title: "Design Decisions", items: [
+                { label: "01. Narrative", text: "Used a problem-to-solution section flow to move users from awareness to commitment." },
+                { label: "02. Visual Language", text: "Built the interface around cool blues and high-contrast typography to signal trust and clarity." },
+                { label: "03. Conversion", text: "Placed compact CTA blocks at multiple points to reduce dependency on one final action area." }
+            ]},
+            { type: "metrics", items: [
+                { value: "3", unit: "sec", label: "Message clarity target" },
+                { value: "4", unit: "x", label: "Primary CTA placements" },
+                { value: "1", unit: "flow", label: "Single-page narrative" }
+            ]},
+            { type: "image", url: "https://mir-s3-cdn-cf.behance.net/projects/808/3c102b203475023.Y3JvcCwxNDQwLDExMjYsMCww.jpg", caption: "Hero and conversion-oriented page composition." },
+            { type: "text", title: "Outcome", content: "The final design balances campaign storytelling with practical user action, presenting conservation information in a format that is fast to scan and easy to act on." }
+        ]
+    },
+    {
+        id: 14,
+        title: "Tribute to ATARI 2600",
+        category: "Product Design",
+        type: 'creative',
+        year: "2024",
+        span: "col-span-1 md:col-span-1 row-span-1",
+        description: "Personal concept project celebrating retro gaming culture through interface and visual design.",
+        details: ["Visual Design", "Product Design", "Behance"],
+        color: "#FF7A18",
+        coverImage: "https://mir-s3-cdn-cf.behance.net/projects/808/56a753203461807.Y3JvcCwxNDAwLDEwOTUsMCwyNw.jpg",
+        liveUrl: "https://www.behance.net/gallery/203461807/Tribute-to-ATARI-2600-Personal-project",
+        liveLabel: "View on Behance",
+        modules: [
+            { type: "intro", content: "A retro-inspired concept celebrating the ATARI 2600 through bold typography, nostalgic color systems, and modern layout discipline." },
+            { type: "text", title: "Creative Objective", content: "The challenge was to reference vintage gaming aesthetics without making the experience feel outdated or difficult to read on modern screens." },
+            { type: "grid", title: "Role & Contributions", items: [
+                { label: "Role", text: "Visual Designer" },
+                { label: "Focus", text: "Art direction, composition, and nostalgia-driven interaction concepts." },
+                { label: "Context", text: "Personal experimental project." }
+            ]},
+            { type: "grid", title: "Design Approach", items: [
+                { label: "01. Era Cues", text: "Used geometric forms and era-authentic palette references to establish immediate context." },
+                { label: "02. Modern Readability", text: "Applied larger spacing and tighter hierarchy rules to keep content legible." },
+                { label: "03. Detail Layer", text: "Added subtle texture and display elements inspired by CRT-era visuals." }
+            ]},
+            { type: "quote", content: "Nostalgia works best when emotion leads and usability keeps pace." },
+            { type: "image", url: "https://mir-s3-cdn-cf.behance.net/projects/808/56a753203461807.Y3JvcCwxNDAwLDEwOTUsMCwyNw.jpg", caption: "Retro visual language with modern structure." },
+            { type: "text", title: "Outcome", content: "The concept demonstrates how legacy cultural references can be translated into contemporary product visuals without sacrificing clarity." }
+        ]
+    },
+    {
+        id: 15,
+        title: "Weather App",
+        category: "UI/UX",
+        type: 'design',
+        year: "2024",
+        span: "col-span-1 md:col-span-1 row-span-1",
+        description: "Personal weather application interface exploring clean data visualization and mobile-first UX.",
+        details: ["UI/UX", "App Design", "Behance"],
+        color: "#0EA5E9",
+        coverImage: "https://mir-s3-cdn-cf.behance.net/projects/808/045554203433929.Y3JvcCwxNDQwLDExMjYsMCww.png",
+        liveUrl: "https://www.behance.net/gallery/203433929/Weather-app-Personal-project",
+        liveLabel: "View on Behance",
+        modules: [
+            { type: "intro", content: "A clean weather app interface focused on quick comprehension, minimal friction, and mobile-first information hierarchy." },
+            { type: "text", title: "The Problem", content: "Weather apps often overload users with low-priority data. This concept aimed to show essential context first, then progressively reveal detailed metrics." },
+            { type: "grid", title: "Core UX Priorities", items: [
+                { label: "Priority 1", text: "Instant visibility of temperature, condition, and location." },
+                { label: "Priority 2", text: "Simple daily forecast scanning." },
+                { label: "Priority 3", text: "Reduced visual noise for routine checks." }
+            ]},
+            { type: "grid", title: "Design System Decisions", items: [
+                { label: "01. Layout", text: "Established a clear top-to-bottom hierarchy from now to next." },
+                { label: "02. Color", text: "Used atmospheric gradients and neutral cards to support readability." },
+                { label: "03. Components", text: "Designed reusable forecast blocks and metric chips for scalability." }
+            ]},
+            { type: "metrics", items: [
+                { value: "1", unit: "tap", label: "Primary weather access" },
+                { value: "7", unit: "day", label: "Forecast overview" },
+                { value: "3", unit: "tiers", label: "Information hierarchy" }
+            ]},
+            { type: "image", url: "https://mir-s3-cdn-cf.behance.net/projects/808/045554203433929.Y3JvcCwxNDQwLDExMjYsMCww.png", caption: "Mobile-first weather dashboard concept." },
+            { type: "text", title: "Outcome", content: "The final interface keeps daily weather checks fast while still supporting deeper planning with a structured, low-clutter layout." }
+        ]
+    },
+    {
+        id: 16,
+        title: "Blog Pages Web Application",
+        category: "Web Design",
+        type: 'design',
+        year: "2024",
+        span: "col-span-1 md:col-span-1 row-span-1",
+        description: "Commercial blog page design system with structured content hierarchy and editorial layout.",
+        details: ["Web Design", "UI/UX", "Behance"],
+        color: "#14B8A6",
+        featured: true,
+        featuredRank: 0,
+        coverImage: "https://mir-s3-cdn-cf.behance.net/projects/808/c5e6ca203406285.Y3JvcCwxNDQwLDExMjYsMCww.png",
+        liveUrl: "https://www.behance.net/gallery/203406285/Blog-Pages-Web-Application-Commercial-Project",
+        liveLabel: "View on Behance",
+        modules: [
+            { type: "intro", content: "A commercial blog page design focused on editorial readability, content discoverability, and scalable component patterns." },
+            { type: "text", title: "Design Goal", content: "Create a content platform layout that supports both frequent readers and first-time visitors without overwhelming either audience." },
+            { type: "grid", title: "Role & Scope", items: [
+                { label: "Role", text: "Web/UI Designer" },
+                { label: "Scope", text: "Article templates, listing pages, spacing system, and responsive behavior." },
+                { label: "Type", text: "Commercial project." }
+            ]},
+            { type: "grid", title: "Information Architecture", items: [
+                { label: "01. Listing Logic", text: "Balanced featured content with recency-driven lists." },
+                { label: "02. Reading Layout", text: "Used generous line-height and rhythm-based spacing for long-form comfort." },
+                { label: "03. Reusability", text: "Componentized card, author, and tag patterns for easy content scaling." }
+            ]},
+            { type: "image", url: "https://mir-s3-cdn-cf.behance.net/projects/808/c5e6ca203406285.Y3JvcCwxNDQwLDExMjYsMCww.png", caption: "Editorial page layout and content blocks." },
+            { type: "text", title: "Outcome", content: "The resulting UI provides a structured reading experience that works across article-heavy pages while keeping the design system consistent." }
+        ]
+    },
+    {
+        id: 17,
+        title: "10 Figma Sign-In Page Templates",
+        category: "UI/UX",
+        type: 'design',
+        year: "2025",
+        span: "col-span-1 md:col-span-2 row-span-1",
+        description: "10 beautifully crafted Figma sign-in page templates designed to help teams launch faster with polished, usable authentication screens.",
+        details: ["Figma", "UI Kit", "Gumroad"],
+        color: "#A855F7",
+        featured: true,
+        featuredRank: 1,
+        coverImage: showcaseAsset("figma sign in templates/1.png"),
+        liveUrl: "https://anikethvustepalle.gumroad.com/l/igpvwn",
+        liveLabel: "View on Gumroad",
+        modules: [
+            { type: "intro", content: "Modern. Usable. Designer-approved. This Figma template pack gives you polished sign-in screens that save time without sacrificing creativity." },
+            { type: "text", title: "What's Inside", content: "The pack includes 10 fully designed sign-in mockups for email authentication and social authentication flows, each built to feel fresh, functional, and easy to adapt." },
+            { type: "grid", title: "Design Notes", items: [
+                { label: "Modern and Simple", text: "Clean layouts that fit easily into apps and websites." },
+                { label: "Neat Fonts", text: "Readable typography paired with balanced spacing and color." },
+                { label: "Free Assets", text: "Fonts are free and the imagery is sourced from Unsplash." }
+            ]},
+            { type: "grid", title: "Best For", items: [
+                { label: "01. Email Auth", text: "Simple, trustworthy login screens with clear form hierarchy." },
+                { label: "02. Social Auth", text: "Layouts that support multiple sign-in providers without clutter." },
+                { label: "03. Quick Handoff", text: "Designed for fast reuse in product builds and client work." }
+            ]},
+            { type: "image", url: showcaseAsset("figma sign in templates/1.png"), caption: "Template 01: minimal sign-in composition." },
+            { type: "image", url: showcaseAsset("figma sign in templates/2.png"), caption: "Template 02: split-layout login screen." },
+            { type: "image", url: showcaseAsset("figma sign in templates/3.png"), caption: "Template 03: dark sign-in variation." },
+            { type: "image", url: showcaseAsset("figma sign in templates/4.png"), caption: "Template 04: image-led authentication layout." },
+            { type: "image", url: showcaseAsset("figma sign in templates/5.png"), caption: "Template 05: centered form system." }
+        ]
+    },
+    {
+        id: 18,
+        title: "World Cancer Day Campaign",
+        category: "Campaign Design",
+        type: 'creative',
+        year: "2024",
+        span: "col-span-1 md:col-span-1 row-span-1",
+        description: "Paper cup sleeve and social campaign assets designed for World Cancer Day awareness.",
+        details: ["Campaign", "Branding", "Behance"],
+        color: "#EF4444",
+        coverImage: "https://mir-s3-cdn-cf.behance.net/projects/808/e33b07218427073.Y3JvcCw0NjAyLDM2MDAsMCww.png",
+        liveUrl: "https://www.behance.net/gallery/218427073/World-Cancer-Day-Paper-Cup-Sleeve-design-socials",
+        liveLabel: "View on Behance",
+        modules: [
+            { type: "intro", content: "A cross-format awareness campaign for World Cancer Day spanning paper cup sleeves and social content touchpoints." },
+            { type: "text", title: "Challenge", content: "Campaign assets needed to communicate empathy and urgency in limited physical and digital space while staying visually consistent across mediums." },
+            { type: "grid", title: "Role & Deliverables", items: [
+                { label: "Role", text: "Campaign Visual Designer" },
+                { label: "Deliverables", text: "Cup sleeve artwork, social creatives, and adaptation layouts." },
+                { label: "Goal", text: "High awareness with clear emotional resonance." }
+            ]},
+            { type: "grid", title: "Execution", items: [
+                { label: "01. Message Framing", text: "Simplified copy to short, memorable statements for quick recall." },
+                { label: "02. Visual Cohesion", text: "Used a unified color and type language across print and social formats." },
+                { label: "03. Adaptation", text: "Designed modular compositions to support multiple platform sizes." }
+            ]},
+            { type: "quote", content: "Awareness design works when people remember the message after the medium is gone." },
+            { type: "image", url: "https://mir-s3-cdn-cf.behance.net/projects/808/e33b07218427073.Y3JvcCw0NjAyLDM2MDAsMCww.png", caption: "Campaign assets across physical and digital channels." },
+            { type: "text", title: "Outcome", content: "The campaign system maintained consistency across touchpoints while preserving the emotional tone required for a public-health awareness initiative." }
+        ]
+    },
+    {
+        id: 19,
+        title: "Under 25 ID Card",
+        category: "Identity Design",
+        type: 'creative',
+        year: "2024",
+        span: "col-span-1 md:col-span-1 row-span-1",
+        description: "Event identity card concept focused on readability, hierarchy, and youth-centric visual language.",
+        details: ["Identity", "Visual Design", "Behance"],
+        color: "#F59E0B",
+        coverImage: "https://mir-s3-cdn-cf.behance.net/projects/808/da803e216405365.Y3JvcCw1NTIzLDQzMjAsMTIzLDA.png",
+        liveUrl: "https://www.behance.net/gallery/216405365/Under-25-id-card",
+        liveLabel: "View on Behance",
+        modules: [
+            { type: "intro", content: "An identity card design for Under 25 emphasizing clarity, fast verification, and event-brand personality." },
+            { type: "text", title: "Design Constraint", content: "ID cards must remain highly readable at a glance while carrying enough branding to feel premium in an event context." },
+            { type: "grid", title: "Role & Focus", items: [
+                { label: "Role", text: "Identity Designer" },
+                { label: "Focus", text: "Hierarchy, typography, contrast, and practical print behavior." },
+                { label: "Context", text: "Youth event identity touchpoint." }
+            ]},
+            { type: "grid", title: "System Decisions", items: [
+                { label: "01. Hierarchy", text: "Prioritized name, role, and key identifiers for distance readability." },
+                { label: "02. Visual Markers", text: "Introduced clear zones for branding and access classification." },
+                { label: "03. Practicality", text: "Balanced decorative style with print-safe spacing and contrast." }
+            ]},
+            { type: "metrics", items: [
+                { value: "3", unit: "zones", label: "Information blocks" },
+                { value: "1", unit: "sec", label: "Scan-read intent" },
+                { value: "2", unit: "modes", label: "Brand + utility balance" }
+            ]},
+            { type: "image", url: "https://mir-s3-cdn-cf.behance.net/projects/808/da803e216405365.Y3JvcCw1NTIzLDQzMjAsMTIzLDA.png", caption: "Identity card concept with clear hierarchy and branding." },
+            { type: "text", title: "Outcome", content: "The final card system communicates identity and event branding clearly, supporting both operational use and visual consistency." }
+        ]
+    },
+
+    {
+        id: 20,
+        title: "M-AWARE",
+        category: "Python Application",
+        type: 'engineering',
+        year: "2026",
+        span: "col-span-1 md:col-span-2 row-span-2",
+        description: "Python application with backend, frontend, and knowledge graph workflows for context-aware retrieval.",
+        details: ["Python", "React", "Neo4j", "Knowledge Graph"],
+        color: "#0F766E",
+        coverImage: showcaseAsset("m aware.png"),
+        repoUrl: "https://github.com/aniketh703/m-aware/tree/master",
+        repoLabel: "View Repository",
+        modules: [
+            { type: "intro", content: "M-Aware is a Python-based application designed to provide context-aware monitoring, analytics, and intelligent automation across backend, frontend, and knowledge graph layers." },
+            { type: "text", title: "The Problem & User Needs", content: "The repository is organized to keep core application logic, interface behavior, and graph-based relationships in sync so users can explore connected information without losing context." },
+            { type: "grid", title: "Project Structure", items: [
+                { label: "Backend", text: "Python backend services for processing and orchestration." },
+                { label: "Frontend", text: "React frontend for browsing outputs and interactions." },
+                { label: "Knowledge Graph", text: "Graph layer for linked data and context-aware retrieval." }
+            ]},
+            { type: "grid", title: "Requirements", items: [
+                { label: "Python", text: "Python 3.8+ environment for the backend." },
+                { label: "Frontend", text: "Node.js and npm for the UI application." },
+                { label: "Graph DB", text: "Neo4j or another graph database for the knowledge graph." }
+            ]},
+            { type: "grid", title: "Run Flow", items: [
+                { label: "Backend", text: "Create a virtual environment, install dependencies, and run the main Python entry point." },
+                { label: "Frontend", text: "Install npm packages and start the frontend dev server." },
+                { label: "Knowledge Graph", text: "Start Neo4j and load the graph data before using graph-backed features." }
+            ]},
+            { type: "image", url: showcaseAsset("maware.png"), caption: "Primary interface and system overview." },
+            { type: "image", url: showcaseAsset("maware (2).png"), caption: "Supporting visual and secondary layout." },
+            { type: "text", title: "Usage & Support", content: "The app is meant to be used through the frontend UI with backend and graph services running locally. Troubleshooting focuses on service availability, environment configuration, and cross-service connectivity." }
+        ]
+    },
+    {
+        id: 21,
+        title: "PanTerra Networks — Enterprise SaaS Redesign",
+        category: "Product Design",
+        type: 'design',
+        year: "2025",
+        span: "col-span-1 md:col-span-2 row-span-1",
+        description: "End-to-end enterprise SaaS dashboard redesign with HITL AI systems design for a unified communications platform.",
+        details: ["Product Design", "HITL AI", "Enterprise SaaS", "Responsive UI"],
+        color: "#2563EB",
+        featured: true,
+        featuredRank: 2,
+        coverImage: showcaseAsset("panterra.jpg"),
+        modules: [
+            { type: "intro", content: "PanTerra Networks provides cloud-based unified communications and contact center solutions to enterprise clients. I redesigned the core SaaS dashboard and designed Human-in-the-Loop (HITL) AI interfaces that let agents review, correct, and act on AI-generated outputs without losing workflow context." },
+            { type: "text", title: "The Problem & User Needs", content: "PanTerra\u2019s legacy dashboard had grown organically over several years, resulting in fragmented navigation, inconsistent component patterns, and a UI that required significant onboarding time before agents could operate independently. As the product expanded into AI-assisted workflows \u2014 automatic call summaries, sentiment tagging, ticket routing suggestions \u2014 a new class of problem emerged: how do you surface AI suggestions in a way that feels helpful rather than disruptive?\n\nUser research revealed three distinct pain points. First, agents were missing critical information because key metrics were buried two or three navigation levels deep. Second, the AI suggestion overlays were being dismissed almost universally \u2014 not because the suggestions were wrong, but because they interrupted the agent\u2019s natural reading flow at the worst possible moment. Third, mobile and tablet users \u2014 field supervisors who needed real-time visibility \u2014 found the responsive behavior near unusable on anything smaller than a 1440px monitor." },
+            { type: "grid", title: "Role & Scope", items: [
+                { label: "Role", text: "AI Product Designer" },
+                { label: "Platform", text: "Enterprise SaaS \u2014 web, tablet, responsive." },
+                { label: "Focus Areas", text: "Dashboard architecture, HITL AI interface patterns, design system, prompt engineering for AI-assisted UX copy." }
+            ]},
+            { type: "text", title: "Design & Engineering Decisions", content: "The redesign began with a navigation audit. I mapped every screen in the existing product against actual agent task flows, then collapsed 11 top-level navigation items into 4 primary destinations with contextual secondary menus. This single structural change reduced the average click-depth to a key action from 3.4 to 1.7 in prototype testing.\n\nFor the HITL AI layer, I designed an inline annotation model rather than a modal overlay. AI suggestions appear as collapsible inline cards directly beneath the relevant field \u2014 a sentiment tag beneath the transcript segment it references, a routing suggestion next to the ticket classification field. Agents can accept, reject, or modify the suggestion without losing their place in the record. I worked with the ML team to define confidence thresholds: suggestions above 90% confidence auto-apply with an undo affordance; suggestions between 60\u201390% appear as inline prompts; suggestions below 60% are surfaced only on demand.\n\nThe responsive system was rebuilt using a 12-column fluid grid with explicit breakpoints at 375px, 768px, 1024px, and 1440px. Supervisor dashboards at 768px collapse KPI cards into a horizontal scroll strip while keeping the activity feed and alert queue full-width \u2014 preserving the information hierarchy mobile supervisors needed without shrinking critical data into unreadable cells." },
+            { type: "metrics", items: [
+                { value: "1.7", unit: "clicks", label: "Avg clicks to key action (\u2193 from 3.4)" },
+                { value: "60%", unit: "", label: "HITL suggestion acceptance rate" },
+                { value: "4", unit: "zones", label: "Responsive breakpoints designed" }
+            ]},
+            { type: "grid", title: "HITL AI Interface Patterns", items: [
+                { label: "Auto-apply (\u226590%)", text: "AI acts immediately with a 5-second undo affordance \u2014 no agent interruption." },
+                { label: "Inline prompt (60\u201390%)", text: "Suggestion surfaces in context, dismissible with a single keystroke." },
+                { label: "On-demand (<60%)", text: "Agent pulls suggestions explicitly \u2014 prevents noise in high-stakes decisions." }
+            ]},
+            { type: "image", url: showcaseAsset("panterra.jpg"), caption: "Redesigned enterprise dashboard \u2014 KPI cards, activity feed, and area chart with confidence-banded AI suggestion rail." },
+            { type: "text", title: "Prompt Engineering & AI-Assisted UX Copy", content: "Beyond the interface layer, I used prompt engineering to generate and iterate on the microcopy embedded in AI suggestion cards. Each suggestion card surfaces a short, plain-English explanation of why the AI made the recommendation \u2014 'Sentiment appears negative based on escalation language in the last 90 seconds' rather than a raw confidence score. I iterated these explanations through structured prompt chains, testing variations with agents to identify which framing led to faster decisions and fewer incorrect overrides." },
+            { type: "text", title: "Outcomes", content: "The redesigned dashboard reduced new-agent onboarding time from an average of 4 days to under 2 days based on internal benchmarking. The HITL suggestion model achieved a 60% acceptance rate in the first month post-launch \u2014 substantially above the 35% baseline from the previous modal-overlay approach. Mobile and tablet usage by supervisors increased 3\u00d7 as the responsive system became reliable enough for real shift use." }
         ]
     }
 ];

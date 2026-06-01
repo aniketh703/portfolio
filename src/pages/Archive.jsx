@@ -13,10 +13,16 @@ const ProjectThumb = ({ project }) => {
         alt={project.title}
         onError={() => setImgFailed(true)}
         className="w-full h-full object-cover"
+        loading="lazy"
+        decoding="async"
       />
     );
   }
-  return <GenerativeArt id={project.id} color={project.color} />;
+  return (
+    <div role="img" aria-label={`${project.title} — decorative thumbnail`} className="w-full h-full">
+      <GenerativeArt id={project.id} color={project.color} />
+    </div>
+  );
 };
 
 const skills = ['AI Product Design', 'Design Systems', 'React.js', 'Figma', 'Prompt Engineering', 'Python', 'UX Research', 'Prototyping', 'CI/CD', 'SQL', 'HTML/CSS', 'JavaScript'];
@@ -37,12 +43,17 @@ const Projects = ({ projects, onSelect, onNavigate }) => {
   return (
     <>
       <Helmet>
-        <title>Work | Aniketh Vustepalle</title>
-        <meta name="description" content="UI/UX and engineering projects by Aniketh Vustepalle — from enterprise SaaS dashboards to MLOps pipelines and mobile apps." />
+        <title>Projects | UI/UX Design &amp; Engineering Work | Aniketh Vustepalle</title>
+        <meta name="description" content="UI/UX design and engineering projects by Aniketh Vustepalle — enterprise SaaS dashboards, AI-driven systems, MLOps pipelines, mobile apps, and design systems." />
         <meta property="og:title" content="Work | Aniketh Vustepalle" />
         <meta property="og:description" content="UI/UX and engineering projects — SaaS dashboards, mobile apps, MLOps, and more." />
         <meta property="og:url" content="https://aniketh703.github.io/portfolio/work" />
         <meta property="og:image" content="https://aniketh703.github.io/portfolio/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Work | Aniketh Vustepalle" />
+        <meta name="twitter:description" content="UI/UX and engineering projects — SaaS dashboards, mobile apps, MLOps, and more." />
+        <meta name="twitter:image" content="https://aniketh703.github.io/portfolio/og-image.jpg" />
+        <link rel="canonical" href="https://aniketh703.github.io/portfolio/work" />
       </Helmet>
       <section className="bg-stone-50 dark:bg-[#111] min-h-screen">
         <div className="max-w-5xl mx-auto px-6 md:px-10">

@@ -33,10 +33,12 @@ const GridTransition = ({ status, onAnimationComplete }) => {
           duration: 0.1, 
           stagger: { amount: 0.75, from: "random" }, 
           onComplete: () => { 
+            containerRef.current.style.pointerEvents = 'none'; 
             if (onAnimationComplete) onAnimationComplete(); 
           } 
         });
       } else if (status === 'exit') {
+        containerRef.current.style.pointerEvents = 'all'; 
         gsap.fromTo(targets, 
           { opacity: 0 }, 
           { 

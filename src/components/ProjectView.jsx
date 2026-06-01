@@ -40,7 +40,7 @@ const ProjectView = ({ project, scrollRef, onClose, onNext, onPrev, onHome }) =>
             <span className="font-mono text-xs uppercase tracking-widest text-stone-400 block mb-3">
               The real problem
             </span>
-            <p className="text-[clamp(1.6rem,2.8vw,2.1rem)] font-serif leading-[1.2] text-stone-900">
+            <p className="text-[clamp(1.6rem,2.8vw,2.1rem)] font-sans leading-[1.2] text-stone-900">
               {module.content}
             </p>
           </div>
@@ -51,7 +51,7 @@ const ProjectView = ({ project, scrollRef, onClose, onNext, onPrev, onHome }) =>
             <span className="font-mono text-xs uppercase tracking-widest text-stone-400 block mb-3">
               What did not work
             </span>
-            <p className="font-serif text-[clamp(1.05rem,2vw,1.35rem)] leading-[1.45] mb-4 line-through opacity-40 text-stone-900">
+            <p className="font-sans text-[clamp(1.05rem,2vw,1.35rem)] leading-[1.45] mb-4 line-through opacity-40 text-stone-900">
               {module.attempt}
             </p>
             <p className="font-sans text-base leading-relaxed text-stone-700">
@@ -71,11 +71,11 @@ const ProjectView = ({ project, scrollRef, onClose, onNext, onPrev, onHome }) =>
           </div>
         );
       case 'intro': 
-        return (<p key={index} className="text-xl md:text-5xl font-serif leading-tight mb-10 md:mb-16 text-stone-900 md:indent-24">{module.content}</p>);
+        return (<p key={index} className="text-xl md:text-5xl font-sans leading-tight mb-10 md:mb-16 text-stone-900 md:indent-24">{module.content}</p>);
       case 'text':
-        return (<div key={index} className="mb-10 md:mb-16 max-w-3xl">{module.title && <h3 className="font-serif text-2xl md:text-3xl mb-4 md:mb-6 text-stone-900">{module.title}</h3>}<p className="font-sans text-base md:text-lg leading-relaxed text-stone-700 font-light">{module.content}</p></div>);
+        return (<div key={index} className="mb-10 md:mb-16 max-w-3xl">{module.title && <h3 className="font-sans text-2xl md:text-3xl font-medium mb-4 md:mb-6 text-stone-900">{module.title}</h3>}<p className="font-sans text-base md:text-lg leading-relaxed text-stone-700 font-light">{module.content}</p></div>);
       case 'quote': 
-        return (<div key={index} className="py-10 md:py-16 border-y border-stone-200 my-10 md:my-16"><Quote className="text-orange-500 mb-4 md:mb-6 opacity-50" size={36} /><p className="text-2xl md:text-6xl font-serif italic leading-tight text-stone-900">"{module.content}"</p></div>);
+        return (<div key={index} className="py-10 md:py-16 border-y border-stone-200 my-10 md:my-16"><Quote className="text-orange-500 mb-4 md:mb-6 opacity-50" size={36} /><p className="text-2xl md:text-6xl font-sans font-light italic leading-tight text-stone-900">"{module.content}"</p></div>);
       case 'grid': 
         return (
           <div key={index} className="mb-24">
@@ -84,7 +84,7 @@ const ProjectView = ({ project, scrollRef, onClose, onNext, onPrev, onHome }) =>
                 {module.items.map((item, i) => (
                     <div key={i} className="bg-white p-6 border border-stone-200 shadow-sm">
                         <span className="font-mono text-xs text-orange-500 block mb-3">{item.label}</span>
-                        <p className="font-serif text-lg leading-relaxed text-stone-800">{item.text}</p>
+                        <p className="font-sans text-lg leading-relaxed text-stone-800">{item.text}</p>
                     </div>
                 ))}
             </div>
@@ -96,7 +96,7 @@ const ProjectView = ({ project, scrollRef, onClose, onNext, onPrev, onHome }) =>
             <div className="grid grid-cols-3 divide-x divide-stone-200">
               {module.items.map((item, i) => (
                 <div key={i} className="px-6 py-8 text-center bg-white">
-                  <div className="font-serif text-[clamp(2rem,5vw,3.5rem)] leading-none text-stone-900 mb-1">
+                  <div className="font-sans text-[clamp(2rem,5vw,3.5rem)] font-medium leading-none text-stone-900 mb-1">
                     {item.value}
                     {item.unit && (
                       <span className="font-mono text-base text-stone-400 ml-1">{item.unit}</span>
@@ -147,10 +147,10 @@ const ProjectView = ({ project, scrollRef, onClose, onNext, onPrev, onHome }) =>
   };
 
   return (
-    <div ref={scrollRef} data-lenis-prevent style={{ colorScheme: 'light' }} className={`fixed inset-0 z-[150] bg-stone-50 font-sans text-stone-900 overflow-y-auto no-scrollbar ${isExiting ? 'project-close' : 'project-open'}`}>
+    <div ref={scrollRef} data-lenis-prevent style={{ colorScheme: 'light' }} className={`fixed inset-0 z-[150] bg-stone-50 font-sans text-stone-900 overflow-y-auto no-scrollbar antialiased [font-synthesis:none] ${isExiting ? 'project-close' : 'project-open'}`}>
       <div className="fixed top-4 right-4 md:top-6 md:right-6 z-[160] mix-blend-difference text-white pointer-events-auto">
         <button onClick={handleClose} className="flex items-center gap-2 hover:opacity-70 transition-opacity duration-300 touch-target">
-            <span className="font-mono text-xs uppercase tracking-widest hidden md:block">Close View</span>
+            <span className="font-sans text-[11px] font-medium uppercase tracking-[0.14em] hidden md:block">Close View</span>
             <div className="border border-current rounded-full p-2"><X size={20} /></div>
         </button>
       </div>
@@ -167,7 +167,7 @@ const ProjectView = ({ project, scrollRef, onClose, onNext, onPrev, onHome }) =>
           )}
           <div className="absolute inset-0 ink-gradient" />
           <div className="absolute bottom-0 left-0 w-full p-4 md:p-12 pointer-events-none">
-              <h1 style={{ fontSize: 'clamp(2.5rem, 12vw, 16rem)' }} className="leading-[0.8] font-serif font-medium tracking-tighter text-stone-50 select-none drop-shadow-[0_8px_18px_rgba(0,0,0,0.35)]">{project.title}</h1>
+              <h1 style={{ fontSize: 'clamp(2.5rem, 12vw, 16rem)' }} className="leading-[0.8] font-sans font-semibold tracking-tighter text-stone-50 select-none drop-shadow-[0_8px_18px_rgba(0,0,0,0.35)]">{project.title}</h1>
           </div>
         </header>
         {project.process && (
@@ -176,10 +176,10 @@ const ProjectView = ({ project, scrollRef, onClose, onNext, onPrev, onHome }) =>
               {project.process.map((stage, i) => (
                 <div key={i} className="flex items-center">
                   <div className="flex flex-col items-center px-6 py-2 min-w-[120px]">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-stone-400 mb-2">
+                    <span className="font-sans text-[11px] font-medium uppercase tracking-[0.14em] text-stone-400 mb-2">
                       {stage.label}
                     </span>
-                    <span className="font-serif text-sm text-center">{stage.note}</span>
+                    <span className="font-sans text-sm text-center">{stage.note}</span>
                   </div>
                   {i < project.process.length - 1 && (
                     <div className="w-8 h-px bg-stone-700 flex-shrink-0" />
@@ -193,29 +193,29 @@ const ProjectView = ({ project, scrollRef, onClose, onNext, onPrev, onHome }) =>
           <div className="max-w-[95vw] mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 pt-10 md:pt-16 pb-20 md:pb-32 px-4">
             <div className="md:col-span-3 space-y-8 md:space-y-12 border-t border-stone-900 pt-6 md:sticky md:top-20 h-fit">
               <div>
-                  <span className="block font-mono text-xs text-stone-400 uppercase tracking-widest mb-2">Discipline</span>
-                  <span className="font-serif text-xl">{project.category}</span>
+                  <span className="block font-sans text-[11px] font-medium text-stone-400 uppercase tracking-[0.14em] mb-2">Discipline</span>
+                  <span className="font-sans text-xl font-medium">{project.category}</span>
               </div>
               <div>
-                  <span className="block font-mono text-xs text-stone-400 uppercase tracking-widest mb-2">Year</span>
-                  <span className="font-serif text-xl">{project.year}</span>
+                  <span className="block font-sans text-[11px] font-medium text-stone-400 uppercase tracking-[0.14em] mb-2">Year</span>
+                  <span className="font-sans text-xl font-medium">{project.year}</span>
               </div>
               <div>
-                  <span className="block font-mono text-xs text-stone-400 uppercase tracking-widest mb-2">Stack</span>
+                  <span className="block font-sans text-[11px] font-medium text-stone-400 uppercase tracking-[0.14em] mb-2">Stack</span>
                   <div className="flex flex-wrap gap-2">
                       {project.details.map(tech => (
-                          <span key={tech} className="border border-stone-300 px-2 py-1 text-xs font-mono rounded-full bg-white text-stone-900">{tech}</span>
+                          <span key={tech} className="border border-stone-300 px-2 py-1 text-[11px] font-sans font-medium rounded-full bg-white text-stone-900">{tech}</span>
                       ))}
                   </div>
               </div>
               {project.liveUrl && (
                 <div>
-                    <span className="block font-mono text-xs text-stone-400 uppercase tracking-widest mb-2">Live</span>
+                    <span className="block font-sans text-[11px] font-medium text-stone-400 uppercase tracking-[0.14em] mb-2">Live</span>
                     <a
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center w-full border border-stone-900 bg-stone-900 text-stone-50 px-4 py-3 text-xs font-mono uppercase tracking-widest hover:bg-stone-700 transition-colors duration-300"
+                      className="inline-flex items-center justify-center w-full border border-stone-900 bg-stone-900 text-stone-50 px-4 py-3 text-[11px] font-sans font-medium uppercase tracking-[0.14em] hover:bg-stone-700 transition-colors duration-300"
                     >
                       {project.liveLabel || 'Open Live Project'}
                     </a>
@@ -223,12 +223,12 @@ const ProjectView = ({ project, scrollRef, onClose, onNext, onPrev, onHome }) =>
               )}
               {project.repoUrl && (
                 <div>
-                    <span className="block font-mono text-xs text-stone-400 uppercase tracking-widest mb-2">Repository</span>
+                    <span className="block font-sans text-[11px] font-medium text-stone-400 uppercase tracking-[0.14em] mb-2">Repository</span>
                     <a
                       href={project.repoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center w-full border border-stone-900 bg-white text-stone-900 px-4 py-3 text-xs font-mono uppercase tracking-widest hover:bg-stone-100 transition-colors duration-300"
+                      className="inline-flex items-center justify-center w-full border border-stone-900 bg-white text-stone-900 px-4 py-3 text-[11px] font-sans font-medium uppercase tracking-[0.14em] hover:bg-stone-100 transition-colors duration-300"
                     >
                       {project.repoLabel || 'View Repository'}
                     </a>
@@ -238,14 +238,14 @@ const ProjectView = ({ project, scrollRef, onClose, onNext, onPrev, onHome }) =>
             <div className="md:col-span-8 md:col-start-5 border-t border-stone-900 pt-6">
               {project.modules ? (<div>{project.modules.map((m, i) => renderModule(m, i))}</div>) : (
                 <>
-                    <p className="text-xl md:text-5xl font-serif leading-tight mb-10 md:mb-16 text-stone-900 md:indent-24">{project.description}</p>
+                    <p className="text-xl md:text-5xl font-sans leading-tight mb-10 md:mb-16 text-stone-900 md:indent-24">{project.description}</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
                         <div>
-                            <h3 className="font-mono text-xs uppercase tracking-widest mb-6 text-stone-500 flex items-center gap-2"><span className="w-2 h-2 bg-orange-500 rounded-full"></span>The Challenge</h3>
+                            <h3 className="font-sans text-[11px] font-medium uppercase tracking-[0.14em] mb-6 text-stone-500 flex items-center gap-2"><span className="w-2 h-2 bg-orange-500 rounded-full"></span>The Challenge</h3>
                             <p className="font-sans text-base md:text-lg leading-relaxed text-stone-700 font-light">{project.challenge || "Defining the problem space required a deep dive into user behavior and systemic inefficiencies."}</p>
                         </div>
                         <div>
-                            <h3 className="font-mono text-xs uppercase tracking-widest mb-6 text-stone-500 flex items-center gap-2"><span className="w-2 h-2 bg-stone-900 rounded-full"></span>The Solution</h3>
+                            <h3 className="font-sans text-[11px] font-medium uppercase tracking-[0.14em] mb-6 text-stone-500 flex items-center gap-2"><span className="w-2 h-2 bg-stone-900 rounded-full"></span>The Solution</h3>
                             <p className="font-sans text-base md:text-lg leading-relaxed text-stone-700 font-light">{project.solution || "By simplifying the core interaction loop, I was able to create a system that feels both novel and intuitive."}</p>
                         </div>
                     </div>
@@ -254,7 +254,7 @@ const ProjectView = ({ project, scrollRef, onClose, onNext, onPrev, onHome }) =>
                 <div className="mt-16 md:mt-24 space-y-8">
                   <div className="w-full h-[260px] md:h-[400px] bg-stone-200 overflow-hidden relative group">
                       <GenerativeArt id={project.id + 10} color={project.color} />
-                      <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur px-3 py-1 text-xs font-mono uppercase tracking-widest text-stone-900">Fig 1.1 — Final Render</div>
+                      <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur px-3 py-1 text-[11px] font-sans font-medium uppercase tracking-[0.14em] text-stone-900">Fig 1.1 — Final Render</div>
                   </div>
               </div>
             </div>
@@ -267,10 +267,10 @@ const ProjectView = ({ project, scrollRef, onClose, onNext, onPrev, onHome }) =>
               tabIndex="0"
               className="group border-b md:border-b-0 md:border-r border-stone-900 bg-stone-100 text-stone-900 hover:bg-stone-900 hover:text-white transition-colors duration-500 cursor-pointer py-10 md:py-16 px-6 md:px-8 flex flex-col items-center justify-center text-center outline-none focus:bg-stone-900 focus:text-white"
             >
-              <span className="font-mono text-xs uppercase tracking-widest mb-2 opacity-50">Previous Project</span>
+              <span className="font-sans text-[11px] font-medium uppercase tracking-[0.14em] mb-2 opacity-50">Previous Project</span>
               <div className="flex items-center gap-3">
                 <ArrowLeft className="w-6 h-6 transition-transform duration-300 group-hover:-translate-x-2" />
-                <span className="font-serif text-2xl md:text-3xl italic">Prev</span>
+                <span className="font-sans text-2xl md:text-3xl font-medium italic">Prev</span>
               </div>
             </div>
 
@@ -281,10 +281,10 @@ const ProjectView = ({ project, scrollRef, onClose, onNext, onPrev, onHome }) =>
               tabIndex="0"
               className="group border-b md:border-b-0 md:border-r border-stone-900 bg-stone-100 text-stone-900 hover:bg-stone-900 hover:text-white transition-colors duration-500 cursor-pointer py-10 md:py-16 px-6 md:px-8 flex flex-col items-center justify-center text-center outline-none focus:bg-stone-900 focus:text-white"
             >
-              <span className="font-mono text-xs uppercase tracking-widest mb-2 opacity-50">Index</span>
+              <span className="font-sans text-[11px] font-medium uppercase tracking-[0.14em] mb-2 opacity-50">Index</span>
               <div className="flex items-center gap-3">
                 <Home className="w-6 h-6 transition-transform duration-300 group-hover:scale-110" />
-                <span className="font-serif text-2xl md:text-3xl italic">Home</span>
+                <span className="font-sans text-2xl md:text-3xl font-medium italic">Home</span>
               </div>
             </div>
 
@@ -295,9 +295,9 @@ const ProjectView = ({ project, scrollRef, onClose, onNext, onPrev, onHome }) =>
               tabIndex="0"
               className="group bg-stone-100 text-stone-900 hover:bg-stone-900 hover:text-white transition-colors duration-500 cursor-pointer py-10 md:py-16 px-6 md:px-8 flex flex-col items-center justify-center text-center outline-none focus:bg-stone-900 focus:text-white"
             >
-              <span className="font-mono text-xs uppercase tracking-widest mb-2 opacity-50">Next Project</span>
+              <span className="font-sans text-[11px] font-medium uppercase tracking-[0.14em] mb-2 opacity-50">Next Project</span>
               <div className="flex items-center gap-3">
-                <span className="font-serif text-2xl md:text-3xl italic">Next</span>
+                <span className="font-sans text-2xl md:text-3xl font-medium italic">Next</span>
                 <ArrowRight className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-2" />
               </div>
             </div>

@@ -1,51 +1,55 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+import gsap from 'gsap';
 
 const LoadingScreen = ({ onComplete }) => {
-  const [progress, setProgress] = useState(0);
-  const [isExiting, setIsExiting] = useState(false);
+  const containerRef = useRef(null);
+  const [blocks, setBlocks] = useState([]);
 
+  // Same grid calculation as GridTransition
   useEffect(() => {
-    const timer = setInterval(() => { 
-      setProgress(prev => { 
-        const next = prev + 1; 
-        if (next >= 100) { 
-          clearInterval(timer); 
-          return 100; 
-        } 
-        return next; 
-      }); 
-    }, 20);
-    return () => clearInterval(timer);
+    const width  = window.innerWidth;
+    const height = window.innerHeight;
+    const columns = width < 479 ? 4 : width < 767 ? 6 : 8;
+    const blockSize = width / columns;
+    const rows = Math.ceil(height / blockSize);
+    if (containerRef.current) {
+      containerRef.current.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+      containerRef.current.style.gridTemplateRows    = `repeat(${rows}, ${blockSize}px)`;
+    }
+    setBlocks(Array.from({ length: columns * rows }));
   }, []);
 
-  useEffect(() => { 
-    if (progress === 100) { 
-      setTimeout(() => { 
-        setIsExiting(true); 
-        setTimeout(onComplete, 800); 
-      }, 600); 
-    } 
-  }, [progress, onComplete]);
+  // Once blocks are in the DOM, dissolve them out exactly like the 'enter' transition
+  useEffect(() => {
+    if (blocks.length === 0 || !containerRef.current) return;
+    const targets = containerRef.current.querySelectorAll('.loader-block');
+    const ctx = gsap.context(() => {
+      gsap.to(targets, {
+        delay: 0.25,           // brief hold so the page has a moment to paint
+        opacity: 0,
+        duration: 0.1,
+        stagger: { amount: 0.75, from: 'random' },
+        onComplete: () => {
+          containerRef.current.style.pointerEvents = 'none';
+          if (onComplete) onComplete();
+        },
+      });
+    }, containerRef);
+    return () => ctx.revert();
+  }, [blocks, onComplete]);
 
   return (
-    <div className={`fixed inset-0 z-[250] bg-stone-900 text-stone-50 flex flex-col justify-between p-4 md:p-12 cursor-wait ${isExiting ? 'loader-exit' : ''}`}>
-      <div className="flex justify-between items-start font-mono text-[10px] md:text-xs uppercase tracking-widest gap-4">
-        <span>Aniketh Vustepalle</span>
-        <span>Portfolio 2024</span>
-      </div>
-      <div className="flex flex-col items-center w-full">
-        <div className="font-serif text-[26vw] sm:text-[20vw] md:text-[25vw] leading-none font-medium tracking-tighter tabular-nums">
-          {progress}%
-        </div>
-      </div>
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end font-mono text-[10px] md:text-xs uppercase tracking-widest w-full gap-4">
-        <div className="flex flex-col gap-1 text-stone-400">
-          <span className={progress > 20 ? 'text-white' : ''}>[ SYS ] Checking Dependencies... {progress < 20 ? '...' : 'OK'}</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="animate-blink text-orange-500">_INITIALIZING_CORE</span>
-        </div>
-      </div>
+    <div
+      ref={containerRef}
+      style={{ display: 'grid', position: 'fixed', inset: 0, zIndex: 250, cursor: 'wait' }}
+    >
+      {blocks.map((_, i) => (
+        <div
+          key={i}
+          className="loader-block"
+          style={{ width: '100%', height: '100%', backgroundColor: '#D6F343', opacity: 1 }}
+        />
+      ))}
     </div>
   );
 };

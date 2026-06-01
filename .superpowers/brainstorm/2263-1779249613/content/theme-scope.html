@@ -1,0 +1,44 @@
+<h2>Theme scope — how wide should dark/light mode go?</h2>
+<p class="subtitle">This shapes the architecture. Pick the one that matches your vision.</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Whole site toggle</h3>
+      <p>A single sun/moon icon in the navbar switches everything — home, archive, brand page, ProjectView — between light and dark. One persistent preference saved to localStorage.</p>
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+        <span style="background:#fafaf9;color:#1c1917;border:1px solid #d6d3d1;padding:3px 10px;border-radius:4px;font-size:12px;font-family:monospace">Light: stone-50 base</span>
+        <span style="background:#1c1917;color:#fafaf9;border:1px solid #44403c;padding:3px 10px;border-radius:4px;font-size:12px;font-family:monospace">Dark: stone-950 base</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>ProjectView only — always dark</h3>
+      <p>The main site stays on its current warm light theme. ProjectView becomes permanently dark (stone-950 background, stone-50 text) — it already feels like a separate immersive space, so lean into it. No toggle needed.</p>
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+        <span style="background:#fafaf9;color:#1c1917;border:1px solid #d6d3d1;padding:3px 10px;border-radius:4px;font-size:12px;font-family:monospace">Site: light (unchanged)</span>
+        <span style="background:#1c1917;color:#fafaf9;border:1px solid #44403c;padding:3px 10px;border-radius:4px;font-size:12px;font-family:monospace">ProjectView: dark always</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>ProjectView toggle — independent of main site</h3>
+      <p>The main site stays light. Inside ProjectView, a small toggle lets viewers switch between a light reading mode and a dark immersive mode. Preference persists per-session. Best for long case study reads.</p>
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+        <span style="background:#fafaf9;color:#1c1917;border:1px solid #d6d3d1;padding:3px 10px;border-radius:4px;font-size:12px;font-family:monospace">Site: light (unchanged)</span>
+        <span style="background:#1c1917;color:#fafaf9;border:1px solid #44403c;padding:3px 10px;border-radius:4px;font-size:12px;font-family:monospace">ProjectView: user toggles</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:24px;padding:16px;background:rgba(255,69,0,0.07);border-left:3px solid #FF4500;border-radius:4px">
+  <p style="margin:0;font-size:14px"><strong>My lean: Option B or C.</strong> Your main site has a strong, intentional warm-light identity. Introducing a full-site dark mode risks muddying that. ProjectView is already a separate "world" — making it dark by default (B) or toggleable (C) amplifies that contrast dramatically without touching the rest of the site.</p>
+</div>

@@ -1,85 +1,64 @@
 import React from 'react';
-import { Globe, PenTool, Smartphone, Code } from 'lucide-react';
+import { PenTool, Code, Globe, Smartphone } from 'lucide-react';
 
-const Services = ({ onNavigate }) => {
-  const services = [
-    {
-      icon: <PenTool className="w-8 h-8 mb-4" />,
-      title: "UI/UX Design",
-      description: "Crafting intuitive user experiences using Figma, Adobe XD, and modern design systems. Specialized in wireframing, prototyping, and high-fidelity UI design.",
-      span: "md:col-span-4 md:row-span-2",
-      details: {
-        tools: "Figma • Adobe XD • FigJam",
-        outcomes: [
-          "Improved product usability while keeping front-end code clean and maintainable (Q-DITS internship feedback)",
-          "Reduced model deployment time through CI/CD-ready interface and workflow decisions",
-          "Shipped responsive, accessible interfaces across web apps with better handoff between design and development"
-        ],
-        deliverables: "Personas, wireframes, design system tokens, clickable prototypes"
-      }
-    },
-    {
-      icon: <Code className="w-8 h-8 mb-4" />,
-      title: "Frontend Development",
-      description: "Building responsive interfaces with React, JavaScript (ES6+), Tailwind CSS, and integrating Lottie animations for enhanced user interactions.",
-      span: "md:col-span-2 md:row-span-1"
-    },
-    {
-      icon: <Globe className="w-8 h-8 mb-4" />,
-      title: "Full Stack Development",
-      description: "Developing scalable web applications using React, Python, Flask, and Django with cloud deployment on AWS and Docker.",
-      span: "md:col-span-2 md:row-span-1"
-    },
-    {
-      icon: <Smartphone className="w-8 h-8 mb-4" />,
-      title: "Design Systems",
-      description: "Creating comprehensive design systems and ensuring seamless handoff between design and development teams.",
-      span: "md:col-span-6 md:row-span-1"
-    }
-  ];
+const serviceItems = [
+  {
+    icon: <PenTool strokeWidth={1.5} size={22} />,
+    num: '01',
+    title: 'UI/UX Design',
+    description: 'Crafting intuitive user experiences with Figma and modern design systems. Wireframing, prototyping, and high-fidelity UI design.',
+  },
+  {
+    icon: <Code strokeWidth={1.5} size={22} />,
+    num: '02',
+    title: 'Frontend Development',
+    description: 'Building responsive, performant interfaces with React, TypeScript, and Tailwind CSS.',
+  },
+  {
+    icon: <Globe strokeWidth={1.5} size={22} />,
+    num: '03',
+    title: 'Full Stack',
+    description: 'Scalable web apps with Python, Flask, FastAPI, and cloud deployment on AWS and Docker.',
+  },
+  {
+    icon: <Smartphone strokeWidth={1.5} size={22} />,
+    num: '04',
+    title: 'Design Systems',
+    description: 'Building comprehensive design systems and ensuring smooth handoff between design and engineering.',
+  },
+];
 
-  return (
-    <section className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-16 md:py-20 md:gap-12 md:px-8">
-      <div>
-        <span className="font-sans text-xs font-semibold uppercase tracking-widest text-stone-500 opacity-60 block mb-2">Expertise</span>
-        <h2 className="font-serif text-3xl md:text-5xl mb-10 md:mb-12 border-b border-stone-300 pb-6 tracking-tight">Services</h2>
+const Services = ({ onNavigate }) => (
+  <section className="w-full bg-white dark:bg-[#141414] border-t border-brand-border dark:border-[#2e2e2e]">
+    <div className="max-w-6xl mx-auto px-6 md:px-10 py-16 md:py-20">
+      <div className="flex justify-between items-end mb-10 pb-6 border-b border-brand-border dark:border-[#2e2e2e]">
+        <div>
+          <span className="font-sans text-[11px] font-medium uppercase tracking-[0.12em] text-brand-muted dark:text-[#888] block mb-2">Expertise</span>
+          <h2 className="font-sans font-bold text-3xl md:text-4xl tracking-tight text-brand-dark dark:text-[#eee]">What I offer</h2>
+        </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-6 md:auto-rows-[minmax(180px,auto)] gap-6 md:gap-8">
-        {services.map((service, index) => (
-          <div
-            key={index}
-            className={`p-5 md:p-6 border border-stone-200 hover:bg-stone-50/50 backdrop-blur-sm transition-all duration-300 group flex flex-col rounded-lg hover:shadow-lg hover:border-stone-300 ${service.span}`}
-          >
-            <div className="text-stone-800 group-hover:text-brand-orange transition-colors duration-300">
-                {service.icon}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-border dark:bg-[#2e2e2e]">
+        {serviceItems.map((s, i) => (
+          <div key={i} className="flex flex-col gap-6 p-8 bg-white dark:bg-[#141414] hover:bg-brand-bg dark:hover:bg-[#1a1a1a] transition-colors duration-200">
+            <div className="flex items-center justify-between">
+              <span className="font-sans text-[11px] text-brand-muted dark:text-[#aaa] font-medium tracking-[0.15em]">{s.num}</span>
+              <span className="text-brand-dark dark:text-[#888]">{s.icon}</span>
             </div>
-            <h3 className="font-serif text-xl mt-2 mb-2">{service.title}</h3>
-            <p className="font-sans text-sm text-stone-600 leading-relaxed opacity-70">{service.description}</p>
-
-            {service.title === "UI/UX Design" && service.details && (
-              <div className="mt-5 border-t border-stone-200 pt-4 space-y-3">
-                <p className="font-sans text-xs font-semibold uppercase tracking-wide text-stone-500 opacity-60">{service.details.tools}</p>
-                <ul className="space-y-2">
-                  {service.details.outcomes.map((item) => (
-                    <li key={item} className="font-sans text-sm text-stone-700 leading-relaxed opacity-70">- {item}</li>
-                  ))}
-                </ul>
-                <p className="font-sans text-xs text-stone-500 leading-relaxed opacity-60">
-                  <span className="font-semibold uppercase tracking-wide">Typical deliverables:</span> {service.details.deliverables}
-                </p>
-              </div>
-            )}
+            <div>
+              <h3 className="font-sans font-semibold text-2xl tracking-tight text-brand-dark dark:text-[#eee] mb-3">{s.title}</h3>
+              <p className="font-sans text-[13px] text-[#666] dark:text-[#aaa] leading-relaxed tracking-tight">{s.description}</p>
+            </div>
           </div>
         ))}
       </div>
-      <div className="mt-12 text-center">
-          <p className="text-stone-500 font-sans text-sm mb-4 opacity-60">Looking for detailed packages?</p>
-            <button onClick={() => onNavigate('pricing')} className="inline-block border-b-2 border-stone-900 pb-1 font-serif italic text-lg md:text-xl hover:text-brand-orange hover:border-brand-orange transition-all duration-300 touch-target">
-              View Pricing & Packages
-          </button>
-      </div>
-    </section>
-  );
-};
+      <p className="mt-8 text-center font-sans text-sm text-brand-muted dark:text-[#888] tracking-tight">
+        Need a different approach?{' '}
+        <a href="mailto:anikethvustepalle03@gmail.com" className="text-brand-dark dark:text-[#ccc] underline underline-offset-2 hover:text-brand transition-colors duration-200">
+          Let&apos;s discuss.
+        </a>
+      </p>
+    </div>
+  </section>
+);
 
 export default Services;

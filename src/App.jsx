@@ -190,7 +190,7 @@ function AppLayout() {
             </div>
 
             {/* CENTER: nav links */}
-            <div className="hidden sm:flex items-center justify-center gap-6">
+            <div className="hidden lg:flex items-center justify-center gap-6">
               {[
                 { label: 'Work',  view: 'projects' },
                 { label: 'About', view: 'about'    },
@@ -218,7 +218,7 @@ function AppLayout() {
             </div>
 
             {/* RIGHT: LinkedIn icon + Contact me CTA */}
-            <div className="flex items-center justify-end gap-3 pr-16 md:pr-0">
+            <div className="hidden lg:flex items-center justify-end gap-3 pr-16 md:pr-0">
               <a
                 href="https://www.linkedin.com/in/aniketh-vustepalle/"
                 target="_blank"

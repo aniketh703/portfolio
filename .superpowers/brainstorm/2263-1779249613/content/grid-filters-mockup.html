@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Grid Filters — Design Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #fafaf9; font-family: 'Inter', sans-serif; color: #1c1917; padding: 48px 24px 80px; }
+
+  .page-label {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,250,249,.95); backdrop-filter: blur(8px);
+    border-bottom: 1px solid #e7e5e4;
+    padding: 10px 20px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .page-label span { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: #78716c; }
+  .badge { background: #FF4500; color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .12em; padding: 3px 10px; border-radius: 100px; }
+
+  .section-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .18em; color: #78716c; margin-bottom: 6px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #1c1917; letter-spacing: -.02em; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #d6d3d1; }
+
+  /* Filter tabs */
+  .filter-bar { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 28px; }
+  .filter-tab {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase;
+    letter-spacing: .12em; padding: 6px 14px; border: 1px solid #d6d3d1;
+    background: #fff; color: #78716c; cursor: pointer; border-radius: 2px;
+    transition: all .2s; white-space: nowrap;
+  }
+  .filter-tab.active { background: #1c1917; color: #fafaf9; border-color: #1c1917; }
+  .filter-tab:hover:not(.active) { border-color: #1c1917; color: #1c1917; }
+  .filter-count { opacity: .5; margin-left: 5px; }
+
+  /* Project grid */
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 220px; gap: 12px; }
+  .card {
+    position: relative; background: #e7e5e4; border: 1px solid #d6d3d1;
+    border-radius: 8px; overflow: hidden; cursor: pointer;
+    transition: transform .3s, box-shadow .3s;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(28,25,23,.15); }
+  .card.span2 { grid-column: span 2; }
+  .card.span2.tall { grid-row: span 2; }
+  .card-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 30%, rgba(28,25,23,.85) 100%); }
+  .card-art { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .art-dot { width: 60px; height: 60px; border-radius: 50%; opacity: .4; }
+  .card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 14px 16px; color: #fafaf9; }
+  .card-cat { font-family: 'JetBrains Mono', monospace; font-size: 9px; text-transform: uppercase; letter-spacing: .14em; border: 1px solid rgba(255,255,255,.3); padding: 2px 8px; border-radius: 100px; display: inline-block; margin-bottom: 6px; }
+  .card-title { font-family: 'Playfair Display', serif; font-size: 18px; font-style: italic; line-height: 1.15; }
+  .card-year { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: rgba(255,255,255,.6); margin-top: 4px; }
+  .card-type-badge {
+    position: absolute; top: 10px; right: 10px;
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; text-transform: uppercase; letter-spacing: .12em;
+    padding: 3px 8px; border-radius: 100px;
+  }
+  .type-design { background: rgba(255,69,0,.15); color: #FF4500; border: 1px solid rgba(255,69,0,.3); }
+  .type-engineering { background: rgba(66,133,244,.12); color: #4285f4; border: 1px solid rgba(66,133,244,.3); }
+  .type-ml { background: rgba(0,172,193,.12); color: #00acc1; border: 1px solid rgba(0,172,193,.3); }
+  .type-creative { background: rgba(124,58,237,.12); color: #7c3aed; border: 1px solid rgba(124,58,237,.3); }
+
+  .view-all { grid-column: span 1; background: #1c1917; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  .view-all-inner { text-align: center; }
+  .view-all-text { font-family: 'Playfair Display', serif; font-size: 20px; font-style: italic; color: #fafaf9; }
+  .view-all-line { height: 1px; background: #44403c; margin: 8px auto 0; width: 60%; }
+
+  /* Archive table preview */
+  .archive-section { margin-top: 56px; }
+  .archive-table { width: 100%; border-top: 1px solid #1c1917; }
+  .archive-row {
+    display: grid; grid-template-columns: 40px 1fr 120px 80px 80px;
+    gap: 12px; align-items: center;
+    padding: 14px 12px; border-bottom: 1px solid #e7e5e4;
+    cursor: pointer; transition: background .15s;
+  }
+  .archive-row:hover { background: #f5f4f3; }
+  .archive-row.header { background: none; cursor: default; }
+  .archive-row.header span { font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .14em; color: #a8a29e; }
+  .archive-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #a8a29e; }
+  .archive-title { font-family: 'Playfair Display', serif; font-size: 17px; }
+  .archive-cat { font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: #78716c; }
+  .archive-year { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #a8a29e; }
+  .type-pill {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; text-transform: uppercase;
+    letter-spacing: .1em; padding: 2px 8px; border-radius: 100px;
+    display: inline-block;
+  }
+
+  /* Legend */
+  .legend { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 20px; padding: 16px; background: #fff; border: 1px solid #e7e5e4; border-radius: 6px; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .12em; color: #78716c; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+</style>
+</head>
+<body>
+
+<div class="page-label">
+  <span>Design Mockup — Grid Filters + Archive</span>
+  <span class="badge">Part 2 of design</span>
+</div>
+
+<br><br><br>
+
+<!-- Home grid section -->
+<div>
+  <div class="section-label">01 — Collection</div>
+  <div class="section-title">Selected Works</div>
+
+  <!-- Filter bar -->
+  <div class="filter-bar">
+    <button class="filter-tab active">All <span class="filter-count">12</span></button>
+    <button class="filter-tab">Design <span class="filter-count">5</span></button>
+    <button class="filter-tab">Engineering <span class="filter-count">4</span></button>
+    <button class="filter-tab">ML / Data <span class="filter-count">2</span></button>
+    <button class="filter-tab">Creative <span class="filter-count">1</span></button>
+  </div>
+
+  <!-- Grid -->
+  <div class="grid">
+    <!-- GITA APP — design, span 2 tall -->
+    <div class="card span2 tall" style="background: linear-gradient(135deg,#2a1500,#1a0d00)">
+      <div class="card-type-badge type-design">Design</div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <span class="card-cat">Mobile Application</span>
+        <div class="card-title">GITA APP</div>
+        <div class="card-year">01 · 2026</div>
+      </div>
+    </div>
+
+    <!-- VNAV — design -->
+    <div class="card" style="background: linear-gradient(135deg,#141c24,#0a1018)">
+      <div class="card-type-badge type-design">Design</div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <span class="card-cat">Professional Website</span>
+        <div class="card-title">VNAV ASSOCIATES</div>
+        <div class="card-year">06 · 2026</div>
+      </div>
+    </div>
+
+    <!-- RBAC — design -->
+    <div class="card" style="background: linear-gradient(135deg,#0a1f18,#061510)">
+      <div class="card-type-badge type-design">Design</div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <span class="card-cat">Web Application</span>
+        <div class="card-title">RBAC UI</div>
+        <div class="card-year">11 · 2024</div>
+      </div>
+    </div>
+
+    <!-- DIABETES MLOPS — ml, span 2 -->
+    <div class="card span2" style="background: linear-gradient(135deg,#001a1e,#00acc122)">
+      <div class="card-type-badge type-ml">ML / Data</div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <span class="card-cat">Machine Learning</span>
+        <div class="card-title">DIABETES MLOPS</div>
+        <div class="card-year">07 · 2025</div>
+      </div>
+    </div>
+
+    <!-- AESTHETIC SYNTHESIS — creative -->
+    <div class="card" style="background: linear-gradient(135deg,#1a0a2e,#0d0518)">
+      <div class="card-type-badge type-creative">Creative</div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <span class="card-cat">Interactive Experience</span>
+        <div class="card-title">AESTHETIC SYNTHESIS</div>
+        <div class="card-year">12 · 2026</div>
+      </div>
+    </div>
+
+    <!-- View all -->
+    <div class="view-all">
+      <div class="view-all-inner">
+        <div class="view-all-text">View Archive</div>
+        <div class="view-all-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Type legend -->
+  <div class="legend" style="margin-top:16px">
+    <div class="legend-item"><div class="legend-dot" style="background:#FF4500"></div> Design & UI</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#4285f4"></div> Engineering</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#00acc1"></div> ML / Data</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#7c3aed"></div> Creative</div>
+  </div>
+</div>
+
+<!-- Archive section -->
+<div class="archive-section">
+  <div class="section-label">Archive — with same filters</div>
+  <div class="section-title">Full Index</div>
+
+  <div class="filter-bar">
+    <button class="filter-tab active">All <span class="filter-count">12</span></button>
+    <button class="filter-tab">Design <span class="filter-count">5</span></button>
+    <button class="filter-tab">Engineering <span class="filter-count">4</span></button>
+    <button class="filter-tab">ML / Data <span class="filter-count">2</span></button>
+    <button class="filter-tab">Creative <span class="filter-count">1</span></button>
+  </div>
+
+  <div class="archive-table">
+    <div class="archive-row header">
+      <span>#</span><span>Project</span><span>Category</span><span>Year</span><span>Type</span>
+    </div>
+    <div class="archive-row">
+      <span class="archive-num">01</span>
+      <span class="archive-title">GITA APP</span>
+      <span class="archive-cat">Mobile Application</span>
+      <span class="archive-year">2026</span>
+      <span class="type-pill type-design">Design</span>
+    </div>
+    <div class="archive-row">
+      <span class="archive-num">07</span>
+      <span class="archive-title">DIABETES MLOPS</span>
+      <span class="archive-cat">Machine Learning</span>
+      <span class="archive-year">2025</span>
+      <span class="type-pill type-ml">ML / Data</span>
+    </div>
+    <div class="archive-row">
+      <span class="archive-num">11</span>
+      <span class="archive-title">RBAC UI</span>
+      <span class="archive-cat">Web Application</span>
+      <span class="archive-year">2024</span>
+      <span class="type-pill type-design">Design</span>
+    </div>
+    <div class="archive-row">
+      <span class="archive-num">12</span>
+      <span class="archive-title">AESTHETIC SYNTHESIS</span>
+      <span class="archive-cat">Interactive Experience</span>
+      <span class="archive-year">2026</span>
+      <span class="type-pill type-creative">Creative</span>
+    </div>
+    <div class="archive-row" style="opacity:.4">
+      <span class="archive-num">…</span>
+      <span class="archive-title" style="font-style:italic;font-size:14px">8 more projects</span>
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

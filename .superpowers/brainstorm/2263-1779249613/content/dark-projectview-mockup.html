@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dark ProjectView — Design Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #111; font-family: 'Inter', sans-serif; color: #fafaf9; }
+
+  /* ── Page chrome ── */
+  .page-label {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: #1c1917cc; backdrop-filter: blur(8px);
+    border-bottom: 1px solid #292524;
+    padding: 10px 20px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .page-label span { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: #a8a29e; }
+  .badge { background: #FF4500; color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .12em; padding: 3px 10px; border-radius: 100px; }
+
+  /* ── ProjectView shell ── */
+  .pv { background: #0c0a09; min-height: 100vh; padding-top: 44px; }
+
+  /* Cover image / hero */
+  .pv-hero {
+    position: relative; width: 100%; height: 340px;
+    background: linear-gradient(135deg, #1a1108 0%, #0c0a09 100%);
+    overflow: hidden;
+  }
+  .pv-hero-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,69,0,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,69,0,.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .pv-hero-glow {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 20% 60%, rgba(255,69,0,.18) 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 20%, rgba(255,120,0,.08) 0%, transparent 45%);
+  }
+  .pv-hero-art {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  }
+  .art-placeholder {
+    width: 260px; height: 180px; border: 1px solid rgba(255,69,0,.25);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(255,69,0,.5);
+    text-transform: uppercase; letter-spacing: .18em;
+  }
+  .pv-hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 20%, rgba(12,10,9,.95) 100%);
+  }
+  .pv-title {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 24px 32px;
+  }
+  .pv-title h1 {
+    font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 8vw, 5.5rem);
+    font-weight: 500; line-height: .88; letter-spacing: -.03em;
+    color: #fafaf9;
+  }
+
+  /* Process strip */
+  .pv-process {
+    background: #161311; border-bottom: 1px solid #1c1917;
+    overflow-x: auto; white-space: nowrap; padding: 0 32px;
+    display: flex; align-items: stretch; gap: 0;
+  }
+  .pv-process-stage {
+    display: inline-flex; flex-direction: column; align-items: center;
+    padding: 14px 24px; min-width: 120px;
+  }
+  .pv-process-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; text-transform: uppercase; letter-spacing: .18em; color: #57534e; margin-bottom: 6px; }
+  .pv-process-note { font-family: 'Playfair Display', serif; font-size: 13px; color: #a8a29e; text-align: center; }
+  .pv-process-divider { width: 24px; height: 1px; background: #292524; align-self: center; flex-shrink: 0; }
+
+  /* Body */
+  .pv-body {
+    display: grid; grid-template-columns: 240px 1fr;
+    gap: 40px; padding: 40px 32px 80px; max-width: 1200px;
+  }
+
+  /* Sidebar */
+  .pv-sidebar { border-top: 1px solid #44403c; padding-top: 20px; }
+  .pv-meta { margin-bottom: 28px; }
+  .pv-meta-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .18em; color: #57534e; margin-bottom: 6px; display: block; }
+  .pv-meta-value { font-family: 'Playfair Display', serif; font-size: 18px; color: #e7e5e4; }
+  .tag { display: inline-block; border: 1px solid #292524; color: #a8a29e; font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 3px 9px; border-radius: 100px; margin: 2px; background: #161311; }
+  .pv-btn { display: block; width: 100%; padding: 11px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .12em; margin-bottom: 8px; border: none; cursor: pointer; }
+  .pv-btn-primary { background: #FF4500; color: #fff; }
+  .pv-btn-secondary { background: transparent; border: 1px solid #44403c !important; color: #a8a29e; border: none; }
+
+  /* Main content */
+  .pv-main { border-top: 1px solid #44403c; padding-top: 20px; }
+
+  /* Module: problem */
+  .mod-problem { border-left: 3px solid #FF4500; padding-left: 20px; margin-bottom: 36px; }
+  .mod-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .18em; color: #57534e; margin-bottom: 10px; display: block; }
+  .mod-problem p { font-family: 'Playfair Display', serif; font-size: clamp(1.3rem, 2.4vw, 1.8rem); line-height: 1.25; color: #fafaf9; }
+
+  /* Module: text */
+  .mod-text { margin-bottom: 36px; }
+  .mod-text h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: #e7e5e4; margin-bottom: 10px; }
+  .mod-text p { font-size: 15px; line-height: 1.65; color: #a8a29e; font-weight: 300; }
+
+  /* Module: metrics (NEW) */
+  .mod-metrics { margin-bottom: 36px; }
+  .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #1c1917; border: 1px solid #1c1917; margin-top: 12px; }
+  .metric-card { background: #0f0d0c; padding: 20px 16px; }
+  .metric-number { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 700; color: #FF4500; line-height: 1; margin-bottom: 6px; }
+  .metric-desc { font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .14em; color: #57534e; }
+
+  /* Module: deadend */
+  .mod-deadend { background: #0f0d0c; border: 1px solid #1c1917; padding: 20px 24px; margin-bottom: 36px; }
+  .mod-deadend .attempt { font-family: 'Playfair Display', serif; font-size: 16px; color: #44403c; text-decoration: line-through; margin-bottom: 10px; }
+  .mod-deadend .why { font-size: 14px; line-height: 1.6; color: #78716c; }
+
+  /* Module: grid */
+  .mod-grid { margin-bottom: 36px; }
+  .grid-items { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #1c1917; margin-top: 12px; }
+  .grid-item { background: #0f0d0c; padding: 18px 16px; }
+  .grid-item-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #FF4500; text-transform: uppercase; letter-spacing: .14em; margin-bottom: 8px; display: block; }
+  .grid-item p { font-family: 'Playfair Display', serif; font-size: 13px; line-height: 1.55; color: #a8a29e; }
+
+  /* Module: quote */
+  .mod-quote { border-top: 1px solid #1c1917; border-bottom: 1px solid #1c1917; padding: 36px 0; margin-bottom: 36px; }
+  .mod-quote p { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3.5vw, 2.8rem); line-height: 1.2; color: #e7e5e4; font-style: italic; }
+
+  /* Module: reflection */
+  .mod-reflection { border-top: 1px dashed #292524; padding-top: 20px; margin-bottom: 36px; }
+  .mod-reflection p { font-size: 15px; line-height: 1.65; color: #78716c; font-style: italic; }
+
+  /* Nav footer */
+  .pv-nav { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid #292524; }
+  .pv-nav-btn {
+    padding: 40px 24px; text-align: center; cursor: pointer;
+    transition: background .3s; border-right: 1px solid #292524;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  }
+  .pv-nav-btn:last-child { border-right: none; }
+  .pv-nav-btn:hover { background: #1c1917; }
+  .pv-nav-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .14em; color: #44403c; }
+  .pv-nav-btn span.serif { font-family: 'Playfair Display', serif; font-size: 22px; font-style: italic; color: #a8a29e; }
+
+  /* Close button */
+  .pv-close { position: fixed; top: 56px; right: 20px; z-index: 200; }
+  .pv-close button {
+    display: flex; align-items: center; gap: 8px;
+    background: transparent; border: none; cursor: pointer; color: #57534e;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .12em;
+  }
+  .pv-close-icon { width: 32px; height: 32px; border: 1px solid #292524; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #78716c; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #0c0a09; }
+  ::-webkit-scrollbar-thumb { background: #292524; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<div class="page-label">
+  <span>Design Mockup — ProjectView Dark Mode</span>
+  <span class="badge">Option B confirmed</span>
+</div>
+
+<div class="pv-close">
+  <button>
+    <span>Close view</span>
+    <div class="pv-close-icon">✕</div>
+  </button>
+</div>
+
+<div class="pv">
+
+  <!-- Hero -->
+  <div class="pv-hero">
+    <div class="pv-hero-grid"></div>
+    <div class="pv-hero-glow"></div>
+    <div class="pv-hero-art">
+      <div class="art-placeholder">Cover / Generative Art</div>
+    </div>
+    <div class="pv-hero-overlay"></div>
+    <div class="pv-title"><h1>GITA APP</h1></div>
+  </div>
+
+  <!-- Process strip -->
+  <div class="pv-process">
+    <div class="pv-process-stage"><span class="pv-process-label">Discover</span><span class="pv-process-note">What users actually do</span></div>
+    <div class="pv-process-divider"></div>
+    <div class="pv-process-stage"><span class="pv-process-label">Define</span><span class="pv-process-note">Not a reading app</span></div>
+    <div class="pv-process-divider"></div>
+    <div class="pv-process-stage"><span class="pv-process-label">Explore</span><span class="pv-process-note">Three models tested</span></div>
+    <div class="pv-process-divider"></div>
+    <div class="pv-process-stage"><span class="pv-process-label">Dead end</span><span class="pv-process-note">Audio failed on low BW</span></div>
+    <div class="pv-process-divider"></div>
+    <div class="pv-process-stage"><span class="pv-process-label">Ship</span><span class="pv-process-note">Offline-first companion</span></div>
+  </div>
+
+  <!-- Body -->
+  <div class="pv-body">
+
+    <!-- Sidebar -->
+    <aside class="pv-sidebar">
+      <div class="pv-meta">
+        <span class="pv-meta-label">Discipline</span>
+        <span class="pv-meta-value">Mobile Application</span>
+      </div>
+      <div class="pv-meta">
+        <span class="pv-meta-label">Year</span>
+        <span class="pv-meta-value">2026</span>
+      </div>
+      <div class="pv-meta">
+        <span class="pv-meta-label">Stack</span>
+        <div style="margin-top:6px">
+          <span class="tag">TypeScript</span>
+          <span class="tag">React Native</span>
+          <span class="tag">Schema Design</span>
+        </div>
+      </div>
+      <div style="margin-top:24px">
+        <button class="pv-btn pv-btn-secondary">View Repository</button>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="pv-main">
+
+      <!-- Problem module -->
+      <div class="mod-problem">
+        <span class="mod-label">The real problem</span>
+        <p>People reach for spiritual apps in fragmented moments, not ideal reading sessions. The job was to make guidance feel available in low-attention, low-bandwidth contexts.</p>
+      </div>
+
+      <!-- Text module -->
+      <div class="mod-text">
+        <h3>Context</h3>
+        <p>18 chapters, 700 verses, multiple translations — but the product strategy changed from information depth first to calm access first.</p>
+      </div>
+
+      <!-- NEW: Metrics module -->
+      <div class="mod-metrics">
+        <span class="mod-label">Outcomes</span>
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-number">700+</div>
+            <div class="metric-desc">verses indexed offline</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number">3</div>
+            <div class="metric-desc">interaction models tested</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number">0 ms</div>
+            <div class="metric-desc">load time offline</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deadend module -->
+      <div class="mod-deadend">
+        <span class="mod-label">What did not work</span>
+        <p class="attempt">I optimized around heavy reading and advanced data controls in the first flow.</p>
+        <p class="why">That direction increased cognitive load exactly when users needed comfort and speed.</p>
+      </div>
+
+      <!-- Grid module -->
+      <div class="mod-grid">
+        <span class="mod-label">Data Engineering Pipeline</span>
+        <div class="grid-items">
+          <div class="grid-item"><span class="grid-item-label">01. Schema Design</span><p>Canonical schema definition with comprehensive validation rules ensuring data integrity.</p></div>
+          <div class="grid-item"><span class="grid-item-label">02. Normalization</span><p>Automated scripts converting CSV sources into validated JSON structures.</p></div>
+          <div class="grid-item"><span class="grid-item-label">03. Generation</span><p>Chapter generation tools with batch processing for efficient data transformation.</p></div>
+        </div>
+      </div>
+
+      <!-- Quote module -->
+      <div class="mod-quote">
+        <p>"Ancient wisdom meets modern data engineering."</p>
+      </div>
+
+      <!-- Reflection module -->
+      <div class="mod-reflection">
+        <span class="mod-label">If I did it again</span>
+        <p>I would prototype usage situations first — commute, fatigue, low signal — and let those constraints drive architecture decisions from day one.</p>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Nav footer -->
+  <div class="pv-nav">
+    <div class="pv-nav-btn">
+      <span class="pv-nav-eyebrow">Previous Project</span>
+      <span class="serif">← Prev</span>
+    </div>
+    <div class="pv-nav-btn">
+      <span class="pv-nav-eyebrow">Index</span>
+      <span class="serif">Home</span>
+    </div>
+    <div class="pv-nav-btn">
+      <span class="pv-nav-eyebrow">Next Project</span>
+      <span class="serif">Next →</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

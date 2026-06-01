@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Aniketh Vustepalle | UI/UX Designer & Creative Developer</title>
+    <meta name="title" content="Aniketh Vustepalle | UI/UX Designer & Creative Developer" />
+    <meta name="description" content="UI Engineer and Creative Developer designing intuitive digital experiences. Specialized in React, TypeScript, Python, and AI-driven systems. Based in Hyderabad, India." />
+    <meta name="keywords" content="UI Designer, UX Designer, Frontend Developer, React Developer, TypeScript, Python, Creative Developer, Web Designer, Portfolio, Aniketh Vustepalle" />
+    <meta name="author" content="Aniketh Vustepalle" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="theme-color" content="#F5F5F5" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://aniketh703.github.io/portfolio/" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://aniketh703.github.io/portfolio/" />
+    <meta property="og:title" content="Aniketh Vustepalle | UI/UX Designer & Creative Developer" />
+    <meta property="og:description" content="UI Engineer and Creative Developer designing intuitive digital experiences. Specialized in React, TypeScript, Python, and AI-driven systems." />
+    <meta property="og:image" content="https://aniketh703.github.io/portfolio/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Aniketh Vustepalle Portfolio" />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Dark mode: apply class before React renders to prevent flash -->
+    <script>
+      (function(){
+        var t=localStorage.getItem('theme');
+        var d=window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if(t==='dark'||(t===null&&d)){document.documentElement.classList.add('dark');}
+      })();
+    </script>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Aniketh Vustepalle",
+      "url": "https://aniketh703.github.io/portfolio/",
+      "image": "https://aniketh703.github.io/portfolio/og-image.jpg",
+      "jobTitle": "UI/UX Designer & Creative Developer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "PanTerra Networks"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Hyderabad",
+        "addressCountry": "IN"
+      },
+      "description": "UI Engineer and Creative Developer designing intuitive digital experiences. Specialized in React, TypeScript, Python, and AI-driven systems.",
+      "alumniOf": "Sri Chandrasekharendra Saraswathi Viswa Mahavidyalaya",
+      "telephone": "+91-9311761114",
+      "knowsAbout": ["UI Design", "UX Design", "Frontend Development", "React", "TypeScript", "Python", 

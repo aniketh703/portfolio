@@ -1,84 +1,204 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <!-- Homepage -->
   <url>
     <loc>https://aniketh703.github.io/portfolio/</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
-  
-  <!-- Archive Page -->
+
+  <!-- Projects / Work -->
   <url>
-    <loc>https://aniketh703.github.io/portfolio/archive</loc>
-    <lastmod>2026-03-09</lastmod>
+    <loc>https://aniketh703.github.io/portfolio/work</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- About -->
+  <url>
+    <loc>https://aniketh703.github.io/portfolio/about</loc>
+    <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- Pricing Page -->
+
+  <!-- Contact -->
   <url>
-    <loc>https://aniketh703.github.io/portfolio/pricing</loc>
-    <lastmod>2026-03-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://aniketh703.github.io/portfolio/contact</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
   </url>
-  
-  <!-- Brand Showcase Page -->
+
+  <!-- 1: GEETA APP -->
   <url>
-    <loc>https://aniketh703.github.io/portfolio/brand</loc>
-    <lastmod>2026-03-09</lastmod>
+    <loc>https://aniketh703.github.io/portfolio/work/1</loc>
+    <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
-  <!-- Individual Projects -->
+
+  <!-- 2: LAKSHYA -->
   <url>
-    <loc>https://aniketh703.github.io/portfolio/project/gita-app</loc>
-    <lastmod>2026-03-09</lastmod>
+    <loc>https://aniketh703.github.io/portfolio/work/2</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 3: INDIAN COOK APP -->
+  <url>
+    <loc>https://aniketh703.github.io/portfolio/work/3</loc>
+    <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  
+
+  <!-- 4: SPEECH TRANSCRIPTION -->
   <url>
-    <loc>https://aniketh703.github.io/portfolio/project/lakshya</loc>
-    <lastmod>2026-03-09</lastmod>
+    <loc>https://aniketh703.github.io/portfolio/work/4</loc>
+    <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  
+
+  <!-- 5: ANIKETH BLOG -->
   <url>
-    <loc>https://aniketh703.github.io/portfolio/project/indian-cook-app</loc>
-    <lastmod>2026-03-09</lastmod>
+    <loc>https://aniketh703.github.io/portfolio/work/5</loc>
+    <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  
+
+  <!-- 6: VNAV ASSOCIATES -->
   <url>
-    <loc>https://aniketh703.github.io/portfolio/project/speech-transcription</loc>
-    <lastmod>2026-03-09</lastmod>
+    <loc>https://aniketh703.github.io/portfolio/work/6</loc>
+    <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  
+
+  <!-- 7: DIABETES MLOPS -->
   <url>
-    <loc>https://aniketh703.github.io/portfolio/project/aniketh-blog</loc>
-    <lastmod>2026-03-09</lastmod>
+    <loc>https://aniketh703.github.io/portfolio/work/7</loc>
+    <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  
+
+  <!-- 8: PROJECT MANAGER -->
   <url>
-    <loc>https://aniketh703.github.io/portfolio/project/vnav-associates</loc>
-    <lastmod>2026-03-09</lastmod>
+    <loc>https://aniketh703.github.io/portfolio/work/8</loc>
+    <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  
+
+  <!-- 9: CONTENT MANAGER -->
   <url>
-    <loc>https://aniketh703.github.io/portfolio/project/diabetes-mlops</loc>
-    <lastmod>2026-03-09</lastmod>
+    <loc>https://aniketh703.github.io/portfolio/work/9</loc>
+    <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+
+  <!-- 10: WEATHER FORECAST -->
+  <url>
+    <loc>https://aniketh703.github.io/portfolio/work/10</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- 11: RBAC UI -->
+  <url>
+    <loc>https://aniketh703.github.io/portfolio/work/11</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- 12: AESTHETIC SYNTHESIS -->
+  <url>
+    <loc>https://aniketh703.github.io/portfolio/work/12</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- 13: WATER CONSERVATION WEBSITE -->
+  <url>
+    <loc>https://aniketh703.github.io/portfolio/work/13</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- 14: TRIBUTE TO ATARI 2600 -->
+  <url>
+    <loc>https://aniketh703.github.io/portfolio/work/14</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- 15: WEATHER APP (BEHANCE) -->
+  <url>
+    <loc>https://aniketh703.github.io/portfolio/work/15</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- 16: BLOG PAGES WEB APPLICATION -->
+  <url>
+    <loc>https://aniketh703.github.io/portfolio/work/16</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- 17: FIGMA SIGN-IN TEMPLATES -->
+  <url>
+    <loc>https://aniketh703.github.io/portfolio/work/17</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 18: WORLD CANCER DAY CAMPAIGN -->
+  <url>
+    <loc>https://aniketh703.github.io/portfolio/work/18</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- 19: UNDER 25 ID CARD -->
+  <url>
+    <loc>https://aniketh703.github.io/portfolio/work/19</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- 20: M-AWARE -->
+  <url>
+    <loc>https://aniketh703.github.io/portfolio/work/20</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 21: PANTERRA NETWORKS ENTERPRISE SAAS REDESIGN -->
+  <url>
+    <loc>https://aniketh703.github.io/portfolio/work/21</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
