@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
  * LazyImage Component
  * 
  * A reusable image component with lazy loading and placeholder support.
+ * Automatically serves WebP for .png files with PNG fallback.
  * 
  * @param {string} src - Image source URL
  * @param {string} alt - Alt text for accessibility
@@ -13,6 +14,11 @@ import React, { useState, useEffect, useRef } from 'react';
  * @param {function} onError - Callback on error
  * @param {object} ...props - Additional img attributes
  */
+const getWebPPath = (src) => {
+  if (!src || !src.endsWith('.png')) return null;
+  return src.replace(/\.png$/, '.webp');
+};
+
 const LazyImage = ({ 
   src, 
   alt, 
@@ -87,19 +93,37 @@ const LazyImage = ({
       )}
 
       {/* Actual image - only loaded when in view */}
-      {isInView && (
-        <img
-          src={src}
-          alt={alt}
-          loading="lazy"
-          decoding="async"
-          onLoad={handleLoad}
-          onError={handleError}
-          className={`w-full h-full object-cover transition-opacity duration-500 ${
-            isLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
-        />
-      )}
+      {isInView && (() => {
+        const webpPath = getWebPPath(src);
+        return webpPath ? (
+          <picture>
+            <source srcSet={webpPath} type="image/webp" />
+            <img
+              src={src}
+              alt={alt}
+              loading="lazy"
+              decoding="async"
+              onLoad={handleLoad}
+              onError={handleError}
+              className={`w-full h-full object-cover transition-opacity duration-500 ${
+                isLoaded ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+          </picture>
+        ) : (
+          <img
+            src={src}
+            alt={alt}
+            loading="lazy"
+            decoding="async"
+            onLoad={handleLoad}
+            onError={handleError}
+            className={`w-full h-full object-cover transition-opacity duration-500 ${
+              isLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+        );
+      })()}
     </div>
   );
 };

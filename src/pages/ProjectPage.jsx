@@ -25,7 +25,7 @@ const ProjectPage = () => {
   const handleNext  = () => navigate(`/work/${projects[(currentIndex + 1) % projects.length].id}`);
   const handlePrev  = () => navigate(`/work/${projects[(currentIndex - 1 + projects.length) % projects.length].id}`);
 
-  const ogImage = project.coverImage || `${BASE_URL}/og-image.jpg`;
+  const ogImage = `${BASE_URL}/og/project-${project.id}.jpg`;
 
   return (
     <>
