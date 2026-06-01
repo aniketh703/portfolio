@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const distFile = path.join(__dirname, '..', 'dist', 'assets', 'index-DMAcuYka.js');
-const outDir = path.join(__dirname, '..', 'public', 'showcase');
+const outDir = path.join(__dirname, '..', 'public', 'projects');
 
 if (!fs.existsSync(distFile)) {
   console.error('dist bundle not found:', distFile);

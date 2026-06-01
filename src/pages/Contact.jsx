@@ -87,25 +87,34 @@ const Contact = ({ onNavigate }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub"
-                  className="text-brand-dark dark:text-[#aaa] hover:text-brand dark:hover:text-brand-lime transition-all duration-300 hover:scale-110"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-stone-200 dark:border-[#2a2a2a] text-brand-dark dark:text-[#aaa] hover:text-brand dark:hover:text-brand-lime hover:border-brand dark:hover:border-brand-lime transition-all duration-300 hover:scale-110"
                 >
-                  <Github size={20} strokeWidth={1.5} />
+                  <Github size={18} strokeWidth={1.6} />
                 </a>
                 <a
                   href="https://www.linkedin.com/in/aniketh-vustepalle/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
-                  className="text-brand-dark dark:text-[#aaa] hover:text-brand dark:hover:text-brand-lime transition-all duration-300 hover:scale-110"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-stone-200 dark:border-[#2a2a2a] text-brand-dark dark:text-[#aaa] hover:text-brand dark:hover:text-brand-lime hover:border-brand dark:hover:border-brand-lime transition-all duration-300 hover:scale-110"
                 >
-                  <Linkedin size={20} strokeWidth={1.5} />
+                  <Linkedin size={18} strokeWidth={1.6} />
+                </a>
+                <a
+                  href="https://x.com/iamanikethv"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="X"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-stone-200 dark:border-[#2a2a2a] text-brand-dark dark:text-[#aaa] hover:text-brand dark:hover:text-brand-lime hover:border-brand dark:hover:border-brand-lime transition-all duration-300 hover:scale-110"
+                >
+                  <span className="text-[18px] font-bold leading-none">𝕏</span>
                 </a>
                 <a
                   href="mailto:anikethvustepalle03@gmail.com"
                   aria-label="Email"
-                  className="text-brand-dark dark:text-[#aaa] hover:text-brand dark:hover:text-brand-lime transition-all duration-300 hover:scale-110"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-stone-200 dark:border-[#2a2a2a] text-brand-dark dark:text-[#aaa] hover:text-brand dark:hover:text-brand-lime hover:border-brand dark:hover:border-brand-lime transition-all duration-300 hover:scale-110"
                 >
-                  <Mail size={20} strokeWidth={1.5} />
+                  <Mail size={18} strokeWidth={1.6} />
                 </a>
               </div>
             </div>

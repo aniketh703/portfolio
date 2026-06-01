@@ -272,8 +272,9 @@ function AppLayout() {
    GitHub Pages repo sub-path configured in vite.config.js
 ───────────────────────────────────────────────────────────── */
 export default function App() {
+  const basename = process.env.NODE_ENV === 'development' ? '/' : '/portfolio';
   return (
-    <BrowserRouter basename="/portfolio">
+    <BrowserRouter basename={basename}>
       <AppLayout />
     </BrowserRouter>
   );

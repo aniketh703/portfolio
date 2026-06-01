@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const distDir = path.join(__dirname, '..', 'dist', 'assets');
-const outDir = path.join(__dirname, '..', 'public', 'showcase');
+const outDir = path.join(__dirname, '..', 'public', 'projects');
 
 if (!fs.existsSync(distDir)) {
   console.error('dist/assets not found:', distDir);

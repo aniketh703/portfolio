@@ -34,30 +34,56 @@ const SideNavigation = ({ onNavigate }) => {
 
     if (isOpen) {
       gsap.set(navWrap, { display: "block" });
+      // ensure button labels start in correct stacked positions
+      if (menuButtonTexts && menuButtonTexts.length >= 2) {
+        gsap.set(menuButtonTexts[0], { yPercent: 0 });
+        gsap.set(menuButtonTexts[1], { yPercent: 100 });
+      }
+
       tlRef.current = gsap.timeline({
         onComplete: () => {
           // Move focus to first nav item after animation completes
           if (firstLinkRef.current) firstLinkRef.current.focus();
         },
       });
+
+      if (menuButtonTexts && menuButtonTexts.length >= 2) {
+        tlRef.current
+          .to(menuButtonTexts[0], { yPercent: -100, duration: 0.4, ease })
+          .to(menuButtonTexts[1], { yPercent: 0,    duration: 0.4, ease }, "<")
+          .to(menuButtonIcon,      { rotation: 315, duration: 0.4, ease }, "<")
+          .to(overlay,             { autoAlpha: 1,  duration: 0.4 }, "<");
+      } else {
+        tlRef.current.to(menuButtonIcon, { rotation: 315, duration: 0.4, ease })
+          .to(overlay, { autoAlpha: 1, duration: 0.4 }, "<");
+      }
+
       tlRef.current
-        .to(menuButtonTexts, { yPercent: -100, duration: 0.4, ease })
-        .to(menuButtonIcon,  { rotation: 315, duration: 0.4, ease }, "<")
-        .to(overlay,         { autoAlpha: 1,  duration: 0.4 }, "<")
         .fromTo(bgPanels,    { xPercent: 100 }, { xPercent: 0, stagger: 0.12, duration: 0.75, ease }, "<")
         .fromTo(menuInner,   { autoAlpha: 0  }, { autoAlpha: 1, duration: 0.1 }, "-=0.5")
         .fromTo(menuLinks,   { yPercent: 140, rotation: 10 }, { yPercent: 0, rotation: 0, stagger: 0.05, duration: 0.6, ease }, "-=0.4")
         .fromTo(fadeTargets, { autoAlpha: 0,  yPercent: 50  }, { autoAlpha: 1, yPercent: 0, stagger: 0.04, duration: 0.4 }, "-=0.4");
     } else {
+      // closing: animate labels back to original positions and hide nav
       tlRef.current = gsap.timeline({
         onComplete: () => { gsap.set(navWrap, { display: "none" }); },
       });
-      tlRef.current
-        .to(overlay,         { autoAlpha: 0, duration: 0.4 })
-        .to(menuButtonTexts, { yPercent: 0,  duration: 0.4, ease }, "<")
-        .to(menuButtonIcon,  { rotation: 0,  duration: 0.4, ease }, "<")
-        .to(menuInner,       { autoAlpha: 0, duration: 0.3 }, "<")
-        .to(bgPanels,        { xPercent: 100, stagger: { from: "end", amount: 0.1 }, duration: 0.6, ease }, "<");
+
+      if (menuButtonTexts && menuButtonTexts.length >= 2) {
+        tlRef.current
+          .to(overlay,             { autoAlpha: 0, duration: 0.4 })
+          .to(menuButtonTexts[1],  { yPercent: 100, duration: 0.4, ease }, "<")
+          .to(menuButtonTexts[0],  { yPercent: 0,   duration: 0.4, ease }, "<")
+          .to(menuButtonIcon,      { rotation: 0,   duration: 0.4, ease }, "<")
+          .to(menuInner,           { autoAlpha: 0, duration: 0.3 }, "<");
+      } else {
+        tlRef.current
+          .to(overlay, { autoAlpha: 0, duration: 0.4 })
+          .to(menuButtonIcon, { rotation: 0, duration: 0.4, ease }, "<")
+          .to(menuInner, { autoAlpha: 0, duration: 0.3 }, "<");
+      }
+
+      tlRef.current.to(bgPanels, { xPercent: 100, stagger: { from: "end", amount: 0.1 }, duration: 0.6, ease }, "<");
     }
   }, [isOpen]);
 
@@ -142,6 +168,7 @@ const SideNavigation = ({ onNavigate }) => {
                 <a href="https://wa.me/919311761114"         target="_blank" rel="noopener noreferrer" className="sidenav__social-link" data-sidenav-fade>WhatsApp</a>
                 <a href="https://github.com/aniketh703"      target="_blank" rel="noopener noreferrer" className="sidenav__social-link" data-sidenav-fade>GitHub</a>
                 <a href="https://www.linkedin.com/in/aniketh-vustepalle/" target="_blank" rel="noopener noreferrer" className="sidenav__social-link" data-sidenav-fade>LinkedIn</a>
+                <a href="https://x.com/iamanikethv" target="_blank" rel="noopener noreferrer" className="sidenav__social-link" data-sidenav-fade>𝕏</a>
               </div>
             </div>
           </div>

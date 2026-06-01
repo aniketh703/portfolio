@@ -193,12 +193,28 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- 21: PANTERRA NETWORKS ENTERPRISE SAAS REDESIGN -->
+  <!-- 21: LOGO DESIGN -->
   <url>
     <loc>https://aniketh703.github.io/portfolio/work/21</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 22: GRAPHIC DESIGN -->
+  <url>
+    <loc>https://aniketh703.github.io/portfolio/work/22</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- 23: PAUL WAGNER -->
+  <url>
+    <loc>https://aniketh703.github.io/portfolio/work/23</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 
 </urlset>

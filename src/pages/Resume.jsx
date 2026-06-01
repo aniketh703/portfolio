@@ -107,9 +107,7 @@ const About = ({ onNavigate }) => {
               {/* Photo */}
               <div className="aspect-[3/4] w-full max-w-[300px] mx-auto md:max-w-full bg-stone-200 dark:bg-[#1c1c1c] rounded-lg overflow-hidden relative">
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="font-sans text-xs text-[#aaa] dark:text-[#888] uppercase tracking-widest">
-                    [Photo]
-                  </span>
+                  <img src={`${import.meta.env.BASE_URL}Aniketh.png`} alt="Aniketh Vustepalle" />
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
                   <p className="font-sans text-xs text-white/80 tracking-tight">Hyderabad, India</p>

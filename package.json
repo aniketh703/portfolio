@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node tools/update-sitemap.js && vite build && echo 'Build complete!'",
+    "build": "node tools/update-sitemap.js && vite build",
+    "postbuild": "react-snap",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
@@ -40,7 +41,9 @@
       "/work/18",
       "/work/19",
       "/work/20",
-      "/work/21"
+      "/work/21",
+      "/work/22",
+      "/work/23"
     ],
     "crawl": false,
     "skipThirdPartyRequests": true,

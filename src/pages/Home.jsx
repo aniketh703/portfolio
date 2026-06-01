@@ -26,7 +26,7 @@ const technologies = [
   { name: 'TypeScript', domain: 'typescriptlang.org' },
   { name: 'Python', domain: 'python.org' },
   { name: 'Figma', domain: 'figma.com' },
-  { name: 'AWS', domain: 'aws.amazon.com' },
+  { name: 'GCP', domain: 'cloud.google.com' },
   { name: 'Tailwind', domain: 'tailwindcss.com' },
 ];
 
@@ -89,6 +89,7 @@ const RecentWorkMedia = ({ project }) => {
 
 const Home = ({ projects = [], onSelect, onNavigate }) => {
   const heroRef = useRef(null);
+  const base = import.meta.env.BASE_URL;
 
   // Pull featured projects sorted by featuredRank; fall back to hardcoded list
   const allProjects = projects.length > 0
@@ -110,6 +111,9 @@ const Home = ({ projects = [], onSelect, onNavigate }) => {
       });
       gsap.from('.hero-cta', {
         y: 16, opacity: 0, duration: 0.6, ease: 'power2.out', delay: 0.78,
+      });
+      gsap.from('.hero-photo', {
+        y: 24, opacity: 0, duration: 0.9, ease: 'power2.out', delay: 0.1, stagger: 0.12,
       });
     }, heroRef);
     return () => ctx.revert();
@@ -137,60 +141,105 @@ const Home = ({ projects = [], onSelect, onNavigate }) => {
     <div ref={heroRef} className="bg-stone-50 dark:bg-[#111]">
 
       {/* HERO */}
-      <section className="max-w-3xl mx-auto px-6 md:px-10 pt-28 pb-16 md:pb-20 text-center">
-        <div className="mb-8 flex justify-center gap-3 flex-wrap">
-          <span className="inline-flex items-center gap-2 font-sans text-[11px] font-medium uppercase tracking-[0.15em] text-[#666] dark:text-[#aaa]">
-            <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-            Available for projects
-          </span>
-          <span className="font-sans text-[11px] font-medium uppercase tracking-[0.15em] text-[#666] dark:text-[#aaa]">·</span>
-          <span className="font-sans text-[11px] font-medium uppercase tracking-[0.15em] text-[#666] dark:text-[#aaa]">
-            Hyderabad, India
-          </span>
-        </div>
+      <section className="max-w-6xl mx-auto px-6 md:px-10 pt-28 pb-16 md:pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_minmax(0,60ch)_1fr] gap-8 lg:gap-10 items-center justify-items-center">
 
-        <h1
-          className="hero-headline font-sans font-bold leading-[1.05] tracking-tight text-brand-dark dark:text-[#eee] mb-5"
-          style={{ fontSize: 'clamp(2.4rem, 6.5vw, 5.2rem)' }}
-        >
-          Designing intuitive<br /> digital&nbsp;experiences.
-        </h1>
-
-        <p className="hero-sub font-sans text-[15px] text-[#666] dark:text-[#888] max-w-lg leading-relaxed tracking-tight mb-10 mx-auto">
-          {"I design intelligent interfaces — and I build them. AI Product Designer & Developer based in "}
-          <em className="not-italic text-brand-dark dark:text-[#ccc]">Hyderabad, India</em>
-          {", blending design systems with real engineering."}
-        </p>
-
-        {/* Inline stats */}
-        <div className="flex justify-center gap-8 md:gap-14 mb-10">
-          {stats.map((s) => (
-            <div key={s.value} className="hero-stat text-center">
-              <p
-                className="font-sans font-black tracking-tight text-brand-lime leading-none mb-1"
-                style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)' }}
-              >
-                {s.value}
-              </p>
-              <p className="font-sans text-[11px] text-[#666] dark:text-[#aaa] tracking-tight">{s.label}</p>
+          {/* LEFT PHOTOS */}
+          <div className="hidden lg:flex flex-col gap-4 pt-14 items-center">
+            <div className="hero-photo max-w-[170px] w-full overflow-hidden rounded-2xl border border-stone-200 dark:border-[#222] shadow-md -rotate-2 hover:rotate-0 transition-transform duration-500">
+              <img
+                src={`${base}Aniketh.png`}
+                alt="Aniketh Vustepalle"
+                className="w-full aspect-[3/4] object-cover"
+              />
             </div>
-          ))}
-        </div>
+            <div className="hero-photo max-w-[170px] w-full overflow-hidden rounded-xl border border-stone-200 dark:border-[#222] shadow-sm rotate-1 hover:rotate-0 transition-transform duration-500">
+              <img
+                src={`${base}projects/logos/mp1.png`}
+                alt="Logo Design — GB Aesthetics Miami"
+                className="w-full aspect-[4/3] object-cover"
+              />
+            </div>
+          </div>
 
-        {/* Dual CTAs */}
-        <div className="hero-cta flex justify-center gap-3 flex-wrap">
-          <button
-            onClick={() => onNavigate('projects')}
-            className="group inline-flex items-center gap-2 bg-brand-dark dark:bg-[#eee] text-white dark:text-[#111] px-6 py-3 rounded-[5px] font-sans text-sm font-medium tracking-tight hover:bg-brand dark:hover:bg-brand-lime transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-xl"
-          >
-            See my work <ArrowUpRight aria-hidden="true" size={14} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </button>
-          <button
-            onClick={() => onNavigate('about')}
-            className="group inline-flex items-center gap-2 bg-transparent border border-stone-300 dark:border-[#333] text-brand-dark dark:text-[#ccc] px-6 py-3 rounded-[5px] font-sans text-sm font-medium tracking-tight hover:border-brand-dark dark:hover:border-[#aaa] hover:text-brand dark:hover:text-[#eee] transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98]"
-          >
-            About me <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
-          </button>
+          {/* CENTER HERO CONTENT */}
+          <div className="text-center w-full">
+            <div className="mb-8 flex justify-center gap-3 flex-wrap">
+              <span className="inline-flex items-center gap-2 font-sans text-[11px] font-medium uppercase tracking-[0.15em] text-[#666] dark:text-[#aaa]">
+                <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                Available for projects
+              </span>
+              <span className="font-sans text-[11px] font-medium uppercase tracking-[0.15em] text-[#666] dark:text-[#aaa]">·</span>
+              <span className="font-sans text-[11px] font-medium uppercase tracking-[0.15em] text-[#666] dark:text-[#aaa]">
+                Hyderabad, India
+              </span>
+            </div>
+
+            <h1
+              className="hero-headline font-sans font-bold leading-[1.05] tracking-tight text-brand-dark dark:text-[#eee] mb-5 w-full text-center"
+              style={{ fontSize: 'clamp(2.4rem, 6.5vw, 5.2rem)' }}
+            >
+              Designing intuitive<br />digital&nbsp;experiences.
+            </h1>
+
+            <p className="hero-sub font-sans text-[15px] text-[#666] dark:text-[#888] max-w-lg leading-relaxed tracking-tight mb-10 mx-auto text-center">
+              {"I design intelligent interfaces — and I build them. AI Product Designer & Developer based in "}
+              <em className="not-italic text-brand-dark dark:text-[#ccc]">Hyderabad, India</em>
+              {", blending design systems with real engineering."}
+            </p>
+
+            {/* Inline stats */}
+            <div className="flex justify-center gap-8 md:gap-14 mb-10">
+              {stats.map((s) => (
+                <div key={s.value} className="hero-stat text-center">
+                  <p
+                    className="font-sans font-black tracking-tight text-brand-lime leading-none mb-1"
+                    style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)' }}
+                  >
+                    {s.value}
+                  </p>
+                  <p className="font-sans text-[11px] text-[#666] dark:text-[#aaa] tracking-tight">{s.label}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Dual CTAs */}
+            <div className="hero-cta flex justify-center gap-3 flex-wrap">
+              <button
+                onClick={() => onNavigate('projects')}
+                className="group inline-flex items-center gap-2 bg-brand-dark dark:bg-[#eee] text-white dark:text-[#111] px-6 py-3 rounded-[5px] font-sans text-sm font-medium tracking-tight hover:bg-brand dark:hover:bg-brand-lime transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-xl"
+              >
+                See my work <ArrowUpRight aria-hidden="true" size={14} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </button>
+              <button
+                onClick={() => onNavigate('about')}
+                className="group inline-flex items-center gap-2 bg-transparent border border-stone-300 dark:border-[#333] text-brand-dark dark:text-[#ccc] px-6 py-3 rounded-[5px] font-sans text-sm font-medium tracking-tight hover:border-brand-dark dark:hover:border-[#aaa] hover:text-brand dark:hover:text-[#eee] transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98]"
+              >
+                About me <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+              </button>
+            </div>
+          </div>
+
+          {/* RIGHT PHOTOS */}
+          <div className="hidden lg:flex flex-col gap-4 pt-8 items-center">
+            <div className="hero-photo max-w-[170px] w-full overflow-hidden rounded-2xl border border-stone-200 dark:border-[#222] shadow-md rotate-2 hover:rotate-0 transition-transform duration-500">
+              <img
+                src={`${base}projects/gita.webp`}
+                alt="GITA App — Mobile Application"
+                className="w-full aspect-[4/3] object-cover object-top"
+                loading="lazy"
+              />
+            </div>
+            <div className="hero-photo max-w-[170px] w-full overflow-hidden rounded-xl border border-stone-200 dark:border-[#222] shadow-sm -rotate-1 hover:rotate-0 transition-transform duration-500">
+              <img
+                src="https://mir-s3-cdn-cf.behance.net/projects/808/56a753203461807.Y3JvcCwxNDAwLDEwOTUsMCwyNw.jpg"
+                alt="Tribute to ATARI 2600"
+                className="w-full aspect-[4/3] object-cover"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
         </div>
       </section>
 

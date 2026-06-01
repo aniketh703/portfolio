@@ -11,6 +11,8 @@ export const CoverImage = ({ project, fallbackSeed, className }) => {
         src={project.coverImage}
         alt={project.title}
         onError={() => setImgFailed(true)}
+        loading="lazy"
+        decoding="async"
         className={`w-full h-full object-cover ${className || ''}`}
       />
     );
@@ -86,6 +88,27 @@ export const renderModule = (module, index) => {
             </div>
           </div>
           <pre className="leading-relaxed"><code>{module.code}</code></pre>
+        </div>
+      );
+    case 'metrics':
+      return (
+        <div key={index} className="mb-16 md:mb-24 border border-stone-200 dark:border-[#2e2e2e] overflow-hidden">
+          <div className="grid grid-cols-3 divide-x divide-stone-200 dark:divide-[#2e2e2e]">
+            {module.items.map((item, i) => (
+              <div key={i} className="px-6 py-8 text-center bg-white dark:bg-[#1a1a1a]">
+                <div className="font-sans font-bold leading-none text-stone-900 dark:text-[#eee] mb-1"
+                     style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)' }}>
+                  {item.value}
+                  {item.unit && (
+                    <span className="font-mono text-sm text-stone-400 dark:text-[#555] ml-1">{item.unit}</span>
+                  )}
+                </div>
+                <p className="font-sans text-[11px] font-medium uppercase tracking-[0.12em] text-stone-400 dark:text-[#555] mt-3">
+                  {item.label}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       );
     case 'image':

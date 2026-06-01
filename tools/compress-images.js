@@ -5,7 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const publicDir = path.resolve(__dirname, '../public/showcase');
+const publicDir = path.resolve(__dirname, '../public/projects');
 
 async function compressImages() {
   console.log('🖼️ Compressing Gita images (PNG → WebP + optimized PNG)...');

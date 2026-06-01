@@ -105,6 +105,14 @@ const Footer = ({ onNavigate }) => (
                 LinkedIn
               </a>
               <a
+                href="https://x.com/iamanikethv"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-sans text-sm text-[#999] hover:text-white transition-colors duration-200 tracking-tight"
+              >
+                𝕏
+              </a>
+              <a
                 href="https://wa.me/919311761114"
                 target="_blank"
                 rel="noopener noreferrer"
