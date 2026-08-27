@@ -150,6 +150,9 @@ const Home = ({ projects = [], onSelect, onNavigate }) => {
               <img
                 src={`${base}Aniketh.png`}
                 alt="Aniketh Vustepalle"
+                width={170}
+                height={227}
+                fetchPriority="high"
                 className="w-full aspect-[3/4] object-cover"
               />
             </div>
@@ -157,6 +160,8 @@ const Home = ({ projects = [], onSelect, onNavigate }) => {
               <img
                 src={`${base}projects/logos/drg2.png`}
                 alt="Logo Design — GB Aesthetics Miami"
+                width={170}
+                height={128}
                 className="w-full aspect-[4/3] object-cover"
               />
             </div>
@@ -226,16 +231,18 @@ const Home = ({ projects = [], onSelect, onNavigate }) => {
               <img
                 src={`${base}projects/gita.webp`}
                 alt="GITA App — Mobile Application"
+                width={170}
+                height={128}
                 className="w-full aspect-[4/3] object-cover object-top"
-                loading="lazy"
               />
             </div>
             <div className="hero-photo max-w-[170px] w-full overflow-hidden rounded-xl border border-stone-200 dark:border-[#222] shadow-sm -rotate-1 hover:rotate-0 transition-transform duration-500">
               <img
                 src="https://mir-s3-cdn-cf.behance.net/projects/808/56a753203461807.Y3JvcCwxNDAwLDEwOTUsMCwyNw.jpg"
                 alt="Tribute to ATARI 2600"
+                width={170}
+                height={128}
                 className="w-full aspect-[4/3] object-cover"
-                loading="lazy"
               />
             </div>
           </div>
