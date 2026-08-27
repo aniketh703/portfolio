@@ -412,12 +412,12 @@ const Home = ({ projects = [], onSelect, onNavigate }) => {
             <p className="font-sans text-sm text-[#666] dark:text-[#aaa] tracking-tight">
               Need a different approach? I&apos;m flexible &mdash; let&apos;s discuss.
             </p>
-            <a
-              href="mailto:anikethvustepalle03@gmail.com"
+            <button
+              onClick={() => onNavigate && onNavigate('contact')}
               className="group inline-flex items-center gap-2 bg-brand-dark dark:bg-[#eee] text-white dark:text-[#111] px-6 py-2.5 rounded-[5px] font-sans text-sm font-medium tracking-tight hover:bg-brand dark:hover:bg-brand-lime transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-xl flex-shrink-0"
             >
               Reach out <ArrowUpRight aria-hidden="true" size={14} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
+            </button>
           </div>
         </div>
       </section>
@@ -502,12 +502,12 @@ const Home = ({ projects = [], onSelect, onNavigate }) => {
           >
             Ready for growth? Let&apos;s talk.
           </h2>
-          <a
-            href="mailto:anikethvustepalle03@gmail.com"
+          <button
+            onClick={() => onNavigate && onNavigate('contact')}
             className="group inline-flex items-center gap-2 bg-brand-lime text-brand-dark px-8 py-3.5 rounded-md font-sans text-sm font-semibold tracking-tight hover:bg-white transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-brand-lime/20"
           >
             Get in touch <ArrowUpRight aria-hidden="true" size={15} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
+          </button>
         </div>
       </section>
 

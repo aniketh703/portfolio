@@ -126,13 +126,13 @@ const About = ({ onNavigate }) => {
                   My edge at the intersection of design and AI: I can read a RAG pipeline and design the error states for it, I can write a React component and critique its accessibility in the same session, and I've shipped HITL AI systems.
                 </p>
                 <div className="flex gap-3 flex-wrap pt-1">
-                  <a
-                    href="mailto:anikethvustepalle03@gmail.com"
+                  <button
+                    onClick={() => onNavigate && onNavigate('contact')}
                     className="group inline-flex items-center gap-2 bg-brand-dark dark:bg-[#eee] text-white dark:text-[#111] px-6 py-3 rounded-md font-sans text-sm font-semibold tracking-tight hover:bg-brand dark:hover:bg-brand-lime transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                   >
                     Get in touch
                     <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </a>
+                  </button>
                   <a
                     href="https://linkedin.com/in/aniketh-vustepalle/"
                     target="_blank"

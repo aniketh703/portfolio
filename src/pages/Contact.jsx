@@ -5,38 +5,62 @@ import Footer from '../components/Footer';
 
 // Pageclip form action URL — site key is public (visible in HTML by design)
 const PAGECLIP_URL = 'https://send.pageclip.co/Eh7iDvt7Im97lJT6cl843Vhi3tR9OHOp/contact_form';
+const PAGECLIP_KEY = 'Eh7iDvt7Im97lJT6cl843Vhi3tR9OHOp';
 
 const Contact = ({ onNavigate }) => {
   const [form, setForm]     = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState('idle'); // idle | submitting | success | error
+  const formRef = useRef(null);
 
   const handleChange = (e) => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setStatus('submitting');
-    
-    if (window.Pageclip) {
-      window.Pageclip.send('Eh7iDvt7Im97lJT6cl843Vhi3tR9OHOp', 'contact_form', form, function (error, response) {
-        if (error) {
-          setStatus('error');
-        } else {
-          setStatus('success');
-          setForm({ name: '', email: '', message: '' });
+  // Initialize Pageclip form listener if script is loaded
+  useEffect(() => {
+    if (window.Pageclip && formRef.current && status === 'idle') {
+      const pageclipForm = window.Pageclip.form(formRef.current, {
+        onSubmit: () => {
+          setStatus('submitting');
+          return true;
+        },
+        onResponse: (error, response) => {
+          if (error) {
+            setStatus('error');
+          } else {
+            setStatus('success');
+            setForm({ name: '', email: '', message: '' });
+          }
         }
       });
-    } else {
-      // Fallback if Pageclip library fails to load
-      const formData = new FormData(e.target);
+
+      return () => {
+        if (pageclipForm && typeof pageclipForm.destroy === 'function') {
+          pageclipForm.destroy();
+        }
+      };
+    }
+  }, [status]);
+
+  const handleSubmit = (e) => {
+    // If Pageclip is active, its attached form listener handles it automatically.
+    // If Pageclip is not loaded, use fallback fetch:
+    if (!window.Pageclip) {
+      e.preventDefault();
+      setStatus('submitting');
+
       fetch(PAGECLIP_URL, {
         method: 'POST',
-        body: formData,
-        mode: 'no-cors' // This prevents CORS errors but makes response opaque
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form)
       })
-      .then(() => {
-        // With no-cors, we can't read the response status, so we assume success if it didn't throw network error
-        setStatus('success');
-        setForm({ name: '', email: '', message: '' });
+      .then((res) => {
+        if (res.ok || res.type === 'opaque') {
+          setStatus('success');
+          setForm({ name: '', email: '', message: '' });
+        } else {
+          setStatus('error');
+        }
       })
       .catch(() => setStatus('error'));
     }
@@ -136,8 +160,11 @@ const Contact = ({ onNavigate }) => {
             </div>
           ) : (
             <form
+              ref={formRef}
+              action={PAGECLIP_URL}
+              method="post"
               onSubmit={handleSubmit}
-              className="flex flex-col gap-5"
+              className="pageclip-form flex flex-col gap-5"
             >
               {/* Error banner */}
               {status === 'error' && (
@@ -206,7 +233,7 @@ const Contact = ({ onNavigate }) => {
               <button
                 type="submit"
                 disabled={status === 'submitting'}
-                className="w-full bg-brand-lime text-brand-dark font-sans text-sm font-semibold tracking-tight py-4 rounded-lg transition-all duration-300 ease-out hover:bg-white hover:scale-[1.01] active:scale-[0.99] shadow-md hover:shadow-xl shadow-brand-lime/10 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-md"
+                className="pageclip-form__submit w-full bg-brand-lime text-brand-dark font-sans text-sm font-semibold tracking-tight py-4 rounded-lg transition-all duration-300 ease-out hover:bg-white hover:scale-[1.01] active:scale-[0.99] shadow-md hover:shadow-xl shadow-brand-lime/10 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-md"
               >
                 <span>{status === 'submitting' ? 'Sending...' : 'Send message'}</span>
               </button>

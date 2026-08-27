@@ -6,6 +6,7 @@ export default defineConfig(({ command, mode }) => ({
   base: command === 'serve' ? '/' : '/portfolio/',
   plugins: [react()],
   build: {
+    target: 'es2018',
     emptyOutDir: true,
   },
 }))
