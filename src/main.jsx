@@ -13,6 +13,23 @@ import '@fontsource/space-mono/700.css'
 
 import './index.css'
 import App from './App.jsx'
+import * as Sentry from "@sentry/react";
+
+Sentry.init({
+  dsn: "https://0a613495abb3e17c0eb876ab35cc4b05@o4511884541755392.ingest.de.sentry.io/4511988743667792",
+  dataCollection: {
+  },
+  integrations: [
+    Sentry.browserTracingIntegration(),
+    Sentry.replayIntegration()
+  ],
+  // Tracing
+  tracesSampleRate: 1.0, //  Capture 100% of the transactions
+  tracePropagationTargets: ["localhost", /^https:\/\/yourserver\.io\/api/],
+  // Session Replay
+  replaysSessionSampleRate: 0.1, // This sets the sample rate at 10%.
+  replaysOnErrorSampleRate: 1.0 // sample rate to 100% when sampling sessions where errors occur.
+});
 
 const rootEl = document.getElementById('root')
 

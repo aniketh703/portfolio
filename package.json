@@ -64,6 +64,7 @@
     "@fontsource/space-grotesk": "^5.2.10",
     "@fontsource/space-mono": "^5.2.9",
     "@radix-ui/react-hover-card": "^1.1.23",
+    "@sentry/react": "^10.71.0",
     "gsap": "^3.14.2",
     "lenis": "^1.3.17",
     "lucide-react": "^0.562.0",
