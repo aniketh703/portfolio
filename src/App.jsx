@@ -19,7 +19,7 @@ import './index.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const BLOG_URL = 'https://aniketh703.github.io/blog/';
+const BLOG_URL = 'https://aniketh-blog.appwrite.network/';
 
 
 
