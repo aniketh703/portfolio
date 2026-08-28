@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { X, ArrowRight, ArrowLeft, Home, Quote } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Home } from 'lucide-react';
 import { projects } from '../data/projects';
 import { CoverImage, renderModule, Label } from '../components/ProjectContent';
 
 const BASE_URL = 'https://aniketh703.github.io/portfolio';
 
 /* ── ProjectPage ────────────────────────────────────────────── */
-const ProjectPage = () => {
+const ProjectPage = ({ onNavigate }) => {
   const { projectId } = useParams();
   const navigate = useNavigate();
 
@@ -20,10 +20,20 @@ const ProjectPage = () => {
 
   if (!project) return <Navigate to="/work" replace />;
 
-  const handleClose = () => navigate('/work');
-  const handleHome  = () => navigate('/');
-  const handleNext  = () => navigate(`/work/${projects[(currentIndex + 1) % projects.length].id}`);
-  const handlePrev  = () => navigate(`/work/${projects[(currentIndex - 1 + projects.length) % projects.length].id}`);
+  const handleHome  = () => {
+    if (onNavigate) onNavigate('index');
+    else navigate('/');
+  };
+  const handleNext  = () => {
+    const nextId = projects[(currentIndex + 1) % projects.length].id;
+    if (onNavigate) onNavigate(`/work/${nextId}`);
+    else navigate(`/work/${nextId}`);
+  };
+  const handlePrev  = () => {
+    const prevId = projects[(currentIndex - 1 + projects.length) % projects.length].id;
+    if (onNavigate) onNavigate(`/work/${prevId}`);
+    else navigate(`/work/${prevId}`);
+  };
 
   const ogImage = `${BASE_URL}/og/project-${project.id}.jpg`;
 
@@ -46,17 +56,6 @@ const ProjectPage = () => {
 
       <div className="min-h-screen bg-stone-50 dark:bg-[#141414] antialiased [font-synthesis:none]">
 
-        {/* Close button */}
-        <div className="fixed top-4 right-4 md:top-6 md:right-6 z-[160] mix-blend-difference text-white pointer-events-auto">
-          <button
-            onClick={handleClose}
-            className="flex items-center gap-2 hover:opacity-70 transition-opacity duration-300 touch-target"
-          >
-            <span className="font-sans text-[11px] font-medium uppercase tracking-[0.14em] hidden md:block">Close</span>
-            <div className="border border-current rounded-full p-2"><X size={18} /></div>
-          </button>
-        </div>
-
         {/* ── HEADER ART ──────────────────────────────────────── */}
         <header className="relative w-full h-[52vh] md:h-[70vh] bg-stone-200 dark:bg-[#1c1c1c] overflow-hidden">
           <CoverImage project={project} fallbackSeed={project.id} />
@@ -76,7 +75,7 @@ const ProjectPage = () => {
 
         {/* ── CONTENT ─────────────────────────────────────────── */}
         <div className="bg-stone-50 dark:bg-[#141414]">
-          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 pt-10 md:pt-16 pb-20 md:pb-32 px-4 md:px-8">
+          <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-[90rem] mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 pt-10 md:pt-16 pb-20 md:pb-32 px-4 md:px-8 xl:px-12 2xl:px-16">
 
             {/* Sidebar */}
             <aside className="md:col-span-3 space-y-8 md:space-y-10 border-t border-stone-300 dark:border-[#2e2e2e] pt-6">
@@ -184,7 +183,8 @@ const ProjectPage = () => {
                 onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), handler())}
                 role="button"
                 tabIndex="0"
-                className={`group ${border} border-b md:border-b-0 bg-stone-50 dark:bg-[#141414] hover:bg-stone-900 dark:hover:bg-[#1f1f1f] transition-colors duration-300 cursor-pointer py-10 md:py-14 px-6 md:px-8 flex flex-col items-center justify-center text-center outline-none focus:bg-stone-900 dark:focus:bg-[#1f1f1f]`}
+                data-cursor-variant={label === 'Home' ? undefined : 'project'}
+                className={`group ${border} border-b md:border-b-0 bg-stone-50 dark:bg-[#141414] hover:bg-stone-900 dark:hover:bg-[#1f1f1f] transition-colors duration-300 py-10 md:py-14 px-6 md:px-8 flex flex-col items-center justify-center text-center outline-none focus:bg-stone-900 dark:focus:bg-[#1f1f1f]`}
               >
                 <span className="font-sans text-[11px] font-medium uppercase tracking-[0.14em] mb-3 text-stone-400 dark:text-[#555] group-hover:text-stone-400">{sub}</span>
                 <div className="flex items-center gap-3 text-stone-900 dark:text-[#eee] group-hover:text-white dark:group-hover:text-[#eee]">

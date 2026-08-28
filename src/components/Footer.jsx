@@ -1,4 +1,7 @@
 import React from 'react';
+import DrawUnderline from './ui/DrawUnderline';
+
+const FOOTER_LINK_CLASS = 'font-sans text-sm text-[#999] hover:text-white transition-colors duration-200 tracking-tight text-left';
 
 const Footer = ({ onNavigate }) => (
   <footer className="w-full bg-brand-dark dark:bg-[#0a0a0a] border-t border-[#1a1a1a]">
@@ -26,30 +29,18 @@ const Footer = ({ onNavigate }) => (
             <div className="flex flex-col gap-2">
               {onNavigate && (
                 <>
-                  <button
-                    onClick={() => onNavigate('index')}
-                    className="font-sans text-sm text-[#999] hover:text-white transition-colors duration-200 tracking-tight text-left"
-                  >
+                  <DrawUnderline onClick={() => onNavigate('index')} className={FOOTER_LINK_CLASS}>
                     Home
-                  </button>
-                  <button
-                    onClick={() => onNavigate('projects')}
-                    className="font-sans text-sm text-[#999] hover:text-white transition-colors duration-200 tracking-tight text-left"
-                  >
+                  </DrawUnderline>
+                  <DrawUnderline onClick={() => onNavigate('projects')} className={FOOTER_LINK_CLASS}>
                     Work
-                  </button>
-                  <button
-                    onClick={() => onNavigate('about')}
-                    className="font-sans text-sm text-[#999] hover:text-white transition-colors duration-200 tracking-tight text-left"
-                  >
+                  </DrawUnderline>
+                  <DrawUnderline onClick={() => onNavigate('about')} className={FOOTER_LINK_CLASS}>
                     About
-                  </button>
-                  <button
-                    onClick={() => onNavigate('blog')}
-                    className="font-sans text-sm text-[#999] hover:text-white transition-colors duration-200 tracking-tight text-left"
-                  >
+                  </DrawUnderline>
+                  <DrawUnderline onClick={() => onNavigate('blog')} className={FOOTER_LINK_CLASS}>
                     Blog
-                  </button>
+                  </DrawUnderline>
                 </>
               )}
             </div>
@@ -59,27 +50,18 @@ const Footer = ({ onNavigate }) => (
           <div>
             <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.15em] text-[#888] mb-4">Work with me</p>
             <div className="flex flex-col gap-2">
-              <a
-                href="mailto:anikethvustepalle03@gmail.com"
-                className="font-sans text-sm text-[#999] hover:text-white transition-colors duration-200 tracking-tight"
-              >
+              <DrawUnderline as="a" href="mailto:anikethvustepalle03@gmail.com" className={FOOTER_LINK_CLASS}>
                 Email
-              </a>
+              </DrawUnderline>
               {onNavigate && (
-                <button
-                  onClick={() => onNavigate('contact')}
-                  className="font-sans text-sm text-[#999] hover:text-white transition-colors duration-200 tracking-tight text-left"
-                >
+                <DrawUnderline onClick={() => onNavigate('contact')} className={FOOTER_LINK_CLASS}>
                   Contact
-                </button>
+                </DrawUnderline>
               )}
               {onNavigate && (
-                <button
-                  onClick={() => onNavigate('about')}
-                  className="font-sans text-sm text-[#999] hover:text-white transition-colors duration-200 tracking-tight text-left"
-                >
+                <DrawUnderline onClick={() => onNavigate('about')} className={FOOTER_LINK_CLASS}>
                   Résumé
-                </button>
+                </DrawUnderline>
               )}
             </div>
           </div>
@@ -88,38 +70,18 @@ const Footer = ({ onNavigate }) => (
           <div>
             <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.15em] text-[#888] mb-4">Social</p>
             <div className="flex flex-col gap-2">
-              <a
-                href="https://github.com/aniketh703"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-sans text-sm text-[#999] hover:text-white transition-colors duration-200 tracking-tight"
-              >
+              <DrawUnderline as="a" href="https://github.com/aniketh703" target="_blank" rel="noopener noreferrer" className={FOOTER_LINK_CLASS}>
                 GitHub
-              </a>
-              <a
-                href="https://www.linkedin.com/in/aniketh-vustepalle/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-sans text-sm text-[#999] hover:text-white transition-colors duration-200 tracking-tight"
-              >
+              </DrawUnderline>
+              <DrawUnderline as="a" href="https://www.linkedin.com/in/aniketh-vustepalle/" target="_blank" rel="noopener noreferrer" className={FOOTER_LINK_CLASS}>
                 LinkedIn
-              </a>
-              <a
-                href="https://x.com/iamanikethv"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-sans text-sm text-[#999] hover:text-white transition-colors duration-200 tracking-tight"
-              >
+              </DrawUnderline>
+              <DrawUnderline as="a" href="https://x.com/iamanikethv" target="_blank" rel="noopener noreferrer" className={FOOTER_LINK_CLASS}>
                 𝕏
-              </a>
-              <a
-                href="https://wa.me/919311761114"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-sans text-sm text-[#999] hover:text-white transition-colors duration-200 tracking-tight"
-              >
+              </DrawUnderline>
+              <DrawUnderline as="a" href="https://wa.me/919311761114" target="_blank" rel="noopener noreferrer" className={FOOTER_LINK_CLASS}>
                 WhatsApp
-              </a>
+              </DrawUnderline>
             </div>
           </div>
 

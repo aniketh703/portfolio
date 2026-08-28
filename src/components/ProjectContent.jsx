@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Quote } from 'lucide-react';
 import GenerativeArt from './GenerativeArt';
-import LazyImage from './ui/LazyImage';
 
 export const CoverImage = ({ project, fallbackSeed, className }) => {
   const [imgFailed, setImgFailed] = useState(false);
@@ -115,7 +114,13 @@ export const renderModule = (module, index) => {
       return (
         <div key={index} className="mb-16 md:mb-24">
           <div className="w-full aspect-video bg-stone-200 dark:bg-[#1c1c1c] overflow-hidden relative border border-stone-200 dark:border-[#2e2e2e]">
-            <LazyImage src={module.url} alt={module.caption || 'Project visual'} className="w-full h-full" />
+            <img
+              src={module.url}
+              alt={module.caption || 'Project visual'}
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full object-cover"
+            />
             {module.caption && (
               <div className="absolute bottom-4 left-4 z-10 bg-white/90 dark:bg-[#111]/90 backdrop-blur-sm px-3 py-1 text-[11px] font-sans font-medium uppercase tracking-[0.14em] text-stone-700 dark:text-[#ccc]">
                 {module.caption}

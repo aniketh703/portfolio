@@ -1,12 +1,24 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Grid3X3 } from 'lucide-react';
 import gsap from 'gsap';
+import { useLenis } from 'lenis/react';
 
 const SideNavigation = ({ onNavigate }) => {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef(null);
   const tlRef = useRef(null);
   const firstLinkRef = useRef(null);
+  const lenis = useLenis();
+
+  // The menu overlay is opaque and full-screen, so background scroll isn't
+  // visible while open — but Lenis keeps moving the page behind it (native
+  // overflow:hidden doesn't stop Lenis-driven scroll), so closing the menu
+  // would otherwise dump the user at whatever position it silently reached.
+  useEffect(() => {
+    if (!isOpen || !lenis) return;
+    lenis.stop();
+    return () => lenis.start();
+  }, [isOpen, lenis]);
 
   // Close on Escape key
   useEffect(() => {
@@ -17,8 +29,20 @@ const SideNavigation = ({ onNavigate }) => {
     return () => document.removeEventListener('keydown', onKeyDown);
   }, [isOpen]);
 
+  const hasMountedRef = useRef(false);
   useEffect(() => {
     if (!containerRef.current) return;
+
+    // Skip on the very first mount: isOpen starts false, and running the
+    // 'closing' branch below for a menu that was never open serves no
+    // visual purpose — it only leaves inline transform/opacity styles on
+    // several elements that a prerendered snapshot bakes in but a fresh
+    // client hasn't applied yet at hydration time, which React treats as
+    // a mismatch.
+    if (!hasMountedRef.current) {
+      hasMountedRef.current = true;
+      return;
+    }
 
     const ease = "power3.inOut";
     const navWrap     = containerRef.current.querySelector("[data-sidenav-wrap]");
@@ -101,7 +125,7 @@ const SideNavigation = ({ onNavigate }) => {
   ];
 
   return (
-    <div ref={containerRef} className="md:hidden">
+    <div ref={containerRef} className="lg:hidden">
       <header className="sidenav__header">
         <button
           className="sidenav__button touch-target"

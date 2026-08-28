@@ -86,7 +86,7 @@ const About = ({ onNavigate }) => {
       </Helmet>
 
       <section className="min-h-screen bg-stone-50 dark:bg-[#111]">
-        <div className="max-w-5xl mx-auto px-6 md:px-10">
+        <div className="max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-6 md:px-10 xl:px-12 2xl:px-16">
 
           {/* ── HERO ─────────────────────────────────────────────── */}
           <div className="pt-32 pb-16">
@@ -108,7 +108,7 @@ const About = ({ onNavigate }) => {
               <div className="aspect-[3/4] w-full max-w-[300px] mx-auto md:max-w-full bg-stone-200 dark:bg-[#1c1c1c] rounded-lg overflow-hidden relative">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <img
-                    src={`${import.meta.env.BASE_URL}Aniketh.png`}
+                    src={`${import.meta.env.BASE_URL}IMG_20221223_123147.jpg`}
                     alt="Aniketh Vustepalle"
                     width={300}
                     height={400}
@@ -248,7 +248,7 @@ const About = ({ onNavigate }) => {
                 {skills.map((s) => (
                   <span
                     key={s}
-                    className="font-sans text-sm text-brand-dark dark:text-[#ccc] border border-stone-200 dark:border-[#2a2a2a] bg-white dark:bg-[#191919] px-3 py-1.5 rounded-md hover:border-brand-lime dark:hover:border-brand-lime transition-colors duration-200 cursor-default"
+                    className="font-sans text-sm text-brand-dark dark:text-[#ccc] border border-stone-200 dark:border-[#2a2a2a] bg-white dark:bg-[#191919] px-3 py-1.5 rounded-md hover:border-brand-lime dark:hover:border-brand-lime transition-colors duration-200"
                   >
                     {s}
                   </span>
@@ -265,7 +265,7 @@ const About = ({ onNavigate }) => {
                 {tools.map((t) => (
                   <span
                     key={t}
-                    className="font-sans text-sm text-brand-dark dark:text-[#ccc] border border-stone-200 dark:border-[#2a2a2a] bg-white dark:bg-[#191919] px-3 py-1.5 rounded-md hover:border-brand-lime dark:hover:border-brand-lime transition-colors duration-200 cursor-default"
+                    className="font-sans text-sm text-brand-dark dark:text-[#ccc] border border-stone-200 dark:border-[#2a2a2a] bg-white dark:bg-[#191919] px-3 py-1.5 rounded-md hover:border-brand-lime dark:hover:border-brand-lime transition-colors duration-200"
                   >
                     {t}
                   </span>

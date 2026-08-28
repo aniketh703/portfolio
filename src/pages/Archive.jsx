@@ -56,7 +56,7 @@ const Projects = ({ projects, onSelect, onNavigate }) => {
         <link rel="canonical" href="https://aniketh703.github.io/portfolio/work" />
       </Helmet>
       <section className="bg-stone-50 dark:bg-[#111] min-h-screen">
-        <div className="max-w-5xl mx-auto px-6 md:px-10">
+        <div className="max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-6 md:px-10 xl:px-12 2xl:px-16">
 
           {/* Header */}
           <div className="pt-32 pb-10">
@@ -98,7 +98,8 @@ const Projects = ({ projects, onSelect, onNavigate }) => {
                 aria-label={`View ${project.title} project`}
                 onClick={() => onSelect(project)}
                 onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onSelect(project)}
-                className="group cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-brand-dark/30 dark:focus-visible:ring-[#eee]/30"
+                data-cursor-variant="project"
+                className="group outline-none focus-visible:ring-2 focus-visible:ring-brand-dark/30 dark:focus-visible:ring-[#eee]/30"
               >
                 {/* Dark image container — matches Framer's #1a1a1a card */}
                 <div className="relative bg-stone-100 dark:bg-[#1a1a1a] rounded-[5px] overflow-hidden border border-stone-200 dark:border-transparent">
@@ -111,7 +112,7 @@ const Projects = ({ projects, onSelect, onNavigate }) => {
                   {/* Hover overlay */}
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 dark:group-hover:bg-black/25 transition-colors duration-300 rounded-[5px]" />
                   {/* Hover arrow */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-300 shadow-lg">
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 dark:bg-[#eee]/90 flex items-center justify-center opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-300 shadow-lg">
                     <ArrowUpRight aria-hidden="true" size={16} className="text-brand-dark dark:text-[#111]" />
                   </div>
                   {/* Featured badge */}
@@ -145,7 +146,7 @@ const Projects = ({ projects, onSelect, onNavigate }) => {
 
       {/* Bio + Skills section — dark, matches projects_page.png */}
       <section className="bg-white dark:bg-[#0d0d0d] border-t border-stone-200 dark:border-[#1a1a1a] py-20 md:py-28">
-        <div className="max-w-5xl mx-auto px-6 md:px-10">
+        <div className="max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-6 md:px-10 xl:px-12 2xl:px-16">
 
           {/* Large watermark stat */}
           <p

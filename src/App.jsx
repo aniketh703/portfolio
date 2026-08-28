@@ -5,16 +5,15 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUp, Moon, Sun, Linkedin } from 'lucide-react';
 import { projects } from './data/projects';
-import LoadingScreen from './components/LoadingScreen';
 import SideNavigation from './components/SideNavigation';
-import GridTransition from './components/GridTransition';
-import CustomCursor from './components/CustomCursor';
+import PageSkeleton from './components/PageSkeleton';
+import { FollowerPointerCard } from './components/ui/following-pointer';
+import DrawUnderline from './components/ui/DrawUnderline';
 import Home from './pages/Home';
 import Projects from './pages/Archive';
 import About from './pages/Resume';
 import Contact from './pages/Contact';
 import ProjectPage from './pages/ProjectPage';
-import ProjectView from './components/ProjectView';
 import './index.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -35,37 +34,51 @@ function AppLayout() {
   const rrNavigate = useNavigate();
   const location   = useLocation();
   const lenisRef        = useRef();
-  const projectViewRef  = useRef(null);
 
   const [gridStatus,    setGridStatus]    = useState('enter');
   const [pendingPath,   setPendingPath]   = useState(null);
-  const [isLoading,     setIsLoading]     = useState(true);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    return document.documentElement.classList.contains('dark');
-  });
+  const [heroScrolledPast, setHeroScrolledPast] = useState(false);
+  // Starts false to match the prerendered/static HTML (which never has a system
+  // dark-mode preference baked in), then corrects immediately post-mount. Reading
+  // document.documentElement here in the initializer would make this component's
+  // very first render depend on the visitor's actual OS theme — which differs from
+  // the prerender snapshot for anyone whose system prefers dark, and React discards
+  // the whole mismatched tree and re-renders client-side when that happens.
+  const [isDark, setIsDark] = useState(false);
+  useEffect(() => {
+    setIsDark(document.documentElement.classList.contains('dark'));
+  }, []);
 
   /* ── Lenis RAF ──────────────────────────────────────────── */
   useEffect(() => {
     function update(time) { lenisRef.current?.lenis?.raf(time * 1000); }
     gsap.ticker.add(update);
+    // Recommended when driving GSAP's ticker from an external RAF loop (Lenis):
+    // without this, GSAP tries to "catch up" after a dropped frame/tab-switch,
+    // which fights Lenis's own smoothing and causes a visible jump.
+    gsap.ticker.lagSmoothing(0);
     return () => gsap.ticker.remove(update);
   }, []);
 
-  /* ── Scroll-to-top button ───────────────────────────────── */
+  /* ── Scroll-to-top button + hero-overlay nav ──────────────── */
   useEffect(() => {
-    const onScroll = () => setShowScrollTop(window.scrollY > 400);
+    const onScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+      setHeroScrolledPast(window.scrollY > window.innerHeight * 0.8);
+    };
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  /* ── Reset scroll + close project overlay on route change ─ */
+  /* ── Reset scroll on route change ─────────────────────────── */
   useEffect(() => {
     window.scrollTo(0, 0);
-    setSelectedProject(null);   // Bug fix: clear overlay when navigating between pages
+    setHeroScrolledPast(false); // Home's hero-overlay nav starts fresh on every visit
   }, [location.pathname]);
+
+  const navIsOverlay = location.pathname === '/' && !heroScrolledPast;
 
   /* ── Dark mode ──────────────────────────────────────────── */
   const toggleDark = useCallback(() => {
@@ -98,24 +111,11 @@ function AppLayout() {
     setGridStatus('exit');
   }, [location.pathname]);
 
-  // Called when the project card is clicked in Home / Archive
+  // Called when a project card is clicked in Home / Archive — real route
+  // navigation (not a local overlay) so the URL reflects the open project.
   const handleProjectSelect = useCallback((project) => {
-    setSelectedProject(project);
-  }, []);
-
-  const handleProjectNext = useCallback(() => {
-    if (!selectedProject) return;
-    const currentIndex = projects.findIndex(p => p.id === selectedProject.id);
-    setSelectedProject(projects[(currentIndex + 1) % projects.length]);
-    projectViewRef.current?.scrollTo(0, 0);
-  }, [selectedProject]);
-
-  const handleProjectPrev = useCallback(() => {
-    if (!selectedProject) return;
-    const currentIndex = projects.findIndex(p => p.id === selectedProject.id);
-    setSelectedProject(projects[(currentIndex - 1 + projects.length) % projects.length]);
-    projectViewRef.current?.scrollTo(0, 0);
-  }, [selectedProject]);
+    handleNavigate(`/work/${project.id}`);
+  }, [handleNavigate]);
 
   const onGridAnimationComplete = useCallback(() => {
     if (gridStatus === 'exit' && pendingPath) {
@@ -141,17 +141,12 @@ function AppLayout() {
   return (
     <ReactLenis root ref={lenisRef} autoRaf={false}>
       <div className="bg-stone-50 dark:bg-[#111] min-h-screen text-brand-dark dark:text-[#eee] selection:bg-brand selection:text-white font-sans no-scrollbar transition-colors duration-300">
+       <FollowerPointerCard title="Curious Traveller" className="block min-h-screen">
 
-        {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
-        <GridTransition status={gridStatus} onAnimationComplete={onGridAnimationComplete} />
-        <CustomCursor />
-        <ProjectView
-          key={selectedProject?.id ?? 'none'}
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-          onNext={handleProjectNext}
-          onPrev={handleProjectPrev}
-          scrollRef={projectViewRef}
+        <PageSkeleton
+          status={gridStatus}
+          onAnimationComplete={onGridAnimationComplete}
+          targetPath={pendingPath || location.pathname}
         />
         <SideNavigation onNavigate={handleNavigate} />
 
@@ -168,7 +163,13 @@ function AppLayout() {
         </div>
 
         {/* ── TOP NAV ───────────────────────────────────────── */}
-        <nav className="fixed top-0 left-0 w-full z-[60] bg-stone-50/90 backdrop-blur-sm border-b border-stone-200 dark:bg-[#111] dark:border-transparent">
+        {/* `dark` here forces every dark: utility below to activate while the nav
+            overlays the (always-dark) hero photo, regardless of the site's real theme. */}
+        <nav className={`fixed top-0 left-0 w-full z-[60] transition-colors duration-300 ${
+          navIsOverlay
+            ? 'dark bg-transparent border-b border-transparent'
+            : 'bg-stone-50/90 backdrop-blur-sm border-b border-stone-200 dark:bg-[#111] dark:border-transparent'
+        }`}>
           <div className="grid grid-cols-3 items-center px-6 md:px-10 h-[60px]">
 
             {/* LEFT: name + dark-mode toggle */}
@@ -183,7 +184,11 @@ function AppLayout() {
                 onClick={toggleDark}
                 aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
                 title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-                className="flex items-center justify-center w-11 h-11 rounded-md border border-stone-200 dark:border-[#2a2a2a] text-[#666] dark:text-[#aaa] hover:text-brand-dark dark:hover:text-[#ccc] hover:border-stone-300 dark:hover:border-[#444] bg-white dark:bg-[#191919] transition-all duration-200"
+                className={`flex items-center justify-center w-11 h-11 rounded-md border transition-all duration-200 ${
+                  isDark || navIsOverlay
+                    ? 'border-[#2a2a2a] text-[#aaa] hover:text-[#ccc] hover:border-[#444] bg-[#191919]'
+                    : 'border-stone-200 text-[#666] hover:text-brand-dark hover:border-stone-300 bg-white'
+                }`}
               >
                 {isDark ? <Sun size={14} strokeWidth={2} aria-hidden="true" /> : <Moon size={14} strokeWidth={2} aria-hidden="true" />}
               </button>
@@ -195,26 +200,29 @@ function AppLayout() {
                 { label: 'Work',  view: 'projects' },
                 { label: 'About', view: 'about'    },
               ].map(({ label, view }) => (
-                <button
+                <DrawUnderline
                   key={view}
                   onClick={() => handleNavigate(view)}
-                  className={`font-sans text-sm font-medium tracking-tight transition-colors duration-200 ${
+                  lineClassName="text-brand dark:text-brand-lime"
+                  className={`font-sans text-base font-medium tracking-tight transition-colors duration-200 drop-shadow-sm ${
                     activeView === view
-                      ? 'text-brand-dark dark:text-[#eee]'
-                      : 'text-[#666] dark:text-[#aaa] hover:text-brand-dark dark:hover:text-[#ccc]'
+                      ? 'text-brand-dark dark:text-white'
+                      : 'text-[#666] dark:text-[#f5f5f5] hover:text-brand-dark dark:hover:text-white'
                   }`}
                 >
                   {label}
-                </button>
+                </DrawUnderline>
               ))}
-              <a
+              <DrawUnderline
+                as="a"
                 href={BLOG_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-sans text-sm font-medium tracking-tight text-[#666] dark:text-[#aaa] hover:text-brand-dark dark:hover:text-[#ccc] transition-colors duration-200"
+                lineClassName="text-brand dark:text-brand-lime"
+                className="font-sans text-base font-medium tracking-tight text-[#666] dark:text-[#f5f5f5] hover:text-brand-dark dark:hover:text-white transition-colors duration-200 drop-shadow-sm"
               >
                 Blog
-              </a>
+              </DrawUnderline>
             </div>
 
             {/* RIGHT: LinkedIn icon + Contact me CTA */}
@@ -243,7 +251,7 @@ function AppLayout() {
         <Routes>
           <Route path="/"              element={<Home     projects={projects} onSelect={handleProjectSelect} onNavigate={handleNavigate} />} />
           <Route path="/work"          element={<Projects projects={projects} onSelect={handleProjectSelect} onNavigate={handleNavigate} />} />
-          <Route path="/work/:projectId" element={<ProjectPage />} />
+          <Route path="/work/:projectId" element={<ProjectPage onNavigate={handleNavigate} />} />
           <Route path="/about"         element={<About   onNavigate={handleNavigate} />} />
           <Route path="/contact"       element={<Contact onNavigate={handleNavigate} />} />
           {/* Legacy hash-style fallbacks */}
@@ -262,6 +270,7 @@ function AppLayout() {
         >
           <ArrowUp size={16} aria-hidden="true" />
         </button>
+       </FollowerPointerCard>
       </div>
     </ReactLenis>
   );

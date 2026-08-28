@@ -2,6 +2,52 @@ const showcaseAsset = (fileName) => `${import.meta.env.BASE_URL}projects/${fileN
 
 export const projects = [
     {
+        id: 24,
+        title: "GUTLE",
+        category: "Brand Identity",
+        type: 'creative',
+        year: "2024",
+        description: "Bold brand identity and packaging system for Gutle, a lifestyle footwear brand built for movement and street-driven style.",
+        details: ["Brand Identity", "Logo Design", "Packaging", "Art Direction"],
+        color: "#FF2E2D",
+        coverImage: showcaseAsset("gutle_brand_id/18.png"),
+        featured: true,
+        featuredRank: 0,
+        modules: [
+            { type: "intro", content: "Gutle is a lifestyle footwear brand built for the bold and the restless. Inspired by movement and imagined through impossible shots, the identity captures energy, confidence, and street-driven style. From logo to packaging, every detail is designed to pounce through ordinary and stay iconic." },
+            { type: "grid", title: "Role & Deliverables", items: [
+                { label: "Role", text: "Brand & Visual Identity Designer" },
+                { label: "Deliverables", text: "Logomark, wordmark, color system, typography, packaging, and campaign art direction." },
+                { label: "Tools", text: "Illustrator, Photoshop, Figma" }
+            ]},
+            { type: "image", url: showcaseAsset("gutle_brand_id/1.png") },
+            { type: "text", title: "The Brand", content: "Gutle is a lifestyle footwear brand for people who move with intention. The brand voice is direct and kinetic — short, punchy lines like \"Move bold. Live Gutle.\" and \"Pounce through ordinary.\" set the tone for every touchpoint, from packaging copy to campaign headlines." },
+            { type: "image", url: showcaseAsset("gutle_brand_id/2.png") },
+            { type: "image", url: showcaseAsset("gutle_brand_id/3.png")},
+            { type: "image", url: showcaseAsset("gutle_brand_id/4.png")},
+            { type: "image", url: showcaseAsset("gutle_brand_id/5.png")},
+            { type: "image", url: showcaseAsset("gutle_brand_id/6.png")},
+            { type: "image", url: showcaseAsset("gutle_brand_id/7.png")},
+            { type: "image", url: showcaseAsset("gutle_brand_id/8.png")},
+            { type: "image", url: showcaseAsset("gutle_brand_id/9.png")},
+            { type: "image", url: showcaseAsset("gutle_brand_id/10.png")},
+            { type: "image", url: showcaseAsset("gutle_brand_id/11.png")},
+            { type: "image", url: showcaseAsset("gutle_brand_id/12.png")},
+            { type: "image", url: showcaseAsset("gutle_brand_id/13.png")},
+            { type: "image", url: showcaseAsset("gutle_brand_id/14.png")},
+            { type: "image", url: showcaseAsset("gutle_brand_id/15.png")},
+            { type: "image", url: showcaseAsset("gutle_brand_id/16.png")},
+            { type: "image", url: showcaseAsset("gutle_brand_id/17.png")},
+            { type: "image", url: showcaseAsset("gutle_brand_id/18.png")},
+            { type: "image", url: showcaseAsset("gutle_brand_id/19.png")},
+            { type: "image", url: showcaseAsset("gutle_brand_id/20.png")},
+            { type: "image", url: showcaseAsset("gutle_brand_id/21.png")},
+            { type: "image", url: showcaseAsset("gutle_brand_id/22.png")},
+            { type: "image", url: showcaseAsset("gutle_brand_id/23.png")}
+        ]
+    },
+
+    {
         id: 21,
         title: "LOGO DESIGN",
         category: "Brand Identity",

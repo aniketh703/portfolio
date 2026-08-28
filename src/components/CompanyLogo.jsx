@@ -6,7 +6,7 @@ function CompanyLogo({ domain, name = 'Company', className = '' }) {
 
   if (!domain || hasError || !logoKey) {
     return (
-      <div className={`inline-flex items-center justify-center bg-stone-100 border border-stone-200 text-stone-500 text-xs font-mono ${className}`}>
+      <div className={`inline-flex items-center justify-center bg-stone-100 dark:bg-[#1a1a1a] border border-stone-200 dark:border-[#2a2a2a] text-stone-500 dark:text-[#aaa] text-xs font-mono ${className}`}>
         {name.charAt(0).toUpperCase()}
       </div>
     );
