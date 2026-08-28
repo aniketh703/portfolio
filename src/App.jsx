@@ -21,22 +21,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const BLOG_URL = 'https://aniketh703.github.io/blog/';
 
-function ErrorButton() {
-  return (
-    <button
-      className="flex items-center justify-center w-auto px-3 h-11 rounded-md border border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-200 text-xs font-bold"
-      onClick={() => {
-        Sentry.logger.info('User triggered test error', {
-          action: 'test_error_button_click',
-        });
-        Sentry.metrics.count('test_counter', 1);
-        throw new Error('This is your first error!');
-      }}
-    >
-      Break the world
-    </button>
-  );
-}
+
 
 const VIEW_TO_PATH = {
   index:    '/',
@@ -210,7 +195,6 @@ function AppLayout() {
               >
                 {isDark ? <Sun size={14} strokeWidth={2} aria-hidden="true" /> : <Moon size={14} strokeWidth={2} aria-hidden="true" />}
               </button>
-              <ErrorButton />
             </div>
 
             {/* CENTER: nav links */}
