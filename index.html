@@ -77,35 +77,36 @@
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
-    [
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Aniketh Vustepalle",
-        "url": "https://aniketh703.github.io/portfolio/",
-        "jobTitle": "AI Product Designer and Creative Developer",
-        "worksFor": { "@type": "Organization", "name": "PanTerra Networks" },
-        "address": { "@type": "PostalAddress", "addressLocality": "Hyderabad", "addressCountry": "IN" },
-        "description": "AI Product Designer and Creative Developer with 1+ years designing enterprise SaaS interfaces and HITL AI systems. Specialised in React, TypeScript, Python, and Figma.",
-        "alumniOf": [
-          { "@type": "CollegeOrUniversity", "name": "Sri Chandrasekharendra Saraswathi Viswa Mahavidyalaya" },
-          { "@type": "CollegeOrUniversity", "name": "VNIT Nagpur" }
-        ],
-        "knowsAbout": ["UI Design", "UX Design", "AI Product Design", "React", "TypeScript", "Python", "Figma", "Prompt Engineering", "HITL Systems"],
-        "sameAs": [
-          "https://github.com/aniketh703",
-          "https://linkedin.com/in/aniketh-vustepalle/"
-        ]
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Aniketh Vustepalle Portfolio",
-        "url": "https://aniketh703.github.io/portfolio/",
-        "description": "Portfolio of Aniketh Vustepalle — AI Product Designer and Creative Developer based in Hyderabad, India.",
-        "author": { "@type": "Person", "name": "Aniketh Vustepalle" }
-      }
-    ]
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "name": "Aniketh Vustepalle",
+          "url": "https://aniketh703.github.io/portfolio/",
+          "jobTitle": "AI Product Designer and Creative Developer",
+          "worksFor": { "@type": "Organization", "name": "PanTerra Networks" },
+          "address": { "@type": "PostalAddress", "addressLocality": "Hyderabad", "addressCountry": "IN" },
+          "description": "AI Product Designer and Creative Developer with 1+ years designing enterprise SaaS interfaces and HITL AI systems. Specialised in React, TypeScript, Python, and Figma.",
+          "alumniOf": [
+            { "@type": "CollegeOrUniversity", "name": "Sri Chandrasekharendra Saraswathi Viswa Mahavidyalaya" },
+            { "@type": "CollegeOrUniversity", "name": "VNIT Nagpur" }
+          ],
+          "knowsAbout": ["UI Design", "UX Design", "AI Product Design", "React", "TypeScript", "Python", "Figma", "Prompt Engineering", "HITL Systems"],
+          "sameAs": [
+            "https://github.com/aniketh703",
+            "https://linkedin.com/in/aniketh-vustepalle/"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "name": "Aniketh Vustepalle Portfolio",
+          "url": "https://aniketh703.github.io/portfolio/",
+          "description": "Portfolio of Aniketh Vustepalle — AI Product Designer and Creative Developer based in Hyderabad, India.",
+          "author": { "@type": "Person", "name": "Aniketh Vustepalle" }
+        }
+      ]
+    }
     </script>
   </head>
   <body>
