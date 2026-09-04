@@ -37,6 +37,7 @@ jobs:
         run: npm run build
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          VITE_LOGO_DEV_KEY: ${{ secrets.VITE_LOGO_DEV_KEY }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
