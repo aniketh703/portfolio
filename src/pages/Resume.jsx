@@ -76,13 +76,13 @@ const About = ({ onNavigate }) => {
         <meta name="description" content="AI Product Designer and Creative Developer at PanTerra Networks — 1+ years designing enterprise SaaS dashboards, HITL AI systems, and building full-stack products. Based in Hyderabad, India." />
         <meta property="og:title" content="About Aniketh Vustepalle | AI Product Designer & Developer" />
         <meta property="og:description" content="AI Product Designer at PanTerra Networks — enterprise SaaS, HITL AI systems, React, Figma, Python." />
-        <meta property="og:url" content="https://aniketh703.github.io/portfolio/about" />
-        <meta property="og:image" content="https://aniketh703.github.io/portfolio/og-image.jpg" />
+        <meta property="og:url" content="https://aniketh.is-a.dev/about" />
+        <meta property="og:image" content="https://aniketh.is-a.dev/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="About Aniketh Vustepalle | AI Product Designer" />
         <meta name="twitter:description" content="AI Product Designer and Creative Developer — PanTerra Networks, Q-DITS. 1+ years designing enterprise SaaS and AI-driven systems." />
-        <meta name="twitter:image" content="https://aniketh703.github.io/portfolio/og-image.jpg" />
-        <link rel="canonical" href="https://aniketh703.github.io/portfolio/about" />
+        <meta name="twitter:image" content="https://aniketh.is-a.dev/og-image.jpg" />
+        <link rel="canonical" href="https://aniketh.is-a.dev/about" />
       </Helmet>
 
       <section className="min-h-screen bg-stone-50 dark:bg-[#111]">

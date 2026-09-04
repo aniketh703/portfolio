@@ -5,7 +5,7 @@ import { ArrowRight, ArrowLeft, Home } from 'lucide-react';
 import { projects } from '../data/projects';
 import { CoverImage, renderModule, Label } from '../components/ProjectContent';
 
-const BASE_URL = 'https://aniketh703.github.io/portfolio';
+const BASE_URL = 'https://aniketh.is-a.dev';
 
 /* ── ProjectPage ────────────────────────────────────────────── */
 const ProjectPage = ({ onNavigate }) => {

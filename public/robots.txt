@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://aniketh703.github.io/portfolio/sitemap.xml
+Sitemap: https://aniketh.is-a.dev/sitemap.xml
 
 # Crawl-delay (optional - adjust if needed)
 # Crawl-delay: 1

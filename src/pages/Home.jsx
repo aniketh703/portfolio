@@ -95,13 +95,13 @@ const Home = ({ projects = [], onSelect, onNavigate }) => {
         <meta name="description" content="AI Product Designer and Creative Developer with 1+ years designing enterprise SaaS interfaces and AI-driven systems. Specialized in React, TypeScript, Python, and Figma. Based in Hyderabad, India." />
         <meta property="og:title" content="Aniketh Vustepalle | AI Product Designer & Creative Developer" />
         <meta property="og:description" content="AI Product Designer and Creative Developer — 1+ years designing enterprise SaaS interfaces and AI-driven systems. Based in Hyderabad, India." />
-        <meta property="og:url" content="https://aniketh703.github.io/portfolio/" />
-        <meta property="og:image" content="https://aniketh703.github.io/portfolio/og-image.jpg" />
+        <meta property="og:url" content="https://aniketh.is-a.dev/" />
+        <meta property="og:image" content="https://aniketh.is-a.dev/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Aniketh Vustepalle | AI Product Designer & Creative Developer" />
         <meta name="twitter:description" content="AI Product Designer and Creative Developer — 1+ years designing enterprise SaaS interfaces and AI-driven systems. Based in Hyderabad, India." />
-        <meta name="twitter:image" content="https://aniketh703.github.io/portfolio/og-image.jpg" />
-        <link rel="canonical" href="https://aniketh703.github.io/portfolio/" />
+        <meta name="twitter:image" content="https://aniketh.is-a.dev/og-image.jpg" />
+        <link rel="canonical" href="https://aniketh.is-a.dev/" />
       </Helmet>
     <div ref={heroRef} className="bg-stone-50 dark:bg-[#111]">
 

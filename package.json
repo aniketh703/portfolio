@@ -15,7 +15,7 @@
   "reactSnap": {
     "source": "dist",
     "destination": "dist",
-    "publicPath": "/portfolio",
+    "publicPath": "/",
     "include": [
       "/",
       "/work",

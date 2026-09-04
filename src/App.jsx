@@ -279,14 +279,9 @@ function AppLayout() {
   );
 }
 
-/* ─────────────────────────────────────────────────────────────
-   App — BrowserRouter wraps everything; basename matches the
-   GitHub Pages repo sub-path configured in vite.config.js
-───────────────────────────────────────────────────────────── */
 export default function App() {
-  const basename = process.env.NODE_ENV === 'development' ? '/' : '/portfolio';
   return (
-    <BrowserRouter basename={basename}>
+    <BrowserRouter>
       <AppLayout />
     </BrowserRouter>
   );

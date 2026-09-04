@@ -5,12 +5,12 @@
     <title>Aniketh Vustepalle</title>
     <script>
       // GitHub Pages SPA redirect trick.
-      // When GH Pages can't find a path (e.g. /portfolio/work/6),
+      // When GH Pages can't find a path (e.g. /work/6),
       // it serves this 404.html. We encode the path into a query
       // string and redirect to the root, where index.html decodes it
       // and restores the correct URL before React boots.
-      // segmentCount = 1 because the app lives at /portfolio/ (one segment deep).
-      var segmentCount = 1;
+      // segmentCount = 0 because the app lives at the domain root.
+      var segmentCount = 0;
       var l = window.location;
       l.replace(
         l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +

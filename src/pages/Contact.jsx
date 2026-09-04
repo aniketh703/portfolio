@@ -74,13 +74,13 @@ const Contact = ({ onNavigate }) => {
         <meta name="description" content="Get in touch with Aniketh Vustepalle — AI Product Designer and Creative Developer based in Hyderabad, India. Available for freelance, full-time, and consulting roles." />
         <meta property="og:title" content="Contact | Aniketh Vustepalle" />
         <meta property="og:description" content="Reach out via the contact form or directly at anikethvustepalle03@gmail.com." />
-        <meta property="og:url" content="https://aniketh703.github.io/portfolio/contact" />
-        <meta property="og:image" content="https://aniketh703.github.io/portfolio/og-image.jpg" />
+        <meta property="og:url" content="https://aniketh.is-a.dev/contact" />
+        <meta property="og:image" content="https://aniketh.is-a.dev/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Contact | Aniketh Vustepalle" />
         <meta name="twitter:description" content="Reach out via the contact form or directly at anikethvustepalle03@gmail.com." />
-        <meta name="twitter:image" content="https://aniketh703.github.io/portfolio/og-image.jpg" />
-        <link rel="canonical" href="https://aniketh703.github.io/portfolio/contact" />
+        <meta name="twitter:image" content="https://aniketh.is-a.dev/og-image.jpg" />
+        <link rel="canonical" href="https://aniketh.is-a.dev/contact" />
       </Helmet>
       <section className="min-h-screen bg-stone-50 dark:bg-[#111]">
         <div className="max-w-3xl xl:max-w-4xl 2xl:max-w-5xl mx-auto px-6 md:px-10 xl:px-12 2xl:px-16 pt-32 pb-20">
