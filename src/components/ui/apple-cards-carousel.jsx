@@ -11,7 +11,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { useLenis } from 'lenis/react';
 import { useOutsideClick } from '@/hooks/use-outside-click';
 
-export const CarouselContext = createContext({
+const CarouselContext = createContext({
   onCardClose: () => {},
   currentIndex: 0,
 });
