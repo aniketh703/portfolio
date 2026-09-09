@@ -6,26 +6,14 @@ import {
 } from "motion/react";
 import React, { useEffect, useRef, useState } from "react";
 
-interface TimelineEntry {
-  title: string;
-  content: React.ReactNode;
-}
-
-interface TimelineProps {
-  data: TimelineEntry[];
-  title?: string;
-  description?: string;
-  className?: string;
-}
-
 export const Timeline = ({
   data,
-  title = "Changelog from my journey",
-  description = "I've been working on Aceternity for the past 2 years. Here's a timeline of my journey.",
+  title = "My Journey",
+  description = "Here's a timeline of my journey.",
   className = "",
-}: TimelineProps) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+}) => {
+  const ref = useRef(null);
+  const containerRef = useRef(null);
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
@@ -40,7 +28,7 @@ export const Timeline = ({
 
     if (typeof window !== "undefined") {
       window.addEventListener("resize", updateHeight);
-      let ro: ResizeObserver | null = null;
+      let ro = null;
       if (typeof ResizeObserver !== "undefined" && ref.current) {
         ro = new ResizeObserver(updateHeight);
         ro.observe(ref.current);
