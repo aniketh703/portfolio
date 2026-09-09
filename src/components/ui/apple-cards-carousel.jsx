@@ -22,13 +22,6 @@ export const Carousel = ({ items, initialScroll = 0 }) => {
   const [canScrollRight, setCanScrollRight] = React.useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
-    if (carouselRef.current) {
-      carouselRef.current.scrollLeft = initialScroll;
-      checkScrollability();
-    }
-  }, [initialScroll]);
-
   const checkScrollability = () => {
     if (carouselRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
@@ -36,6 +29,13 @@ export const Carousel = ({ items, initialScroll = 0 }) => {
       setCanScrollRight(scrollLeft < scrollWidth - clientWidth);
     }
   };
+
+  useEffect(() => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollLeft = initialScroll;
+      checkScrollability();
+    }
+  }, [initialScroll]);
 
   const scrollLeft = () => {
     if (carouselRef.current) {
@@ -65,10 +65,6 @@ export const Carousel = ({ items, initialScroll = 0 }) => {
       }
       setCurrentIndex(index);
     }
-  };
-
-  const isMobile = () => {
-    return window && window.innerWidth < 768;
   };
 
   return (
@@ -118,6 +114,7 @@ export const Carousel = ({ items, initialScroll = 0 }) => {
         </div>
         <div className="mr-10 flex justify-end gap-2">
           <button
+            aria-label="Scroll left"
             className="relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 disabled:opacity-50"
             onClick={scrollLeft}
             disabled={!canScrollLeft}
@@ -125,6 +122,7 @@ export const Carousel = ({ items, initialScroll = 0 }) => {
             <ArrowLeft className="h-6 w-6 text-gray-500" />
           </button>
           <button
+            aria-label="Scroll right"
             className="relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 disabled:opacity-50"
             onClick={scrollRight}
             disabled={!canScrollRight}
@@ -140,7 +138,7 @@ export const Carousel = ({ items, initialScroll = 0 }) => {
 export const Card = ({ card, index, layout = false }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef(null);
-  const { onCardClose, currentIndex } = useContext(CarouselContext);
+  const { onCardClose } = useContext(CarouselContext);
   const lenis = useLenis();
 
   // Native overflow:hidden alone doesn't stop Lenis-driven scroll (Lenis
@@ -185,7 +183,12 @@ export const Card = ({ card, index, layout = false }) => {
     <>
       <AnimatePresence>
         {open && (
-          <div className="fixed inset-0 z-50 h-screen overflow-auto">
+          <div
+            className="fixed inset-0 z-50 h-screen overflow-auto"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={`card-title-${index}`}
+          >
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -201,7 +204,8 @@ export const Card = ({ card, index, layout = false }) => {
               className="relative z-[60] mx-auto my-10 h-fit max-w-5xl rounded-3xl bg-white p-4 font-sans md:p-10 dark:bg-neutral-900"
             >
               <button
-                className="sticky top-4 right-0 ml-auto flex h-8 w-8 items-center justify-center rounded-full bg-black dark:bg-white"
+                aria-label="Close dialog"
+                className="sticky top-4 right-0 ml-auto flex h-8 w-8 items-center justify-center rounded-full bg-black dark:bg-white focus:outline-none focus:ring-2 focus:ring-brand-lime"
                 onClick={handleClose}
               >
                 <X className="h-6 w-6 text-neutral-100 dark:text-neutral-900" />
@@ -213,6 +217,7 @@ export const Card = ({ card, index, layout = false }) => {
                 {card.category}
               </motion.p>
               <motion.p
+                id={`card-title-${index}`}
                 layoutId={layout ? `title-${card.title}` : undefined}
                 className="mt-4 text-2xl font-semibold text-neutral-700 md:text-5xl dark:text-white"
               >
@@ -226,8 +231,11 @@ export const Card = ({ card, index, layout = false }) => {
       <motion.button
         layoutId={layout ? `card-${card.title}` : undefined}
         onClick={handleOpen}
+        aria-haspopup="dialog"
+        aria-expanded={open}
+        aria-label={`View details for ${card.title}`}
         data-cursor-variant="project"
-        className="relative z-10 flex h-80 w-56 flex-col items-start justify-start overflow-hidden rounded-3xl bg-gray-100 md:h-[40rem] md:w-96 lg:w-[28rem] xl:w-[32rem] dark:bg-neutral-900"
+        className="relative z-10 flex h-80 w-56 flex-col items-start justify-start overflow-hidden rounded-3xl bg-gray-100 md:h-[40rem] md:w-96 lg:w-[28rem] xl:w-[32rem] dark:bg-neutral-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-dark dark:focus-visible:ring-brand-lime"
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 z-30 h-full bg-gradient-to-b from-black/50 via-transparent to-transparent" />
         <div className="relative z-40 p-8">
@@ -267,7 +275,7 @@ export const BlurImage = ({ src, className, alt, ...rest }) => {
       src={src}
       loading="lazy"
       decoding="async"
-      alt={alt ? alt : 'Background of a beautiful view'}
+      alt={alt ? alt : 'Project visual preview'}
       {...rest}
     />
   );

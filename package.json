@@ -44,7 +44,9 @@
       "/work/21",
       "/work/22",
       "/work/23",
-      "/work/24"
+      "/work/24",
+      "/work/26",
+      "/work/27"
     ],
     "crawl": false,
     "skipThirdPartyRequests": true,

@@ -1,6 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useSyncExternalStore } from 'react';
 import { motion, useMotionValue } from 'motion/react';
 import { cn } from '@/lib/utils';
+
+function subscribeToHoverMedia(callback) {
+  if (typeof window === 'undefined' || !window.matchMedia) {
+    return () => {};
+  }
+  const mql = window.matchMedia('(hover: hover) and (pointer: fine)');
+  mql.addEventListener('change', callback);
+  return () => mql.removeEventListener('change', callback);
+}
+
+function getHoverSnapshot() {
+  if (typeof window === 'undefined' || !window.matchMedia) {
+    return true;
+  }
+  return window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+}
+
+function getServerHoverSnapshot() {
+  return true;
+}
 
 const INTERACTIVE_SELECTOR = 'a, button, [role="button"], input, textarea, select, summary, label';
 
@@ -50,13 +70,12 @@ export const FollowerPointerCard = ({ children, className, title }) => {
   const y = useMotionValue(0);
   const [isInside, setIsInside] = useState(false);
   const [variant, setVariant] = useState('normal');
-  // Starts true (matching prerender/static HTML, always rendered from a
-  // desktop-shaped crawl) and corrects post-mount — same hydration-safety
-  // reasoning as isDark in App.jsx.
-  const [canHover, setCanHover] = useState(true);
-  useEffect(() => {
-    setCanHover(window.matchMedia('(hover: hover) and (pointer: fine)').matches);
-  }, []);
+  const [darkSurface, setDarkSurface] = useState(false);
+  const canHover = useSyncExternalStore(
+    subscribeToHoverMedia,
+    getHoverSnapshot,
+    getServerHoverSnapshot
+  );
 
   const handleMouseMove = (e) => {
     x.set(e.clientX);
@@ -67,6 +86,15 @@ export const FollowerPointerCard = ({ children, className, title }) => {
       target.closest(`${INTERACTIVE_SELECTOR}, [data-cursor-variant="pointer"]`);
     const next = isProject ? 'project' : isPointer ? 'pointer' : 'normal';
     setVariant((prev) => (prev === next ? prev : next));
+
+    // Sections with a fixed-dark background regardless of site theme (the
+    // hero photo, the footer) are tagged data-cursor-surface="dark" so the
+    // icon can pick a visible color directly — CSS mix-blend-mode looked
+    // elegant on paper but doesn't reliably blend a `position: fixed`
+    // element against scrolled content once Framer Motion/Lenis promote it
+    // to its own compositing layer, so it rendered as flat white everywhere.
+    const isDark = !!(target.closest && target.closest('[data-cursor-surface="dark"]'));
+    setDarkSurface((prev) => (prev === isDark ? prev : isDark));
   };
   const handleMouseLeave = () => setIsInside(false);
   const handleMouseEnter = () => setIsInside(true);
@@ -82,19 +110,19 @@ export const FollowerPointerCard = ({ children, className, title }) => {
       suppressHydrationWarning
       className={cn('relative', className)}
     >
-      <FollowPointer x={x} y={y} title={title} variant={variant} visible={isInside} />
+      <FollowPointer x={x} y={y} title={title} variant={variant} visible={isInside} darkSurface={darkSurface} />
       {children}
     </div>
   );
 };
 
-export const FollowPointer = ({ x, y, title, variant = 'normal', visible = true }) => {
+export const FollowPointer = ({ x, y, title, variant = 'normal', visible = true, darkSurface = false }) => {
   const icon = ICONS[variant] || ICONS.normal;
   const isProject = variant === 'project';
   return (
     <motion.div
-      className="fixed z-[300] h-4 w-4 rounded-full"
-      style={{ top: y, left: x, pointerEvents: 'none' }}
+      className="fixed z-[300] h-4 w-4 rounded-full pointer-events-none"
+      style={{ top: y, left: x }}
       initial={false}
       animate={{ scale: visible ? 1 : 0, opacity: visible ? 1 : 0 }}
       transition={{ type: 'spring', stiffness: 260, damping: 20 }}
@@ -104,7 +132,7 @@ export const FollowPointer = ({ x, y, title, variant = 'normal', visible = true 
         fill="currentColor"
         strokeWidth="1"
         viewBox={icon.viewBox}
-        className={cn(icon.className, 'transform text-brand dark:text-brand-lime')}
+        className={cn(icon.className, 'transform', darkSurface ? 'text-white' : 'text-brand-dark dark:text-[#eee]')}
         xmlns="http://www.w3.org/2000/svg"
       >
         <path d={icon.path}></path>

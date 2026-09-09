@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Quote } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Quote, Maximize2, X } from 'lucide-react';
 import GenerativeArt from './GenerativeArt';
 
 export const CoverImage = ({ project, fallbackSeed, className }) => {
@@ -25,7 +25,85 @@ export const Label = ({ children }) => (
   </span>
 );
 
-export const renderModule = (module, index) => {
+const ImageLightboxModule = ({ module, index }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setIsOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen]);
+
+  return (
+    <div key={index} className="mb-16 md:mb-24">
+      <div
+        className="group relative w-full aspect-video bg-stone-200 dark:bg-[#1c1c1c] overflow-hidden border border-stone-200 dark:border-[#2e2e2e] cursor-zoom-in rounded-xl transition-all duration-300 hover:shadow-2xl"
+        onClick={() => setIsOpen(true)}
+        onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setIsOpen(true)}
+        tabIndex="0"
+        role="button"
+        aria-haspopup="dialog"
+        aria-label={`Zoom in on visual: ${module.caption || 'Project visual'}`}
+      >
+        <img
+          src={module.url}
+          alt={module.caption || 'Project visual'}
+          loading="lazy"
+          decoding="async"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+        />
+        {module.caption && (
+          <div className="absolute bottom-4 left-4 z-10 bg-white/90 dark:bg-[#111]/90 backdrop-blur-sm px-3 py-1 text-[11px] font-sans font-medium uppercase tracking-[0.14em] text-stone-700 dark:text-[#ccc] rounded">
+            {module.caption}
+          </div>
+        )}
+        <div className="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/60 text-white backdrop-blur-md px-2.5 py-1.5 rounded-full text-xs flex items-center gap-1.5 font-sans font-medium pointer-events-none shadow-lg">
+          <Maximize2 size={12} />
+          <span>Click to expand</span>
+        </div>
+      </div>
+
+      {isOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={module.caption || 'Full screen image preview'}
+          className="fixed inset-0 z-[500] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 sm:p-8 transition-opacity duration-300"
+          onClick={() => setIsOpen(false)}
+        >
+          <button
+            type="button"
+            onClick={() => setIsOpen(false)}
+            aria-label="Close image preview"
+            className="fixed top-6 right-6 z-[510] flex items-center justify-center w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all backdrop-blur-md border border-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-lime"
+          >
+            <X size={20} />
+          </button>
+          <div
+            className="relative max-w-7xl max-h-[90vh] flex flex-col items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={module.url}
+              alt={module.caption || 'Project visual enlarged'}
+              className="max-h-[82vh] max-w-full object-contain rounded-lg shadow-2xl"
+            />
+            {module.caption && (
+              <p className="mt-4 text-xs md:text-sm font-sans font-medium tracking-wide text-white/80 text-center max-w-2xl px-4 py-1.5 rounded-full bg-black/60 border border-white/10 backdrop-blur-sm">
+                {module.caption}
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export const ProjectModule = ({ module, index }) => {
   switch (module.type) {
     case 'intro':
       return (
@@ -111,24 +189,7 @@ export const renderModule = (module, index) => {
         </div>
       );
     case 'image':
-      return (
-        <div key={index} className="mb-16 md:mb-24">
-          <div className="w-full aspect-video bg-stone-200 dark:bg-[#1c1c1c] overflow-hidden relative border border-stone-200 dark:border-[#2e2e2e]">
-            <img
-              src={module.url}
-              alt={module.caption || 'Project visual'}
-              loading="lazy"
-              decoding="async"
-              className="w-full h-full object-cover"
-            />
-            {module.caption && (
-              <div className="absolute bottom-4 left-4 z-10 bg-white/90 dark:bg-[#111]/90 backdrop-blur-sm px-3 py-1 text-[11px] font-sans font-medium uppercase tracking-[0.14em] text-stone-700 dark:text-[#ccc]">
-                {module.caption}
-              </div>
-            )}
-          </div>
-        </div>
-      );
+      return <ImageLightboxModule key={index} module={module} index={index} />;
     default: return null;
   }
 };

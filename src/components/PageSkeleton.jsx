@@ -42,37 +42,43 @@ const WorkSkeleton = () => (
   </div>
 );
 
-const AboutSkeleton = () => (
-  <div className="max-w-5xl mx-auto px-6 md:px-10 pt-32 pb-16">
-    <Bar className="h-14 w-full max-w-xl mx-auto mb-4" />
-    <Bar className="h-14 w-2/3 max-w-md mx-auto mb-14" />
-    <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-10 mb-16">
-      <Bar className="aspect-[3/4]" />
-      <div className="flex flex-col gap-4 justify-center">
-        <Bar className="h-5 w-full" />
-        <Bar className="h-5 w-full" />
-        <Bar className="h-5 w-2/3" />
+const ResumeSkeleton = () => (
+  <div className="max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 pt-32 pb-20">
+    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-12">
+      <div>
+        <Bar className="h-12 w-64 mb-3" />
+        <Bar className="h-5 w-80" />
       </div>
+      <Bar className="h-11 w-40 rounded-xl" />
+    </div>
+    <div className="space-y-6 mb-12">
+      <Bar className="h-40 w-full rounded-2xl" />
+      <Bar className="h-40 w-full rounded-2xl" />
+      <Bar className="h-40 w-full rounded-2xl" />
     </div>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <Bar className="h-64" />
-      <Bar className="h-64" />
+      <Bar className="h-56 rounded-2xl" />
+      <Bar className="h-56 rounded-2xl" />
     </div>
   </div>
 );
 
 const ContactSkeleton = () => (
-  <div className="max-w-3xl mx-auto px-6 md:px-10 pt-32 pb-16">
-    <Bar className="h-14 w-64 mb-12" />
-    <div className="flex flex-col sm:flex-row gap-10 mb-14">
-      <Bar className="h-10 w-48" />
-      <Bar className="h-10 w-48" />
+  <div className="max-w-7xl 2xl:max-w-[1520px] mx-auto px-6 sm:px-10 lg:px-14 xl:px-16 pt-36 sm:pt-44 pb-28 md:pb-36">
+    <div className="mb-14 max-w-3xl">
+      <Bar className="h-8 w-60 rounded-full mb-6" />
+      <Bar className="h-16 w-full mb-4" />
+      <Bar className="h-6 w-3/4" />
     </div>
-    <div className="flex flex-col gap-4">
-      <Bar className="h-12 w-full" />
-      <Bar className="h-12 w-full" />
-      <Bar className="h-32 w-full" />
-      <Bar className="h-12 w-32" />
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-start">
+      <div className="lg:col-span-5 space-y-4">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <Bar key={i} className="h-20 w-full rounded-2xl" />
+        ))}
+      </div>
+      <div className="lg:col-span-7">
+        <Bar className="h-[540px] w-full rounded-3xl" />
+      </div>
     </div>
   </div>
 );
@@ -99,7 +105,7 @@ function skeletonForPath(pathname = '') {
   if (pathname === '/' || pathname === '') return { Content: HomeSkeleton, dark: true };
   if (pathname.startsWith('/work/')) return { Content: ProjectSkeleton, dark: false };
   if (pathname === '/work') return { Content: WorkSkeleton, dark: false };
-  if (pathname === '/about') return { Content: AboutSkeleton, dark: false };
+  if (pathname === '/about' || pathname === '/resume') return { Content: ResumeSkeleton, dark: false };
   if (pathname === '/contact') return { Content: ContactSkeleton, dark: false };
   return { Content: WorkSkeleton, dark: false };
 }

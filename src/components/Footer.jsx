@@ -1,10 +1,11 @@
 import React from 'react';
 import DrawUnderline from './ui/DrawUnderline';
+import { profile } from '../data/profile';
 
 const FOOTER_LINK_CLASS = 'font-sans text-sm text-[#999] hover:text-white transition-colors duration-200 tracking-tight text-left';
 
 const Footer = ({ onNavigate }) => (
-  <footer className="w-full bg-brand-dark dark:bg-[#0a0a0a] border-t border-[#1a1a1a]">
+  <footer data-cursor-surface="dark" className="w-full bg-brand-dark dark:bg-[#0a0a0a] border-t border-[#1a1a1a]">
     <div className="max-w-6xl mx-auto px-6 md:px-10 py-12">
       <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-10 md:gap-16">
 
@@ -16,7 +17,7 @@ const Footer = ({ onNavigate }) => (
             </span>
           </div>
           <p className="font-sans text-sm text-[#888] tracking-tight leading-relaxed max-w-[200px]">
-            UI/UX Designer &amp; Creative Developer based in Hyderabad, India.
+            {profile.jobTitle} based in {profile.location}.
           </p>
         </div>
 
@@ -58,11 +59,9 @@ const Footer = ({ onNavigate }) => (
                   Contact
                 </DrawUnderline>
               )}
-              {onNavigate && (
-                <DrawUnderline onClick={() => onNavigate('about')} className={FOOTER_LINK_CLASS}>
-                  Résumé
-                </DrawUnderline>
-              )}
+              <DrawUnderline as="a" href="mailto:anikethvustepalle03@gmail.com?subject=Resume%20Request" className={FOOTER_LINK_CLASS}>
+                Request Résumé
+              </DrawUnderline>
             </div>
           </div>
 

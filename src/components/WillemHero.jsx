@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useLenis } from 'lenis/react';
 
@@ -22,11 +22,41 @@ const BASE_IMAGE = `${BASE}IMG_20221223_123011.jpg`;
 // only ever plays once per real page load, not once per browser tab.
 let hasPlayedIntro = false;
 
+const checkReducedMotion = () =>
+  typeof window !== 'undefined' &&
+  window.matchMedia &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 function WillemHero() {
   const sectionRef = useRef(null);
   const lenis = useLenis();
-  const [playIntro] = useState(() => !hasPlayedIntro);
+  const prefersReducedMotion = checkReducedMotion();
+  const [playIntro] = useState(() => !hasPlayedIntro && !prefersReducedMotion);
   const [settled, setSettled] = useState(!playIntro);
+  const tlRef = useRef(null);
+  const prevOverflowRef = useRef({ body: '', html: '' });
+
+  const handleSkip = useCallback(() => {
+    if (tlRef.current) {
+      tlRef.current.progress(1);
+    }
+    document.body.style.overflow = prevOverflowRef.current.body || '';
+    document.documentElement.style.overflow = prevOverflowRef.current.html || '';
+    if (lenis) lenis.start();
+    hasPlayedIntro = true;
+    setSettled(true);
+  }, [lenis]);
+
+  useEffect(() => {
+    if (settled) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' || e.key === 'Enter') {
+        handleSkip();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [settled, handleSkip]);
 
   // Decoupled from the animation timeline below: the Lenis instance isn't
   // ready synchronously (ReactLenis creates it in its own useEffect, which
@@ -44,6 +74,7 @@ function WillemHero() {
     if (!container) return;
 
     if (!playIntro) {
+      hasPlayedIntro = true;
       const ctx = gsap.context(() => {
         gsap.from(container, { opacity: 0, duration: 0.6, ease: 'power2.out' });
       }, container);
@@ -52,6 +83,7 @@ function WillemHero() {
 
     const prevBodyOverflow = document.body.style.overflow;
     const prevHtmlOverflow = document.documentElement.style.overflow;
+    prevOverflowRef.current = { body: prevBodyOverflow, html: prevHtmlOverflow };
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
 
@@ -85,6 +117,7 @@ function WillemHero() {
             setSettled(true);
           },
         });
+        tlRef.current = tl;
 
         if (letters.length) {
           tl.from(letters, { yPercent: 100, stagger: 0.025, duration: 1.25 });
@@ -126,8 +159,21 @@ function WillemHero() {
   return (
     <section
       ref={sectionRef}
+      data-cursor-surface="dark"
       className={`relative w-full overflow-hidden bg-black text-[#f4f4f4] ${settled ? 'min-h-[100dvh]' : 'h-[100dvh]'}`}
     >
+      {/* Accessible Skip Intro Button during initial intro sequence */}
+      {!settled && (
+        <button
+          type="button"
+          onClick={handleSkip}
+          className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/75 px-4 py-2 text-xs font-mono font-medium tracking-wider text-white shadow-2xl backdrop-blur-md transition-all hover:border-white/70 hover:bg-black/95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-lime"
+          aria-label="Skip introduction animation"
+        >
+          <span>Skip Intro</span>
+          <span className="rounded bg-white/20 px-1.5 py-0.5 text-[10px] text-white/80 font-mono" aria-hidden="true">ESC</span>
+        </button>
+      )}
       {/* Loader: split name + growing image, settles into the full-bleed backdrop */}
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
         <div

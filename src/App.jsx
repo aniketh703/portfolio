@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useSyncExternalStore } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { ReactLenis } from 'lenis/react';
 import * as Sentry from '@sentry/react';
@@ -15,13 +15,37 @@ import Projects from './pages/Archive';
 import About from './pages/Resume';
 import Contact from './pages/Contact';
 import ProjectPage from './pages/ProjectPage';
+import NotFound from './pages/NotFound';
+import ErrorBoundary from './components/ErrorBoundary';
 import './index.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const BLOG_URL = 'https://aniketh-blog.appwrite.network/';
 
+function subscribeToTheme(callback) {
+  if (typeof window === 'undefined' || !window.MutationObserver) {
+    return () => {};
+  }
+  const observer = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      if (mutation.attributeName === 'class') {
+        callback();
+      }
+    }
+  });
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+  return () => observer.disconnect();
+}
 
+function getThemeSnapshot() {
+  if (typeof document === 'undefined') return false;
+  return document.documentElement.classList.contains('dark');
+}
+
+function getServerThemeSnapshot() {
+  return false;
+}
 
 const VIEW_TO_PATH = {
   index:    '/',
@@ -42,16 +66,7 @@ function AppLayout() {
   const [pendingPath,   setPendingPath]   = useState(null);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [heroScrolledPast, setHeroScrolledPast] = useState(false);
-  // Starts false to match the prerendered/static HTML (which never has a system
-  // dark-mode preference baked in), then corrects immediately post-mount. Reading
-  // document.documentElement here in the initializer would make this component's
-  // very first render depend on the visitor's actual OS theme — which differs from
-  // the prerender snapshot for anyone whose system prefers dark, and React discards
-  // the whole mismatched tree and re-renders client-side when that happens.
-  const [isDark, setIsDark] = useState(false);
-  useEffect(() => {
-    setIsDark(document.documentElement.classList.contains('dark'));
-  }, []);
+  const isDark = useSyncExternalStore(subscribeToTheme, getThemeSnapshot, getServerThemeSnapshot);
 
   /* ── Lenis RAF ──────────────────────────────────────────── */
   useEffect(() => {
@@ -75,10 +90,15 @@ function AppLayout() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  const [prevPathname, setPrevPathname] = useState(location.pathname);
+  if (prevPathname !== location.pathname) {
+    setPrevPathname(location.pathname);
+    setHeroScrolledPast(false);
+  }
+
   /* ── Reset scroll on route change ─────────────────────────── */
   useEffect(() => {
     window.scrollTo(0, 0);
-    setHeroScrolledPast(false); // Home's hero-overlay nav starts fresh on every visit
   }, [location.pathname]);
 
   const navIsOverlay = location.pathname === '/' && !heroScrolledPast;
@@ -90,11 +110,9 @@ function AppLayout() {
     if (nowDark) {
       html.classList.remove('dark');
       localStorage.setItem('theme', 'light');
-      setIsDark(false);
     } else {
       html.classList.add('dark');
       localStorage.setItem('theme', 'dark');
-      setIsDark(true);
     }
   }, []);
 
@@ -144,7 +162,7 @@ function AppLayout() {
   return (
     <ReactLenis root ref={lenisRef} autoRaf={false}>
       <div className="bg-stone-50 dark:bg-[#111] min-h-screen text-brand-dark dark:text-[#eee] selection:bg-brand selection:text-white font-sans no-scrollbar transition-colors duration-300">
-       <FollowerPointerCard title="Curious Traveller" className="block min-h-screen">
+       <FollowerPointerCard title="View Project" className="block min-h-screen">
 
         <PageSkeleton
           status={gridStatus}
@@ -251,6 +269,7 @@ function AppLayout() {
 
         {/* ── ROUTES ────────────────────────────────────────── */}
         <main id="main-content">
+        <ErrorBoundary>
         <Routes>
           <Route path="/"              element={<Home     projects={projects} onSelect={handleProjectSelect} onNavigate={handleNavigate} />} />
           <Route path="/work"          element={<Projects projects={projects} onSelect={handleProjectSelect} onNavigate={handleNavigate} />} />
@@ -259,8 +278,9 @@ function AppLayout() {
           <Route path="/contact"       element={<Contact onNavigate={handleNavigate} />} />
           {/* Legacy hash-style fallbacks */}
           <Route path="/blog"          element={<Navigate to="/" replace />} />
-          <Route path="*"              element={<Navigate to="/" replace />} />
+          <Route path="*"              element={<NotFound onNavigate={handleNavigate} />} />
         </Routes>
+        </ErrorBoundary>
         </main>
 
         {/* ── SCROLL TO TOP ─────────────────────────────────── */}
@@ -282,7 +302,9 @@ function AppLayout() {
 export default function App() {
   return (
     <BrowserRouter>
-      <AppLayout />
+      <ErrorBoundary>
+        <AppLayout />
+      </ErrorBoundary>
     </BrowserRouter>
   );
 }

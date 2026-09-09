@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams, useNavigate, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowRight, ArrowLeft, Home } from 'lucide-react';
 import { projects } from '../data/projects';
-import { CoverImage, renderModule, Label } from '../components/ProjectContent';
+import { CoverImage, ProjectModule, Label } from '../components/ProjectContent';
+import NotFound from './NotFound';
 
 const BASE_URL = 'https://aniketh.is-a.dev';
 
@@ -12,17 +13,17 @@ const ProjectPage = ({ onNavigate }) => {
   const { projectId } = useParams();
   const navigate = useNavigate();
 
-  const currentIndex = projects.findIndex(p => p.id === parseInt(projectId, 10));
+  const currentIndex = projects.findIndex(p => p.id === parseInt(projectId, 10) || p.slug === projectId);
   const project = currentIndex >= 0 ? projects[currentIndex] : null;
 
   // Scroll to top on project change
   useEffect(() => { window.scrollTo(0, 0); }, [projectId]);
 
-  if (!project) return <Navigate to="/work" replace />;
+  if (!project) return <NotFound onNavigate={onNavigate} />;
 
-  const handleHome  = () => {
-    if (onNavigate) onNavigate('index');
-    else navigate('/');
+  const handleHome = () => {
+    if (onNavigate) onNavigate('projects');
+    else navigate('/work');
   };
   const handleNext  = () => {
     const nextId = projects[(currentIndex + 1) % projects.length].id;
@@ -35,20 +36,20 @@ const ProjectPage = ({ onNavigate }) => {
     else navigate(`/work/${prevId}`);
   };
 
-  const ogImage = `${BASE_URL}/og/project-${project.id}.jpg`;
+  const ogImage = `${BASE_URL}${project.coverImage || '/og-image.jpg'}`;
 
   return (
     <>
       <Helmet>
-        <title>{project.title} | Aniketh Vustepalle</title>
-        <meta name="description" content={project.description} />
+        <title>{`${project.title} — ${project.category} | Aniketh Vustepalle`}</title>
+        <meta name="description" content={`${project.description} Case study by Aniketh Vustepalle, AI Product Designer & Creative Developer based in Hyderabad, India.`} />
         <meta property="og:type" content="article" />
-        <meta property="og:title" content={`${project.title} | Aniketh Vustepalle`} />
+        <meta property="og:title" content={`${project.title} — ${project.category} | Aniketh Vustepalle`} />
         <meta property="og:description" content={project.description} />
         <meta property="og:image" content={ogImage} />
         <meta property="og:url" content={`${BASE_URL}/work/${project.id}`} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${project.title} | Aniketh Vustepalle`} />
+        <meta name="twitter:title" content={`${project.title} — ${project.category} | Aniketh Vustepalle`} />
         <meta name="twitter:description" content={project.description} />
         <meta name="twitter:image" content={ogImage} />
         <link rel="canonical" href={`${BASE_URL}/work/${project.id}`} />
@@ -80,26 +81,71 @@ const ProjectPage = ({ onNavigate }) => {
             {/* Sidebar */}
             <aside className="md:col-span-3 space-y-8 md:space-y-10 border-t border-stone-300 dark:border-[#2e2e2e] pt-6">
               <div>
+                <Label>Role</Label>
+                <span className="font-sans text-base font-medium text-stone-900 dark:text-[#eee]">
+                  {project.role || 'Lead Designer & Developer'}
+                </span>
+              </div>
+              <div>
                 <Label>Discipline</Label>
-                <span className="font-sans text-lg font-medium text-stone-900 dark:text-[#eee]">{project.category}</span>
+                <span className="font-sans text-base font-medium text-stone-900 dark:text-[#eee]">{project.category}</span>
               </div>
               <div>
                 <Label>Year</Label>
-                <span className="font-sans text-lg font-medium text-stone-900 dark:text-[#eee]">{project.year}</span>
+                <span className="font-sans text-base font-medium text-stone-900 dark:text-[#eee]">{project.year}</span>
               </div>
-              <div>
-                <Label>Stack</Label>
-                <div className="flex flex-wrap gap-2">
-                  {project.details.map(tech => (
-                    <span
-                      key={tech}
-                      className="border border-stone-200 dark:border-[#2e2e2e] px-2 py-1 text-[11px] font-sans font-medium rounded-full bg-white dark:bg-[#1e1e1e] text-stone-700 dark:text-[#ccc]"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+
+              {/* Tech Stack */}
+              {project.stack && project.stack.length > 0 && (
+                <div>
+                  <Label>Tech Stack</Label>
+                  <div className="flex flex-wrap gap-2">
+                    {project.stack.map(tech => (
+                      <span
+                        key={tech}
+                        className="border border-stone-200 dark:border-[#2e2e2e] px-2.5 py-1 text-[11px] font-sans font-medium rounded-full bg-white dark:bg-[#1e1e1e] text-stone-700 dark:text-[#ccc]"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
+
+              {/* Deliverables */}
+              {project.deliverables && project.deliverables.length > 0 && (
+                <div>
+                  <Label>Deliverables</Label>
+                  <div className="flex flex-wrap gap-2">
+                    {project.deliverables.map(item => (
+                      <span
+                        key={item}
+                        className="border border-stone-200 dark:border-[#2e2e2e] px-2.5 py-1 text-[11px] font-sans font-medium rounded-full bg-white dark:bg-[#1e1e1e] text-stone-700 dark:text-[#ccc]"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Fallback to details if neither stack nor deliverables provided */}
+              {(!project.stack || project.stack.length === 0) && (!project.deliverables || project.deliverables.length === 0) && project.details && (
+                <div>
+                  <Label>Details</Label>
+                  <div className="flex flex-wrap gap-2">
+                    {project.details.map(item => (
+                      <span
+                        key={item}
+                        className="border border-stone-200 dark:border-[#2e2e2e] px-2.5 py-1 text-[11px] font-sans font-medium rounded-full bg-white dark:bg-[#1e1e1e] text-stone-700 dark:text-[#ccc]"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {project.liveUrl && (
                 <div>
                   <Label>Live</Label>
@@ -131,7 +177,7 @@ const ProjectPage = ({ onNavigate }) => {
             {/* Main body */}
             <div className="md:col-span-8 md:col-start-5 border-t border-stone-300 dark:border-[#2e2e2e] pt-6">
               {project.modules ? (
-                <div>{project.modules.map((m, i) => renderModule(m, i))}</div>
+                <div>{project.modules.map((m, i) => <ProjectModule key={i} module={m} index={i} />)}</div>
               ) : (
                 <>
                   <p className="text-xl md:text-4xl font-sans leading-tight mb-10 md:mb-16 text-stone-900 dark:text-[#eee] md:indent-24">
@@ -148,7 +194,7 @@ const ProjectPage = ({ onNavigate }) => {
                     </div>
                     <div>
                       <h3 className="font-sans text-[11px] font-medium uppercase tracking-[0.14em] mb-4 text-stone-400 dark:text-[#555] flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 bg-stone-400 dark:bg-[#555] rounded-full" />The Solution
+                        <span className="w-1.5 h-1.5 bg-stone-400 dark:bg-[#555] rounded-full" />The Approach &amp; System
                       </h3>
                       <p className="text-base leading-relaxed text-stone-700 dark:text-[#bbb] font-light">
                         {project.solution || 'By simplifying the core interaction loop, I created a system that feels both novel and intuitive.'}
@@ -157,24 +203,14 @@ const ProjectPage = ({ onNavigate }) => {
                   </div>
                 </>
               )}
-
-              {/* Fig render */}
-              <div className="mt-16 md:mt-24">
-                <div className="w-full h-[260px] md:h-[400px] bg-stone-200 dark:bg-[#1c1c1c] overflow-hidden relative">
-                  <CoverImage project={project} fallbackSeed={project.id + 10} />
-                  <div className="absolute bottom-4 left-4 bg-white/90 dark:bg-[#111]/90 backdrop-blur-sm px-3 py-1 text-[11px] font-sans font-medium uppercase tracking-[0.14em] text-stone-700 dark:text-[#ccc]">
-                    Fig 1.1 — Final Render
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
-          {/* ── PREV / HOME / NEXT ──────────────────────────── */}
+          {/* ── PREV / WORK / NEXT ──────────────────────────── */}
           <div className="grid grid-cols-1 md:grid-cols-3 border-t border-stone-300 dark:border-[#2e2e2e]">
             {[
               { label: 'Previous', sub: 'Previous Project', icon: <ArrowLeft className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" />, iconPos: 'left',  handler: handlePrev, border: 'md:border-r border-stone-300 dark:border-[#2e2e2e]' },
-              { label: 'Home',     sub: 'Index',            icon: <Home      className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />,        iconPos: 'left',  handler: handleHome, border: 'md:border-r border-stone-300 dark:border-[#2e2e2e]' },
+              { label: 'All Work', sub: 'Portfolio',        icon: <Home      className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />,        iconPos: 'left',  handler: handleHome, border: 'md:border-r border-stone-300 dark:border-[#2e2e2e]' },
               { label: 'Next',     sub: 'Next Project',     icon: <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />,  iconPos: 'right', handler: handleNext, border: '' },
             ].map(({ label, sub, icon, iconPos, handler, border }) => (
               <div
@@ -183,7 +219,7 @@ const ProjectPage = ({ onNavigate }) => {
                 onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), handler())}
                 role="button"
                 tabIndex="0"
-                data-cursor-variant={label === 'Home' ? undefined : 'project'}
+                data-cursor-variant={label === 'All Work' ? undefined : 'project'}
                 className={`group ${border} border-b md:border-b-0 bg-stone-50 dark:bg-[#141414] hover:bg-stone-900 dark:hover:bg-[#1f1f1f] transition-colors duration-300 py-10 md:py-14 px-6 md:px-8 flex flex-col items-center justify-center text-center outline-none focus:bg-stone-900 dark:focus:bg-[#1f1f1f]`}
               >
                 <span className="font-sans text-[11px] font-medium uppercase tracking-[0.14em] mb-3 text-stone-400 dark:text-[#555] group-hover:text-stone-400">{sub}</span>

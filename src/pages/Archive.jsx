@@ -3,6 +3,15 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowUpRight } from 'lucide-react';
 import GenerativeArt from '../components/GenerativeArt';
 import Footer from '../components/Footer';
+import { IllustrationEmptyArchive } from '../components/illustrations';
+import { profile, skills } from '../data/profile';
+import figmaIcon from '../assets/icons/figma.png';
+import vscodeIcon from '../assets/icons/vscode.png';
+import gitIcon from '../assets/icons/git.png';
+import githubIcon from '../assets/icons/github.png';
+import awsIcon from '../assets/icons/aws.png';
+import gcloudIcon from '../assets/icons/google-cloud.png';
+import adobeIcon from '../assets/icons/adobe.png';
 
 const ProjectThumb = ({ project }) => {
   const [imgFailed, setImgFailed] = useState(false);
@@ -11,6 +20,8 @@ const ProjectThumb = ({ project }) => {
       <img
         src={project.coverImage}
         alt={project.title}
+        width={600}
+        height={400}
         onError={() => setImgFailed(true)}
         className="w-full h-full object-cover"
         loading="lazy"
@@ -24,9 +35,6 @@ const ProjectThumb = ({ project }) => {
     </div>
   );
 };
-
-const skills = ['AI Product Design', 'Design Systems', 'React.js', 'Figma', 'Prompt Engineering', 'Python', 'UX Research', 'Prototyping', 'CI/CD', 'SQL', 'HTML/CSS', 'JavaScript'];
-const tools  = ['Figma', 'VS Code', 'Git', 'GitHub', 'AWS', 'Google Cloud', 'Adobe XD'];
 
 const Projects = ({ projects, onSelect, onNavigate }) => {
   const TYPE_FILTERS = [
@@ -43,15 +51,15 @@ const Projects = ({ projects, onSelect, onNavigate }) => {
   return (
     <>
       <Helmet>
-        <title>Projects | UI/UX Design &amp; Engineering Work | Aniketh Vustepalle</title>
-        <meta name="description" content="UI/UX design and engineering projects by Aniketh Vustepalle — enterprise SaaS dashboards, AI-driven systems, MLOps pipelines, mobile apps, and design systems." />
-        <meta property="og:title" content="Work | Aniketh Vustepalle" />
-        <meta property="og:description" content="UI/UX and engineering projects — SaaS dashboards, mobile apps, MLOps, and more." />
+        <title>Selected Work | AI Product Design &amp; Engineering | Aniketh Vustepalle</title>
+        <meta name="description" content="Explore case studies across AI product design, enterprise SaaS interfaces, MLOps pipelines, and creative engineering by Aniketh Vustepalle. Concept to production." />
+        <meta property="og:title" content="Selected Work | Aniketh Vustepalle" />
+        <meta property="og:description" content="Case studies in AI product design, enterprise SaaS, MLOps pipelines, and creative engineering by Aniketh Vustepalle." />
         <meta property="og:url" content="https://aniketh.is-a.dev/work" />
         <meta property="og:image" content="https://aniketh.is-a.dev/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Work | Aniketh Vustepalle" />
-        <meta name="twitter:description" content="UI/UX and engineering projects — SaaS dashboards, mobile apps, MLOps, and more." />
+        <meta name="twitter:title" content="Selected Work | Aniketh Vustepalle" />
+        <meta name="twitter:description" content="Case studies in AI product design, enterprise SaaS, MLOps pipelines, and creative engineering by Aniketh Vustepalle." />
         <meta name="twitter:image" content="https://aniketh.is-a.dev/og-image.jpg" />
         <link rel="canonical" href="https://aniketh.is-a.dev/work" />
       </Helmet>
@@ -59,13 +67,16 @@ const Projects = ({ projects, onSelect, onNavigate }) => {
         <div className="max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-6 md:px-10 xl:px-12 2xl:px-16">
 
           {/* Header */}
-          <div className="pt-32 pb-10">
+          <div className="pt-32 pb-8">
             <h1
-              className="font-sans font-bold leading-none tracking-tight text-brand-dark dark:text-[#eee]"
+              className="font-sans font-bold leading-none tracking-tight text-brand-dark dark:text-[#eee] mb-3"
               style={{ fontSize: 'clamp(3rem, 8vw, 5.5rem)' }}
             >
-              Projects
+              Work
             </h1>
+            <p className="font-sans text-sm md:text-base text-stone-500 dark:text-[#aaa] tracking-tight max-w-xl">
+              A selection of case studies — AI product design, enterprise systems, and creative engineering I&apos;ve shipped.
+            </p>
           </div>
 
           {/* Filter pills */}
@@ -88,7 +99,7 @@ const Projects = ({ projects, onSelect, onNavigate }) => {
             })}
           </div>
 
-          {/* Grid — matches Framer layout: dark card + text below */}
+          {/* Grid */}
           <div className="pb-24 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-10">
             {filtered.map((project) => (
               <div
@@ -101,7 +112,7 @@ const Projects = ({ projects, onSelect, onNavigate }) => {
                 data-cursor-variant="project"
                 className="group outline-none focus-visible:ring-2 focus-visible:ring-brand-dark/30 dark:focus-visible:ring-[#eee]/30"
               >
-                {/* Dark image container — matches Framer's #1a1a1a card */}
+                {/* Dark image container */}
                 <div className="relative bg-stone-100 dark:bg-[#1a1a1a] rounded-[5px] overflow-hidden border border-stone-200 dark:border-transparent">
                   {/* Inner thumbnail with slight inset rounding */}
                   <div className="m-2 rounded-lg overflow-hidden">
@@ -123,12 +134,20 @@ const Projects = ({ projects, onSelect, onNavigate }) => {
                   )}
                 </div>
 
-                {/* Details below card — matches Framer's Details section */}
+                {/* Details below card */}
                 <div className="mt-3 px-0.5">
-                  <p className="font-sans text-[15px] font-medium tracking-[-0.01em] leading-[165%] text-brand-dark group-hover:text-brand dark:text-[#ccc] dark:group-hover:text-[#eee] transition-colors duration-200">
-                    {project.title}
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <p className="font-sans text-[15px] font-semibold tracking-[-0.01em] leading-snug text-brand-dark group-hover:text-brand dark:text-[#eee] dark:group-hover:text-brand-lime transition-colors duration-200">
+                      {project.title}
+                    </p>
+                    <span className="font-sans text-[11px] font-medium text-stone-400 dark:text-[#777] uppercase tracking-wider flex-shrink-0">
+                      {project.year}
+                    </span>
+                  </div>
+                  <p className="font-sans text-xs font-medium text-stone-500 dark:text-[#aaa] mb-1 tracking-tight">
+                    {project.category} · {project.role}
                   </p>
-                  <p className="font-sans text-sm text-stone-500 dark:text-[#aaa] leading-relaxed tracking-tight">
+                  <p className="font-sans text-sm text-stone-500 dark:text-[#888] leading-relaxed tracking-tight line-clamp-2">
                     {project.description}
                   </p>
                 </div>
@@ -137,8 +156,22 @@ const Projects = ({ projects, onSelect, onNavigate }) => {
           </div>
 
           {filtered.length === 0 && (
-            <div className="py-24 text-center">
-              <p className="font-sans text-sm text-stone-500 dark:text-[#aaa]">No projects in this category yet.</p>
+            <div className="py-20 text-center flex flex-col items-center justify-center space-y-4">
+              <div className="w-20 h-20 rounded-2xl bg-stone-100 dark:bg-[#181818] p-4 flex items-center justify-center border border-stone-200 dark:border-[#262626]">
+                <IllustrationEmptyArchive className="w-full [--ill-line:#0A0A0A] [--ill-bg:#f5f5f4] dark:[--ill-line:#EDEDED] dark:[--ill-bg:#181818]" />
+              </div>
+              <div className="space-y-1">
+                <h3 className="font-sans text-lg font-bold text-brand-dark dark:text-[#eee]">No projects found in this category</h3>
+                <p className="font-sans text-xs md:text-sm text-stone-500 dark:text-[#aaa]">
+                  Try switching filters or resetting to view all work.
+                </p>
+              </div>
+              <button
+                onClick={() => setFilter('all')}
+                className="inline-flex items-center gap-2 bg-brand-dark dark:bg-[#eee] text-white dark:text-[#111] px-4 py-2 rounded-md font-sans text-xs font-semibold tracking-tight hover:bg-brand dark:hover:bg-brand-lime transition-all duration-200 shadow-sm"
+              >
+                Show all projects
+              </button>
             </div>
           )}
         </div>
@@ -154,7 +187,7 @@ const Projects = ({ projects, onSelect, onNavigate }) => {
             style={{ fontSize: 'clamp(5rem, 18vw, 14rem)' }}
             aria-hidden="true"
           >
-            1+ years
+            {profile.yearsExperience} years
           </p>
 
           {/* Bio */}
@@ -184,10 +217,22 @@ const Projects = ({ projects, onSelect, onNavigate }) => {
           {/* Tools */}
           <div className="mb-12">
             <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-stone-400 dark:text-[#888] mb-4">Tools</p>
-            <div className="flex flex-wrap gap-2">
-              {tools.map(t => (
-                <span key={t} className="font-sans text-[12px] text-stone-600 border border-stone-200 px-3 py-1.5 rounded-full hover:border-stone-300 hover:text-stone-800 dark:text-[#aaa] dark:border-[#222] dark:hover:border-[#3a3a3a] dark:hover:text-[#777] transition-colors duration-200">
-                  {t}
+            <div className="flex flex-wrap gap-2.5">
+              {[
+                { name: 'Figma', icon: figmaIcon },
+                { name: 'VS Code', icon: vscodeIcon },
+                { name: 'Git', icon: gitIcon },
+                { name: 'GitHub', icon: githubIcon },
+                { name: 'AWS', icon: awsIcon },
+                { name: 'Google Cloud', icon: gcloudIcon },
+                { name: 'Adobe Suite', icon: adobeIcon },
+              ].map(t => (
+                <span
+                  key={t.name}
+                  className="inline-flex items-center gap-2 font-sans text-[12px] font-medium text-stone-700 dark:text-[#ccc] border border-stone-200 dark:border-[#262626] bg-stone-50 dark:bg-[#161616] px-3 py-1.5 rounded-lg hover:border-brand-lime dark:hover:border-brand-lime transition-colors duration-200 shadow-sm"
+                >
+                  <img src={t.icon} alt="" width={16} height={16} className="w-4 h-4 object-contain" aria-hidden="true" />
+                  {t.name}
                 </span>
               ))}
             </div>
@@ -196,7 +241,7 @@ const Projects = ({ projects, onSelect, onNavigate }) => {
           {/* Resume link */}
           <button
             onClick={() => onNavigate && onNavigate('about')}
-            className="group inline-flex items-center gap-2 font-sans text-sm font-medium text-stone-600 border border-stone-200 px-6 py-3 rounded-[5px] hover:border-stone-300 hover:text-stone-800 dark:text-[#aaa] dark:border-[#2a2a2a] dark:hover:border-[#444] dark:hover:text-[#888] transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98] shadow-sm hover:shadow-md"
+            className="group inline-flex items-center gap-2 font-sans text-sm font-medium text-stone-700 border border-stone-200 px-6 py-3 rounded-xl hover:border-brand-dark hover:text-brand-dark dark:text-[#ccc] dark:border-[#2a2a2a] dark:hover:border-brand-lime dark:hover:text-brand-lime transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98] shadow-sm hover:shadow-md"
           >
             Full resume <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </button>

@@ -6,50 +6,34 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Carousel, Card } from '../components/ui/apple-cards-carousel';
 import Testimonials from '../components/Testimonials';
 import Footer from '../components/Footer';
-import CompanyLogo from '../components/CompanyLogo';
 import WillemHero from '../components/WillemHero';
+import { profile } from '../data/profile';
+import mapPinIcon from '../assets/icons/map-pin.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
-  { value: '1+', label: 'years of exp.' },
+  { value: profile.yearsExperience, label: 'years of exp.' },
   { value: '15+', label: 'projects shipped' },
   { value: '2', label: 'companies worked' },
 ];
 
-const workedAt = [
-  { name: 'PanTerra Networks', short: 'PanTerra', domain: 'panterranetworks.com' },
-  { name: 'Q-DITS', short: 'Q-DITS', domain: 'q-dits.com' },
-];
-
-const technologies = [
-  { name: 'React', domain: 'react.dev' },
-  { name: 'TypeScript', domain: 'typescriptlang.org' },
-  { name: 'Python', domain: 'python.org' },
-  { name: 'Figma', domain: 'figma.com' },
-  { name: 'GCP', domain: 'cloud.google.com' },
-  { name: 'Tailwind', domain: 'tailwindcss.com' },
-];
-
-const whatIOffer = [
-  {
-    num: '01',
-    title: 'UI / UX Design',
-    description:
-      'End-to-end interface design from discovery to high-fidelity — wireframes, prototypes, and polished visual systems built in Figma.',
-  },
-  {
-    num: '02',
-    title: 'Frontend Engineering',
-    description:
-      'Pixel-perfect, performant React applications with TypeScript and Tailwind. Clean code, accessible markup, smooth interactions.',
-  },
-  {
-    num: '03',
-    title: 'Full-Stack Development',
-    description:
-      'Scalable back-ends with Python and FastAPI, deployed on AWS. From database schema to REST API to production.',
-  },
+// Recurring disciplines pulled from the actual project set and work history
+// (src/data/projects.js roles/stacks + Resume.jsx experience tags) — not a
+// generic skills list.
+const capabilities = [
+  'AI Product Design',
+  'Human-in-the-Loop Systems',
+  'Design Systems',
+  'Frontend Engineering',
+  'Enterprise SaaS Design',
+  'Full-Stack Development',
+  'MLOps & Model Deployment',
+  'Prompt Engineering',
+  'Agentic AI Workflows',
+  'Applied NLP & Retrieval',
+  'Data Engineering',
+  'Brand & Visual Identity',
 ];
 
 const featuredProjects = [
@@ -92,14 +76,14 @@ const Home = ({ projects = [], onSelect, onNavigate }) => {
     <>
       <Helmet>
         <title>Aniketh Vustepalle | AI Product Designer &amp; Creative Developer</title>
-        <meta name="description" content="AI Product Designer and Creative Developer with 1+ years designing enterprise SaaS interfaces and AI-driven systems. Specialized in React, TypeScript, Python, and Figma. Based in Hyderabad, India." />
+        <meta name="description" content={`AI Product Designer and Creative Developer with ${profile.yearsExperience} years designing enterprise SaaS interfaces and AI-driven systems. Specialized in React, TypeScript, Python, and Figma. Based in ${profile.location}.`} />
         <meta property="og:title" content="Aniketh Vustepalle | AI Product Designer & Creative Developer" />
-        <meta property="og:description" content="AI Product Designer and Creative Developer — 1+ years designing enterprise SaaS interfaces and AI-driven systems. Based in Hyderabad, India." />
+        <meta property="og:description" content={`AI Product Designer and Creative Developer — ${profile.yearsExperience} years designing enterprise SaaS interfaces and AI-driven systems. Based in ${profile.location}.`} />
         <meta property="og:url" content="https://aniketh.is-a.dev/" />
         <meta property="og:image" content="https://aniketh.is-a.dev/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Aniketh Vustepalle | AI Product Designer & Creative Developer" />
-        <meta name="twitter:description" content="AI Product Designer and Creative Developer — 1+ years designing enterprise SaaS interfaces and AI-driven systems. Based in Hyderabad, India." />
+        <meta name="twitter:description" content={`AI Product Designer and Creative Developer — ${profile.yearsExperience} years designing enterprise SaaS interfaces and AI-driven systems. Based in ${profile.location}.`} />
         <meta name="twitter:image" content="https://aniketh.is-a.dev/og-image.jpg" />
         <link rel="canonical" href="https://aniketh.is-a.dev/" />
       </Helmet>
@@ -108,114 +92,31 @@ const Home = ({ projects = [], onSelect, onNavigate }) => {
       {/* HERO */}
       <WillemHero />
 
-      {/* HERO — bio / stats / CTAs */}
-      <section className="max-w-3xl xl:max-w-4xl 2xl:max-w-5xl mx-auto px-6 md:px-10 xl:px-12 2xl:px-16 pt-16 pb-16 md:pt-20 md:pb-20 text-center">
-        <div className="mb-6 flex justify-center gap-3 flex-wrap">
-          <span className="inline-flex items-center gap-2 font-sans text-[11px] font-medium uppercase tracking-[0.15em] text-[#666] dark:text-[#aaa]">
-            <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-            Available for projects
-          </span>
-          <span className="font-sans text-[11px] font-medium uppercase tracking-[0.15em] text-[#666] dark:text-[#aaa]">·</span>
-          <span className="font-sans text-[11px] font-medium uppercase tracking-[0.15em] text-[#666] dark:text-[#aaa]">
-            Hyderabad, India
-          </span>
-        </div>
-
-        <p className="hero-sub font-sans text-[15px] text-[#666] dark:text-[#888] max-w-lg leading-relaxed tracking-tight mb-10 mx-auto text-center">
-          {"I design intelligent interfaces — and I build them. AI Product Designer & Developer based in "}
-          <em className="not-italic text-brand-dark dark:text-[#ccc]">Hyderabad, India</em>
-          {", blending design systems with real engineering."}
-        </p>
-
-        {/* Inline stats */}
-        <div className="flex justify-center gap-8 md:gap-14 mb-10">
-          {stats.map((s) => (
-            <div key={s.value} className="hero-stat text-center">
-              <p
-                className="font-sans font-black tracking-tight text-brand-lime leading-none mb-1"
-                style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)' }}
-              >
-                {s.value}
-              </p>
-              <p className="font-sans text-[11px] text-[#666] dark:text-[#aaa] tracking-tight">{s.label}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Dual CTAs */}
-        <div className="hero-cta flex justify-center gap-3 flex-wrap">
-          <button
-            onClick={() => onNavigate('projects')}
-            className="group inline-flex items-center gap-2 bg-brand-dark dark:bg-[#eee] text-white dark:text-[#111] px-6 py-3 rounded-[5px] font-sans text-sm font-medium tracking-tight hover:bg-brand dark:hover:bg-brand-lime transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-xl"
-          >
-            See my work <ArrowUpRight aria-hidden="true" size={14} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </button>
-          <button
-            onClick={() => onNavigate('about')}
-            className="group inline-flex items-center gap-2 bg-transparent border border-stone-300 dark:border-[#333] text-brand-dark dark:text-[#ccc] px-6 py-3 rounded-[5px] font-sans text-sm font-medium tracking-tight hover:border-brand-dark dark:hover:border-[#aaa] hover:text-brand dark:hover:text-[#eee] transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98]"
-          >
-            About me <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
-          </button>
-        </div>
-      </section>
-
-      {/* WHERE I WORKED / TECHNOLOGIES */}
-      <section className="border-t border-stone-200 dark:border-[#1f1f1f] bg-white dark:bg-[#0d0d0d]">
-        <div className="max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-6 md:px-10 xl:px-12 2xl:px-16 py-5">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-center gap-5 sm:gap-0 sm:divide-x sm:divide-stone-200 sm:dark:divide-[#1f1f1f]">
-
-            {/* Left: Where I Worked */}
-            <div className="flex flex-col xs:flex-row xs:items-center gap-3 sm:gap-6 sm:pr-10 flex-shrink-0">
-              <span className="font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-[#aaa] flex-shrink-0 whitespace-nowrap">
-                Where I Worked
-              </span>
-              <div className="flex items-center gap-5">
-                {workedAt.map((company) => (
-                  <div key={company.name} className="flex items-center gap-2 group">
-                    <CompanyLogo
-                      domain={company.domain}
-                      name={company.short}
-                      className="w-5 h-5 rounded object-contain flex-shrink-0"
-                    />
-                    <span className="font-sans text-sm font-medium text-stone-500 dark:text-[#aaa] tracking-tight group-hover:text-brand-dark dark:group-hover:text-[#aaa] transition-colors duration-200">
-                      {company.short}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Right: Technologies */}
-            <div className="flex flex-col xs:flex-row xs:items-center gap-3 sm:gap-6 sm:pl-10 flex-1 min-w-0">
-              <span className="font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-[#aaa] flex-shrink-0 whitespace-nowrap">
-                Technologies
-              </span>
-              <div className="flex flex-wrap items-center gap-4 sm:gap-5">
-                {technologies.map((tech) => (
-                  <div key={tech.name} className="flex items-center gap-1.5 group">
-                    <CompanyLogo
-                      domain={tech.domain}
-                      name={tech.name}
-                      className="w-5 h-5 rounded object-contain flex-shrink-0"
-                    />
-                    <span className="font-sans text-sm font-medium text-stone-500 dark:text-[#aaa] tracking-tight group-hover:text-brand-dark dark:group-hover:text-[#aaa] transition-colors duration-200">
-                      {tech.name}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
+      {/* INTRO + WHAT I OFFER — merged: status/location badge leads straight
+          into the services grid so the page opens with one continuous
+          "who I am / what I do" panel instead of two disconnected sections. */}
+      <section className="bg-white dark:bg-[#0d0d0d]">
+        <div className="max-w-3xl xl:max-w-4xl 2xl:max-w-5xl mx-auto px-6 md:px-10 xl:px-12 2xl:px-16 pt-16 md:pt-20 text-center">
+          <div className="mb-6 flex justify-center gap-2.5 flex-wrap">
+            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-lime/15 dark:bg-brand-lime/10 border border-brand-lime/35 font-sans text-[11px] font-medium uppercase tracking-[0.15em] text-brand-dark dark:text-brand-lime">
+              <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+              Available for projects
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/80 dark:bg-[#181818]/80 border border-stone-200/80 dark:border-[#282828] font-sans text-[11px] font-medium uppercase tracking-[0.15em] text-[#666] dark:text-[#aaa]">
+              <img src={mapPinIcon} alt="" width={12} height={12} className="w-3 h-3 object-contain flex-shrink-0" aria-hidden="true" />
+              {profile.location}
+            </span>
           </div>
-        </div>
-      </section>
 
-      {/* STATS */}
-      {/* <section className="bg-white dark:bg-[#0d0d0d] border-b border-stone-200 dark:border-[#1f1f1f]">
-        <div className="max-w-5xl mx-auto px-6 md:px-10 py-14 md:py-20">
-          <div className="flex flex-col sm:flex-row justify-center gap-10 sm:gap-16 md:gap-24 text-center">
+          <p className="hero-sub font-sans text-base md:text-lg text-[#666] dark:text-[#888] max-w-xl leading-relaxed tracking-tight mb-10 mx-auto text-center">
+            {"I design intelligent interfaces — and I build them. AI Product Designer & Developer based in "}
+            <em className="not-italic text-brand-dark dark:text-[#ccc]">{profile.location}</em>
+            {", blending design systems with real engineering."}
+          </p>
+
+          <div className="flex flex-col sm:flex-row justify-center gap-10 sm:gap-16 md:gap-24 text-center mb-10">
             {stats.map((s) => (
-              <div key={s.value}>
+              <div key={s.value} className="hero-stat">
                 <p
                   className="font-sans font-black tracking-tight text-brand-lime leading-none mb-1.5"
                   style={{ fontSize: 'clamp(2.8rem, 7vw, 5rem)' }}
@@ -226,36 +127,39 @@ const Home = ({ projects = [], onSelect, onNavigate }) => {
               </div>
             ))}
           </div>
-        </div>
-      </section> */}
 
-      {/* WHAT I OFFER */}
-      <section className="bg-white dark:bg-[#0d0d0d]">
-        <div className="max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-6 md:px-10 xl:px-12 2xl:px-16 py-16 md:py-24">
-          <h2
-            className="font-sans font-bold tracking-tight text-brand-dark dark:text-[#eee] mb-12"
-            style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)' }}
-          >
-            What I offer
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-stone-200 dark:divide-[#1f1f1f]">
-            {whatIOffer.map((item) => (
-              <div key={item.num} className="group py-8 md:py-0 md:px-8 first:pl-0 last:pr-0 transition-colors duration-300 hover:bg-stone-100/50 dark:hover:bg-[#161616]/50 rounded-xl md:rounded-none">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="font-sans text-[13px] font-medium text-stone-400 dark:text-[#444] tracking-wider transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:text-brand-dark dark:group-hover:text-brand-lime">
-                    {item.num}
-                  </span>
-                  <h3 className="font-sans text-base font-semibold text-brand-dark dark:text-[#eee] tracking-tight transition-colors duration-300 group-hover:text-brand dark:group-hover:text-brand-lime">
-                    {item.title}
-                  </h3>
-                </div>
-                <p className="font-sans text-[13px] text-[#666] dark:text-[#888] leading-relaxed tracking-tight">
-                  {item.description}
-                </p>
-              </div>
+          {/* Dual CTAs */}
+          <div className="hero-cta flex justify-center gap-3 flex-wrap">
+            <button
+              onClick={() => onNavigate('projects')}
+              className="group inline-flex items-center gap-2 bg-brand-dark dark:bg-[#eee] text-white dark:text-[#111] px-6 py-3 rounded-[5px] font-sans text-sm font-medium tracking-tight hover:bg-brand dark:hover:bg-brand-lime transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-xl"
+            >
+              See my work <ArrowUpRight aria-hidden="true" size={14} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </button>
+            <button
+              onClick={() => onNavigate('about')}
+              className="group inline-flex items-center gap-2 bg-transparent border border-stone-300 dark:border-[#333] text-brand-dark dark:text-[#ccc] px-6 py-3 rounded-[5px] font-sans text-sm font-medium tracking-tight hover:border-brand-dark dark:hover:border-[#aaa] hover:text-brand dark:hover:text-[#eee] transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98]"
+            >
+              About me <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+            </button>
+          </div>
+        </div>
+
+        <div className="max-w-3xl xl:max-w-4xl mx-auto px-6 md:px-10 xl:px-12 2xl:px-16 pt-12 md:pt-16 pb-16 md:pb-24 text-center">
+          <p className="font-sans text-xs font-semibold uppercase tracking-[0.25em] text-stone-400 dark:text-[#666] mb-12 md:mb-16">
+            Expertise &amp; Capabilities
+          </p>
+          <div className="flex flex-wrap justify-center gap-x-3 gap-y-3">
+            {capabilities.map((item) => (
+              <span
+                key={item}
+                className="inline-flex items-center px-5 py-2.5 rounded-full border border-stone-300 dark:border-[#333] font-sans text-sm text-stone-600 dark:text-[#999] tracking-tight hover:border-brand-dark dark:hover:border-brand-lime hover:text-brand-dark dark:hover:text-[#eee] transition-colors duration-200"
+              >
+                {item}
+              </span>
             ))}
           </div>
-          <div className="mt-12 pt-8 border-t border-stone-200 dark:border-[#1f1f1f] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="mt-14 sm:mt-16 pt-8 border-t border-stone-200 dark:border-[#1f1f1f] flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-left">
             <p className="font-sans text-sm text-[#666] dark:text-[#aaa] tracking-tight">
               Need a different approach? I&apos;m flexible &mdash; let&apos;s discuss.
             </p>
@@ -329,20 +233,22 @@ const Home = ({ projects = [], onSelect, onNavigate }) => {
       </section>
 
       {/* CTA CARD */}
-      <section className="max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto px-6 md:px-10 xl:px-12 2xl:px-16 py-16 md:py-24">
-        <div className="bg-[#111] dark:bg-[#161616] rounded-2xl p-10 md:p-16 text-center border border-[#222] dark:border-[#2a2a2a]">
+      <section className="max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-6 md:px-10 xl:px-12 2xl:px-16 py-16 md:py-24">
+        <div className="relative overflow-hidden bg-brand-lime rounded-[2.5rem] md:rounded-[3rem] px-8 py-16 md:py-24 text-center">
+          <p className="font-sans text-[11px] md:text-xs font-bold uppercase tracking-[0.25em] text-brand-dark/60 mb-5">
+            Got a project in mind?
+          </p>
           <h2
-            className="font-sans font-bold tracking-tight text-white mb-8"
-            style={{ fontSize: 'clamp(1.8rem, 5vw, 3.5rem)' }}
+            className="font-sans font-black uppercase tracking-tight text-brand-dark leading-[0.85] mb-10"
+            style={{ fontSize: 'clamp(3rem, 11vw, 8rem)' }}
           >
-            Ready for growth? Let&apos;s talk.
+            Let&apos;s talk
           </h2>
           <button
             onClick={() => onNavigate && onNavigate('contact')}
-            className="group inline-flex items-center gap-2 bg-brand-lime text-brand-dark px-8 py-3.5 rounded-md font-sans text-sm font-semibold tracking-tight hover:bg-white transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-brand-lime/20"
+            className="group inline-flex items-center gap-2 bg-brand-dark text-white px-8 py-4 rounded-full font-sans text-sm font-semibold tracking-tight hover:bg-white dark:hover:bg-white hover:text-black dark:hover:text-black transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98] shadow-lg"
           >
-            Get in touch <ArrowUpRight aria-hidden="true" size={15} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </button>
+            Get in touch </button>
         </div>
       </section>
 

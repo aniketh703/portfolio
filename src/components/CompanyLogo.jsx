@@ -1,8 +1,21 @@
 import React, { useState } from 'react';
 
-function CompanyLogo({ domain, name = 'Company', className = '' }) {
+function CompanyLogo({ icon, domain, name = 'Company', className = '', width = 20, height = 20 }) {
   const [hasError, setHasError] = useState(false);
   const logoKey = import.meta.env.VITE_LOGO_DEV_KEY;
+
+  if (icon) {
+    return (
+      <img
+        src={icon}
+        alt={`${name} logo`}
+        className={className}
+        width={width}
+        height={height}
+        loading="lazy"
+      />
+    );
+  }
 
   if (!domain || hasError || !logoKey) {
     return (
@@ -17,6 +30,8 @@ function CompanyLogo({ domain, name = 'Company', className = '' }) {
       src={`https://img.logo.dev/${domain}?token=${logoKey}`}
       alt={`${name} logo`}
       className={className}
+      width={width}
+      height={height}
       loading="lazy"
       referrerPolicy="no-referrer"
       onError={() => setHasError(true)}
@@ -25,3 +40,4 @@ function CompanyLogo({ domain, name = 'Company', className = '' }) {
 }
 
 export default CompanyLogo;
+
