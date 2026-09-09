@@ -153,7 +153,7 @@ const ProjectPage = ({ onNavigate }) => {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center w-full border border-stone-900 dark:border-[#eee] bg-stone-900 dark:bg-[#eee] text-white dark:text-[#111] px-4 py-3 text-[11px] font-sans font-medium uppercase tracking-[0.14em] hover:bg-stone-700 dark:hover:bg-[#ccc] transition-colors duration-200"
+                    className="inline-flex items-center justify-center w-full rounded-full border border-stone-900 dark:border-[#eee] bg-stone-900 dark:bg-[#eee] text-white dark:text-[#111] px-4 py-3 text-[11px] font-sans font-medium uppercase tracking-[0.14em] hover:bg-stone-700 dark:hover:bg-[#ccc] transition-colors duration-200"
                   >
                     {project.liveLabel || 'Open Live Project'}
                   </a>
@@ -166,7 +166,7 @@ const ProjectPage = ({ onNavigate }) => {
                     href={project.repoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center w-full border border-stone-300 dark:border-[#333] bg-white dark:bg-[#1e1e1e] text-stone-900 dark:text-[#eee] px-4 py-3 text-[11px] font-sans font-medium uppercase tracking-[0.14em] hover:bg-stone-100 dark:hover:bg-[#262626] transition-colors duration-200"
+                    className="inline-flex items-center justify-center w-full rounded-full border border-stone-300 dark:border-[#333] bg-white dark:bg-[#1e1e1e] text-stone-900 dark:text-[#eee] px-4 py-3 text-[11px] font-sans font-medium uppercase tracking-[0.14em] hover:bg-stone-100 dark:hover:bg-[#262626] transition-colors duration-200"
                   >
                     {project.repoLabel || 'View Repository'}
                   </a>

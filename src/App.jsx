@@ -205,7 +205,7 @@ function AppLayout() {
                 onClick={toggleDark}
                 aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
                 title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-                className={`flex items-center justify-center w-11 h-11 rounded-md border transition-all duration-200 ${
+                className={`flex items-center justify-center w-11 h-11 rounded-full border transition-all duration-200 ${
                   isDark || navIsOverlay
                     ? 'border-[#2a2a2a] text-[#aaa] hover:text-[#ccc] hover:border-[#444] bg-[#191919]'
                     : 'border-stone-200 text-[#666] hover:text-brand-dark hover:border-stone-300 bg-white'
@@ -259,7 +259,7 @@ function AppLayout() {
               </a>
               <button
                 onClick={() => handleNavigate('contact')}
-                className="hidden sm:inline-flex items-center gap-1.5 bg-brand-lime text-[#111] px-4 py-1.5 rounded-md font-sans text-sm font-semibold tracking-tight hover:bg-white dark:hover:bg-[#eee] transition-all duration-200 active:scale-[0.98]"
+                className="hidden sm:inline-flex items-center gap-1.5 bg-brand-lime text-[#111] px-4 py-1.5 rounded-full font-sans text-sm font-semibold tracking-tight hover:bg-white dark:hover:bg-[#eee] transition-all duration-200 active:scale-[0.98]"
               >
                 Contact me
               </button>

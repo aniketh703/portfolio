@@ -60,14 +60,14 @@ class ErrorBoundary extends React.Component {
             <div className="flex items-center justify-center gap-3 pt-2">
               <button
                 onClick={this.handleReload}
-                className="inline-flex items-center gap-2 bg-brand-dark dark:bg-[#eee] text-white dark:text-[#111] px-5 py-2.5 rounded-lg text-sm font-semibold tracking-tight hover:bg-brand dark:hover:bg-brand-lime transition-all duration-200 shadow-md active:scale-95"
+                className="inline-flex items-center gap-2 bg-brand-dark dark:bg-[#eee] text-white dark:text-[#111] px-5 py-2.5 rounded-full text-sm font-semibold tracking-tight hover:bg-brand dark:hover:bg-brand-lime transition-all duration-200 shadow-md active:scale-95"
               >
                 <RefreshCw size={14} />
                 Reload Page
               </button>
               <button
                 onClick={this.handleHome}
-                className="inline-flex items-center gap-2 bg-stone-100 dark:bg-[#222] text-stone-800 dark:text-[#ccc] border border-stone-200 dark:border-[#333] px-5 py-2.5 rounded-lg text-sm font-medium tracking-tight hover:bg-stone-200 dark:hover:bg-[#2a2a2a] transition-all duration-200 active:scale-95"
+                className="inline-flex items-center gap-2 bg-stone-100 dark:bg-[#222] text-stone-800 dark:text-[#ccc] border border-stone-200 dark:border-[#333] px-5 py-2.5 rounded-full text-sm font-medium tracking-tight hover:bg-stone-200 dark:hover:bg-[#2a2a2a] transition-all duration-200 active:scale-95"
               >
                 <Home size={14} />
                 Return Home

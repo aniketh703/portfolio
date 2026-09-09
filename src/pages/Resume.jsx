@@ -335,7 +335,7 @@ const About = ({ onNavigate }) => {
                 <div className="flex gap-3 flex-wrap pt-1">
                   <button
                     onClick={() => onNavigate && onNavigate('contact')}
-                    className="group inline-flex items-center gap-2 bg-brand-dark dark:bg-[#eee] text-white dark:text-[#111] px-6 py-3 rounded-md font-sans text-sm font-semibold tracking-tight hover:bg-brand dark:hover:bg-brand-lime transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                    className="group inline-flex items-center gap-2 bg-brand-dark dark:bg-[#eee] text-white dark:text-[#111] px-6 py-3 rounded-full font-sans text-sm font-semibold tracking-tight hover:bg-brand dark:hover:bg-brand-lime transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                   >
                     Get in touch
                     <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -344,7 +344,7 @@ const About = ({ onNavigate }) => {
                     href="https://www.linkedin.com/in/aniketh-vustepalle/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-2 border border-stone-300 dark:border-[#333] text-brand-dark dark:text-[#ccc] px-6 py-3 rounded-md font-sans text-sm font-medium tracking-tight hover:border-stone-400 dark:hover:border-[#555] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] bg-transparent hover:bg-stone-50 dark:hover:bg-[#1a1a1a]"
+                    className="group inline-flex items-center gap-2 border border-stone-300 dark:border-[#333] text-brand-dark dark:text-[#ccc] px-6 py-3 rounded-full font-sans text-sm font-medium tracking-tight hover:border-stone-400 dark:hover:border-[#555] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] bg-transparent hover:bg-stone-50 dark:hover:bg-[#1a1a1a]"
                   >
                     LinkedIn
                     <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

@@ -95,21 +95,21 @@ const NotFound = ({ onNavigate }) => {
             <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
               <button
                 onClick={() => handleGo('index')}
-                className="inline-flex items-center gap-2.5 bg-brand-dark dark:bg-white text-white dark:text-brand-dark px-7 py-4 rounded-2xl font-sans text-base font-bold tracking-tight hover:bg-brand dark:hover:bg-brand-lime transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
+                className="inline-flex items-center gap-2.5 bg-brand-dark dark:bg-white text-white dark:text-brand-dark px-7 py-4 rounded-full font-sans text-base font-bold tracking-tight hover:bg-brand dark:hover:bg-brand-lime transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
               >
                 <Home size={18} />
                 Return to Homepage
               </button>
               <button
                 onClick={() => handleGo('projects')}
-                className="inline-flex items-center gap-2.5 bg-white dark:bg-[#181818] text-brand-dark dark:text-[#eee] border border-stone-200 dark:border-[#303030] px-7 py-4 rounded-2xl font-sans text-base font-semibold tracking-tight hover:border-brand-dark dark:hover:border-brand-lime transition-all duration-300 shadow-sm hover:scale-[1.02] active:scale-[0.98]"
+                className="inline-flex items-center gap-2.5 bg-white dark:bg-[#181818] text-brand-dark dark:text-[#eee] border border-stone-200 dark:border-[#303030] px-7 py-4 rounded-full font-sans text-base font-semibold tracking-tight hover:border-brand-dark dark:hover:border-brand-lime transition-all duration-300 shadow-sm hover:scale-[1.02] active:scale-[0.98]"
               >
                 <Briefcase size={18} />
                 Explore Selected Work
               </button>
               <button
                 onClick={() => handleGo('contact')}
-                className="inline-flex items-center gap-2.5 bg-transparent text-stone-600 dark:text-[#aaa] hover:text-brand-dark dark:hover:text-white px-6 py-4 rounded-2xl font-sans text-base font-medium tracking-tight transition-colors duration-200"
+                className="inline-flex items-center gap-2.5 bg-transparent text-stone-600 dark:text-[#aaa] hover:text-brand-dark dark:hover:text-white px-6 py-4 rounded-full font-sans text-base font-medium tracking-tight transition-colors duration-200"
               >
                 <Mail size={18} />
                 Contact Me

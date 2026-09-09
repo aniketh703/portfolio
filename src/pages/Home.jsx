@@ -132,13 +132,13 @@ const Home = ({ projects = [], onSelect, onNavigate }) => {
           <div className="hero-cta flex justify-center gap-3 flex-wrap">
             <button
               onClick={() => onNavigate('projects')}
-              className="group inline-flex items-center gap-2 bg-brand-dark dark:bg-[#eee] text-white dark:text-[#111] px-6 py-3 rounded-[5px] font-sans text-sm font-medium tracking-tight hover:bg-brand dark:hover:bg-brand-lime transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-xl"
+              className="group inline-flex items-center gap-2 bg-brand-dark dark:bg-[#eee] text-white dark:text-[#111] px-6 py-3 rounded-full font-sans text-sm font-medium tracking-tight hover:bg-brand dark:hover:bg-brand-lime transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-xl"
             >
               See my work <ArrowUpRight aria-hidden="true" size={14} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </button>
             <button
               onClick={() => onNavigate('about')}
-              className="group inline-flex items-center gap-2 bg-transparent border border-stone-300 dark:border-[#333] text-brand-dark dark:text-[#ccc] px-6 py-3 rounded-[5px] font-sans text-sm font-medium tracking-tight hover:border-brand-dark dark:hover:border-[#aaa] hover:text-brand dark:hover:text-[#eee] transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98]"
+              className="group inline-flex items-center gap-2 bg-transparent border border-stone-300 dark:border-[#333] text-brand-dark dark:text-[#ccc] px-6 py-3 rounded-full font-sans text-sm font-medium tracking-tight hover:border-brand-dark dark:hover:border-[#aaa] hover:text-brand dark:hover:text-[#eee] transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98]"
             >
               About me <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
             </button>
@@ -165,7 +165,7 @@ const Home = ({ projects = [], onSelect, onNavigate }) => {
             </p>
             <button
               onClick={() => onNavigate && onNavigate('contact')}
-              className="group inline-flex items-center gap-2 bg-brand-dark dark:bg-[#eee] text-white dark:text-[#111] px-6 py-2.5 rounded-[5px] font-sans text-sm font-medium tracking-tight hover:bg-brand dark:hover:bg-brand-lime transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-xl flex-shrink-0"
+              className="group inline-flex items-center gap-2 bg-brand-dark dark:bg-[#eee] text-white dark:text-[#111] px-6 py-2.5 rounded-full font-sans text-sm font-medium tracking-tight hover:bg-brand dark:hover:bg-brand-lime transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-xl flex-shrink-0"
             >
               Reach out <ArrowUpRight aria-hidden="true" size={14} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </button>
@@ -208,7 +208,7 @@ const Home = ({ projects = [], onSelect, onNavigate }) => {
                     </p>
                     <button
                       onClick={() => handleProjectSelect(project)}
-                      className="group mt-8 inline-flex items-center gap-2 bg-brand-dark dark:bg-[#eee] text-white dark:text-[#111] px-6 py-3 rounded-md font-sans text-sm font-medium tracking-tight hover:bg-brand dark:hover:bg-brand-lime transition-all duration-300"
+                      className="group mt-8 inline-flex items-center gap-2 bg-brand-dark dark:bg-[#eee] text-white dark:text-[#111] px-6 py-3 rounded-full font-sans text-sm font-medium tracking-tight hover:bg-brand dark:hover:bg-brand-lime transition-all duration-300"
                     >
                       View full case study
                       <ArrowUpRight aria-hidden="true" size={14} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
