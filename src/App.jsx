@@ -47,12 +47,45 @@ function getServerThemeSnapshot() {
   return false;
 }
 
+function subscribeToDesktop(callback) {
+  if (typeof window === 'undefined' || !window.matchMedia) {
+    return () => {};
+  }
+  const mqlHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+  const mqlWidth = window.matchMedia('(min-width: 1024px)');
+  mqlHover.addEventListener('change', callback);
+  mqlWidth.addEventListener('change', callback);
+  return () => {
+    mqlHover.removeEventListener('change', callback);
+    mqlWidth.removeEventListener('change', callback);
+  };
+}
+
+function getDesktopSnapshot() {
+  if (typeof window === 'undefined' || !window.matchMedia) return false;
+  return window.matchMedia('(hover: hover) and (pointer: fine)').matches &&
+         window.matchMedia('(min-width: 1024px)').matches;
+}
+
+function getServerDesktopSnapshot() {
+  return false;
+}
+
 const VIEW_TO_PATH = {
   index:    '/',
   projects: '/work',
   about:    '/about',
   contact:  '/contact',
 };
+
+function MaybeLenis({ isDesktop, lenisRef, children }) {
+  if (!isDesktop) return children;
+  return (
+    <ReactLenis root ref={lenisRef} autoRaf={false}>
+      {children}
+    </ReactLenis>
+  );
+}
 
 /* ─────────────────────────────────────────────────────────────
    AppLayout — lives inside BrowserRouter so useNavigate works
@@ -67,9 +100,11 @@ function AppLayout() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [heroScrolledPast, setHeroScrolledPast] = useState(false);
   const isDark = useSyncExternalStore(subscribeToTheme, getThemeSnapshot, getServerThemeSnapshot);
+  const isDesktop = useSyncExternalStore(subscribeToDesktop, getDesktopSnapshot, getServerDesktopSnapshot);
 
-  /* ── Lenis RAF ──────────────────────────────────────────── */
+  /* ── Lenis RAF (desktop only) ───────────────────────────── */
   useEffect(() => {
+    if (!isDesktop) return;
     function update(time) { lenisRef.current?.lenis?.raf(time * 1000); }
     gsap.ticker.add(update);
     // Recommended when driving GSAP's ticker from an external RAF loop (Lenis):
@@ -77,7 +112,7 @@ function AppLayout() {
     // which fights Lenis's own smoothing and causes a visible jump.
     gsap.ticker.lagSmoothing(0);
     return () => gsap.ticker.remove(update);
-  }, []);
+  }, [isDesktop]);
 
   /* ── Scroll-to-top button + hero-overlay nav ──────────────── */
   useEffect(() => {
@@ -160,7 +195,7 @@ function AppLayout() {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   return (
-    <ReactLenis root ref={lenisRef} autoRaf={false}>
+    <MaybeLenis isDesktop={isDesktop} lenisRef={lenisRef}>
       <div className="bg-stone-50 dark:bg-[#111] min-h-screen text-brand-dark dark:text-[#eee] selection:bg-brand selection:text-white font-sans no-scrollbar transition-colors duration-300">
        <FollowerPointerCard title="View Project" className="block min-h-screen">
 
@@ -295,7 +330,7 @@ function AppLayout() {
         </button>
        </FollowerPointerCard>
       </div>
-    </ReactLenis>
+    </MaybeLenis>
   );
 }
 

@@ -34,14 +34,13 @@ function WillemHero() {
   const [playIntro] = useState(() => !hasPlayedIntro && !prefersReducedMotion);
   const [settled, setSettled] = useState(!playIntro);
   const tlRef = useRef(null);
-  const prevOverflowRef = useRef({ body: '', html: '' });
 
   const handleSkip = useCallback(() => {
     if (tlRef.current) {
       tlRef.current.progress(1);
     }
-    document.body.style.overflow = prevOverflowRef.current.body || '';
-    document.documentElement.style.overflow = prevOverflowRef.current.html || '';
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
     if (lenis) lenis.start();
     hasPlayedIntro = true;
     setSettled(true);
@@ -54,8 +53,20 @@ function WillemHero() {
         handleSkip();
       }
     };
+    // On mobile or any touch device, tapping or attempting to scroll
+    // should immediately settle the intro so the user is never stuck.
+    const handleInteraction = () => {
+      handleSkip();
+    };
+
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('touchstart', handleInteraction, { passive: true });
+    window.addEventListener('wheel', handleInteraction, { passive: true });
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('touchstart', handleInteraction);
+      window.removeEventListener('wheel', handleInteraction);
+    };
   }, [settled, handleSkip]);
 
   // Decoupled from the animation timeline below: the Lenis instance isn't
@@ -81,11 +92,13 @@ function WillemHero() {
       return () => ctx.revert();
     }
 
-    const prevBodyOverflow = document.body.style.overflow;
-    const prevHtmlOverflow = document.documentElement.style.overflow;
-    prevOverflowRef.current = { body: prevBodyOverflow, html: prevHtmlOverflow };
-    document.body.style.overflow = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
+    const isMobile = typeof window !== 'undefined' &&
+      (window.innerWidth < 768 || (window.matchMedia && window.matchMedia('(hover: none) and (pointer: coarse)').matches));
+
+    if (!isMobile) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    }
 
     let cancelled = false;
     let ctx;
@@ -111,8 +124,9 @@ function WillemHero() {
         const tl = gsap.timeline({
           defaults: { ease: 'expo.inOut' },
           onComplete: () => {
-            document.body.style.overflow = prevBodyOverflow;
-            document.documentElement.style.overflow = prevHtmlOverflow;
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
+            if (lenis) lenis.start();
             hasPlayedIntro = true;
             setSettled(true);
           },
@@ -150,11 +164,11 @@ function WillemHero() {
 
     return () => {
       cancelled = true;
-      document.body.style.overflow = prevBodyOverflow;
-      document.documentElement.style.overflow = prevHtmlOverflow;
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
       if (ctx) ctx.revert();
     };
-  }, [playIntro]);
+  }, [playIntro, lenis]);
 
   return (
     <section

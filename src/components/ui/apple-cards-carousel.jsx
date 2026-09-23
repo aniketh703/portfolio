@@ -159,12 +159,15 @@ export const Card = ({ card, index, layout = false }) => {
 
     if (open) {
       document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', onKeyDown);
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = '';
     }
 
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', onKeyDown);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 

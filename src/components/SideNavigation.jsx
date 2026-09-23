@@ -15,9 +15,14 @@ const SideNavigation = ({ onNavigate }) => {
   // overflow:hidden doesn't stop Lenis-driven scroll), so closing the menu
   // would otherwise dump the user at whatever position it silently reached.
   useEffect(() => {
-    if (!isOpen || !lenis) return;
-    lenis.stop();
-    return () => lenis.start();
+    if (!isOpen) return;
+    if (lenis) lenis.stop();
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      if (lenis) lenis.start();
+      document.body.style.overflow = prevOverflow || '';
+    };
   }, [isOpen, lenis]);
 
   // Close on Escape key
